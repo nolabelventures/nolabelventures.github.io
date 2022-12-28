@@ -1,5 +1,9 @@
 gsap.registerPlugin(DrawSVGPlugin, SplitText)
 
+gsap.defaults({
+  ease: 'Power4.easeInOut'
+})
+
 let intro = gsap.timeline({
   scrollTrigger: {
     trigger: ".hero-intro",
@@ -66,20 +70,42 @@ factsTrack.to(track, {
   x: () => `-${Sections[0].offsetWidth * Sections.length - window.innerWidth}`,
 })
 
-let sectionTwoIn = gsap.timeline({
+// let sectionTwoIn = gsap.timeline({
+//   scrollTrigger: {
+//     trigger: Sections[1],
+//     scrub: 1,
+//     start: 'top top-=' + Sections[0].offsetWidth * 3,
+//     end: '+=' + Sections[0].offsetWidth * 4,
+//   }
+// })
+
+// sectionTwoIn.from(Sections[1].querySelector('h2'), {
+//   autoAlpha: 0,
+// })
+
+/* PORTFOLIO SECTION */
+const portfolioSection = gsap.timeline({
   scrollTrigger: {
-    trigger: Sections[1],
-    scrub: 1,
-    start: 'top top-=' + Sections[0].offsetWidth * 3,
-    end: '+=' + Sections[0].offsetWidth * 4,
+    trigger: '.portfolio',
+    start: "top center",
+    end: "bottom bottom-=300",
+    scrub: true
   }
 })
 
-sectionTwoIn.from(Sections[1].querySelector('h2'), {
+portfolioSection.from('.portfolio > div > div', {
+  y: 30,
   autoAlpha: 0,
+  stagger: 0.5
+})
+
+portfolioSection.from('.about', {
+  autoAlpha: 0,
+  duration: 3
 })
 
 
+/* ABOUT SECTION */
 const aboutSection = gsap.timeline({
   scrollTrigger: {
     trigger: ".about",
@@ -89,10 +115,6 @@ const aboutSection = gsap.timeline({
     pinSpacing: true,
     scrub: true,
   }
-})
-
-aboutSection.from('.about', {
-  autoAlpha: 0
 })
 
 const aboutSections = gsap.utils.toArray(".about-content > div")
