@@ -1,0 +1,74 @@
+@charset "UTF-8";
+:root {
+  --colors-black: #111111;
+  --colors-white: #FFFFFF;
+}
+
+/* *
+ * @license
+ *
+ * Font Family: Tanker
+ * Designed by: Ruosi Huang
+ * URL: https://www.fontshare.com/fonts/tanker
+ * © 2022 Indian Type Foundry
+ *
+ * Font Style:
+ * Tanker Regular
+ * */
+@font-face {
+  font-family: "Tanker-Regular";
+  src: url("/css/Tanker-Regular.woff2") format("woff2"), url("/css/Tanker-Regular.woff") format("woff"), url("/css/Tanker-Regular.ttf") format("truetype");
+  font-weight: 400;
+  font-display: swap;
+  font-style: normal;
+}
+h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+  font-family: "Tanker-Regular";
+}
+
+.hero-intro {
+  color: var(--colors-white);
+  background: var(--colors-black);
+  height: 100vh;
+}
+
+.hero-intro__page {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.hero-page {
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  position: relative;
+}

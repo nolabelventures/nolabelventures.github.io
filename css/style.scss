@@ -1,0 +1,20 @@
+@import 'variables';
+@import 'fonts';
+
+.hero-intro {
+    color: var(--colors-white);
+    background: var(--colors-black);
+    height: 100vh;
+}
+
+.hero-intro__page {
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+}
