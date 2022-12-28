@@ -4,6 +4,14 @@ gsap.defaults({
   ease: 'Power4.easeInOut'
 })
 
+gsap.fromTo('.hero-intro h1', {
+  autoAlpha: 0,
+  scale: 1.1
+}, {
+  autoAlpha: 1,
+  scale: 1
+})
+
 let intro = gsap.timeline({
   scrollTrigger: {
     trigger: ".hero-intro",
