@@ -2,6 +2,8 @@
 :root {
   --colors-black: #111111;
   --colors-white: #FFFFFF;
+  --text-title: 7.5rem;
+  --text-lead: 1.5625rem;
 }
 
 /* *
@@ -33,11 +35,12 @@ h5,
 .h4,
 .h5 {
   font-family: "Tanker-Regular";
+  margin: 0;
+  font-size: 2.1875rem;
 }
 
 .hero-intro {
   color: var(--colors-white);
-  background: var(--colors-black);
   height: 100vh;
 }
 
@@ -57,9 +60,72 @@ h5,
   left: 0;
   right: 0;
   bottom: 0;
+  width: 100vw;
 }
 
-.hero-page {
+body {
+  background: var(--colors-black);
+  font-family: "Poppins", sans-serif;
+  color: var(--colors-white);
+  font-size: 16px;
+}
+
+.facts__section {
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  height: 100vh;
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  -ms-flex-negative: 0;
+      flex-shrink: 0;
+}
+
+.facts__section-content {
+  max-width: 450px;
+  width: 100%;
+  text-align: center;
+}
+
+.facts__content-text {
+  font-size: var(--text-lead);
+}
+
+.facts__content-title {
+  font-size: var(--text-title);
+}
+
+h2 {
+  width: 450px;
+  margin-bottom: 0;
+}
+
+.facts .pin-spacer {
+  background-image: url("/assets/background-1.png");
+  background-position: center top;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.about {
+  background-image: url("../assets/about-background.jpeg");
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-size: cover;
+  position: relative;
+  height: 100vh;
+}
+
+.about-content {
   height: 100vh;
   display: -webkit-box;
   display: -ms-flexbox;
@@ -70,5 +136,45 @@ h5,
   -webkit-box-pack: center;
       -ms-flex-pack: center;
           justify-content: center;
-  position: relative;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+
+.about-heading {
+  font-family: "Poppins", sans-serif;
+  font-size: 14px;
+  margin-bottom: 0.5em;
+}
+
+.about-content > * {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  max-width: 830px;
+}
+
+.about-content > div {
+  max-width: 830px;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  gap: 60px;
+}
+
+.about-content > div > div {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+  -ms-flex-negative: 1;
+      flex-shrink: 1;
+  -ms-flex-preferred-size: 100%;
+      flex-basis: 100%;
+  color: var(--colors-black);
 }
