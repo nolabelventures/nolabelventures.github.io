@@ -1,0 +1,27 @@
+backend:
+  name: github
+  repo: nolabelventures/nolabelventures.github.io # Path to your GitHub repository
+  branch: main # Branch to update (optional; defaults to master)
+media_folder: "images/uploads"
+public_folder: "/assets/uploads"
+collections:
+  - name: "portfolio_items"
+    label: "Portfolo Items"
+    create: true
+    folder: '_data/transcripts'
+    fields:
+      - { label: 'Title', name: 'title', widget: 'text', required: true }
+      - { label: 'URL', name: 'url', widget: 'text', required: true }
+      - { label: 'Logo', name: 'image', widget: 'image', required: true }
+  - name: 'blog'
+    label: 'Blog'
+    folder: '_posts/'
+    create: true
+    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    editor:
+      preview: false
+    fields:
+      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
+      - { label: 'Title', name: 'title', widget: 'string' }
+      - { label: 'Publish Date', name: 'date', widget: 'datetime' }
+      - { label: 'Body', name: 'body', widget: 'markdown' }

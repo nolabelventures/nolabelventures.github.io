@@ -95,37 +95,20 @@
           </div>
         </div>
       </div>
+      {% if site.data.portfolio_items %}
       <section class="portfolio" id="portfolio">
         <h2>Our Portfolio</h2>
         <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px;">
-          <div class="portfolio-link__wrapper"><a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
+          {% for portfolio in site.data.portfolio_items %}
           <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
+            <a class="portfolio__link" href="{{ portfolio.url }}">
+              <img src="{{ portfolio.image }}" alt="{{ portfolio.title }}" />
+            </a>
           </div>
-          <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
-          <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
-          <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
-          <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
-          <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
-          <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
-          <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="#"> <h3>Logo</h3> </a>
-          </div>
+          {% endfor %}
         </div>
       </section>
+      {% endif %}
       <section class="about" id="about">
         <div class="about-content founder">
           <div>
@@ -136,9 +119,9 @@
               <h2 class="about-heading">About Us</h2>
               <h3>Founding Partner <div>Ramzi Rafih</div></h3>
               <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. </p>
               <p>
-olore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+                olore magna aliqua.Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
             </div>
           </div>
         </div>
