@@ -24,6 +24,7 @@ collections:
     folder: '_posts/'
     create: true
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    identifier_field: title
     editor:
       preview: false
     fields:
