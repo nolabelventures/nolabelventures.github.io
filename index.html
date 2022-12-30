@@ -101,10 +101,10 @@
       <section class="portfolio" id="portfolio">
         <h2>Our Portfolio</h2>
         <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px;">
-          {% for portfolio in site.data.portfolio %}
+          {% for item in site.data.portfolio %}
           <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="{{ portfolio.url }}">
-              <img src="{{ portfolio.image[0].url }}" alt="{{ portfolio.title }}" />
+            <a class="portfolio__link" href="{{ item.url }}">
+              <img src="{{ item.image[0].url }}" alt="{{ item.title }}" />
             </a>
           </div>
           {% endfor %}
