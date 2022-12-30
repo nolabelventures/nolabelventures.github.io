@@ -97,15 +97,14 @@
           </div>
         </div>
       </div>
-      {{ site.data | json }}
-      {% if site.data.portfolio_items %}
+      {% if site.data.portfolio %}
       <section class="portfolio" id="portfolio">
         <h2>Our Portfolio</h2>
         <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px;">
-          {% for portfolio in site.data.portfolio_items %}
+          {% for portfolio in site.data.portfolio %}
           <div class="portfolio-link__wrapper">
             <a class="portfolio__link" href="{{ portfolio.url }}">
-              <img src="{{ portfolio.image }}" alt="{{ portfolio.title }}" />
+              <img src="{{ portfolio[0].image }}" alt="{{ portfolio.title }}" />
             </a>
           </div>
           {% endfor %}
