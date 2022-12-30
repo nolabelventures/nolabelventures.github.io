@@ -7,3 +7,5 @@ vendor
 
 _pgbackup
 _pginfo
+
+node_modules
