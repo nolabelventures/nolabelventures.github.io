@@ -23,7 +23,6 @@ collections:
     label: 'Blog'
     folder: '_posts/'
     create: true
-    extension: html
     slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
     identifier_field: title
     editor:
