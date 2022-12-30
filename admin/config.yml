@@ -2,6 +2,8 @@ backend:
   name: github
   repo: nolabelventures/nolabelventures.github.io # Path to your GitHub repository
   branch: main # Branch to update (optional; defaults to master)
+  base_url: https://nolabelventures-oauth.herokuapp.com
+
 media_folder: "images/uploads"
 public_folder: "/assets/uploads"
 collections:
