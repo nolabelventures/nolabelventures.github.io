@@ -8,9 +8,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1"> 
     <meta name="description" content=""> 
     <meta name="author" content=""> 
-    <title>New page</title>     
-    <link href="css/normalize.css" rel="stylesheet"> 
-    <link href="css/style.css" rel="stylesheet"> 
+    <title>{{ page.title }}</title>     
+    <link href="/css/normalize.css" rel="stylesheet"> 
+    <link href="/css/style.css" rel="stylesheet"> 
     <script>/* Pinegrow Interactions, do not remove */ (function(){try{if(!document.documentElement.hasAttribute('data-pg-ia-disabled')) { window.pgia_small_mq=typeof pgia_small_mq=='string'?pgia_small_mq:'(max-width:767px)';window.pgia_large_mq=typeof pgia_large_mq=='string'?pgia_large_mq:'(min-width:768px)';var style = document.createElement('style');var pgcss='html:not(.pg-ia-no-preview) [data-pg-ia-hide=""] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show=""] {opacity:1;visibility:visible;display:block;}';if(document.documentElement.hasAttribute('data-pg-id') && document.documentElement.hasAttribute('data-pg-mobile')) {pgia_small_mq='(min-width:0)';pgia_large_mq='(min-width:99999px)'} pgcss+='@media ' + pgia_small_mq + '{ html:not(.pg-ia-no-preview) [data-pg-ia-hide="mobile"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="mobile"] {opacity:1;visibility:visible;display:block;}}';pgcss+='@media ' + pgia_large_mq + '{html:not(.pg-ia-no-preview) [data-pg-ia-hide="desktop"] {opacity:0;visibility:hidden;}html:not(.pg-ia-no-preview) [data-pg-ia-show="desktop"] {opacity:1;visibility:visible;display:block;}}';style.innerHTML=pgcss;document.querySelector('head').appendChild(style);}}catch(e){console&&console.log(e);}})()</script>
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
   </head>
@@ -18,17 +18,13 @@
     <header class="nav">
       <nav>
         <ul class="nav__list">
-          <li>
-            <a href="#intro" class="nav__button"></a>
+          <li><a href="#intro" class="nav__button"></a>
           </li>
-          <li>
-            <a href="#portfolio" class="nav__button"></a>
+          <li><a href="#portfolio" class="nav__button"></a>
           </li>
-          <li>
-            <a href="#about" class="nav__button"></a>
+          <li><a href="#about" class="nav__button"></a>
           </li>
-          <li>
-            <a href="#faq" class="nav__button"></a>
+          <li><a href="#faq" class="nav__button"></a>
           </li>
         </ul>
       </nav>
@@ -37,11 +33,10 @@
       <div class="blog-post">
         <h1>{{ page.title }}</h1>
         <p>Posted on: {{ post.date }}</p>
-
         {{ content }}
       </div>
     </main>
-    <footer>
+    <footer data-pgc-define="nlv.footer" data-pgc-define-name="Footer" data-pgc-section="Global">
       <div class="footer-container">
         <div>
           <svg width="300" height="127" viewBox="0 0 300 127" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -73,23 +68,25 @@
             <path d="M299.358 113.386C298.881 112.447 298.123 111.677 297.08 110.921L297.078 110.92L293.321 108.208C292.905 107.901 292.65 107.657 292.498 107.402C292.347 107.144 292.249 106.829 292.246 106.243V102.831C292.246 102.543 292.281 102.32 292.333 102.162C292.416 101.924 292.5 101.83 292.652 101.733C292.807 101.639 293.083 101.559 293.517 101.56H294.06C294.348 101.559 294.57 101.595 294.729 101.647C294.967 101.73 295.062 101.814 295.158 101.966C295.251 102.12 295.331 102.396 295.331 102.831V107.833C295.331 108.042 295.412 108.239 295.561 108.387C295.709 108.535 295.905 108.616 296.115 108.616H299.14C299.349 108.616 299.546 108.535 299.694 108.387C299.842 108.238 299.923 108.042 299.923 107.833V102.947C299.926 101.18 299.483 99.702 298.464 98.677C297.96 98.1685 297.328 97.7924 296.607 97.5523C295.885 97.311 295.075 97.1998 294.176 97.1998H293.401C292.493 97.1998 291.674 97.311 290.943 97.5529C289.849 97.9097 288.956 98.5936 288.393 99.5442C287.825 100.495 287.576 101.665 287.576 103.025V106.282C287.575 107.452 287.73 108.491 288.2 109.441C288.668 110.391 289.428 111.199 290.503 111.962L290.497 111.958L294.297 114.71C294.708 115.013 294.947 115.25 295.09 115.503C295.234 115.757 295.328 116.079 295.331 116.673V120.745C295.331 121.032 295.296 121.255 295.244 121.413C295.161 121.652 295.077 121.746 294.925 121.843C294.771 121.936 294.494 122.016 294.06 122.016H293.439C293.151 122.016 292.929 121.981 292.771 121.929C292.532 121.845 292.438 121.762 292.341 121.609C292.248 121.455 292.167 121.179 292.168 120.745V114.929C292.168 114.72 292.087 114.523 291.938 114.375C291.79 114.227 291.594 114.145 291.384 114.145H288.36C288.153 114.145 287.951 114.228 287.805 114.374C287.659 114.52 287.576 114.723 287.576 114.929V120.629C287.573 122.395 288.017 123.874 289.035 124.899C289.54 125.407 290.172 125.783 290.892 126.023C291.614 126.264 292.424 126.376 293.323 126.376H294.176C295.084 126.376 295.903 126.264 296.633 126.022C297.728 125.666 298.621 124.982 299.184 124.031C299.751 123.081 300 121.91 300 120.551V116.596C300.001 115.368 299.836 114.323 299.358 113.386Z" fill="white"/>
           </svg>
         </div>
-        <div class="footer__links">
-          <a href="#" class="footer__link">Our why</a><a href="#faqs" class="footer__link">FAQs</a><a href="#" class="footer__link"> <div>
+        <div class="footer__links"><a href="#" class="footer__link">Our why</a>
+          <a href="#faqs" class="footer__link">FAQs</a>
+          <a href="#" class="footer__link"> <div>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M2.66732 2.6665H13.334C14.0673 2.6665 14.6673 3.2665 14.6673 3.99984V11.9998C14.6673 12.7332 14.0673 13.3332 13.334 13.3332H2.66732C1.93398 13.3332 1.33398 12.7332 1.33398 11.9998V3.99984C1.33398 3.2665 1.93398 2.6665 2.66732 2.6665Z" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M14.6673 4L8.00065 8.66667L1.33398 4" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-hello@nolabel.ventures</a><a href="#portfolio" class="footer__link">Portfolio</a><a href="#blog" class="footer__link">Blog</a><a href="#" class="footer__link"> <div>
+hello@nolabel.ventures</a>
+          <a href="#portfolio" class="footer__link">Portfolio</a>
+          <a href="#blog" class="footer__link">Blog</a>
+          <a href="#" class="footer__link"> <div>
               <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg">
                 <path d="M10.666 5.3335C11.7269 5.3335 12.7443 5.75492 13.4944 6.50507C14.2446 7.25521 14.666 8.27263 14.666 9.3335V14.0002H11.9993V9.3335C11.9993 8.97987 11.8589 8.64074 11.6088 8.39069C11.3588 8.14064 11.0196 8.00016 10.666 8.00016C10.3124 8.00016 9.97326 8.14064 9.72321 8.39069C9.47316 8.64074 9.33268 8.97987 9.33268 9.3335V14.0002H6.66602V9.3335C6.66602 8.27263 7.08744 7.25521 7.83759 6.50507C8.58773 5.75492 9.60515 5.3335 10.666 5.3335V5.3335Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M4.00065 6H1.33398V14H4.00065V6Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
                 <path d="M2.66732 4.00016C3.4037 4.00016 4.00065 3.40321 4.00065 2.66683C4.00065 1.93045 3.4037 1.3335 2.66732 1.3335C1.93094 1.3335 1.33398 1.93045 1.33398 2.66683C1.33398 3.40321 1.93094 4.00016 2.66732 4.00016Z" stroke="white" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
               </svg>
             </div>
-Linkedin</a>
-          <a href="#about" class="footer__link">About us</a>
-          <a href="#" class="footer__link">Pitch us</a>
+Linkedin</a><a href="#about" class="footer__link">About us</a><a href="#" class="footer__link">Pitch us</a>
         </div>
       </div>
     </footer>

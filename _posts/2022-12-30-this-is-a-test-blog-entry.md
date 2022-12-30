@@ -1,5 +1,5 @@
 ---
-layout: post
+layout: posts
 title: This is a test blog entry
 date: 2022-12-30T14:56:55.253Z
 ---
