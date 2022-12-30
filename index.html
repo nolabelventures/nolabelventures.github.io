@@ -102,10 +102,10 @@
         <h2>Our Portfolio</h2>
         <div style="display: grid; grid-template-columns: repeat(5, 1fr); gap: 30px;">
           {% for item in site.data.portfolio %}
-          {{item[0]}}
+          {% assign portfolioData = item[1] %}
           <div class="portfolio-link__wrapper">
-            <a class="portfolio__link" href="{{ item.url }}">
-              <img src="{{ item.image[0].url }}" alt="{{ item.title }}" />
+            <a class="portfolio__link" href="{{ portfolioData.url }}">
+              <img src="{{ portfolioData.image[0].url }}" alt="{{ portfolioData.title }}" />
             </a>
           </div>
           {% endfor %}
