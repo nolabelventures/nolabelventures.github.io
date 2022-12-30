@@ -104,7 +104,7 @@
           {% for portfolio in site.data.portfolio %}
           <div class="portfolio-link__wrapper">
             <a class="portfolio__link" href="{{ portfolio.url }}">
-              <img src="{{ portfolio[0].image }}" alt="{{ portfolio.title }}" />
+              <img src="{{ portfolio.image[0].url }}" alt="{{ portfolio.title }}" />
             </a>
           </div>
           {% endfor %}
