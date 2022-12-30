@@ -13,6 +13,8 @@ collections:
     create: true
     extension: 'yaml'
     folder: '_data/portfolio'
+    editor:
+      preview: false
     fields:
       - { label: 'Title', name: 'title', widget: 'text', required: true }
       - { label: 'URL', name: 'url', widget: 'text', required: true }

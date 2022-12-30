@@ -97,7 +97,6 @@
           </div>
         </div>
       </div>
-      {{ site.data }}
       {% if site.data.portfolio %}
       <section class="portfolio" id="portfolio">
         <h2>Our Portfolio</h2>
@@ -106,7 +105,7 @@
           {% assign portfolioData = item[1] %}
           <div class="portfolio-link__wrapper">
             <a class="portfolio__link" href="{{ portfolioData.url }}">
-              <img src="{{ portfolioData.image.url }}" alt="{{ portfolioData.title }}" />
+              <img src="{{ portfolioData.image }}" alt="{{ portfolioData.title }}" />
             </a>
           </div>
           {% endfor %}
