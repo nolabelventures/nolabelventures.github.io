@@ -6,6 +6,6 @@ vendor
 .DS_Store
 
 _pgbackup
-_pginfo
 
 node_modules
+*.log
