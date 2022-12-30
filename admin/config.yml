@@ -11,6 +11,7 @@ collections:
     label: "Portfolio Items"
     label_singular: "Portfolio Item"
     create: true
+    extension: 'yaml'
     folder: '_data/portfolio'
     fields:
       - { label: 'Title', name: 'title', widget: 'text', required: true }
