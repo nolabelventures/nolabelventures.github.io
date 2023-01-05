@@ -1013,3 +1013,25 @@ main {
 .unicorn-founders h2 {
   margin-bottom: 0;
 }
+
+.blog-post__thumbnail {
+  width: 100%;
+  height: auto;
+  vertical-align: middle;
+  margin-bottom: 1em;
+}
+
+.blog-post h1 {
+  font-size: 1.75rem;
+}
+
+@media (min-width: 976px) {
+  .blog-post h1 {
+    font-size: 2.1875rem;
+    margin-bottom: 0.5em;
+  }
+}
+.blog-post__back {
+  color: currentColor;
+  text-decoration: none;
+}

@@ -40,3 +40,14 @@ window.addEventListener('resize', () => {
     isVisible = false
   }
 })
+
+const header = document.querySelector('.header')
+window.addEventListener('scroll', () => {
+  const windowPos = (window.pageYOffset || document.scrollTop) || 0;
+
+  if (windowPos >= (window.innerHeight / 2)) {
+    header.style.transform = 'translateY(-100%)'
+  } else {
+    header.style.transform = ''
+  }
+})

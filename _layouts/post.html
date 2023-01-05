@@ -45,9 +45,9 @@
       </div>
     </header>
     <main style="overflow: hidden">
-      <div class="blog-post">
+      <div class="blog-post"><a href="/blog" class="blog-post__back">&lt; Back</a>
         <h1>{{ page.title }}</h1>
-        <p>Posted on: {{ post.date }}</p>
+        <img src="{{ page.thumbnail }}" alt="" class="blog-post__thumbnail"/>
         {{ content }}
       </div>
     </main>
@@ -125,11 +125,11 @@
       </div>
       <button class="footer-menu-button">Menu</button>
     </footer>
-    <script src="pgia/lib/pgia.js"></script>
+    <script src="/pgia/lib/pgia.js"></script>
     <script src="/scripts/DrawSVGPlugin.min.js"></script>
     <script src="/scripts/DrawSVGPlugin.min.js.map"></script>
     <script src="/scripts/SplitText.min.js"></script>
     <script src="/scripts/SplitText.min.js.map"></script>
-    <script src="/scripts/main.js"></script>
+    <script src="/scripts/global-animations.js"></script>
   </body>
 </html>
