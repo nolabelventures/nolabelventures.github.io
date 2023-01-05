@@ -7,11 +7,11 @@ backend:
 
 media_folder: "assets/uploads"
 collections:
-  - name: index_page
-    label: Home Page
-    file: about.yml
+  - name: about
+    label: About Section
     identifier_field: content
-    folder: '_data'
+    extension: yml
+    folder: _data
     fields:
       - label: Content
         name: content
