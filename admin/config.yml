@@ -9,7 +9,8 @@ media_folder: "assets/uploads"
 collections:
   - name: index_page
     label: Home Page
-    file: _data/about.yml
+    file: about.yml
+    folder: '_data'
     fields:
       - label: Content
         name: content
