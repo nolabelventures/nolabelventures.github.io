@@ -10,6 +10,7 @@ collections:
   - name: index_page
     label: Home Page
     file: about.yml
+    identifier_field: content
     folder: '_data'
     fields:
       - label: Content
@@ -22,6 +23,7 @@ collections:
     create: true
     extension: 'yaml'
     folder: '_data/portfolio'
+    identifier_field: title
     editor:
       preview: false
     fields:
@@ -34,6 +36,7 @@ collections:
     create: true
     extension: 'yml'
     folder: '_data/faqs'
+    identifier_field: question
     editor:
       preview: false
     fields:
