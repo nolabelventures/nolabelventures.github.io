@@ -52,5 +52,7 @@ window.addEventListener('scroll', () => {
     header.style.transform = ''
   }
 
+
+  // used to detect scroll position
   lastScrollTop = windowPos <= 0 ? 0 : windowPos;
 })

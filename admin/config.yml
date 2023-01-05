@@ -7,6 +7,14 @@ backend:
 
 media_folder: "assets/uploads"
 collections:
+  - name: index_page
+    label: Home Page
+    file: _data/about.yml
+    fields:
+      - label: Content
+        name: content
+        widget: markdown
+        required: true
   - name: "portfolio_items"
     label: "Portfolio Items"
     label_singular: "Portfolio Item"
