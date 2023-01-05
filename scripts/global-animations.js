@@ -42,12 +42,15 @@ window.addEventListener('resize', () => {
 })
 
 const header = document.querySelector('.header')
+let lastScrollTop
 window.addEventListener('scroll', () => {
   const windowPos = (window.pageYOffset || document.scrollTop) || 0;
 
-  if (windowPos >= (window.innerHeight / 2)) {
+  if (windowPos >= (window.innerHeight / 2) && windowPos > lastScrollTop) {
     header.style.transform = 'translateY(-100%)'
-  } else {
+  } else  {
     header.style.transform = ''
   }
+
+  lastScrollTop = windowPos <= 0 ? 0 : windowPos;
 })
