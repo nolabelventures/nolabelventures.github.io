@@ -1,9 +1,3 @@
-gsap.registerPlugin(DrawSVGPlugin, SplitText);
-
-gsap.defaults({
-  ease: "Power4.easeInOut",
-});
-
 /* FOOTER */
 const footer = document.querySelector("footer");
 const footertl = gsap.timeline({
@@ -11,7 +5,7 @@ const footertl = gsap.timeline({
     trigger: footer,
     start: "top bottom",
     end: "bottom bottom",
-    scrub: true,
+    scrub: true
   },
 });
 
@@ -41,6 +35,7 @@ window.addEventListener('resize', () => {
   }
 })
 
+
 const header = document.querySelector('.header')
 let lastScrollTop
 window.addEventListener('scroll', () => {
@@ -55,4 +50,11 @@ window.addEventListener('scroll', () => {
 
   // used to detect scroll position
   lastScrollTop = windowPos <= 0 ? 0 : windowPos;
+})
+
+document.querySelector('.header__menu-button').addEventListener('click', () => {
+  header.classList.add('show-mobile-menu')
+})
+document.querySelector('.header__menu-button-close').addEventListener('click', () => {
+  header.classList.remove('show-mobile-menu')
 })

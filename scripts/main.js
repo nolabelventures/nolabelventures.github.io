@@ -22,10 +22,10 @@ gsap.utils.toArray('[href^="#"]').forEach(link => {
   link.addEventListener('click', e => {
     e.preventDefault()
 
-    console.log(document.getElementById(link.href.split('#')[1]));
+    header.classList.remove('show-mobile-menu')
 
-    window.scrollTo({ 
-      top: document.getElementById(link.href.split('#')[1]).offsetTop, 
+    window.scrollTo({
+      top: document.getElementById(link.href.split('#')[1]).offsetTop,
       left: 0,
       behavior: 'smooth'
     })
@@ -90,14 +90,14 @@ mm.add(
             start: "top top",
             end: "center top",
             scrub: 1,
-            ease: 'none'
+            ease: 'none',
           },
         });
         pageScrollAnimation.set(".draw-me", { autoAlpha: 1 });
         pageScrollAnimation.fromTo(".draw-me", { drawSVG: "0%", ease: 'none' }, { drawSVG: "-100%" }, "<");
 
         pageScrollAnimation.to(
-          [".hero-intro--page-two", ".hero-intro"],
+          [".hero-intro--page-two", "#intro"],
           {
             background: "transparent",
           },
@@ -125,6 +125,16 @@ mm.add(
       },
     });
 
+    // Don't prevent scroll if the user lands down the page
+    if (!window.pageYOffset && !document.scrollTop) {
+      introAnimation.set('body', {
+        overflow: 'hidden',
+      })
+    }
+
+    introAnimation.set(heroEl('h1'), {
+      autoAlpha: 1
+    })
 
     /* INTRO ANIMATION */
     introAnimation.from(heroText.words, {
@@ -132,19 +142,23 @@ mm.add(
       x: 20,
       stagger: 0.04,
       autoAlpha: 0,
-    });
+    }, "<");
 
     introAnimation.to(".hero-intro__blob", {
       delay: 0.5,
-      clipPath: "circle(50px at 50% 100%)",
+      clipPath: "circle(4% at 50% 100%)",
       ease: "elastic.out(1, 0.75)",
       duration: 1,
     });
 
     introAnimation.to(".hero-intro__blob", {
-      clipPath: "circle(100% at 50% 50%)",
+      clipPath: "circle(100% at 50% 75%)",
       duration: 1,
     });
+
+    introAnimation.set('#intro', {
+      background: '#111111'
+    })
 
     introAnimation.to([".hero-intro__blob", heroEl(".hero-intro--page-one")], {
       autoAlpha: 0,
@@ -187,333 +201,492 @@ mm.add(
       }
     )
 
+    introAnimation.set('body', {
+      overflow: '',
+    })
+
     /* FACTS HORIZONTAL SCROLL SECTION */
     if (isDesktop) {
       let Sections = gsap.utils.toArray(".facts__section");
-  
-      const horizontalScroll = gsap.to(".facts-track", {
-        xPercent: -100 * (Sections.length - 1),
-        ease: "none",
-        scrollTrigger: {
-          trigger: ".facts",
-          end: `+=${Sections[0].offsetWidth * Sections.length}`,
-          pin: true,
-          scrub: 1,
-          invalidateOnRefresh: true,
-        },
-      });
-      
-      gsap.from('.facts-section-line path', {
-        drawSVG: 0,
-        ease: 'none',
-        scrollTrigger: {
-          trigger: Sections[0],
-          start: "left left",
-          end: `+=${Sections[0].offsetWidth * (Sections.length - 1)}`,
-          scrub: 1,
-          containerAnimation: horizontalScroll,
+
+      const pinnedHorizontalScroll = Sections.map((section, index) => {
+        const options = {
+          scrollTrigger: {
+            trigger: section,
+            start: 'center center',
+            end: '+=' + window.innerHeight * 2,
+            pin: true,
+            scrub: true,
+            duration: 20,
+            inertia: false,
+            snap: {
+              snapTo: "labelsDirectional",
+              delay: 0.05,
+              inertia: false
+            },
+            ...(index === Sections.length - 1 ? {
+              onEnterBack: function() {
+                gsap.set('.facts-section-line', {
+                  position: '',
+                  bottom: ''
+                })
+              },
+              onLeave: function() {
+                console.log('onLeave')
+                gsap.set('.facts-section-line', {
+                  position: 'absolute',
+                  bottom: -window.innerHeight * 0.25 + 'px'
+                })
+              }
+            } : {
+            })
+          }
         }
+        return gsap.timeline(options)
       })
-      
+
+
+      // const horizontalScroll = gsap.to(".facts-track", {
+      //   xPercent: -100 * (Sections.length - 1),
+      //   ease: "none",
+      //   scrollTrigger: {
+      //     trigger: ".facts",
+      //     end: `+=${Sections[0].offsetWidth * Sections.length}`,
+      //     pin: true,
+      //     scrub: 1,
+      //     invalidateOnRefresh: true,
+      //   },
+      // });
+
       const servicesSection = gsap.utils.selector(".facts__section-services")
-      const firstSectionEntry = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".facts__section-services",
-          start: "center bottom",
-          end: "+=500",
-          scrub: 1,
-          // once: true,
-        }
-      })
-  
+      // const firstSectionEntry = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: ".facts__section-services",
+      //     start: "center bottom",
+      //     end: "+=500",
+      //     scrub: 1,
+      //     containerAnimation: pinnedHorizontalScroll
+      //     // once: true,
+      //   }
+      // })
+
       const firstSectionHeading = new SplitText(servicesSection('h2'), { type: "words" });
-      firstSectionEntry.from(firstSectionHeading.words, {
+      pinnedHorizontalScroll[0].from(firstSectionHeading.words, {
         autoAlpha: 0,
         y: 20,
-        stagger: 0.05,
+        stagger: 0.05
       });
-  
-      firstSectionEntry.from(servicesSection('.facts__services > div'), {
+
+      pinnedHorizontalScroll[0].from(servicesSection('.facts__services > div'), {
         y: 10,
         autoAlpha: 0,
         stagger: 0.05
       })
-  
+
+      pinnedHorizontalScroll[0].addLabel('animationComplete')
+
+      pinnedHorizontalScroll[0].to({}, {
+        duration: 2
+      })
+
+      pinnedHorizontalScroll[0].to(Sections[0], {
+        autoAlpha: 0,
+        duration: 2
+      })
+
       /* IMMIGRANT */
       const immigrantsSection = gsap.utils.selector('.immigrant-section')
       const immigrantSectionText = immigrantsSection(".facts__content-text")
-  
-      const immigrantsSectionTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: immigrantsSection("h2"),
-          start: "left 80%",
-          end: "left 20%",
-          scrub: 1,
-          containerAnimation: horizontalScroll,
-          // once: true,
-        },
+
+      // const immigrantsSectionTimeline = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: immigrantsSection("h2"),
+      //     start: "left 80%",
+      //     end: "left 20%",
+      //     scrub: 1,
+      //     containerAnimation: horizontalScroll,
+      //     // once: true,
+      //   },
+      // })
+
+      pinnedHorizontalScroll[1].from(Sections[1], {
+        autoAlpha: 0,
       })
-      immigrantsSectionTimeline.to(
-        immigrantsSection(".immigrant-section__digit"),
-        {
-          textContent: 14,
-          snap: { textContent: 0.1 },
-        },
-        "<"
-      );
-  
+
+      pinnedHorizontalScroll[1].from(immigrantsSection('.facts__section-subtitle')[0], {
+        autoAlpha: 0
+      }, "<")
+
+      pinnedHorizontalScroll[1].to(immigrantsSection(".immigrant-section__digit"), {
+        textContent: 14,
+        snap: { textContent: 0.1 },
+      }, "<");
+
       const immigrantsSectionHeading = new SplitText(immigrantsSection("h2"), { type: "chars" });
-      immigrantsSectionTimeline.from(immigrantsSectionHeading.chars, {
+      pinnedHorizontalScroll[1].from(immigrantsSectionHeading.chars, {
         autoAlpha: 0,
         y: 20,
         ease: "none",
         stagger: 0.05
       }, "<");
-  
+
       let immigrantsSectionText = new SplitText(immigrantSectionText[0], {type: "words" });
-      immigrantsSectionTimeline.from(immigrantsSectionText.words, {
+      pinnedHorizontalScroll[1].from(immigrantsSectionText.words, {
         y: 20,
         autoAlpha: 0,
         stagger: 0.05,
       }, "<");
-  
-      immigrantsSectionTimeline.from(immigrantsSection('.immigrant-section__lessthan'), {
+
+      pinnedHorizontalScroll[1].from(immigrantsSection('.immigrant-section__lessthan'), {
         autoAlpha: 0,
         x: -10,
         scaleY: 0
       })
-  
-      immigrantsSectionTimeline.to(immigrantsSection('.immigrant-section__digit-two'), {
+
+      pinnedHorizontalScroll[1].from(immigrantsSection('.facts__section-subtitle')[1], {
+        autoAlpha: 0
+      }, "<")
+
+      pinnedHorizontalScroll[1].to(immigrantsSection('.immigrant-section__digit-two'), {
         textContent: 36,
         snap: { textContent: 1 },
-      })
-  
+      }, "<")
+
       immigrantsSectionText = new SplitText(immigrantSectionText[1], { type: "words" });
-      immigrantsSectionTimeline.from(immigrantsSectionText.words, {
+      pinnedHorizontalScroll[1].from(immigrantsSectionText.words, {
         y: 20,
         autoAlpha: 0,
         stagger: 0.05,
       }, "<");
-  
-      immigrantsSectionTimeline.from('.immigrant-section__astricks', {
+
+      pinnedHorizontalScroll[1].from('.immigrant-section__astricks', {
         y: 10,
         autoAlpha: 0
       })
-  
+
+      pinnedHorizontalScroll[1].addLabel('animationComplete')
+
+      pinnedHorizontalScroll[1].to({}, {
+        duration: 3
+      })
+
+      pinnedHorizontalScroll[1].to(Sections[1], {
+        autoAlpha: 0,
+        duration: 2
+      })
+
+
+      /* IMMIGRANT FOUNDERS */
+      // 157% increase in UK Unicorn immigrant Founders
+      const immigrantFoundersSection = gsap.utils.selector('.immigrant-founders')
+      // const immigrantFoundersTimeline = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: immigrantFoundersSection("h2"),
+      //     start: "left 80%",
+      //     end: "left 20%",
+      //     scrub: 1,
+      //     containerAnimation: horizontalScroll,
+      //   }
+      // })
+
+      pinnedHorizontalScroll[2].from(Sections[2], {
+        autoAlpha: 0,
+      })
+
+      pinnedHorizontalScroll[2].from(immigrantFoundersSection('h2'), {
+        autoAlpha: 0
+      }, "<")
+
+      var immigrantFoundersHeading = new SplitText(immigrantFoundersSection(".immigrant-section__heading-text"), { type: "words" });
+      pinnedHorizontalScroll[2].from(immigrantFoundersHeading.words, {
+        autoAlpha: 0,
+        y: 20,
+        stagger: 0.05
+      }, "<");
+
+      const immigrantFoundersSectionText = new SplitText(immigrantFoundersSection(".facts__title-text"), { type: "words" });
+      pinnedHorizontalScroll[2].from(immigrantFoundersSectionText.words, {
+        autoAlpha: 0,
+        y: 20,
+        stagger: 0.05
+      }, "<");
+
+      pinnedHorizontalScroll[2].from(immigrantFoundersSection('.dot-zero'), {
+        scale: 0,
+        ease: 'bounce.inOut'
+      })
+
+      pinnedHorizontalScroll[2].from([immigrantFoundersSection('.graph-line'), immigrantFoundersSection('.graph-shade')], {
+        clipPath: "inset(233px 0 0)",
+        stagger: 0.05,
+        duration: 3
+      })
+
+      pinnedHorizontalScroll[2].from(immigrantFoundersSection('.dot-thirty-six'), {
+        scale: 0,
+        ease: 'bounce.inOut'
+      })
+
+      pinnedHorizontalScroll[2].addLabel('animationComplete')
+
+      pinnedHorizontalScroll[2].to({}, {
+        duration: 2
+      })
+
+      pinnedHorizontalScroll[2].to(Sections[2], {
+        autoAlpha: 0,
+        duration: 2
+      })
+
       /* UNICORN FOUNDERS */
       const unicornFoundersSection = gsap.utils.selector('.unicorn-founders')
-      const unicornFoundersTimeline = gsap.timeline({
-        scrollTrigger: {
-          trigger: unicornFoundersSection("h2"),
-          start: "left right",
-          end: "left 30%",
-          scrub: 1,
-          containerAnimation: horizontalScroll,
-          // once: true,
-        }
+      // const unicornFoundersTimeline = gsap.timeline({
+      //   scrollTrigger: {
+      //     trigger: unicornFoundersSection("h2"),
+      //     start: "left right",
+      //     end: "left 30%",
+      //     scrub: 1,
+      //     containerAnimation: horizontalScroll,
+      //     // once: true,
+      //   }
+      // })
+
+      pinnedHorizontalScroll[3].from(Sections[3], {
+        autoAlpha: 0,
       })
-  
+
       const unicornFoundersSectionHeading = new SplitText(unicornFoundersSection("h2"), { type: "words" });
-      unicornFoundersTimeline.from(unicornFoundersSectionHeading.words, {
+      pinnedHorizontalScroll[3].from(unicornFoundersSectionHeading.words, {
         autoAlpha: 0,
         y: 20,
         stagger: 0.05
       }, "<");
-      
+
       const unicornFoundersSectionText = new SplitText(unicornFoundersSection(".facts__title-text"), { type: "words" });
-      unicornFoundersTimeline.from(unicornFoundersSectionText.words, {
+      pinnedHorizontalScroll[3].from(unicornFoundersSectionText.words, {
         autoAlpha: 0,
         y: 20,
         stagger: 0.05
       }, "<");
-  
+
       unicornFoundersSection('.dot').forEach((dot, index) => {
-        unicornFoundersTimeline.from(dot, {
+        pinnedHorizontalScroll[3].from(dot, {
           scale: 0,
           ease: 'bounce.inOut'
-        }, !index ? '+=2' : '>')
-  
-        unicornFoundersTimeline.from(dot.nextSibling.nextSibling, {
+        })
+
+        pinnedHorizontalScroll[3].from(dot.nextSibling.nextSibling, {
           autoAlpha: 0,
           x: -5
         })
       })
-  
-      unicornFoundersTimeline.from(unicornFoundersSection('.arrow'), {
+
+      pinnedHorizontalScroll[3].from(unicornFoundersSection('.arrow'), {
         scale: 0
       }, ">")
-  
-  
-      /* IMMIGRANT FOUNDERS */
-      // 157% increase in UK Unicorn immigrant Founders
-      const immigrantFoundersSection = gsap.utils.selector('.immigrant-founders')
-      const immigrantFoundersTimeline = gsap.timeline({
+
+      pinnedHorizontalScroll[3].addLabel('animationComplete')
+
+      pinnedHorizontalScroll[3].to({}, {
+        duration: 2
+      })
+
+      // pinnedHorizontalScroll[3].to(Sections[3], {
+      //   autoAlpha: 0
+      // })
+
+
+      gsap.from('.facts-section-line path', {
+        drawSVG: 0,
+        ease: 'none',
         scrollTrigger: {
-          trigger: immigrantFoundersSection("h2"),
-          start: "left 80%",
-          end: "left 20%",
+          trigger: '.facts',
+          start: "top",
+          end: `bottom`,
           scrub: 1,
-          containerAnimation: horizontalScroll,
         }
       })
-  
-      immigrantFoundersTimeline.from(immigrantFoundersSection('h2'), {
-        autoAlpha: 0
-      })
-  
-      var immigrantFoundersHeading = new SplitText(immigrantFoundersSection(".immigrant-section__heading-text"), { type: "words" });
-      immigrantFoundersTimeline.from(immigrantFoundersHeading.words, {
+
+
+      /* PORTFOLIO SECTION */
+      const portfolio = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".portfolio",
+          start: "top center",
+          end: "+=300",
+          scrub: true
+        },
+      });
+
+      portfolio.from(".portfolio-link__wrapper", {
+        y: 30,
         autoAlpha: 0,
-        y: 20,
-        stagger: 0.05
-      }, "<");
-  
-      const immigrantFoundersSectionText = new SplitText(immigrantFoundersSection(".facts__title-text"), { type: "words" });
-      immigrantFoundersTimeline.from(immigrantFoundersSectionText.words, {
+        stagger: 0.5,
+      });
+
+      gsap.from('.line-portfoli-about path', {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '.line-portfoli-about',
+          start: 'top bottom',
+          bottom: 'bottom center',
+          scrub: true,
+          ease: 'none'
+        }
+      })
+
+      /* ABOUT SECTION */
+      const fonuderSection = gsap.utils.selector('.founder')
+      const founderTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".founder__pinned-wrapper",
+          start: "top",
+          end: "bottom",
+          scrub: 2,
+          pin: true,
+          snap: "labels"
+        },
+      });
+
+      founderTimeline.from('.founder > div', {
         autoAlpha: 0,
-        y: 20,
-        stagger: 0.05
+      });
+
+      founderTimeline.to(
+        fonuderSection(".about-content__content"),
+        {
+          autoAlpha: 1,
+          x: -10
+        },
+        "<"
+      );
+
+      founderTimeline.addLabel("animationComplete")
+
+      founderTimeline.to({}, {duration:1})
+
+      gsap.from('.about__line-about path', {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '.founder__pinned-wrapper',
+          start: 'top top',
+          end: 'bottom top',
+          scrub: true,
+          delay: 2
+        }
+      })
+
+      /* ABOUT - COMMUNITY */
+      const communityEl = gsap.utils.selector('.community')
+      const communityTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".community-pinned-wrapper",
+          start: "top",
+          end: "bottom",
+          scrub: 2,
+          snap: 1,
+          pin: true,
+        },
+      })
+
+      communityTimeline.from('.community', {
+        autoAlpha: 0,
+      })
+
+      communityTimeline.to(communityEl(".about-content__content"), {
+        autoAlpha: 1,
       }, "<");
-  
-      immigrantFoundersTimeline.from(immigrantFoundersSection('.dot-zero'), {
-        scale: 0,
-        ease: 'bounce.inOut'
-      }, "+=1")
-  
-      immigrantFoundersTimeline.from([immigrantFoundersSection('.graph-line'), immigrantFoundersSection('.graph-shade')], {
-        clipPath: "inset(233px 0 0)",
+
+      communityTimeline.from(communityEl('.about-content__content > div'), {
+        y: -10,
+        autoAlpha: 0,
         stagger: 0.05
       })
-  
-      immigrantFoundersTimeline.from(immigrantFoundersSection('.dot-thirty-six'), {
-        scale: 0,
-        ease: 'bounce.inOut'
+
+      communityTimeline.to({}, {duration: 1})
+
+      gsap.from('.about__line-community-faq path', {
+        drawSVG: '100% 100%',
+        scrollTrigger: {
+          trigger: '.community-pinned-wrapper',
+          start: 'center center',
+          end: 'bottom top',
+          scrub: true,
+        }
+      })
+
+      const pitchLines = gsap.utils.toArray('.pitch-lines path')
+      gsap.from([pitchLines[1], pitchLines[2]], {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '#pitch',
+          start: 'top bottom',
+          end: 'center bottom',
+          scrub: 2,
+        }
+      })
+      gsap.from(pitchLines[0], {
+        drawSVG: '100% 100%',
+        scrollTrigger: {
+          trigger: '#pitch',
+          start: 'center bottom',
+          end: 'bottom bottom',
+          scrub: 2,
+        }
+      })
+    } else if (isMobile) {
+      gsap.from('.line-immigrant-unicorn-founders path', {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '.line-immigrant-unicorn-founders',
+          start: 'top bottom',
+          bottom: '+=100',
+          scrub: true,
+          ease: 'none'
+        }
+      })
+      
+      gsap.from('.line-portfoli-about path', {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '.line-portfoli-about',
+          start: 'top bottom',
+          bottom: 'bottom center',
+          scrub: true,
+          ease: 'none'
+        }
+      })
+
+      gsap.from('.about__line-about path', {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '.founder__pinned-wrapper',
+          start: 'center center',
+          end: 'bottom center',
+          scrub: true,
+          ease: 'none'
+        }
+      })
+
+      const pitchLines = gsap.utils.toArray('.pitch-lines--mobile path')
+      gsap.from([pitchLines[1], pitchLines[2]], {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '#pitch',
+          start: 'top bottom',
+          end: 'center bottom',
+          scrub: true,
+        }
+      })
+      gsap.from(pitchLines[0], {
+        drawSVG: '100% 100%',
+        scrollTrigger: {
+          trigger: '#pitch',
+          start: 'center bottom',
+          end: 'bottom bottom',
+          scrub: true,
+        }
       })
     }
-
-
-    /* PORTFOLIO SECTION */
-    const portfolio = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".portfolio",
-        start: "top center",
-        end: "+=300",
-        scrub: true
-      },
-    });
-
-    portfolio.from(".portfolio-link__wrapper", {
-      y: 30,
-      autoAlpha: 0,
-      stagger: 0.5,
-    });
-
-    gsap.from('.line-portfoli-about path', {
-      drawSVG: 0,
-      scrollTrigger: {
-        trigger: '.line-portfoli-about',
-        start: 'top bottom',
-        bottom: 'bottom center',
-        scrub: 2,
-        ease: 'none'
-      }
-    })
-
-    /* ABOUT SECTION */
-    const fonuderSection = gsap.utils.selector('.founder')
-    const founderTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".founder__pinned-wrapper",
-        start: "top",
-        end: "bottom",
-        scrub: 2,
-        pin: true,
-        snap: 1
-      },
-    });
-
-    founderTimeline.from('.founder > div', {
-      autoAlpha: 0,
-    });
-
-    founderTimeline.to(
-      fonuderSection(".about-content__content"),
-      {
-        autoAlpha: 1,
-        x: -10
-      },
-      "<"
-    );
-
-    founderTimeline.to({}, {duration:2})
-
-    gsap.from('.about__line-about path', {
-      drawSVG: 0,
-      scrollTrigger: {
-        trigger: '.about',
-        start: 'center bottom',
-        end: 'bottom bottom',
-        scrub: 2,
-      }
-    })
-
-    /* ABOUT - COMMUNITY */
-    const communityEl = gsap.utils.selector('.community')
-    const communityTimeline = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".community-pinned-wrapper",
-        start: "top",
-        end: "bottom",
-        scrub: 2,
-        snap: 1,
-        pin: true,
-      },
-    })
-
-    communityTimeline.from(communityEl('.content-wrapper'), {
-      autoAlpha: 0,
-    })
-
-    communityTimeline.to(communityEl(".about-content__content"), {
-      autoAlpha: 1,
-    }, "<");
-
-    communityTimeline.from(communityEl('.about-content__content > div'), {
-      y: -10,
-      autoAlpha: 0,
-      stagger: 0.05
-    })
-
-    communityTimeline.to({}, {duration: 2})
-
-    gsap.from('.about__line-community-faq path', {
-      drawSVG: '100% 100%',
-      scrollTrigger: {
-        trigger: '.about__line-community-faq', 
-        start: 'top bottom',
-        end: 'bottom bottom',
-        scrub: 2,
-      }
-    })
-
-    const pitchLines = gsap.utils.toArray('.pitch-lines path')
-    gsap.from([pitchLines[1], pitchLines[2]], {
-      drawSVG: 0,
-      scrollTrigger: {
-        trigger: '#pitch',
-        start: 'top bottom',
-        end: 'center bottom',
-        scrub: 2,
-      }
-    })
-    gsap.from(pitchLines[0], {
-      drawSVG: '100% 100%',
-      scrollTrigger: {
-        trigger: '#pitch',
-        start: 'center bottom',
-        end: 'bottom bottom',
-        scrub: 2,
-      }
-    })
   }
 );
