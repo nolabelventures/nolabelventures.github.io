@@ -45,6 +45,7 @@ mm.add(
   },
   (context) => {
     let { isDesktop, isMobile, reduceMotion } = context.conditions;
+    let intentObserver
 
     function pageScrollAnimation() {
       const pageScrollAnimation = gsap.timeline({
@@ -107,6 +108,7 @@ mm.add(
     const introAnimation = gsap.timeline({
       onComplete: () => {
         sessionStorage.setItem("intro-seen", true);
+        intentObserver.enable();
         pageScrollAnimation();
       },
     });
@@ -286,12 +288,14 @@ mm.add(
       let currentIndex = -1;
       let animating;
 
+      const pageAnimations = [false]
+
       gsap.set(Sections, {
         zIndex: i => i,
         autoAlpha: (i) => !i ? 1 : 0
       });
 
-      let intentObserver = ScrollTrigger.observe({
+      intentObserver = ScrollTrigger.observe({
         type: "wheel,touch",
         onUp: () => !animating && gotoPanel(currentIndex - 1, false),
         onDown: () => !animating && gotoPanel(currentIndex + 1, true),
@@ -306,7 +310,6 @@ mm.add(
         start: "top top",
         end: "+=1",
         onEnter: () => {
-          intentObserver.enable();
           // gotoPanel(currentIndex + 1, true);    
         },
         onEnterBack: () => {
@@ -316,19 +319,26 @@ mm.add(
       })
 
       function gotoPanel(index, isScrollingDown) {
+        if (index < -1) {
+          return
+        }
         animating = true;
+
+        if (pageAnimations[index]) {
+          pageAnimations[index].seek(0)
+        }
+
         // return to normal scroll if we're at the end or back up to the start
         if ((index === Sections.length && isScrollingDown) || (index === -1 && !isScrollingDown)) {
-          console.log('normal');
-              let target = index;
-              gsap.to(target, {
-                // xPercent: isScrollingDown ? -100 : 0,
-                duration: 0.00,
-                onComplete: () => {
-                  animating = false;
-                  isScrollingDown && intentObserver.disable();
-                }
-            });
+          let target = index;
+          gsap.to(target, {
+            // xPercent: isScrollingDown ? -100 : 0,
+            duration: 0.00,
+            onComplete: () => {
+              animating = false;
+              isScrollingDown && intentObserver.disable();
+            }
+          });
           return
         }
       
@@ -339,11 +349,15 @@ mm.add(
           autoAlpha: isScrollingDown ? 1 : 0,
           duration: 0.75,
           onComplete: () => {
-            animating = false;
+            if (pageAnimations[index]) {
+              pageAnimations[index].eventCallback('onComplete', () => animating = false)
+              pageAnimations[index].play()
+            } else {
+              animating = false;
+            }
           }
         });
         currentIndex = index;
-        console.log(index);
       }   
       
       let hasScrolled = false;
@@ -352,6 +366,8 @@ mm.add(
           queuedAnims.push(this.parent.pause(0));
         }
       }
+
+      gotoPanel(0, true)
 
       if (Sections) {
         // const pinnedHorizontalScroll = Sections.map((section, index) => {
@@ -405,207 +421,185 @@ mm.add(
         //   return gsap.timeline(options);
         // });
 
-        // const servicesSection = gsap.utils.selector(".facts__section-services");
-        // const firstSectionHeading = new SplitText(servicesSection("h2"), {
-        //   type: "words",
-        // });
-        // pinnedHorizontalScroll[0].from(firstSectionHeading.words, {
-        //   autoAlpha: 0,
-        //   y: 20,
-        //   stagger: 0.05,
-        // });
+        const servicesSection = gsap.utils.selector(".facts__section-services");
+        const firstSectionTimeline = gsap.timeline({})
+        const firstSectionHeading = new SplitText(servicesSection("h2"), {
+          type: "words",
+        });
+        firstSectionTimeline.from(firstSectionHeading.words, {
+          autoAlpha: 0,
+          y: 20,
+          stagger: 0.05,
+        });
 
-        // pinnedHorizontalScroll[0].from(servicesSection(".facts__services > div"), {
-        //   y: 10,
-        //   autoAlpha: 0,
-        //   stagger: 0.25,
-        // }, "<");
+        firstSectionTimeline.from(servicesSection(".facts__services > div"), {
+          y: 10,
+          autoAlpha: 0,
+          stagger: 0.25,
+        }, "<");
 
-        // pinnedHorizontalScroll[0].addLabel("animationComplete");
+        firstSectionTimeline.pause()
 
-        // pinnedHorizontalScroll[0].to('.facts__section-services', {
-        //   autoAlpha: 0
-        // })
+        pageAnimations.push(firstSectionTimeline)
 
 
         // /* IMMIGRANT */
-        // const immigrantsSection = gsap.utils.selector(".immigrant-section");
-        // const immigrantSectionText = immigrantsSection(".facts__content-text");
-        // pinnedHorizontalScroll[1].from(Sections[1], {
-        //   autoAlpha: 0,
-        // });
+        const immigrantsSection = gsap.utils.selector(".immigrant-section");
+        const immigrantSectionText = immigrantsSection(".facts__content-text");
+        const immigrantSectionTimeline = gsap.timeline({
+          duration: 3
+        })
 
-        // pinnedHorizontalScroll[1].from(
-        //   immigrantsSection(".facts__section-subtitle")[0],
-        //   {
-        //     autoAlpha: 0,
-        //   },
-        //   "<"
-        // );
+        immigrantSectionTimeline.to(
+          immigrantsSection(".immigrant-section__digit"),
+          {
+            textContent: 14,
+            snap: { textContent: 0.1 },
+          }, "<"
+        );
 
-        // pinnedHorizontalScroll[1].to(
-        //   immigrantsSection(".immigrant-section__digit"),
-        //   {
-        //     textContent: 14,
-        //     snap: { textContent: 0.1 },
-        //   },
-        //   "<"
-        // );
+        const immigrantsSectionHeading = new SplitText(
+          immigrantsSection("h2"),
+          { type: "words" }
+        );
+        immigrantSectionTimeline.from(
+          immigrantsSectionHeading.words,
+          {
+            autoAlpha: 0,
+            y: 20,
+            stagger: 0.05,
+          },
+          "<"
+        );
 
-        // const immigrantsSectionHeading = new SplitText(
-        //   immigrantsSection("h2"),
-        //   { type: "chars" }
-        // );
-        // pinnedHorizontalScroll[1].from(
-        //   immigrantsSectionHeading.chars,
-        //   {
-        //     autoAlpha: 0,
-        //     y: 20,
-        //     ease: "none",
-        //     stagger: 0.05,
-        //   },
-        //   "<"
-        // );
+        let immigrantsSectionText = new SplitText(immigrantSectionText[0], {
+          type: "words",
+        });
+        immigrantSectionTimeline.from(
+          immigrantsSectionText.words,
+          {
+            y: 20,
+            autoAlpha: 0,
+            stagger: 0.05,
+          },
+          "<"
+        );
 
-        // let immigrantsSectionText = new SplitText(immigrantSectionText[0], {
-        //   type: "words",
-        // });
-        // pinnedHorizontalScroll[1].from(
-        //   immigrantsSectionText.words,
-        //   {
-        //     y: 20,
-        //     autoAlpha: 0,
-        //     stagger: 0.05,
-        //   },
-        //   "<"
-        // );
+        immigrantSectionTimeline.from(
+          immigrantsSection(".immigrant-section__lessthan"),
+          {
+            autoAlpha: 0,
+            x: -10,
+            scaleY: 0,
+          }, "<"
+        );
 
-        // pinnedHorizontalScroll[1].from(
-        //   immigrantsSection(".immigrant-section__lessthan"),
-        //   {
-        //     autoAlpha: 0,
-        //     x: -10,
-        //     scaleY: 0,
-        //   }
-        // ), "<";
+        immigrantSectionTimeline.from(
+          immigrantsSection(".facts__section-subtitle")[1],
+          {
+            autoAlpha: 0,
+          },
+          "<"
+        );
 
-        // pinnedHorizontalScroll[1].from(
-        //   immigrantsSection(".facts__section-subtitle")[1],
-        //   {
-        //     autoAlpha: 0,
-        //   },
-        //   "<"
-        // );
+        immigrantSectionTimeline.to(
+          immigrantsSection(".immigrant-section__digit-two"),
+          {
+            textContent: 36,
+            snap: { textContent: 1 },
+          },
+          "<"
+        );
 
-        // pinnedHorizontalScroll[1].to(
-        //   immigrantsSection(".immigrant-section__digit-two"),
-        //   {
-        //     textContent: 36,
-        //     snap: { textContent: 1 },
-        //   },
-        //   "<"
-        // );
+        immigrantsSectionText = new SplitText(immigrantSectionText[1], {
+          type: "words",
+        });
+        immigrantSectionTimeline.from(
+          immigrantsSectionText.words,
+          {
+            y: 20,
+            autoAlpha: 0,
+            stagger: 0.05,
+          },
+          "<"
+        );
 
-        // immigrantsSectionText = new SplitText(immigrantSectionText[1], {
-        //   type: "words",
-        // });
-        // pinnedHorizontalScroll[1].from(
-        //   immigrantsSectionText.words,
-        //   {
-        //     y: 20,
-        //     autoAlpha: 0,
-        //     stagger: 0.05,
-        //   },
-        //   "<"
-        // );
+        immigrantSectionTimeline.from(".immigrant-section__astricks", {
+          y: 10,
+          autoAlpha: 0,
+        }, "<");
 
-        // pinnedHorizontalScroll[1].from(".immigrant-section__astricks", {
-        //   y: 10,
-        //   autoAlpha: 0,
-        // }, "<");
+        immigrantSectionTimeline.addLabel("animationComplete");
 
-        // pinnedHorizontalScroll[1].addLabel("animationComplete");
+        immigrantSectionTimeline.pause()
 
-        // pinnedHorizontalScroll[1].to(".immigrant-section", {
-        //   autoAlpha: 0,
-        //   duration: 2
-        // });
+        pageAnimations.push(immigrantSectionTimeline)
 
         // /* IMMIGRANT FOUNDERS */
-        // // 157% increase in UK Unicorn immigrant Founders
-        // const immigrantFoundersSection = gsap.utils.selector(
-        //   ".immigrant-founders"
-        // );
-        // // const immigrantFoundersTimeline = gsap.timeline({
-        // //   scrollTrigger: {
-        // //     trigger: immigrantFoundersSection("h2"),
-        // //     start: "left 80%",
-        // //     end: "left 20%",
-        // //     scrub: 1,
-        // //     containerAnimation: horizontalScroll,
-        // //   }
-        // // })
+        // 157% increase in UK Unicorn immigrant Founders
+        const immigrantFoundersSection = gsap.utils.selector(
+          ".immigrant-founders"
+        );
+        const immigrantFoundersTimeline = gsap.timeline({})
 
-        // pinnedHorizontalScroll[2].from(Sections[2], {
-        //   autoAlpha: 0,
-        // });
+        immigrantFoundersTimeline.from(Sections[2], {
+          autoAlpha: 0,
+        });
 
-        // var immigrantFoundersHeading = new SplitText(
-        //   immigrantFoundersSection(".immigrant-section__heading-text"),
-        //   { type: "words" }
-        // );
-        // pinnedHorizontalScroll[2].from(
-        //   immigrantFoundersHeading.words,
-        //   {
-        //     autoAlpha: 0,
-        //     y: 20,
-        //     stagger: 0.05,
-        //   },
-        //   "<"
-        // );
+        var immigrantFoundersHeading = new SplitText(
+          immigrantFoundersSection(".immigrant-section__heading-text"),
+          { type: "words" }
+        );
+        immigrantFoundersTimeline.from(
+          immigrantFoundersHeading.words,
+          {
+            autoAlpha: 0,
+            y: 20,
+            stagger: 0.05,
+          },
+          "<"
+        );
 
-        // const immigrantFoundersSectionText = new SplitText(
-        //   immigrantFoundersSection(".facts__title-text"),
-        //   { type: "words" }
-        // );
-        // pinnedHorizontalScroll[2].from(
-        //   immigrantFoundersSectionText.words,
-        //   {
-        //     autoAlpha: 0,
-        //     y: 20,
-        //     stagger: 0.05,
-        //   },
-        //   "<"
-        // );
+        const immigrantFoundersSectionText = new SplitText(
+          immigrantFoundersSection(".facts__title-text"),
+          { type: "words" }
+        );
+        immigrantFoundersTimeline.from(
+          immigrantFoundersSectionText.words,
+          {
+            autoAlpha: 0,
+            y: 20,
+            stagger: 0.05,
+          },
+          "<"
+        );
 
-        // pinnedHorizontalScroll[2].from(immigrantFoundersSection(".dot-zero"), {
-        //   scale: 0,
-        //   ease: "bounce.inOut",
-        // }, "<");
+        immigrantFoundersTimeline.from(immigrantFoundersSection(".dot-zero"), {
+          scale: 0,
+          ease: "bounce.inOut",
+        }, "<");
 
-        // pinnedHorizontalScroll[2].from(
-        //   [
-        //     immigrantFoundersSection(".graph-line"),
-        //     immigrantFoundersSection(".graph-shade"),
-        //   ],
-        //   {
-        //     clipPath: "inset(233px 0 0)",
-        //   }
-        // ), "<";
+        immigrantFoundersTimeline.from(
+          [
+            immigrantFoundersSection(".graph-line"),
+            immigrantFoundersSection(".graph-shade"),
+          ],
+          {
+            clipPath: "inset(233px 0 0)",
+          }
+        ), "<";
 
-        // pinnedHorizontalScroll[2].from(
-        //   immigrantFoundersSection(".dot-thirty-six"),
-        //   {
-        //     scale: 0,
-        //     ease: "bounce.inOut",
-        //   }
-        // ), "<";
+        immigrantFoundersTimeline.from(
+          immigrantFoundersSection(".dot-thirty-six"),
+          {
+            scale: 0,
+            ease: "bounce.inOut",
+          }
+        ), "<";
 
-        // pinnedHorizontalScroll[2].addLabel("animationComplete");
+        immigrantFoundersTimeline.addLabel("animationComplete");
 
-        // pinnedHorizontalScroll[2].to(Sections[2], {
-        //   autoAlpha: 0,
-        // });
+        pageAnimations.push(immigrantFoundersTimeline)
 
         // /* UNICORN FOUNDERS */
         // const unicornFoundersSection = gsap.utils.selector(".unicorn-founders");

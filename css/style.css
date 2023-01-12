@@ -1403,6 +1403,7 @@ main > * {
 
 .community-pinned-wrapper {
   background: var(--colors-white);
+  color: var(--colors-black);
 }
 
 .faq {
