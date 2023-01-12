@@ -5,56 +5,68 @@ const footertl = gsap.timeline({
     trigger: footer,
     start: "top bottom",
     end: "bottom bottom",
-    scrub: true
+    scrub: true,
   },
 });
 
-footertl.from("footer .bottom-letter", {
+footertl.from(
+  "footer .bottom-letter",
+  {
     x: 100,
-}, "<");
+  },
+  "<"
+);
 
-footertl.from("footer .top-letter", {
-  x: -100,
-}, "<");
+footertl.from(
+  "footer .top-letter",
+  {
+    x: -100,
+  },
+  "<"
+);
 
+const footerLinks = document.querySelector(".footer__links");
+let isVisible = false;
+document.querySelector(".footer-menu-button").addEventListener("click", () => {
+  footerLinks.classList.add("show");
+});
 
-const footerLinks = document.querySelector('.footer__links')
-let isVisible = false
-document.querySelector('.footer-menu-button').addEventListener('click', () => {
-  footerLinks.classList.add('show')
-})
+document
+  .querySelector(".footer__links-close-button")
+  .addEventListener("click", () => {
+    footerLinks.classList.remove("show");
+  });
 
-document.querySelector('.footer__links-close-button').addEventListener('click', () => {
-  footerLinks.classList.remove('show')
-})
-
-window.addEventListener('resize', () => {
+window.addEventListener("resize", () => {
   if (window.innerWidth >= 976) {
-    footerLinks.classList.remove('active') 
-    isVisible = false
+    footerLinks.classList.remove("active");
+    isVisible = false;
   }
-})
+});
 
+const header = document.querySelector(".header");
 
-const header = document.querySelector('.header')
-let lastScrollTop
-window.addEventListener('scroll', () => {
-  const windowPos = (window.pageYOffset || document.scrollTop) || 0;
+if (window.location.pathname === "/") {
+  let lastScrollTop;
+  window.addEventListener("scroll", () => {
+    const windowPos = window.pageYOffset || document.scrollTop || 0;
 
-  if (windowPos >= (window.innerHeight / 2) && windowPos > lastScrollTop) {
-    header.style.transform = 'translateY(-100%)'
-  } else  {
-    header.style.transform = ''
-  }
+    if (windowPos >= window.innerHeight / 2 && windowPos > lastScrollTop) {
+      header.style.transform = "translateY(-100%)";
+    } else {
+      header.style.transform = "";
+    }
 
+    // used to detect scroll position
+    lastScrollTop = windowPos <= 0 ? 0 : windowPos;
+  });
+}
 
-  // used to detect scroll position
-  lastScrollTop = windowPos <= 0 ? 0 : windowPos;
-})
-
-document.querySelector('.header__menu-button').addEventListener('click', () => {
-  header.classList.add('show-mobile-menu')
-})
-document.querySelector('.header__menu-button-close').addEventListener('click', () => {
-  header.classList.remove('show-mobile-menu')
-})
+document.querySelector(".header__menu-button").addEventListener("click", () => {
+  header.classList.add("show-mobile-menu");
+});
+document
+  .querySelector(".header__menu-button-close")
+  .addEventListener("click", () => {
+    header.classList.remove("show-mobile-menu");
+  });
