@@ -282,519 +282,588 @@ mm.add(
 
     /* FACTS HORIZONTAL SCROLL SECTION */
     if (isDesktop) {
-      let Sections = gsap.utils.toArray(".facts__section");
+      let Sections = gsap.utils.toArray("main > *");
+      let currentIndex = -1;
+      let animating;
+
+      gsap.set(Sections, {
+        zIndex: i => i,
+        autoAlpha: (i) => !i ? 1 : 0
+      });
+
+      let intentObserver = ScrollTrigger.observe({
+        type: "wheel,touch",
+        onUp: () => !animating && gotoPanel(currentIndex - 1, false),
+        onDown: () => !animating && gotoPanel(currentIndex + 1, true),
+        tolerance: 20,
+        preventDefault: true
+      })
+      intentObserver.disable();
+
+      ScrollTrigger.create({
+        trigger: 'main',
+        pin: true,
+        start: "top top",
+        end: "+=1",
+        onEnter: () => {
+          intentObserver.enable();
+          // gotoPanel(currentIndex + 1, true);    
+        },
+        onEnterBack: () => {
+          intentObserver.enable();
+          gotoPanel(currentIndex - 1, false);
+        }
+      })
+
+      function gotoPanel(index, isScrollingDown) {
+        animating = true;
+        // return to normal scroll if we're at the end or back up to the start
+        if ((index === Sections.length && isScrollingDown) || (index === -1 && !isScrollingDown)) {
+          console.log('normal');
+              let target = index;
+              gsap.to(target, {
+                // xPercent: isScrollingDown ? -100 : 0,
+                duration: 0.00,
+                onComplete: () => {
+                  animating = false;
+                  isScrollingDown && intentObserver.disable();
+                }
+            });
+          return
+        }
+      
+      //   target the second panel, last panel?
+        let target = isScrollingDown ?  Sections[index]: Sections[currentIndex];
+      
+        gsap.to(target, {
+          autoAlpha: isScrollingDown ? 1 : 0,
+          duration: 0.75,
+          onComplete: () => {
+            animating = false;
+          }
+        });
+        currentIndex = index;
+        console.log(index);
+      }   
+      
+      let hasScrolled = false;
+      function checkIfScrolled() {
+        if(!hasScrolled) {
+          queuedAnims.push(this.parent.pause(0));
+        }
+      }
 
       if (Sections) {
-        const pinnedHorizontalScroll = Sections.map((section, index) => {
-          const options = {
-            scrollTrigger: {
-              trigger: section,
-              start: "center center",
-              end: "+=" + window.innerHeight * 6,
-              pin: true,
-              snap: {
-                snapTo: "labels", 
-                duration: 3, 
-                delay: 0.1, 
-                inertia: false, 
-                onStart: ({direction}) => {
-                  // document.querySelector('.header').classList.add('snapping')
-                  if (direction === 1) {
-                    document.querySelector('.header').classList.remove('hide')
-                    document.querySelector('.header').classList.remove('snapping')
-                  } else {
-                    document.querySelector('.header').classList.add('hide')
-                    document.querySelector('.header').classList.add('snapping')
-                  }
-                },
-                onComplete: (props) => {
-                  if(props.direction === 1) {
-                  }
-                }
-              },
-              // preventOverlaps: "facts",
-              scrub: true,
-              toggleActions: "play none none none",
-              ...(index === Sections.length - 1
-                ? {
-                    onEnterBack: function () {
-                      gsap.set(".facts-section-line", {
-                        position: "fixed",
-                        bottom: "",
-                      });
-                    },
-                    onLeave: function () {
-                      gsap.set(".facts-section-line", {
-                        position: "absolute",
-                        bottom: -window.innerHeight * 0.25 + "px",
-                      });
-                    },
-                  }
-                : {}),
-            },
-          };
-          return gsap.timeline(options);
-        });
+        // const pinnedHorizontalScroll = Sections.map((section, index) => {
+        //   const options = {
+        //     scrollTrigger: {
+        //       trigger: section,
+        //       start: "center center",
+        //       end: "+=" + window.innerHeight * 6,
+        //       pin: true,
+        //       snap: {
+        //         snapTo: "labels", 
+        //         duration: 3, 
+        //         delay: 0.1, 
+        //         inertia: false, 
+        //         onStart: ({direction}) => {
+        //           // document.querySelector('.header').classList.add('snapping')
+        //           if (direction === 1) {
+        //             document.querySelector('.header').classList.remove('hide')
+        //             document.querySelector('.header').classList.remove('snapping')
+        //           } else {
+        //             document.querySelector('.header').classList.add('hide')
+        //             document.querySelector('.header').classList.add('snapping')
+        //           }
+        //         },
+        //         onComplete: (props) => {
+        //           if(props.direction === 1) {
+        //           }
+        //         }
+        //       },
+        //       // preventOverlaps: "facts",
+        //       scrub: true,
+        //       toggleActions: "play none none none",
+        //       ...(index === Sections.length - 1
+        //         ? {
+        //             onEnterBack: function () {
+        //               gsap.set(".facts-section-line", {
+        //                 position: "fixed",
+        //                 bottom: "",
+        //               });
+        //             },
+        //             onLeave: function () {
+        //               gsap.set(".facts-section-line", {
+        //                 position: "absolute",
+        //                 bottom: -window.innerHeight * 0.25 + "px",
+        //               });
+        //             },
+        //           }
+        //         : {}),
+        //     },
+        //   };
+        //   return gsap.timeline(options);
+        // });
 
-        const servicesSection = gsap.utils.selector(".facts__section-services");
-        const firstSectionHeading = new SplitText(servicesSection("h2"), {
-          type: "words",
-        });
-        pinnedHorizontalScroll[0].from(firstSectionHeading.words, {
-          autoAlpha: 0,
-          y: 20,
-          stagger: 0.05,
-        });
+        // const servicesSection = gsap.utils.selector(".facts__section-services");
+        // const firstSectionHeading = new SplitText(servicesSection("h2"), {
+        //   type: "words",
+        // });
+        // pinnedHorizontalScroll[0].from(firstSectionHeading.words, {
+        //   autoAlpha: 0,
+        //   y: 20,
+        //   stagger: 0.05,
+        // });
 
-        pinnedHorizontalScroll[0].from(servicesSection(".facts__services > div"), {
-          y: 10,
-          autoAlpha: 0,
-          stagger: 0.25,
-        }, "<");
+        // pinnedHorizontalScroll[0].from(servicesSection(".facts__services > div"), {
+        //   y: 10,
+        //   autoAlpha: 0,
+        //   stagger: 0.25,
+        // }, "<");
 
-        pinnedHorizontalScroll[0].addLabel("animationComplete");
+        // pinnedHorizontalScroll[0].addLabel("animationComplete");
 
-        pinnedHorizontalScroll[0].to('.facts__section-services', {
-          autoAlpha: 0
-        })
-
-
-        /* IMMIGRANT */
-        const immigrantsSection = gsap.utils.selector(".immigrant-section");
-        const immigrantSectionText = immigrantsSection(".facts__content-text");
-        pinnedHorizontalScroll[1].from(Sections[1], {
-          autoAlpha: 0,
-        });
-
-        pinnedHorizontalScroll[1].from(
-          immigrantsSection(".facts__section-subtitle")[0],
-          {
-            autoAlpha: 0,
-          },
-          "<"
-        );
-
-        pinnedHorizontalScroll[1].to(
-          immigrantsSection(".immigrant-section__digit"),
-          {
-            textContent: 14,
-            snap: { textContent: 0.1 },
-          },
-          "<"
-        );
-
-        const immigrantsSectionHeading = new SplitText(
-          immigrantsSection("h2"),
-          { type: "chars" }
-        );
-        pinnedHorizontalScroll[1].from(
-          immigrantsSectionHeading.chars,
-          {
-            autoAlpha: 0,
-            y: 20,
-            ease: "none",
-            stagger: 0.05,
-          },
-          "<"
-        );
-
-        let immigrantsSectionText = new SplitText(immigrantSectionText[0], {
-          type: "words",
-        });
-        pinnedHorizontalScroll[1].from(
-          immigrantsSectionText.words,
-          {
-            y: 20,
-            autoAlpha: 0,
-            stagger: 0.05,
-          },
-          "<"
-        );
-
-        pinnedHorizontalScroll[1].from(
-          immigrantsSection(".immigrant-section__lessthan"),
-          {
-            autoAlpha: 0,
-            x: -10,
-            scaleY: 0,
-          }
-        ), "<";
-
-        pinnedHorizontalScroll[1].from(
-          immigrantsSection(".facts__section-subtitle")[1],
-          {
-            autoAlpha: 0,
-          },
-          "<"
-        );
-
-        pinnedHorizontalScroll[1].to(
-          immigrantsSection(".immigrant-section__digit-two"),
-          {
-            textContent: 36,
-            snap: { textContent: 1 },
-          },
-          "<"
-        );
-
-        immigrantsSectionText = new SplitText(immigrantSectionText[1], {
-          type: "words",
-        });
-        pinnedHorizontalScroll[1].from(
-          immigrantsSectionText.words,
-          {
-            y: 20,
-            autoAlpha: 0,
-            stagger: 0.05,
-          },
-          "<"
-        );
-
-        pinnedHorizontalScroll[1].from(".immigrant-section__astricks", {
-          y: 10,
-          autoAlpha: 0,
-        }, "<");
-
-        pinnedHorizontalScroll[1].addLabel("animationComplete");
-
-        pinnedHorizontalScroll[1].to(".immigrant-section", {
-          autoAlpha: 0,
-          duration: 2
-        });
-
-        /* IMMIGRANT FOUNDERS */
-        // 157% increase in UK Unicorn immigrant Founders
-        const immigrantFoundersSection = gsap.utils.selector(
-          ".immigrant-founders"
-        );
-        // const immigrantFoundersTimeline = gsap.timeline({
-        //   scrollTrigger: {
-        //     trigger: immigrantFoundersSection("h2"),
-        //     start: "left 80%",
-        //     end: "left 20%",
-        //     scrub: 1,
-        //     containerAnimation: horizontalScroll,
-        //   }
+        // pinnedHorizontalScroll[0].to('.facts__section-services', {
+        //   autoAlpha: 0
         // })
 
-        pinnedHorizontalScroll[2].from(Sections[2], {
-          autoAlpha: 0,
-        });
 
-        var immigrantFoundersHeading = new SplitText(
-          immigrantFoundersSection(".immigrant-section__heading-text"),
-          { type: "words" }
-        );
-        pinnedHorizontalScroll[2].from(
-          immigrantFoundersHeading.words,
-          {
-            autoAlpha: 0,
-            y: 20,
-            stagger: 0.05,
-          },
-          "<"
-        );
+        // /* IMMIGRANT */
+        // const immigrantsSection = gsap.utils.selector(".immigrant-section");
+        // const immigrantSectionText = immigrantsSection(".facts__content-text");
+        // pinnedHorizontalScroll[1].from(Sections[1], {
+        //   autoAlpha: 0,
+        // });
 
-        const immigrantFoundersSectionText = new SplitText(
-          immigrantFoundersSection(".facts__title-text"),
-          { type: "words" }
-        );
-        pinnedHorizontalScroll[2].from(
-          immigrantFoundersSectionText.words,
-          {
-            autoAlpha: 0,
-            y: 20,
-            stagger: 0.05,
-          },
-          "<"
-        );
+        // pinnedHorizontalScroll[1].from(
+        //   immigrantsSection(".facts__section-subtitle")[0],
+        //   {
+        //     autoAlpha: 0,
+        //   },
+        //   "<"
+        // );
 
-        pinnedHorizontalScroll[2].from(immigrantFoundersSection(".dot-zero"), {
-          scale: 0,
-          ease: "bounce.inOut",
-        }, "<");
+        // pinnedHorizontalScroll[1].to(
+        //   immigrantsSection(".immigrant-section__digit"),
+        //   {
+        //     textContent: 14,
+        //     snap: { textContent: 0.1 },
+        //   },
+        //   "<"
+        // );
 
-        pinnedHorizontalScroll[2].from(
-          [
-            immigrantFoundersSection(".graph-line"),
-            immigrantFoundersSection(".graph-shade"),
-          ],
-          {
-            clipPath: "inset(233px 0 0)",
-          }
-        ), "<";
+        // const immigrantsSectionHeading = new SplitText(
+        //   immigrantsSection("h2"),
+        //   { type: "chars" }
+        // );
+        // pinnedHorizontalScroll[1].from(
+        //   immigrantsSectionHeading.chars,
+        //   {
+        //     autoAlpha: 0,
+        //     y: 20,
+        //     ease: "none",
+        //     stagger: 0.05,
+        //   },
+        //   "<"
+        // );
 
-        pinnedHorizontalScroll[2].from(
-          immigrantFoundersSection(".dot-thirty-six"),
-          {
-            scale: 0,
-            ease: "bounce.inOut",
-          }
-        ), "<";
+        // let immigrantsSectionText = new SplitText(immigrantSectionText[0], {
+        //   type: "words",
+        // });
+        // pinnedHorizontalScroll[1].from(
+        //   immigrantsSectionText.words,
+        //   {
+        //     y: 20,
+        //     autoAlpha: 0,
+        //     stagger: 0.05,
+        //   },
+        //   "<"
+        // );
 
-        pinnedHorizontalScroll[2].addLabel("animationComplete");
-
-        pinnedHorizontalScroll[2].to(Sections[2], {
-          autoAlpha: 0,
-        });
-
-        /* UNICORN FOUNDERS */
-        const unicornFoundersSection = gsap.utils.selector(".unicorn-founders");
-        // const unicornFoundersTimeline = gsap.timeline({
-        //   scrollTrigger: {
-        //     trigger: unicornFoundersSection("h2"),
-        //     start: "left right",
-        //     end: "left 30%",
-        //     scrub: 1,
-        //     containerAnimation: horizontalScroll,
-        //     // once: true,
+        // pinnedHorizontalScroll[1].from(
+        //   immigrantsSection(".immigrant-section__lessthan"),
+        //   {
+        //     autoAlpha: 0,
+        //     x: -10,
+        //     scaleY: 0,
         //   }
+        // ), "<";
+
+        // pinnedHorizontalScroll[1].from(
+        //   immigrantsSection(".facts__section-subtitle")[1],
+        //   {
+        //     autoAlpha: 0,
+        //   },
+        //   "<"
+        // );
+
+        // pinnedHorizontalScroll[1].to(
+        //   immigrantsSection(".immigrant-section__digit-two"),
+        //   {
+        //     textContent: 36,
+        //     snap: { textContent: 1 },
+        //   },
+        //   "<"
+        // );
+
+        // immigrantsSectionText = new SplitText(immigrantSectionText[1], {
+        //   type: "words",
+        // });
+        // pinnedHorizontalScroll[1].from(
+        //   immigrantsSectionText.words,
+        //   {
+        //     y: 20,
+        //     autoAlpha: 0,
+        //     stagger: 0.05,
+        //   },
+        //   "<"
+        // );
+
+        // pinnedHorizontalScroll[1].from(".immigrant-section__astricks", {
+        //   y: 10,
+        //   autoAlpha: 0,
+        // }, "<");
+
+        // pinnedHorizontalScroll[1].addLabel("animationComplete");
+
+        // pinnedHorizontalScroll[1].to(".immigrant-section", {
+        //   autoAlpha: 0,
+        //   duration: 2
+        // });
+
+        // /* IMMIGRANT FOUNDERS */
+        // // 157% increase in UK Unicorn immigrant Founders
+        // const immigrantFoundersSection = gsap.utils.selector(
+        //   ".immigrant-founders"
+        // );
+        // // const immigrantFoundersTimeline = gsap.timeline({
+        // //   scrollTrigger: {
+        // //     trigger: immigrantFoundersSection("h2"),
+        // //     start: "left 80%",
+        // //     end: "left 20%",
+        // //     scrub: 1,
+        // //     containerAnimation: horizontalScroll,
+        // //   }
+        // // })
+
+        // pinnedHorizontalScroll[2].from(Sections[2], {
+        //   autoAlpha: 0,
+        // });
+
+        // var immigrantFoundersHeading = new SplitText(
+        //   immigrantFoundersSection(".immigrant-section__heading-text"),
+        //   { type: "words" }
+        // );
+        // pinnedHorizontalScroll[2].from(
+        //   immigrantFoundersHeading.words,
+        //   {
+        //     autoAlpha: 0,
+        //     y: 20,
+        //     stagger: 0.05,
+        //   },
+        //   "<"
+        // );
+
+        // const immigrantFoundersSectionText = new SplitText(
+        //   immigrantFoundersSection(".facts__title-text"),
+        //   { type: "words" }
+        // );
+        // pinnedHorizontalScroll[2].from(
+        //   immigrantFoundersSectionText.words,
+        //   {
+        //     autoAlpha: 0,
+        //     y: 20,
+        //     stagger: 0.05,
+        //   },
+        //   "<"
+        // );
+
+        // pinnedHorizontalScroll[2].from(immigrantFoundersSection(".dot-zero"), {
+        //   scale: 0,
+        //   ease: "bounce.inOut",
+        // }, "<");
+
+        // pinnedHorizontalScroll[2].from(
+        //   [
+        //     immigrantFoundersSection(".graph-line"),
+        //     immigrantFoundersSection(".graph-shade"),
+        //   ],
+        //   {
+        //     clipPath: "inset(233px 0 0)",
+        //   }
+        // ), "<";
+
+        // pinnedHorizontalScroll[2].from(
+        //   immigrantFoundersSection(".dot-thirty-six"),
+        //   {
+        //     scale: 0,
+        //     ease: "bounce.inOut",
+        //   }
+        // ), "<";
+
+        // pinnedHorizontalScroll[2].addLabel("animationComplete");
+
+        // pinnedHorizontalScroll[2].to(Sections[2], {
+        //   autoAlpha: 0,
+        // });
+
+        // /* UNICORN FOUNDERS */
+        // const unicornFoundersSection = gsap.utils.selector(".unicorn-founders");
+        // // const unicornFoundersTimeline = gsap.timeline({
+        // //   scrollTrigger: {
+        // //     trigger: unicornFoundersSection("h2"),
+        // //     start: "left right",
+        // //     end: "left 30%",
+        // //     scrub: 1,
+        // //     containerAnimation: horizontalScroll,
+        // //     // once: true,
+        // //   }
+        // // })
+
+        // pinnedHorizontalScroll[3].from(Sections[3], {
+        //   autoAlpha: 0,
+        // });
+
+        // const unicornFoundersSectionHeading = new SplitText(
+        //   unicornFoundersSection("h2"),
+        //   { type: "words" }
+        // );
+        // pinnedHorizontalScroll[3].from(
+        //   unicornFoundersSectionHeading.words,
+        //   {
+        //     autoAlpha: 0,
+        //     y: 20,
+        //     stagger: 0.05,
+        //   },
+        //   "<"
+        // );
+
+        // const unicornFoundersSectionText = new SplitText(
+        //   unicornFoundersSection(".facts__title-text"),
+        //   { type: "words" }
+        // );
+        // pinnedHorizontalScroll[3].from(
+        //   unicornFoundersSectionText.words,
+        //   {
+        //     autoAlpha: 0,
+        //     y: 20,
+        //     stagger: 0.05,
+        //   },
+        //   "<"
+        // );
+
+        // unicornFoundersSection(".dot").forEach((dot, index) => {
+        //   pinnedHorizontalScroll[3].from(dot, {
+        //     scale: 0,
+        //     ease: "bounce.inOut",
+        //   });
+
+        //   pinnedHorizontalScroll[3].from(dot.nextSibling.nextSibling, {
+        //     autoAlpha: 0,
+        //     x: -5,
+        //   });
+        // }, "<");
+
+        // pinnedHorizontalScroll[3].from(
+        //   unicornFoundersSection(".arrow"),
+        //   {
+        //     scale: 0,
+        //   }
+        // );
+
+        // pinnedHorizontalScroll[3].addLabel("animationComplete");
+
+        // pinnedHorizontalScroll[3].to({}, {
+        //   delay: 2,
         // })
 
-        pinnedHorizontalScroll[3].from(Sections[3], {
-          autoAlpha: 0,
-        });
+        // gsap.set(".facts-section-line", {
+        //   position: "fixed",
+        //   autoAlpha: 1,
+        // });
 
-        const unicornFoundersSectionHeading = new SplitText(
-          unicornFoundersSection("h2"),
-          { type: "words" }
-        );
-        pinnedHorizontalScroll[3].from(
-          unicornFoundersSectionHeading.words,
-          {
-            autoAlpha: 0,
-            y: 20,
-            stagger: 0.05,
-          },
-          "<"
-        );
+        // gsap.from(".facts-section-line path", {
+        //   drawSVG: 0,
+        //   ease: "none",
+        //   scrollTrigger: {
+        //     trigger: ".facts-track",
+        //     start: "top",
+        //     end: `bottom`,
+        //     scrub: 1,
+        //   },
+        // });
 
-        const unicornFoundersSectionText = new SplitText(
-          unicornFoundersSection(".facts__title-text"),
-          { type: "words" }
-        );
-        pinnedHorizontalScroll[3].from(
-          unicornFoundersSectionText.words,
-          {
-            autoAlpha: 0,
-            y: 20,
-            stagger: 0.05,
-          },
-          "<"
-        );
+        // /* PORTFOLIO SECTION */
+        // const portfolio = gsap.timeline({
+        //   scrollTrigger: {
+        //     trigger: ".portfolio",
+        //     start: "center center",
+        //     end: "+=" + window.innerHeight * 4,
+        //     snap: "labels",
+        //     pin: true,
+        //     scrub: true,
+        //   },
+        // });
 
-        unicornFoundersSection(".dot").forEach((dot, index) => {
-          pinnedHorizontalScroll[3].from(dot, {
-            scale: 0,
-            ease: "bounce.inOut",
-          });
+        // portfolio.to("body", {
+        //   background: "#111111",
+        //   color: "#ffffff",
+        // });
 
-          pinnedHorizontalScroll[3].from(dot.nextSibling.nextSibling, {
-            autoAlpha: 0,
-            x: -5,
-          });
-        }, "<");
+        // portfolio.from('.portfolio', {
+        //   autoAlpha: 0,
+        // }, "<")
 
-        pinnedHorizontalScroll[3].from(
-          unicornFoundersSection(".arrow"),
-          {
-            scale: 0,
-          }
-        );
+        // portfolio.from(".portfolio-link__wrapper", {
+        //   y: 30,
+        //   autoAlpha: 0,
+        //   stagger: 0.75,
+        // });
 
-        pinnedHorizontalScroll[3].addLabel("animationComplete");
+        // portfolio.to({}, {duration: 2})
 
-        pinnedHorizontalScroll[3].to({}, {
-          delay: 2,
-        })
+        // portfolio.addLabel("animationComplete")
 
-        gsap.set(".facts-section-line", {
-          position: "fixed",
-          autoAlpha: 1,
-        });
+        // portfolio.to('.portfolio', {
+        //   autoAlpha: 0
+        // })
 
-        gsap.from(".facts-section-line path", {
-          drawSVG: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".facts-track",
-            start: "top",
-            end: `bottom`,
-            scrub: 1,
-          },
-        });
+        // gsap.from(".line-portfoli-about path", {
+        //   drawSVG: 0,
+        //   scrollTrigger: {
+        //     trigger: ".portfolio",
+        //     start: "center center",
+        //     bottom: "+=" + window.innerHeight * 4,
+        //     scrub: 2,
+        //     ease: "none",
+        //   },
+        // });
 
-        /* PORTFOLIO SECTION */
-        const portfolio = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".portfolio",
-            start: "center center",
-            end: "+=" + window.innerHeight * 4,
-            snap: "labels",
-            pin: true,
-            scrub: true,
-          },
-        });
+        // /* ABOUT SECTION */
+        // const fonuderSection = gsap.utils.selector(".founder");
+        // const founderTimeline = gsap.timeline({
+        //   scrollTrigger: {
+        //     trigger: ".founder__pinned-wrapper",
+        //     start: "top",
+        //     end: "+=" + window.innerHeight * 3,
+        //     scrub: 1,
+        //     pin: true,
+        //     snap: "labels",
+        //   },
+        // });
 
-        portfolio.to("body", {
-          background: "#111111",
-          color: "#ffffff",
-        });
+        // founderTimeline.from(".founder > div", {
+        //   autoAlpha: 0,
+        // });
 
-        portfolio.from('.portfolio', {
-          autoAlpha: 0,
-        }, "<")
+        // founderTimeline.to(
+        //   fonuderSection(".about-content__content"),
+        //   {
+        //     autoAlpha: 1,
+        //     x: -10,
+        //   },
+        //   "<"
+        // );
 
-        portfolio.from(".portfolio-link__wrapper", {
-          y: 30,
-          autoAlpha: 0,
-          stagger: 0.75,
-        });
+        // founderTimeline.addLabel("animationComplete");
 
-        portfolio.to({}, {duration: 2})
+        // founderTimeline.to({}, { duration: 1 });
 
-        portfolio.addLabel("animationComplete")
+        // founderTimeline.to(".founder > div", {
+        //   autoAlpha: 0,
+        // });
 
-        portfolio.to('.portfolio', {
-          autoAlpha: 0
-        })
+        // gsap.from(".about__line-about path", {
+        //   drawSVG: 0,
+        //   scrollTrigger: {
+        //     trigger: ".founder__pinned-wrapper",
+        //     start: "top top",
+        //     end: "bottom top",
+        //     scrub: 2,
+        //     delay: 2,
+        //   },
+        // });
 
-        gsap.from(".line-portfoli-about path", {
-          drawSVG: 0,
-          scrollTrigger: {
-            trigger: ".portfolio",
-            start: "center center",
-            bottom: "+=" + window.innerHeight * 4,
-            scrub: 2,
-            ease: "none",
-          },
-        });
+        // /* ABOUT - COMMUNITY */
+        // const communityEl = gsap.utils.selector(".community");
+        // const communityTimeline = gsap.timeline({
+        //   scrollTrigger: {
+        //     trigger: ".community-pinned-wrapper",
+        //     start: "top",
+        //     end: "+=" + window.innerHeight * 4,
+        //     scrub: 1,
+        //     pin: true,
+        //     snap: "labels"
+        //   },
+        // });
 
-        /* ABOUT SECTION */
-        const fonuderSection = gsap.utils.selector(".founder");
-        const founderTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".founder__pinned-wrapper",
-            start: "top",
-            end: "+=" + window.innerHeight * 3,
-            scrub: 1,
-            pin: true,
-            snap: "labels",
-          },
-        });
+        // communityTimeline.to("body", {
+        //   background: "#ffffff",
+        //   color: "#111111"
+        // });
 
-        founderTimeline.from(".founder > div", {
-          autoAlpha: 0,
-        });
+        // communityTimeline.from(".community", {
+        //   autoAlpha: 0,
+        // });
 
-        founderTimeline.to(
-          fonuderSection(".about-content__content"),
-          {
-            autoAlpha: 1,
-            x: -10,
-          },
-          "<"
-        );
+        // communityTimeline.to(
+        //   communityEl(".about-content__content"),
+        //   {
+        //     autoAlpha: 1,
+        //   },
+        //   "<"
+        // );
 
-        founderTimeline.addLabel("animationComplete");
+        // communityTimeline.from(communityEl(".about-content__content > div"), {
+        //   y: -10,
+        //   autoAlpha: 0,
+        //   stagger: 0.5,
+        // });
 
-        founderTimeline.to({}, { duration: 1 });
+        // communityTimeline.addLabel("animationComplete")
 
-        founderTimeline.to(".founder > div", {
-          autoAlpha: 0,
-        });
+        // communityTimeline.to({}, { duration: 1 });
 
-        gsap.from(".about__line-about path", {
-          drawSVG: 0,
-          scrollTrigger: {
-            trigger: ".founder__pinned-wrapper",
-            start: "top top",
-            end: "bottom top",
-            scrub: 2,
-            delay: 2,
-          },
-        });
+        // gsap.from(".about__line-community-faq path", {
+        //   drawSVG: "100% 100%",
+        //   scrollTrigger: {
+        //     trigger: ".community-pinned-wrapper",
+        //     start: "center center",
+        //     end: "+=" + window.innerHeight * 4,
+        //     scrub: true,
+        //   },
+        // });
 
-        /* ABOUT - COMMUNITY */
-        const communityEl = gsap.utils.selector(".community");
-        const communityTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: ".community-pinned-wrapper",
-            start: "top",
-            end: "+=" + window.innerHeight * 4,
-            scrub: 1,
-            pin: true,
-            snap: "labels"
-          },
-        });
-
-        communityTimeline.to("body", {
-          background: "#ffffff",
-          color: "#111111"
-        });
-
-        communityTimeline.from(".community", {
-          autoAlpha: 0,
-        });
-
-        communityTimeline.to(
-          communityEl(".about-content__content"),
-          {
-            autoAlpha: 1,
-          },
-          "<"
-        );
-
-        communityTimeline.from(communityEl(".about-content__content > div"), {
-          y: -10,
-          autoAlpha: 0,
-          stagger: 0.5,
-        });
-
-        communityTimeline.addLabel("animationComplete")
-
-        communityTimeline.to({}, { duration: 1 });
-
-        gsap.from(".about__line-community-faq path", {
-          drawSVG: "100% 100%",
-          scrollTrigger: {
-            trigger: ".community-pinned-wrapper",
-            start: "center center",
-            end: "+=" + window.innerHeight * 4,
-            scrub: true,
-          },
-        });
-
-        const pitchLines = gsap.utils.toArray(".pitch-lines path");
+        // const pitchLines = gsap.utils.toArray(".pitch-lines path");
 
 
-        const pitchTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: "#pitch",
-            start: "top bottom",
-            end: "center bottom",
-            scrub: 2,
-          },
-        })
+        // const pitchTimeline = gsap.timeline({
+        //   scrollTrigger: {
+        //     trigger: "#pitch",
+        //     start: "top bottom",
+        //     end: "center bottom",
+        //     scrub: 2,
+        //   },
+        // })
         
-        pitchTimeline.to('body', {
-          background: '#111111',
-          color: "#ffffff"
-        })
+        // pitchTimeline.to('body', {
+        //   background: '#111111',
+        //   color: "#ffffff"
+        // })
 
-        pitchTimeline.from([pitchLines[1], pitchLines[2]], {
-          drawSVG: 0,
-        }, "<");
+        // pitchTimeline.from([pitchLines[1], pitchLines[2]], {
+        //   drawSVG: 0,
+        // }, "<");
 
-        gsap.from(pitchLines[0], {
-          drawSVG: "100% 100%",
-          scrollTrigger: {
-            trigger: "#pitch",
-            start: "center bottom",
-            end: "bottom bottom",
-            scrub: 2,
-          },
-        });
+        // gsap.from(pitchLines[0], {
+        //   drawSVG: "100% 100%",
+        //   scrollTrigger: {
+        //     trigger: "#pitch",
+        //     start: "center bottom",
+        //     end: "bottom bottom",
+        //     scrub: 2,
+        //   },
+        // });
       } else if (isMobile) {
         gsap.from(".line-immigrant-unicorn-founders path", {
           drawSVG: 0,
@@ -874,7 +943,6 @@ window.addEventListener("scroll", function () {
 
 gsap.utils.toArray('[href^="#"]').forEach((link) => {
   const targetEl = document.getElementById(link.href.split("#")[1]);
-  console.log(targetEl, link);
   const top = targetEl.getBoundingClientRect().top
 
   link.addEventListener("click", (e) => {

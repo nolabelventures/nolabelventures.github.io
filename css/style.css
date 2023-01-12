@@ -103,11 +103,12 @@ body {
       flex-basis: 100%;
   -ms-flex-negative: 0;
       flex-shrink: 0;
-  position: relative;
   margin-bottom: 100px;
   max-width: 70vw;
   margin-left: auto;
   margin-right: auto;
+  background: var(--colors-white);
+  color: var(--colors-black);
 }
 
 @media (min-width: 976px) {
@@ -144,7 +145,6 @@ body {
 }
 
 .about {
-  position: relative;
   padding: 0;
 }
 
@@ -738,18 +738,9 @@ footer {
 }
 
 .pitch {
-  background: url(/assets/pitch-bg.png) no-repeat;
-  padding-top: 50vw;
-  padding-bottom: 50vw;
-  position: relative;
+  background: url(/assets/pitch-bg.png) no-repeat, #111111;
 }
 
-@media (min-width: 976px) {
-  .pitch {
-    padding-top: 250px;
-    padding-bottom: 250px;
-  }
-}
 .pitch__text {
   max-width: 639px;
   margin-bottom: 2.5em;
@@ -973,8 +964,20 @@ main > * {
 
 @media (min-width: 976px) {
   main > * {
-    padding: 100px 0;
-    position: relative;
+    padding: 0;
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    height: 100vh;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-pack: center;
+        -ms-flex-pack: center;
+            justify-content: center;
+    -webkit-box-align: center;
+        -ms-flex-align: center;
+            align-items: center;
   }
 }
 .blog-posts__list article {
@@ -1379,7 +1382,7 @@ main > * {
 }
 
 .portfolio {
-  margin-top: 200px;
+  background: var(--colors-black);
 }
 
 .header.hide {
@@ -1389,7 +1392,19 @@ main > * {
 }
 
 .snapping {
-  -webkit-transform: translateY(0) !important;
-      -ms-transform: translateY(0) !important;
-          transform: translateY(0) !important;
+  -webkit-transform: translate(0) !important;
+      -ms-transform: translate(0) !important;
+          transform: translate(0) !important;
+}
+
+.founder__pinned-wrapper {
+  background: var(--colors-black);
+}
+
+.community-pinned-wrapper {
+  background: var(--colors-white);
+}
+
+.faq {
+  background: var(--colors-white);
 }
