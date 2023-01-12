@@ -1,51 +1,4 @@
 /*
- * Left hand navigation
- */
-const navLinks = gsap.utils.toArray('.nav__button[href^="#"]')
-
-window.addEventListener("scroll", function () {
-  const windowPos = window.pageYOffset || document.scrollTop || 0;
-
-  navLinks.forEach((link) => {
-    const refElement = document.getElementById(link.href.split("#")[1]);
-    const elIsAboveScrollPos =
-      refElement.offsetTop <= windowPos + window.innerHeight / 2;
-    const elBottomIsBelowScrollPos =
-      refElement.offsetTop + refElement.clientHeight >=
-      windowPos + window.innerHeight / 2;
-    const elIsEntirelyWithinWindow =
-      refElement.offsetTop >= windowPos + window.innerHeight / 2 &&
-      refElement.offsetTop + refElement.clientHeight <=
-        windowPos + window.innerHeight;
-    link.classList.toggle(
-      "active",
-      elIsEntirelyWithinWindow ||
-        (elIsAboveScrollPos && elBottomIsBelowScrollPos)
-    );
-  });
-});
-
-gsap.utils.toArray('[href^="#"]').forEach((link) => {
-  link.addEventListener("click", (e) => {
-    e.preventDefault();
-
-    header.classList.remove("show-mobile-menu");
-
-    const targetEl = document.getElementById(link.href.split("#")[1]);
-
-    if (targetEl) {
-      window.scrollTo({
-        top: document.getElementById(link.href.split("#")[1]).offsetTop,
-        left: 0,
-        behavior: "smooth",
-      });
-    } else {
-      // handle navigation to correct page
-    }
-  });
-});
-
-/*
  * FAQ Dropdowns
  */
 const dropdowns = gsap.utils.toArray("[data-dropdown]");
@@ -121,8 +74,8 @@ mm.add(
       pageScrollAnimation.to(
         "body",
         {
-          background: "white",
-          color: "black",
+          background: "#ffffff",
+          color: "#111111",
         },
         "<"
       );
@@ -331,8 +284,6 @@ mm.add(
     if (isDesktop) {
       let Sections = gsap.utils.toArray(".facts__section");
 
-
-
       if (Sections) {
         const pinnedHorizontalScroll = Sections.map((section, index) => {
           const options = {
@@ -341,8 +292,27 @@ mm.add(
               start: "center center",
               end: "+=" + window.innerHeight * 6,
               pin: true,
-              snap: {snapTo: "labels", duration: 2, delay: 0, inertia: false},
-              preventOverlaps: "facts",
+              snap: {
+                snapTo: "labels", 
+                duration: 3, 
+                delay: 0.1, 
+                inertia: false, 
+                onStart: ({direction}) => {
+                  // document.querySelector('.header').classList.add('snapping')
+                  if (direction === 1) {
+                    document.querySelector('.header').classList.remove('hide')
+                    document.querySelector('.header').classList.remove('snapping')
+                  } else {
+                    document.querySelector('.header').classList.add('hide')
+                    document.querySelector('.header').classList.add('snapping')
+                  }
+                },
+                onComplete: (props) => {
+                  if(props.direction === 1) {
+                  }
+                }
+              },
+              // preventOverlaps: "facts",
               scrub: true,
               toggleActions: "play none none none",
               ...(index === Sections.length - 1
@@ -366,20 +336,6 @@ mm.add(
           return gsap.timeline(options);
         });
 
-        // const horizontalScroll = gsap.to('.facts-track', {
-        //   xPercent: -100 * (Sections.length - 1) * 2,
-        //   ease: 'none',
-        //   scrollTrigger: {
-        //     trigger: ".facts",
-        //     start: "center center",
-        //     end: "+=" + window.innerHeight * Sections.length,
-        //     invalidateOnRefresh: true,
-        //     markers: true,
-        //     pin: true,
-        //     scrub: true
-        //   }
-        // })
-
         const servicesSection = gsap.utils.selector(".facts__section-services");
         const firstSectionHeading = new SplitText(servicesSection("h2"), {
           type: "words",
@@ -393,8 +349,8 @@ mm.add(
         pinnedHorizontalScroll[0].from(servicesSection(".facts__services > div"), {
           y: 10,
           autoAlpha: 0,
-          stagger: 0.5,
-        });
+          stagger: 0.25,
+        }, "<");
 
         pinnedHorizontalScroll[0].addLabel("animationComplete");
 
@@ -462,7 +418,7 @@ mm.add(
             x: -10,
             scaleY: 0,
           }
-        );
+        ), "<";
 
         pinnedHorizontalScroll[1].from(
           immigrantsSection(".facts__section-subtitle")[1],
@@ -497,7 +453,7 @@ mm.add(
         pinnedHorizontalScroll[1].from(".immigrant-section__astricks", {
           y: 10,
           autoAlpha: 0,
-        });
+        }, "<");
 
         pinnedHorizontalScroll[1].addLabel("animationComplete");
 
@@ -566,7 +522,7 @@ mm.add(
           {
             clipPath: "inset(233px 0 0)",
           }
-        );
+        ), "<";
 
         pinnedHorizontalScroll[2].from(
           immigrantFoundersSection(".dot-thirty-six"),
@@ -574,7 +530,7 @@ mm.add(
             scale: 0,
             ease: "bounce.inOut",
           }
-        );
+        ), "<";
 
         pinnedHorizontalScroll[2].addLabel("animationComplete");
 
@@ -637,20 +593,19 @@ mm.add(
             autoAlpha: 0,
             x: -5,
           });
-        });
+        }, "<");
 
         pinnedHorizontalScroll[3].from(
           unicornFoundersSection(".arrow"),
           {
             scale: 0,
-          },
-          ">"
+          }
         );
 
         pinnedHorizontalScroll[3].addLabel("animationComplete");
 
-        pinnedHorizontalScroll[3].to(Sections[3], {
-          autoAlpha: 0,
+        pinnedHorizontalScroll[3].to({}, {
+          delay: 2,
         })
 
         gsap.set(".facts-section-line", {
@@ -681,27 +636,36 @@ mm.add(
           },
         });
 
+        portfolio.to("body", {
+          background: "#111111",
+          color: "#ffffff",
+        });
+
         portfolio.from('.portfolio', {
-          autoAlpha: 0
-        })
+          autoAlpha: 0,
+        }, "<")
 
         portfolio.from(".portfolio-link__wrapper", {
           y: 30,
           autoAlpha: 0,
-          stagger: 0.5,
+          stagger: 0.75,
         });
 
         portfolio.to({}, {duration: 2})
 
         portfolio.addLabel("animationComplete")
 
+        portfolio.to('.portfolio', {
+          autoAlpha: 0
+        })
+
         gsap.from(".line-portfoli-about path", {
           drawSVG: 0,
           scrollTrigger: {
-            trigger: ".line-portfoli-about",
-            start: "top bottom",
-            bottom: "bottom center",
-            scrub: true,
+            trigger: ".portfolio",
+            start: "center center",
+            bottom: "+=" + window.innerHeight * 4,
+            scrub: 2,
             ease: "none",
           },
         });
@@ -713,7 +677,7 @@ mm.add(
             trigger: ".founder__pinned-wrapper",
             start: "top",
             end: "+=" + window.innerHeight * 3,
-            scrub: 2,
+            scrub: 1,
             pin: true,
             snap: "labels",
           },
@@ -736,6 +700,10 @@ mm.add(
 
         founderTimeline.to({}, { duration: 1 });
 
+        founderTimeline.to(".founder > div", {
+          autoAlpha: 0,
+        });
+
         gsap.from(".about__line-about path", {
           drawSVG: 0,
           scrollTrigger: {
@@ -754,10 +722,15 @@ mm.add(
             trigger: ".community-pinned-wrapper",
             start: "top",
             end: "+=" + window.innerHeight * 4,
-            scrub: 2,
-            snap: 1,
+            scrub: 1,
             pin: true,
+            snap: "labels"
           },
+        });
+
+        communityTimeline.to("body", {
+          background: "#ffffff",
+          color: "#111111"
         });
 
         communityTimeline.from(".community", {
@@ -778,6 +751,8 @@ mm.add(
           stagger: 0.5,
         });
 
+        communityTimeline.addLabel("animationComplete")
+
         communityTimeline.to({}, { duration: 1 });
 
         gsap.from(".about__line-community-faq path", {
@@ -785,21 +760,32 @@ mm.add(
           scrollTrigger: {
             trigger: ".community-pinned-wrapper",
             start: "center center",
-            end: "bottom top",
+            end: "+=" + window.innerHeight * 4,
             scrub: true,
           },
         });
 
         const pitchLines = gsap.utils.toArray(".pitch-lines path");
-        gsap.from([pitchLines[1], pitchLines[2]], {
-          drawSVG: 0,
+
+
+        const pitchTimeline = gsap.timeline({
           scrollTrigger: {
             trigger: "#pitch",
             start: "top bottom",
             end: "center bottom",
             scrub: 2,
           },
-        });
+        })
+        
+        pitchTimeline.to('body', {
+          background: '#111111',
+          color: "#ffffff"
+        })
+
+        pitchTimeline.from([pitchLines[1], pitchLines[2]], {
+          drawSVG: 0,
+        }, "<");
+
         gsap.from(pitchLines[0], {
           drawSVG: "100% 100%",
           scrollTrigger: {
@@ -866,3 +852,44 @@ mm.add(
     }
   }
 );
+
+/*
+ * Left hand navigation
+ */
+const navLinks = gsap.utils.toArray('.nav__button[href^="#"]')
+const pageSections = navLinks.map(link => document.getElementById(link.href.split("#")[1]))
+
+window.addEventListener("scroll", function () {
+  const windowPos = window.pageYOffset || document.scrollTop || 0;
+
+  pageSections.forEach((refElement, index) => {
+    const elIsAboveScrollPos = refElement.offsetTop <= windowPos + window.innerHeight / 2;
+    const elBottomIsBelowScrollPos = refElement.offsetTop + refElement.clientHeight >= windowPos + window.innerHeight / 2;
+    const elIsEntirelyWithinWindow = refElement.offsetTop >= windowPos + window.innerHeight / 2 && refElement.offsetTop + refElement.clientHeight <= windowPos + window.innerHeight;
+
+    navLinks[index].classList.toggle("active", elIsEntirelyWithinWindow || (elIsAboveScrollPos && elBottomIsBelowScrollPos));
+  });
+});
+
+
+gsap.utils.toArray('[href^="#"]').forEach((link) => {
+  const targetEl = document.getElementById(link.href.split("#")[1]);
+  console.log(targetEl, link);
+  const top = targetEl.getBoundingClientRect().top
+
+  link.addEventListener("click", (e) => {
+    e.preventDefault();
+
+    header.classList.remove("show-mobile-menu");
+
+    if (targetEl) {
+      window.scrollTo({
+        top: top + 100,
+        left: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // handle navigation to correct page
+    }
+  });
+});

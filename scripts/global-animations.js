@@ -52,9 +52,9 @@ if (window.location.pathname === "/") {
     const windowPos = window.pageYOffset || document.scrollTop || 0;
 
     if (windowPos >= window.innerHeight / 2 && windowPos > lastScrollTop) {
-      header.style.transform = "translateY(-100%)";
+      header.classList.add('hide')
     } else {
-      header.style.transform = "";
+      header.classList.remove('hide')
     }
 
     // used to detect scroll position

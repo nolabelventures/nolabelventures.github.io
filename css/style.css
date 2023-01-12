@@ -144,11 +144,8 @@ body {
 }
 
 .about {
-  background-image: url("../assets/about-background.jpeg");
-  background-repeat: no-repeat;
-  background-position: fixed;
-  background-size: cover;
   position: relative;
+  padding: 0;
 }
 
 @media (min-width: 976px) {
@@ -173,7 +170,7 @@ body {
   font-family: "Poppins", sans-serif;
   font-size: 14px;
   margin-bottom: 0.5em;
-  color: var(--colors-black);
+  color: inherit;
 }
 
 .about-content > * {
@@ -203,7 +200,7 @@ body {
       flex-shrink: 1;
   -ms-flex-preferred-size: 100%;
       flex-basis: 100%;
-  color: var(--colors-black);
+  color: inherit;
 }
 
 .content-wrapper {
@@ -221,8 +218,6 @@ body {
     margin-right: auto;
     padding: 0;
     text-align: left;
-    padding-top: 200px;
-    padding-bottom: 200px;
   }
 }
 .about-image {
@@ -389,7 +384,6 @@ body {
           transform: rotate(180deg);
 }
 
-.faq,
 .footer {
   background: var(--colors-black);
   color: var(--colors-white);
@@ -589,7 +583,7 @@ footer:before {
   }
 }
 .about__community-title {
-  color: var(--colors-black);
+  color: inherit;
   margin-bottom: 1em;
 }
 
@@ -744,10 +738,9 @@ footer {
 }
 
 .pitch {
-  background: url(/assets/pitch-bg.png) no-repeat, #111111;
+  background: url(/assets/pitch-bg.png) no-repeat;
   padding-top: 50vw;
   padding-bottom: 50vw;
-  color: var(--colors-white);
   position: relative;
 }
 
@@ -780,7 +773,7 @@ footer {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  color: var(--colors-black);
+  color: inherit;
   margin-bottom: 50px;
   max-width: 970px;
   display: -webkit-box;
@@ -1383,4 +1376,20 @@ main > * {
 .facts {
   width: 100vw;
   position: relative;
+}
+
+.portfolio {
+  margin-top: 200px;
+}
+
+.header.hide {
+  -webkit-transform: translateY(-100%);
+      -ms-transform: translateY(-100%);
+          transform: translateY(-100%);
+}
+
+.snapping {
+  -webkit-transform: translateY(0) !important;
+      -ms-transform: translateY(0) !important;
+          transform: translateY(0) !important;
 }
