@@ -8,6 +8,7 @@
     right: 0;
     z-index: 100;
     background: inherit;
+    height: 100vh;
 }
 
 .hero-intro {
@@ -50,19 +51,15 @@ body {
     flex-grow: 1;
     flex-basis: 100%;
     flex-shrink: 0;
-    position: relative;
     margin-bottom: 100px;
     max-width: 70vw;
     margin-left: auto;
     margin-right: auto;
+    background-color: var(--colors-white);
+    color: var(--colors-black);
 }
 
 @media (min-width:976px) {
-    .facts__section {
-        max-width: 100%;
-        margin-bottom: 0;
-        width: 100vw;
-    }
 }
 
 .facts__section-content {
@@ -93,7 +90,6 @@ body {
 }
 
 .about {
-    position: relative;
     padding: 0;
 }
 
@@ -203,7 +199,7 @@ body {
     list-style-type: none;
     left: -30px;
     padding-left: 0;
-    color: var(--colors-white);
+    color: #C4C4C4;
 }
 
 .nav__button {
@@ -217,7 +213,7 @@ body {
     border: 1px solid currentColor;
     border-radius: 50%;
     z-index: 50;
-    color: #fff;
+    color: inherit;
 }
 
 .nav {
@@ -230,7 +226,7 @@ body {
         left: 50px;
         top: 50%;
         transform: translateY(-50%);
-        z-index: 10;
+        z-index: 100;
         display: block;
     }
 }
@@ -432,6 +428,7 @@ footer:before {
         left: 0;
         right: 0;
         display: block;
+        z-index: 9999;
     }
 }
 
@@ -529,7 +526,7 @@ footer {
 @media (min-width:976px) {
     .immigrant-section__astricks {
         position: absolute;
-        bottom: -100px;
+        bottom: 100px;
         right: 0;
         left: 0;
         text-align: center;
@@ -595,17 +592,11 @@ footer {
 }
 
 .pitch {
-    background: url(/assets/pitch-bg.png) no-repeat;
-    padding-top: 50vw;
-    padding-bottom: 50vw;
-    position: relative;
+    background: url(/assets/pitch-bg.png) no-repeat, #111111;
+    background-color: #111111;
 }
 
 @media (min-width:976px) {
-    .pitch {
-        padding-top: 250px;
-        padding-bottom: 250px;
-    }
 }
 
 .pitch__text {
@@ -812,9 +803,15 @@ main > * {
 }
 
 @media (min-width:976px) {
-    main > * {
-        padding: 100px 0;
-        position: relative;
+    .fixed-page > * {
+        padding: 0;
+        position: absolute;
+        top: 0;
+        width: 100vw;
+        height: 100vh;
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 }
 
@@ -1047,6 +1044,7 @@ main > * {
     background: linear-gradient(115.49deg, #03170F -3.76%, #045546 109.62%);
     background-size: 100% 100vh;
     background-repeat: no-repeat;
+    background-color: #111111;
 }
 
 .founder .about-content__content {
@@ -1090,7 +1088,6 @@ main > * {
     left: 0;
     z-index: 1;
     bottom: 0;
-    transform: translateY(50%);
 }
 
 .about__line-about {
@@ -1213,7 +1210,7 @@ main > * {
 }
 
 .portfolio {
-    margin-top: 200px;
+    background-color: var(--colors-black);
 }
 
 .header.hide {
@@ -1221,5 +1218,72 @@ main > * {
 }
 
 .snapping {
-    transform: translateY(0) !important;
+    transform: translate(0) !important
+}
+
+.founder__pinned-wrapper {
+    background-color: var(--colors-black);
+}
+
+.community-pinned-wrapper {
+    background-color: var(--colors-white);
+    color: var(--colors-black);
+}
+
+.faq {
+    background-color: var(--colors-white);
+    color: var(--colors-black);
+}
+
+@media (min-width:976px) {
+    .facts__section {
+        max-width: 100vw;
+    }
+}
+
+main {
+    overflow: hidden;
+    height: 100vh;
+}
+
+@media (min-width:976px) {
+    .blog-posts,
+    .blog-post {
+        margin-top: 150px;
+    }
+}
+
+.mouse-icon {
+    position: absolute;
+    top: 0;
+    left: 50%;
+    width: 30px;
+    height: 50px;
+    margin-left: -15px;
+    border: 2px solid #fff;
+    border-radius: 50px;
+    box-sizing: border-box;
+
+    &::before {
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        content: '';
+        width: 6px;
+        height: 6px;
+        margin-left: -3px;
+        background-color: #fff;
+        border-radius: 100%;
+        box-sizing: border-box;
+    }
+}
+
+.scroll-down {
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding-top: 60px;
+    color: var(--colors-white);
+    text-decoration: none;
 }
