@@ -109,11 +109,9 @@ mm.add(
 
     if (!sessionStorage.getItem("intro-seen")) {
       // Don't prevent scroll if the user lands down the page
-      if (!window.pageYOffset && !document.scrollTop) {
-        introAnimation.set("body", {
-          overflow: "hidden",
-        });
-      }
+      introAnimation.set("body", {
+        overflow: "hidden",
+      });
 
       introAnimation.set(heroEl("h1"), {
         autoAlpha: 1,
@@ -227,13 +225,17 @@ mm.add(
           stagger: 0.05,
         }
       );
-
       introAnimation.fromTo(
         ".draw-me",
         { drawSVG: "0%", ease: "none", autoAlpha: 1 },
         { drawSVG: "-100%" },
         "<"
       );
+
+      introAnimation.from(heroEl('.scroll-down'), {
+        autoAlpha: 0
+      }, "<");
+
 
       introAnimation.set("body", {
         overflow: "",
@@ -287,6 +289,10 @@ mm.add(
         { drawSVG: "-100%" },
         "<"
       );
+
+      introAnimation.from(heroEl('.scroll-down'), {
+        autoAlpha: 0
+      });
     }
 
     /* FACTS HORIZONTAL SCROLL SECTION */
@@ -412,7 +418,7 @@ mm.add(
 
 
 
-        currentIndex = index;
+        currentIndex = Number(index);
       }   
       
       let hasScrolled = false;
