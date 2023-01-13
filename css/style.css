@@ -47,6 +47,7 @@ h5,
   right: 0;
   z-index: 100;
   background: inherit;
+  height: 100vh;
 }
 
 .hero-intro {
@@ -546,6 +547,7 @@ footer:before {
     left: 0;
     right: 0;
     display: block;
+    z-index: 9999;
   }
 }
 .immigrant-section__lessthan {
@@ -655,7 +657,7 @@ footer {
 @media (min-width: 976px) {
   .immigrant-section__astricks {
     position: absolute;
-    bottom: -100px;
+    bottom: 100px;
     right: 0;
     left: 0;
     text-align: center;
@@ -956,7 +958,7 @@ main > * {
 }
 
 @media (min-width: 976px) {
-  main > * {
+  .fixed-page > * {
     padding: 0;
     position: absolute;
     top: 0;
@@ -1255,9 +1257,6 @@ main > * {
   left: 0;
   z-index: 1;
   bottom: 0;
-  -webkit-transform: translateY(50%);
-      -ms-transform: translateY(50%);
-          transform: translateY(50%);
 }
 
 .about__line-about {
@@ -1407,5 +1406,16 @@ main > * {
 @media (min-width: 976px) {
   .facts__section {
     max-width: 100vw;
+  }
+}
+main {
+  overflow: hidden;
+  height: 100vh;
+}
+
+@media (min-width: 976px) {
+  .blog-posts,
+.blog-post {
+    margin-top: 150px;
   }
 }

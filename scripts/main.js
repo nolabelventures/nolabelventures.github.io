@@ -291,7 +291,7 @@ mm.add(
 
     /* FACTS HORIZONTAL SCROLL SECTION */
     if (isDesktop) {
-      let Sections = Array.from(document.querySelectorAll("main > *"));
+      let Sections = Array.from(document.querySelectorAll(".fixed-page > *"));
       let currentIndex = -1;
       let animating;
 
@@ -313,13 +313,10 @@ mm.add(
       intentObserver.disable();
 
       ScrollTrigger.create({
-        trigger: 'main',
+        trigger: '.fixed-page',
         pin: true,
         start: "top top",
         end: "+=1",
-        onEnter: () => {
-          // gotoPanel(currentIndex + 1, true);    
-        },
         onEnterBack: () => {
           intentObserver.enable();
           gotoPanel(currentIndex - 1, false);
@@ -367,7 +364,7 @@ mm.add(
         const backgroundColor = window.getComputedStyle(Sections[index]).getPropertyValue("background-color")
 
         const transition = gsap.timeline({
-          duration: 0.75,
+          duration: 0.5,
           onComplete: () => {
             if (pageAnimations[index]) {
               pageAnimations[index].play()
@@ -378,6 +375,12 @@ mm.add(
           }
         })
       
+        if (Sections[currentIndex]?.getAttribute('data-svg-line')) {
+          transition.to(Sections[currentIndex].getAttribute('data-svg-line'), {
+            drawSVG: Sections[currentIndex].getAttribute('data-svg-out') || 0
+          })
+        }
+
         transition.to(target, {
           autoAlpha: isScrollingDown ? 1 : 0,
         });
@@ -385,6 +388,29 @@ mm.add(
         transition.to('body', {
           color: backgroundColor === 'rgb(255, 255, 255)' ? '#111111' : '#ffffff'
         }, "<")
+
+        if (index > 0 && index < 5) {
+          transition.to('.facts-section-line', {
+            autoAlpha: 1
+          }, "<")
+          transition.fromTo('.facts-section-line path', {
+            drawSVG: ((100 / document.querySelectorAll('.facts__section').length) * currentIndex) + '%'
+          }, {
+            drawSVG: ((100 / document.querySelectorAll('.facts__section').length) * index) + '%'
+          }, "<")
+        } else {
+          transition.to('.facts-section-line', {
+            autoAlpha: 0
+          }, "<")
+          
+          transition.fromTo('.facts-section-line path', {
+            drawSVG: ((100 / document.querySelectorAll('.facts__section').length) * currentIndex) + '%'
+          }, {
+            drawSVG: index === 0 ? '0 0' : '-100% 100%'
+          }, "<")
+        }
+
+
 
         currentIndex = index;
       }   
@@ -659,22 +685,6 @@ mm.add(
 
         pageAnimations.push(unicornFoundersTimeline)
 
-        gsap.set(".facts-section-line", {
-          position: "fixed",
-          autoAlpha: 1,
-        });
-
-        gsap.from(".facts-section-line path", {
-          drawSVG: 0,
-          ease: "none",
-          scrollTrigger: {
-            trigger: ".facts-track",
-            start: "top",
-            end: `bottom`,
-            scrub: 1,
-          },
-        }, "<");
-
         // /* PORTFOLIO SECTION */
         const portfolio = gsap.timeline({});
 
@@ -684,18 +694,12 @@ mm.add(
           stagger: 0.05,
         });
 
+        portfolio.from(".line-portfoli-about path", {
+          drawSVG: 0,
+        }, "<");
+
         pageAnimations.push(portfolio)
 
-        // gsap.from(".line-portfoli-about path", {
-        //   drawSVG: 0,
-        //   scrollTrigger: {
-        //     trigger: ".portfolio",
-        //     start: "center center",
-        //     bottom: "+=" + window.innerHeight * 4,
-        //     scrub: 2,
-        //     ease: "none",
-        //   },
-        // });
 
         // /* ABOUT SECTION */
         const fonuderSection = gsap.utils.selector(".founder");
@@ -707,21 +711,14 @@ mm.add(
             autoAlpha: 1,
             x: -10,
           },
-          "<"
         );
+
+        founderTimeline.from(".about__line-about path", {
+          drawSVG: 0,
+        }, "<");
 
         pageAnimations.push(founderTimeline)
 
-        // gsap.from(".about__line-about path", {
-        //   drawSVG: 0,
-        //   scrollTrigger: {
-        //     trigger: ".founder__pinned-wrapper",
-        //     start: "top top",
-        //     end: "bottom top",
-        //     scrub: 2,
-        //     delay: 2,
-        //   },
-        // });
 
         // /* ABOUT - COMMUNITY */
         const communityEl = gsap.utils.selector(".community");
@@ -743,21 +740,15 @@ mm.add(
           y: -10,
           autoAlpha: 0,
           stagger: 0.075,
-        });
+        }, "<");
+
+        communityTimeline.from(".about__line-community-faq path", {
+          drawSVG: "100% 100%",
+        }, "<");
 
         pageAnimations.push(communityTimeline)
 
         pageAnimations.push(false)
-
-        // gsap.from(".about__line-community-faq path", {
-        //   drawSVG: "100% 100%",
-        //   scrollTrigger: {
-        //     trigger: ".community-pinned-wrapper",
-        //     start: "center center",
-        //     end: "+=" + window.innerHeight * 4,
-        //     scrub: true,
-        //   },
-        // });
 
         const pitchLines = gsap.utils.toArray(".pitch-lines path");
         const pitchTimeline = gsap.timeline({})
