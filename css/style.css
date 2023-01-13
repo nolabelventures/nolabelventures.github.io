@@ -111,13 +111,6 @@ body {
   color: var(--colors-black);
 }
 
-@media (min-width: 976px) {
-  .facts__section {
-    max-width: 100%;
-    margin-bottom: 0;
-    width: 100vw;
-  }
-}
 .facts__section-content {
   max-width: 970px;
   width: 100%;
@@ -277,7 +270,7 @@ body {
   list-style-type: none;
   left: -30px;
   padding-left: 0;
-  color: var(--colors-white);
+  color: #C4C4C4;
 }
 
 .nav__button {
@@ -291,7 +284,7 @@ body {
   border: 1px solid currentColor;
   border-radius: 50%;
   z-index: 50;
-  color: #fff;
+  color: inherit;
 }
 
 .nav {
@@ -306,7 +299,7 @@ body {
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
             transform: translateY(-50%);
-    z-index: 10;
+    z-index: 100;
     display: block;
   }
 }
@@ -1408,4 +1401,11 @@ main > * {
 
 .faq {
   background: var(--colors-white);
+  color: var(--colors-black);
+}
+
+@media (min-width: 976px) {
+  .facts__section {
+    max-width: 100vw;
+  }
 }
