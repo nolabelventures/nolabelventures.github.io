@@ -1,3 +1,7 @@
+gsap.defaults({
+  ease: 'power4.out'
+})
+
 /* FOOTER */
 const footer = document.querySelector("footer");
 const footertl = gsap.timeline({

@@ -214,6 +214,7 @@ body {
     border-radius: 50%;
     z-index: 50;
     color: inherit;
+    transition: border .3s ease-in-out, background-color .3s ease-in-out;
 }
 
 .nav {
@@ -233,24 +234,46 @@ body {
 
 .nav__list > li {
     position: relative;
+    color: #C4C4C4;
 }
 
-.nav__list > li:after {
+.nav__list > li:before {
     content: '';
     height: 2.2em;
     border-left: 1px solid currentColor;
     position: absolute;
-    top: 1.5em;
+    bottom: 1.5em;
     left: -1px;
+    transition: border .3s ease-in-out;
 }
 
-.nav__list > li:last-child:after {
+.nav__list > li:has(.previous):before,
+.nav__list > li:has(.active):before {
+    color: #00E28A;
+}
+
+.nav__list > li:first-child:before {
     display: none;
 }
 
-.nav__button:hover,
+.nav__button:hover {
+    span {
+        text-decoration: underline;
+    }
+}
+
+.nav__button.previous span {
+    color: #c4c4c4;
+}
+
+.nav__button.active:hover,
 .nav__button.active {
-    background-color: currentColor;
+    color: #00E28A;
+    background-color: #00E28A;
+
+    span {
+        text-decoration: underline;
+    }
 }
 
 .faq__list {
@@ -302,6 +325,10 @@ body {
 
 .faq__button.dropdown-active .faq__button-chevron {
     transform: translateY(50%);
+}
+
+.dropdown-active {
+    font-weight: bolder;
 }
 
 .footer__links {
@@ -797,9 +824,6 @@ label {
     background-color: var(--colors-white);
 }
 
-main > * {
-}
-
 @media (min-width:976px) {
     .fixed-page > * {
         padding: 0;
@@ -894,8 +918,8 @@ main > * {
 }
 
 .graph-label {
-    font-size: 0.75rem;
-    text-align: left;
+    font-size: 0.9375rem;
+    text-align: center;
 }
 
 .immigrant-founders .facts__title-text {
@@ -1004,7 +1028,7 @@ main > * {
 }
 
 .graph-label-y {
-    max-width: 95px;
+    max-width: 121px;
 }
 
 .portfolio-items {
@@ -1046,6 +1070,31 @@ main > * {
     background-color: #111111;
 }
 
+#intro.add-background:after {
+    content: '';
+    background: var(--colors-white);
+    opacity: 0;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    animation-name: fade-in;
+    animation-fill-mode: forwards;
+    animation-delay: 1s;
+    animation-duration: .3s;
+}
+
+@keyframes fade-in {
+    from {
+        opacity: 0
+    }
+
+    to {
+        opacity: 1
+    }
+}
+
 .founder .about-content__content {
     margin-bottom: 50px;
 }
@@ -1066,9 +1115,6 @@ main > * {
     .founder .about-heading__name .icon-link {
         display: none;
     }
-}
-
-.founder .about-heading__name .icon-link {
 }
 
 .about__social-row {
@@ -1208,10 +1254,6 @@ main > * {
     transform: translateY(-100%)
 }
 
-.snapping {
-    transform: translate(0) !important
-}
-
 .founder__pinned-wrapper {
     background-color: var(--colors-black);
 }
@@ -1219,17 +1261,6 @@ main > * {
 .community-pinned-wrapper {
     background-color: var(--colors-white);
     color: var(--colors-black);
-}
-
-.faq {
-    background-color: var(--colors-white);
-    color: var(--colors-black);
-}
-
-@media (min-width:976px) {
-    .facts__section {
-        max-width: 100vw;
-    }
 }
 
 main {
@@ -1298,20 +1329,26 @@ main {
     transform: translate(-50%, 0%)
 }
 
+.scroll-down .chevron svg {
+    animation-iteration-count: infinite;
+    animation-timing-function: linear;
+    animation-duration: 1s;
+}
+
 .scroll-down div:nth-child(2) svg {
-    animation: 1s scale-up .5s ease-in-out infinite;
+    animation-name: scale-up;
 }
 
 .scroll-down div:nth-child(3) svg {
-    animation: 1s scale-down .5s ease-in-out infinite;
+    animation-name: scale-down;
 }
 
 .scroll-down div:nth-child(4) svg {
-    animation: 1s dissapear-down .5s ease-in-out infinite;
+    animation-name: dissapear-down;
 }
 
 .scroll-down div:nth-child(1) svg {
-    animation: 1s appear-up .5s ease-in-out infinite;
+    animation-name: appear-up;
 }
 
 @keyframes scale-up {
@@ -1376,7 +1413,42 @@ main {
 }
 
 @media (min-width:976px) {
-    .facts__section-services {
+    .facts__section {
+        max-width: 100vw;
+        text-align: left;
         padding-top: 0;
+    }
+}
+
+.nav__button.previous {
+    color: #00E28A;
+}
+
+.nav__button span {
+    position: absolute;
+    left: 30px;
+    white-space: nowrap;
+    top: -3px;
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: transform .3s ease-in-out, opacity .3s ease-in-out;
+}
+
+.nav__list:hover .nav__button span {
+    transform: translateX(0);
+    opacity: 1;
+}
+
+.faq {
+    background-color: var(--colors-white);
+}
+
+@media (min-width:976px) {
+    .faq__content {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        padding-top: 20vw;
     }
 }
