@@ -107,12 +107,12 @@ mm.add(
       },
     });
 
-    if (!sessionStorage.getItem("intro-seen")) {
-      // Don't prevent scroll if the user lands down the page
-      introAnimation.set("body", {
-        overflow: "hidden",
-      });
+    // Don't prevent scroll if the user lands down the page
+    introAnimation.set("body", {
+      overflow: "hidden",
+    });
 
+    if (!sessionStorage.getItem("intro-seen")) {
       introAnimation.set(heroEl("h1"), {
         autoAlpha: 1,
       });
@@ -126,20 +126,17 @@ mm.add(
           stagger: 0.04,
           autoAlpha: 0,
           duration: 1,
-        },
-        "<"
+        }
       );
 
       introAnimation.to(
-        heroTextOne.words,
+        heroEl('h1 div:first-child'),
         {
-          filter: "blur(10px)",
-          stagger: 0.04,
-          autoAlpha: 0,
-          duration: 2,
-        },
-        "+=1"
-      );
+          y: 0
+        }, "+=.5"
+      )
+
+
 
       introAnimation.from(heroTextTwo.words, {
         rotateY: "10deg",
@@ -147,7 +144,7 @@ mm.add(
         stagger: 0.04,
         autoAlpha: 0,
         duration: 1
-      });
+      }, "<");
 
       introAnimation.to(
         ".hero-intro__blob",
@@ -235,11 +232,6 @@ mm.add(
       introAnimation.from(heroEl('.scroll-down'), {
         autoAlpha: 0
       }, "<");
-
-
-      introAnimation.set("body", {
-        overflow: "",
-      });
     } else {
       introAnimation.to("#intro", {
         background: "#111111",
@@ -294,6 +286,10 @@ mm.add(
         autoAlpha: 0
       });
     }
+
+    introAnimation.set("body", {
+      overflow: "",
+    });
 
     /* FACTS HORIZONTAL SCROLL SECTION */
     if (isDesktop) {
@@ -447,9 +443,7 @@ mm.add(
 
       if (Sections) {
         const servicesSection = gsap.utils.selector(".facts__section-services");
-        const firstSectionTimeline = gsap.timeline({
-          onComplete: () => console.log('1st done'),
-        })
+        const firstSectionTimeline = gsap.timeline({})
         const firstSectionHeading = new SplitText(servicesSection("h2"), {
           type: "words",
         });
@@ -471,9 +465,7 @@ mm.add(
         // /* IMMIGRANT */
         const immigrantsSection = gsap.utils.selector(".immigrant-section");
         const immigrantSectionText = immigrantsSection(".facts__content-text");
-        const immigrantSectionTimeline = gsap.timeline({
-          onComplete: () => console.log('2nd done'),
-        })
+        const immigrantSectionTimeline = gsap.timeline({})
 
         immigrantSectionTimeline.from(immigrantsSection('.facts__section-content'), {
           autoAlpha: 0
@@ -563,9 +555,7 @@ mm.add(
         const immigrantFoundersSection = gsap.utils.selector(
           ".immigrant-founders"
         );
-        const immigrantFoundersTimeline = gsap.timeline({
-          onComplete: () => console.log('3rd done'),
-        })
+        const immigrantFoundersTimeline = gsap.timeline({})
 
         immigrantFoundersTimeline.from(immigrantFoundersSection('.facts__section-content'), {
           autoAlpha: 0

@@ -1,10 +1,16 @@
 var cacheName = 'geeks-cache-v1';
 var cacheAssets = [
     '/css/style.css',
+    '/css/normalize.css',
     '/scripts/global-animations.js',
     '/scripts/main.js',
     '/scripts/page-transitions.js',
-  
+    '/scripts/DrawSVGPlugin.min.js',
+    '/scripts/SplitText.min.js',
+    '/css/Tanker-Regular.eot',
+    '/css/Tanker-Regular.ttf',
+    '/css/Tanker-Regular.woff',
+    '/css/Tanker-Regular.woff2',
 ];
   
 // Call install Event
