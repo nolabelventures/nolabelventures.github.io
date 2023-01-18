@@ -65,4 +65,7 @@ collections:
         max: 3
         label_singular: 'Article'
         fields:
-          - { label: 'Related Article', name: 'article', widget: 'relation', collection: "blog", search_fields: ["title"], display_fields: ["title", "thumbnail", 'body'], value_field: "{{slug}}" }
+          - { label: 'Title', name: 'title', widget: 'string' }
+          - { label: 'Content', name: 'content', widget: 'text' }
+          - { label: 'Image', name: 'thumbnail', widget: 'image', choose_url: false, allow_multiple: false }
+          - { label: 'Related Article Link', name: 'link', widget: 'relation', collection: "blog", search_fields: ["title"], display_fields: ["title"], value_field: "{{slug}}", multpile: true }
