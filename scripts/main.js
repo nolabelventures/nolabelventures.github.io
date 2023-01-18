@@ -761,26 +761,26 @@ mm.add(
         // /* ABOUT SECTION */
         const fonuderSection = gsap.utils.selector(".founder");
         const founderTimeline = gsap.timeline({
-          onStart: () => {
-            gsap.to(".about__line-about path", {
-              drawSVG: '100%',
-              duration: 2
-            });
-          }
+          paused: true,
         })
-
+        
         founderTimeline.from(
           ".founder > div",
           {
             autoAlpha: 0,
             y: 20,
             stagger: 0.05
-          },
+          }
         );
 
-        founderTimeline.set(".about__line-about path", {
+        founderTimeline.from(".about-line--top path", {
+          drawSVG: '0 0',
+        });
+
+        founderTimeline.from(".about__line-about path", {
           drawSVG: 0,
-        }, "<");
+        });        
+
 
         pageAnimations.push(founderTimeline)
 

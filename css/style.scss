@@ -1124,7 +1124,7 @@ label {
 .about-heading__name {
     display: flex;
     justify-content: space-between;
-    margin-bottom: 1em;
+    margin-bottom: 0;
     font-size: 2.1875rem;
 }
 
@@ -1561,4 +1561,13 @@ article p {
     width: 100%;
     height: auto;
     vertical-align: middle;
+}
+
+@media (min-width:976px) {
+    .about-line--top {
+        position: absolute;
+        top: 0;
+        left: 0;
+        max-width: 362px;
+    }
 }
