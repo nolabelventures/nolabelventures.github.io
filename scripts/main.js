@@ -47,39 +47,6 @@ mm.add(
     let { isDesktop, isMobile, reduceMotion } = context.conditions;
     let intentObserver
 
-    function pageScrollAnimation() {
-      const pageScrollAnimation = gsap.timeline({
-        scrollTrigger: {
-          trigger: ".hero-intro",
-          start: "top top",
-          end: "center top",
-          scrub: 1,
-          ease: "none",
-        },
-      });
-      
-
-      pageScrollAnimation.to(
-        [".hero-intro--page-two", "#intro"],
-        {
-          background: "transparent",
-        },
-        "<"
-      );
-
-      pageScrollAnimation.to(
-        [
-          heroEl(".top-letter path"),
-          heroEl(".bottom-letter path"),
-          heroEl(".ventures path"),
-        ],
-        {
-          fill: "black",
-        },
-        "<"
-      );
-    }
-
     const heroEl = gsap.utils.selector(".hero-intro");
     const heroText = gsap.utils.toArray(".hero-intro h1 div");
     const heroTextOne = new SplitText(heroText[0], { type: "words" });
@@ -88,13 +55,7 @@ mm.add(
       onComplete: () => {
         sessionStorage.setItem("intro-seen", true);
         intentObserver.enable();
-        pageScrollAnimation();
       },
-    });
-
-    // Don't prevent scroll if the user lands down the page
-    introAnimation.set("body", {
-      overflow: "hidden",
     });
 
     if (!sessionStorage.getItem("intro-seen")) {
@@ -115,9 +76,10 @@ mm.add(
       );
 
       introAnimation.to(
-        heroEl('h1 div:first-child'),
+        heroEl('h1 .page-one'),
         {
-          y: 0
+          y: 0,
+          autoAlpha: .5
         }, "+=.5"
       )
 
@@ -203,12 +165,13 @@ mm.add(
         {
           autoAlpha: 1,
           stagger: 0.05,
+          duration: 3
         }
       );
       introAnimation.fromTo(
         ".draw-me",
         { drawSVG: "0%", ease: "none", autoAlpha: 1 },
-        { drawSVG: "-100%" },
+        { drawSVG: "-100%", duration: 2 },
         "<"
       );
 
@@ -261,7 +224,7 @@ mm.add(
       introAnimation.fromTo(
         ".draw-me",
         { drawSVG: "0%", ease: "none", autoAlpha: 1 },
-        { drawSVG: "-100%" },
+        { drawSVG: "-100%", duration: 2 },
         "<"
       );
 
@@ -269,10 +232,6 @@ mm.add(
         autoAlpha: 0
       });
     }
-
-    introAnimation.set("body", {
-      overflow: "",
-    });
 
     /* FACTS HORIZONTAL SCROLL SECTION */
     if (isDesktop) {
@@ -291,8 +250,10 @@ mm.add(
         type: "scroll,wheel,touch",
         onUp: () => !animating && gotoPanel(currentIndex - 1, false),
         onDown: () => !animating && gotoPanel(currentIndex + 1, true),
-        tolerance: 100,
+        onChange: () => document.querySelector('body').style.overflow = 'visible',
+        tolerance: 250,
         wheelSpeed: 0.5,
+        scrollSpeed: 0.5,
         preventDefault: true
       })
       intentObserver.disable();
@@ -371,8 +332,8 @@ mm.add(
           ease: 'power1.in',
           onComplete: () => {
             if (pageAnimations[index] && shouldSlide !== 'enter') {
+              pageAnimations[index].eventCallback('onComplete', () => animating = false)
               pageAnimations[index].play()
-              animating = false
             } else {
               animating = false;
             }
@@ -382,16 +343,10 @@ mm.add(
             target.classList.add('active-slide')
 
             gsap.to('body', {
-              color: target.getAttribute('data-bg') === '#ffffff' ? '#111111' : '#ffffff'
+              color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#3E3E3E' : '#ffffff'
             })
           }
         })
-      
-        // if (Sections[currentIndex]?.getAttribute('data-svg-line')) {
-        //   transition.to(Sections[currentIndex].getAttribute('data-svg-line'), {
-        //     drawSVG: Sections[currentIndex].getAttribute('data-svg-out') || 0
-        //   })
-        // }
 
         if (isQuickNav) {
           for (let target = Sections.length - 1; target >= index; target--) {
@@ -423,7 +378,7 @@ mm.add(
           } else {
             transition.to(Sections[currentIndex], {
               autoAlpha: 0
-            });
+            }, "<");
             
             if (isSlider) {
               transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
@@ -444,12 +399,10 @@ mm.add(
           }, "<");
         }
 
-        transition.addLabel('bodyChange')
-
         if (isSlider) {
           transition.to('.facts-section-line', {
             autoAlpha: 1
-          }, "bodyChange")
+          }, "<")
           gsap.fromTo('.facts-section-line path', {
             drawSVG: ((100 / document.querySelectorAll('.facts__section').length) * currentIndex) + '%',
             duration: 2
@@ -460,7 +413,7 @@ mm.add(
         } else {
           transition.to('.facts-section-line', {
             autoAlpha: 0
-          }, "bodyChange")
+          }, "<")
           
           gsap.fromTo('.facts-section-line path', {
             drawSVG: ((100 / document.querySelectorAll('.facts__section').length) * currentIndex) + '%'
@@ -758,7 +711,7 @@ mm.add(
           unicornFoundersTimeline.from(dot, {
             scale: 0,
             ease: "bounce.inOut",
-          }, "<");
+          }, !index ? "<25%" : "<");
 
           unicornFoundersTimeline.from(dot.nextSibling.nextSibling, {
             autoAlpha: 0,
@@ -809,7 +762,7 @@ mm.add(
         const fonuderSection = gsap.utils.selector(".founder");
         const founderTimeline = gsap.timeline({
           onStart: () => {
-            founderTimeline.to(".about__line-about path", {
+            gsap.to(".about__line-about path", {
               drawSVG: '100%',
               duration: 2
             });
@@ -817,7 +770,7 @@ mm.add(
         })
 
         founderTimeline.from(
-          ".founder div",
+          ".founder > div",
           {
             autoAlpha: 0,
             y: 20,
@@ -861,16 +814,23 @@ mm.add(
 
         pageAnimations.push(communityTimeline)
 
-        pageAnimations.push(false)
+        const faqTimeline = gsap.timeline({})
 
-        const pitchLines = gsap.utils.toArray(".pitch-lines path");
+        faqTimeline.from('.faq-line path', {
+          drawSVG: 0,
+          duration: 1
+        })
+
+        pageAnimations.push(faqTimeline)
+
+        const pitchLines = gsap.utils.toArray(".pitch-lines--top path");
         const pitchTimeline = gsap.timeline({})
 
-        pitchTimeline.from([pitchLines[1], pitchLines[2]], {
+        pitchTimeline.from([pitchLines[0], pitchLines[1]], {
           drawSVG: 0,
         }, "<");
 
-        pitchTimeline.from(pitchLines[0], {
+        pitchTimeline.from('.pitch-lines--bottom path', {
           drawSVG: "100% 100%",
         });
 
