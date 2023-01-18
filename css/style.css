@@ -1817,4 +1817,9 @@ article p {
     left: 0;
     max-width: 362px;
   }
+  .related {
+    display: grid;
+    gap: 57px;
+    grid-template-columns: 1fr 1fr 1fr;
+  }
 }
