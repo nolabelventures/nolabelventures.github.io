@@ -18,7 +18,7 @@
  * Tanker Regular
  * */
 @font-face {
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "Tanker-Regular";
   src: url("/css/Tanker-Regular.woff2") format("woff2"), url("/css/Tanker-Regular.woff") format("woff"), url("/css/Tanker-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
