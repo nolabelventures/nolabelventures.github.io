@@ -34,6 +34,8 @@ dropdowns.forEach((dropdown) => {
   });
 });
 
+const jumpToSection = document.getElementById(window.location.hash.substring(1))
+
 let mm = gsap.matchMedia(),
   breakPoint = 1024;
 
@@ -49,12 +51,18 @@ mm.add(
 
     const heroEl = gsap.utils.selector(".hero-intro");
     const heroText = gsap.utils.toArray(".hero-intro h1 div");
+    const logo = gsap.utils.selector('.intro__logo')
+    const mobileLogo = gsap.utils.selector('.intro__logo--mobile')
+    const Sections = Array.from(document.querySelectorAll(".fixed-page > *"));
     const heroTextOne = new SplitText(heroText[0], { type: "words" });
     const heroTextTwo = new SplitText(heroText[1], { type: "words" });
     const introAnimation = gsap.timeline({
       onComplete: () => {
         sessionStorage.setItem("intro-seen", true);
-        intentObserver.enable();
+
+        if (intentObserver) {
+          intentObserver.enable();
+        }
       },
     });
 
@@ -79,7 +87,8 @@ mm.add(
         heroEl('h1 .page-one'),
         {
           y: 0,
-          autoAlpha: .5
+          autoAlpha: .5,
+          scale: .9
         }, "+=.5"
       )
 
@@ -137,7 +146,7 @@ mm.add(
       );
 
       introAnimation.from(
-        heroEl(".bottom-letter"),
+        isMobile ? mobileLogo(".bottom-letter") : logo(".bottom-letter"),
         {
           autoAlpha: 0,
           x: -5,
@@ -147,7 +156,7 @@ mm.add(
       );
 
       introAnimation.from(
-        heroEl(".top-letter"),
+        isMobile ? mobileLogo(".top-letter") : logo(".top-letter"),
         {
           autoAlpha: 0,
           x: 5,
@@ -158,7 +167,7 @@ mm.add(
       );
 
       introAnimation.fromTo(
-        heroEl(".ventures path"),
+        isMobile ? mobileLogo(".ventures path") : logo(".ventures path"),
         {
           autoAlpha: 0,
         },
@@ -168,9 +177,10 @@ mm.add(
           duration: 3
         }
       );
+
       introAnimation.fromTo(
-        ".draw-me",
-        { drawSVG: "0%", ease: "none", autoAlpha: 1 },
+        isMobile ? mobileLogo(".draw-me") : logo(".draw-me"),
+        { drawSVG: "0%", ease: "none" },
         { drawSVG: "-100%", duration: 2 },
         "<"
       );
@@ -194,8 +204,8 @@ mm.add(
       introAnimation.from(
         heroEl(".bottom-letter"),
         {
-          x: -5,
-          y: -5,
+          x: isMobile ? - 3 : -5,
+          y: isMobile ? - 3 : -5,
           ease: "elastic.out(2, 0.75)",
         },
       );
@@ -203,8 +213,8 @@ mm.add(
       introAnimation.from(
         heroEl(".top-letter"),
         {
-          x: 5,
-          y: 5,
+          x: isMobile ? 3 : 5,
+          y:isMobile ? 3 :  5,
           ease: "elastic.out(2, 0.75)",
         },
         "<"
@@ -222,7 +232,7 @@ mm.add(
       );
 
       introAnimation.fromTo(
-        ".draw-me",
+        isMobile ? mobileLogo(".draw-me") : logo(".draw-me"),
         { drawSVG: "0%", ease: "none", autoAlpha: 1 },
         { drawSVG: "-100%", duration: 2 },
         "<"
@@ -233,9 +243,7 @@ mm.add(
       });
     }
 
-    /* FACTS HORIZONTAL SCROLL SECTION */
     if (isDesktop) {
-      let Sections = Array.from(document.querySelectorAll(".fixed-page > *"));
       let currentIndex = -1;
       let animating;
 
@@ -243,7 +251,10 @@ mm.add(
 
       gsap.set(Sections, {
         zIndex: i => i,
-        autoAlpha: (i) => !i ? 1 : 0
+        autoAlpha: (i) => !i ? 1 : 0,
+        attr: {
+          'data-index':  (i) => i+1,
+        }
       });
 
       intentObserver = ScrollTrigger.observe({
@@ -438,7 +449,11 @@ mm.add(
         }
       }
 
-      gotoPanel(0, true)
+      if (jumpToSection) {
+        gotoPanel(Number(jumpToSection.getAttribute('data-index')) - 1, true)
+      } else {
+        gotoPanel(0, true)
+      }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
         const targetIndex = Number(link.href.split("#")[1]);
 
@@ -553,10 +568,10 @@ mm.add(
           }, "<"
         );
 
-        immigrantSectionTimeline.to(
+        immigrantSectionTimeline.from(
           immigrantsSection(".immigrant-section__digit-two"),
           {
-            textContent: 36,
+            textContent: 0,
             snap: { textContent: 1 },
           },
           "<"
@@ -823,7 +838,7 @@ mm.add(
 
         pageAnimations.push(faqTimeline)
 
-        const pitchLines = gsap.utils.toArray(".pitch-lines--top path");
+        const pitchLines = gsap.utils.toArray(".pitch-lines--top:not(.pitch-lines--mobile) path");
         const pitchTimeline = gsap.timeline({})
 
         pitchTimeline.from([pitchLines[0], pitchLines[1]], {
@@ -889,6 +904,78 @@ mm.add(
           },
         });
       }
+    } else if (isMobile) {
+      if (jumpToSection) {
+        window.scrollTo({top: jumpToSection.offsetTop, behavior: 'smooth'})
+      }
+
+      gsap.from('.line-immigrant-unicorn-founders path', {
+        scrollTrigger: {
+          start: 'top bottom-=400',
+          trigger: '.line-immigrant-unicorn-founders',
+        },
+        drawSVG: 0
+      })
+      
+      gsap.from('.line-portfoli-about--mobile path', {
+        scrollTrigger: {
+          start: 'top bottom-=400',
+          trigger: '.line-portfoli-about--mobile',
+        },
+        drawSVG: 0
+      })
+      
+      gsap.from('.about__line-about path', {
+        scrollTrigger: {
+          start: 'top bottom-=400',
+          trigger: '.about__line-about',
+        },
+        drawSVG: 0
+      })
+
+      const pitchLines = gsap.utils.toArray('#pitch .pitch-lines--mobile path')
+      
+      gsap.from([pitchLines[0], pitchLines[1]], {
+        drawSVG: 0,
+        scrollTrigger: {
+          trigger: '#pitch',
+          start: 'top center'
+        }
+      })
+
+      gsap.from(pitchLines[2], {
+        drawSVG: '100% 100%',
+        scrollTrigger: {
+          trigger: '#pitch',
+          start: 'bottom bottom'
+        }
+      })
+
+      const menuLinks = gsap.utils.toArray('.header__mobile-menu [href*="#"]')
+      menuLinks?.forEach(link => {
+        link.addEventListener('click', (e) => {
+          e.preventDefault()
+          const index = document.getElementById(link.hash.substring(1))
+          header.classList.remove('show-mobile-menu')
+          window.scrollTo({top: index.offsetTop - 10, behavior: 'smooth'})
+        })
+      })
+
+      ScrollTrigger.create({
+        start: 'top top',
+        end: 'bottom bottom',
+        onUpdate: (e) => {
+          const windowPos = window.pageYOffset || document.scrollTop || 0;
+          
+          Sections.forEach(section => {
+            const sectionHeight = section.offsetHeight
+            if(section.offsetTop + sectionHeight >= windowPos && section.offsetTop <= windowPos) {
+              const currentBg = section.getAttribute('data-bg')
+              header.style.color = currentBg === '#111111' ? '#ffffff' : '#111111'
+            }
+          })
+        }
+      })
     }
   }
 );
