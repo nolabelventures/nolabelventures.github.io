@@ -4,7 +4,6 @@
   --colors-white: #FFFFFF;
   --text-title: 7.5rem;
   --text-lead: 1.5625rem;
-  --font-title: "Tanker-Regular";
 }
 
 /* *
@@ -35,7 +34,7 @@ h5,
 .h3,
 .h4,
 .h5 {
-  font-family: var(--font-title), sans-serif;
+  font-family: "Tanker-Regular", sans-serif;
   margin: 0;
   font-size: 1.75rem;
   color: #3E3E3E;
@@ -563,7 +562,7 @@ footer:before {
 }
 
 .immigrant-section .facts__section-subtitle {
-  font-family: var(--font-title);
+  font-family: "Tanker-Regular", sans-serif;
   font-size: 4.375rem;
   margin-bottom: 0;
   margin-top: 0;
@@ -613,7 +612,7 @@ footer:before {
   .immigrant-section__lessthan {
     color: #767373;
     font-size: 6.25rem;
-    font-family: var(--font-title);
+    font-family: "Tanker-Regular", sans-serif;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -657,7 +656,7 @@ footer {
   padding: 1em;
   display: inline-block;
   text-decoration: none;
-  font-family: var(--font-title);
+  font-family: "Tanker-Regular", sans-serif;
 }
 
 .header {
@@ -795,7 +794,7 @@ footer {
   padding: 0.5em 2em;
   color: var(--colors-black);
   border-radius: 5px;
-  font-family: var(--font-title);
+  font-family: "Tanker-Regular", sans-serif;
   text-decoration: none;
   font-size: 1.25rem;
   display: block;
@@ -878,7 +877,7 @@ footer {
 button[type=submit] {
   background: -o-linear-gradient(349.24deg, #00E28A -17.95%, #6B6BFF 126.91%);
   background: linear-gradient(100.76deg, #00E28A -17.95%, #6B6BFF 126.91%);
-  font-family: var(--font-title);
+  font-family: "Tanker-Regular", sans-serif;
   padding: 0.5em 1.5em;
   border: none;
   border-radius: 5px;
@@ -1131,7 +1130,7 @@ label {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-  font-family: var(--font-title);
+  font-family: "Tanker-Regular", sans-serif;
   margin-top: 50px;
   margin-bottom: 0;
 }
@@ -1237,7 +1236,7 @@ label {
 
 .header__mobile-menu a {
   color: var(--colors-white);
-  font-family: var(--font-title);
+  font-family: "Tanker-Regular", sans-serif;
   font-size: 2.1875rem;
   text-decoration: none;
   padding-top: 0.5em;
@@ -1943,7 +1942,7 @@ article p {
   transition: background-color 0.3s ease-in-out;
   background: var(--colors-white);
   color: var(--colors-black);
-  font-family: var(--font-title);
+  font-family: "Tanker-Regular", sans-serif;
   width: 209px;
   margin: 1em auto 4em;
   font-size: 1.25rem;

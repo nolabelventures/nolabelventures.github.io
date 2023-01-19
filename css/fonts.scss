@@ -9,8 +9,10 @@
  * Font Style:
  * Tanker Regular
  * */
+$font-title: 'Tanker-Regular', sans-serif;
+
 @font-face {
-    font-family: 'Tanker-Regular', sans-serif;
+    font-family: $font-title;
     src: url('/css/Tanker-Regular.woff2') format('woff2'),
        url('/css/Tanker-Regular.woff') format('woff'),
        url('/css/Tanker-Regular.ttf') format('truetype');
@@ -29,7 +31,7 @@ h5,
 .h3,
 .h4,
 .h5 {
-    font-family: var(--font-title), sans-serif;
+    font-family: $font-title;
     margin: 0;
     font-size: 1.75rem;
     color: #3E3E3E;
