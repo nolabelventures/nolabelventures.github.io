@@ -455,8 +455,7 @@ mm.add(
         gotoPanel(0, true)
       }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
-        const targetIndex = Number(link.href.split("#")[1]);
-
+        const targetIndex = Number(link.getAttribute("data-index"));
         
         link.addEventListener("click", (e) => {
           e.preventDefault();

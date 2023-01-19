@@ -2,6 +2,8 @@ gsap.defaults({
   ease: 'power4.out'
 })
 
+const header = document.querySelector('header')
+
 /* FOOTER */
 const footer = document.querySelector("footer");
 const footertl = gsap.timeline({
@@ -47,8 +49,6 @@ window.addEventListener("resize", () => {
     isVisible = false;
   }
 });
-
-const header = document.querySelector(".header");
 
 if (window.location.pathname === "/") {
   let lastScrollTop;

@@ -1984,3 +1984,29 @@ article p {
     margin-bottom: 0;
   }
 }
+.honey-pot.hide {
+  position: absolute;
+  width: 0;
+  height: 0;
+  overflow: hidden;
+}
+
+footer input {
+  color: var(--color-white);
+}
+
+form .success-message {
+  background-color: #28ab12;
+  padding: 0.25em 0.5em;
+  border-radius: 5px;
+}
+
+form .error-message {
+  background-color: #d71212;
+}
+
+.status-message {
+  display: none;
+  border-radius: 5px;
+  padding: 0.25em 0.5em;
+}
