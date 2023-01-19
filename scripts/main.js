@@ -353,7 +353,7 @@ mm.add(
             document.querySelector('.active-slide')?.classList.remove('active-slide')
             target.classList.add('active-slide')
 
-            gsap.to('body', {
+            gsap.to(['body', 'header'], {
               color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#3E3E3E' : '#ffffff'
             })
           }
@@ -455,10 +455,11 @@ mm.add(
         gotoPanel(0, true)
       }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
-        const targetIndex = Number(link.getAttribute("data-index"));
+        const targetIndex = Number(document.getElementById(link.href.split('#')[1])?.getAttribute('data-index'));
         
         link.addEventListener("click", (e) => {
           e.preventDefault();
+          console.log(targetIndex);
           
           header.classList.remove("show-mobile-menu");
       

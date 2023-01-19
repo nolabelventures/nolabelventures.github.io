@@ -96,15 +96,20 @@
     <div class="nav">
       <nav>
         <ul class="nav__list">
-          <li><a href="#why" class="active nav__button" data-indexes="1,2,3,4"><span>Our mission </span> </a>
+          <li>
+            <a href="#why" class="active nav__button" data-indexes="1,2,3,4"><span>Our mission </span> </a>
           </li>
-          <li><a href="/#portfolio" class="nav__button" data-indexes="5"> <span>Portfolio</span> </a>
+          <li>
+            <a href="#portfolio" class="nav__button" data-indexes="5"> <span>Portfolio</span> </a>
           </li>
-          <li><a href="#about" class="nav__button" data-indexes="6,7"> <span>About us</span> </a>
+          <li>
+            <a href="#about" class="nav__button" data-indexes="6,7"> <span>About us</span> </a>
           </li>
-          <li><a href="#faq" class="nav__button" data-indexes="8"> <span>FAQs</span> </a>
+          <li>
+            <a href="#faq" class="nav__button" data-indexes="8"> <span>FAQs</span> </a>
           </li>
-          <li><a href="#pitch" class="nav__button" data-indexes="9"> <span>Pitch to us</span> </a>
+          <li>
+            <a href="#pitch" class="nav__button" data-indexes="9"> <span>Pitch to us</span> </a>
           </li>
         </ul>
       </nav>
@@ -125,8 +130,7 @@
             <div data-empty-placeholder class="hero-intro__blob"></div>
             <h1 data-pg-ia-hide> <div class="page-one" style="transform: translateY(50%);">We are a biased, early stage, super angel fund.</div> <div class="page-two">Designed for Europe's exceptional immigrant founders.</div></h1>
           </div>
-          <div class="hero-intro__page hero-intro--page-two" id="intro" data-pg-ia-hide>
-            <a href="#1" class="scroll-down"> <div class="chevron">
+          <div class="hero-intro__page hero-intro--page-two" id="intro" data-pg-ia-hide><a href="#why" class="scroll-down"> <div class="chevron">
                 <svg width="18" height="10" viewBox="0 0 18 10" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-chevron">
                   <path d="M1.5 1.25L9 8.75L16.5 1.25" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                 </svg>                 
@@ -295,7 +299,8 @@
       <section class="facts__section immigrant-founders" data-bg="#ffffff">
         <div class="facts__section-content">
           <div>
-            <h2> <div><span class="numbers">157</span>%
+            <h2> <div>
+                <span class="numbers">157</span>%
               </div> <div class="immigrant-section__heading-text">increase in UK Unicorn immigrant Founders</div></h2>
             <p class="facts__title-text">The proportion of UK unicorns founded by immigrants increased from  14% to 36% over the past decade.</p>
           </div>
@@ -397,7 +402,8 @@
           <div class="portfolio-items">
             {% for item in site.data.portfolio %}
             {% assign portfolioData = item[1] %}
-            <div class="portfolio-link__wrapper"><a class="portfolio__link" href="{{ portfolioData.url }}"> <img src="{{ portfolioData.image }}" alt="{{ portfolioData.title }}"/> </a>
+            <div class="portfolio-link__wrapper">
+              <a class="portfolio__link" href="{{ portfolioData.url }}"> <img src="{{ portfolioData.image }}" alt="{{ portfolioData.title }}"/> </a>
             </div>
             {% endfor %}
           </div>
@@ -429,14 +435,12 @@
           <div class="about-content__content">
             <h2 class="about-heading">About Us</h2>
             <div class="about-heading__name">
-              <h3 class="about-heading__name">Ramzi Rafih</h3>
-              <a href="https://www.linkedin.com/in/ramzirafih/" class="icon-link"><svg width="100%" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-linkedin">
+              <h3 class="about-heading__name">Ramzi Rafih</h3><a href="https://www.linkedin.com/in/ramzirafih/" class="icon-link"><svg width="100%" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-linkedin">
                   <path d="M19.9998 0.800049C9.39581 0.800049 0.799805 9.39605 0.799805 20C0.799805 30.604 9.39581 39.2001 19.9998 39.2001C30.6038 39.2001 39.1998 30.604 39.1998 20C39.1998 9.39605 30.6038 0.800049 19.9998 0.800049ZM15.2998 27.958H11.4118V15.446H15.2998V27.958ZM13.3318 13.91C12.1038 13.91 11.3098 13.04 11.3098 11.964C11.3098 10.866 12.1278 10.022 13.3818 10.022C14.6358 10.022 15.4038 10.866 15.4278 11.964C15.4278 13.04 14.6358 13.91 13.3318 13.91ZM29.4998 27.958H25.6118V21.024C25.6118 19.41 25.0478 18.314 23.6418 18.314C22.5678 18.314 21.9298 19.056 21.6478 19.7701C21.5438 20.024 21.5178 20.3841 21.5178 20.7421V27.956H17.6278V19.4361C17.6278 17.8741 17.5778 16.568 17.5258 15.444H20.9038L21.0818 17.182H21.1598C21.6718 16.366 22.9258 15.162 25.0238 15.162C27.5818 15.162 29.4998 16.876 29.4998 20.56V27.958Z" fill="currentColor"/>
                 </svg></a>
             </div>
             {{ site.data.about.content }}
-            <div class="about__social-row">
-              <a href="https://www.linkedin.com/in/ramzirafih/" class="icon-link"><svg width="100%" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-linkedin">
+            <div class="about__social-row"><a href="https://www.linkedin.com/in/ramzirafih/" class="icon-link"><svg width="100%" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-linkedin">
                   <path d="M19.9998 0.800049C9.39581 0.800049 0.799805 9.39605 0.799805 20C0.799805 30.604 9.39581 39.2001 19.9998 39.2001C30.6038 39.2001 39.1998 30.604 39.1998 20C39.1998 9.39605 30.6038 0.800049 19.9998 0.800049ZM15.2998 27.958H11.4118V15.446H15.2998V27.958ZM13.3318 13.91C12.1038 13.91 11.3098 13.04 11.3098 11.964C11.3098 10.866 12.1278 10.022 13.3818 10.022C14.6358 10.022 15.4038 10.866 15.4278 11.964C15.4278 13.04 14.6358 13.91 13.3318 13.91ZM29.4998 27.958H25.6118V21.024C25.6118 19.41 25.0478 18.314 23.6418 18.314C22.5678 18.314 21.9298 19.056 21.6478 19.7701C21.5438 20.024 21.5178 20.3841 21.5178 20.7421V27.956H17.6278V19.4361C17.6278 17.8741 17.5778 16.568 17.5258 15.444H20.9038L21.0818 17.182H21.1598C21.6718 16.366 22.9258 15.162 25.0238 15.162C27.5818 15.162 29.4998 16.876 29.4998 20.56V27.958Z" fill="currentColor"/>
                 </svg></a>
             </div>
@@ -852,8 +856,7 @@
         </svg>
         <div class="content-wrapper">
           <h2>Title saying something about interested in joining us, pitch here.</h2>
-          <p class="pitch__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?</p>
-          <a href="https://tally.so/r/wbRMgw" target="_blank" class="pitch__cta">Pitch here</a>
+          <p class="pitch__text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua?</p><a href="https://tally.so/r/wbRMgw" target="_blank" class="pitch__cta">Pitch here</a>
         </div>
         <svg width="100%" viewBox="0 0 390 97" fill="none" xmlns="http://www.w3.org/2000/svg" class="pitch-lines pitch-lines--bottom pitch-lines--mobile pitch-lines--top">
           <path d="M-9.5 94.5C207 48 312 94.5 394.5 2.00001" stroke="url(#paint0_linear_372_27)" stroke-width="5"/>
