@@ -34,5 +34,3 @@ gem "wdm", "~> 0.1.1", :platforms => [:mingw, :x64_mingw, :mswin]
 gem 'http_parser.rb', "~> 0.8.0", git: "https://github.com/tmm1/http_parser.rb.git"
 
 gem "webrick", "~> 1.7"
-
-gem 'jekyll-sitemap'
