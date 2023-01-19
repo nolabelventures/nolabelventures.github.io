@@ -4,9 +4,15 @@
     <meta charset="utf-8"/>
     <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
     <meta name="viewport" content="width=device-width, initial-scale=1"/>
-    <meta name="description" content=""/>
-    <meta name="author" content=""/>
+    <meta name="description" content="{{ post.exceprt }}"/>
     <title>{{ page.title }}</title>
+    <meta property="og:title" content="{{ page.title }}">
+    <meta property="og:type" content="article"/>
+    <meta property="og:image" content="{{ page.thumbnail }}">
+    <meta property="og:url" content="{{ post_url }}">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta property="og:description" content="{{ post.exceprt }}">
+    <meta property="og:site_name" content="No Label Ventures">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins&display=swap">
     <link href="/css/normalize.css" rel="stylesheet"/>
     <link href="/css/style.css" rel="stylesheet"/>
@@ -182,7 +188,7 @@
           <a href="#6" class="footer__link">About us</a>
           <a href="https://tally.so/r/wbRMgw" target="_blank" class="footer__link">Pitch us</a>
         </div>
-        <div data-pg-collapsed>
+        <div>
           <form action="">
             <div>
               <label for="email">Subscribe to our newsletter</label>
@@ -191,8 +197,8 @@
             <button type="submit">Subscribe</button>
           </form>
         </div>
-        <div class="footer__links footer__links--mobile" data-pg-collapsed>
-          <a href="https://www.linkedin.com/company/nolabelvc" class="footer__link" data-pg-collapsed> <div class="footer__link footer__link-icon">
+        <div class="footer__links footer__links--mobile">
+          <a href="https://www.linkedin.com/company/nolabelvc" class="footer__link"> <div class="footer__link footer__link-icon">
               <svg width="100%" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-linkedin">
                 <path d="M19.9998 0.800049C9.39581 0.800049 0.799805 9.39605 0.799805 20C0.799805 30.604 9.39581 39.2001 19.9998 39.2001C30.6038 39.2001 39.1998 30.604 39.1998 20C39.1998 9.39605 30.6038 0.800049 19.9998 0.800049ZM15.2998 27.958H11.4118V15.446H15.2998V27.958ZM13.3318 13.91C12.1038 13.91 11.3098 13.04 11.3098 11.964C11.3098 10.866 12.1278 10.022 13.3818 10.022C14.6358 10.022 15.4038 10.866 15.4278 11.964C15.4278 13.04 14.6358 13.91 13.3318 13.91ZM29.4998 27.958H25.6118V21.024C25.6118 19.41 25.0478 18.314 23.6418 18.314C22.5678 18.314 21.9298 19.056 21.6478 19.7701C21.5438 20.024 21.5178 20.3841 21.5178 20.7421V27.956H17.6278V19.4361C17.6278 17.8741 17.5778 16.568 17.5258 15.444H20.9038L21.0818 17.182H21.1598C21.6718 16.366 22.9258 15.162 25.0238 15.162C27.5818 15.162 29.4998 16.876 29.4998 20.56V27.958Z" fill="currentColor"/>
               </svg>
