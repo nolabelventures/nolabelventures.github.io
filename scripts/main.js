@@ -47,7 +47,7 @@ mm.add(
   },
   (context) => {
     let { isDesktop, isMobile, reduceMotion } = context.conditions;
-    let intentObserver
+    let intentObserver, hasExited = false
 
     const heroEl = gsap.utils.selector(".hero-intro");
     const heroText = gsap.utils.toArray(".hero-intro h1 div");
@@ -284,6 +284,14 @@ mm.add(
         if (index <= -1) {
           return
         }
+
+        // prevent immediate scroll from button
+        if (hasExited) {
+          setTimeout(() => {
+            hasExited = false
+          }, 500)
+          return
+        }
         
         animating = true;
         const isSlider = index > 0 && index < 5
@@ -330,6 +338,7 @@ mm.add(
             duration: 0.00,
             onComplete: () => {
               animating = false;
+              hasExited = true
               isScrollingDown && intentObserver.disable();
             }
           });
@@ -337,6 +346,8 @@ mm.add(
         }
       
         let target = isScrollingDown ? Sections[index]: Sections[currentIndex];
+
+        header.classList.toggle('hide', isScrollingDown)
 
         const transition = gsap.timeline({
           duration: 0.75,
@@ -359,11 +370,38 @@ mm.add(
           }
         })
 
+        // make sure all previous slides are visible when using quicknav
         if (isQuickNav) {
-          for (let target = Sections.length - 1; target >= index; target--) {
-            transition.to(Sections[target], {
-              autoAlpha: 0
-            }, "<")
+          for (let quickNavTarget = Sections.length - 1; quickNavTarget >= 0; quickNavTarget--) {
+            if (quickNavTarget > index && quickNavTarget !== currentIndex) {
+              console.log('above target');
+              transition.set(Sections[quickNavTarget], {
+                autoAlpha: 0
+              }, "<")
+            } else if (quickNavTarget === currentIndex || quickNavTarget === index) {
+              if (isScrollingDown) {
+                console.log('scrolling down');
+                transition.set(Sections[quickNavTarget], {
+                  autoAlpha: 1
+                })
+                transition.to(Sections[currentIndex], {
+                  autoAlpha: 0
+                })
+              } else {
+                console.log('scrolling up');
+                transition.to(Sections[quickNavTarget], {
+                  autoAlpha: 1
+                })
+                transition.set(Sections[currentIndex], {
+                  autoAlpha: 0
+                })
+              }
+            } else {
+              console.log('below target');
+              transition.set(Sections[quickNavTarget], {
+                autoAlpha: 1
+              })
+            }
           }
         }
 
@@ -455,11 +493,10 @@ mm.add(
         gotoPanel(0, true)
       }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
-        const targetIndex = Number(document.getElementById(link.href.split('#')[1])?.getAttribute('data-index'));
+        const targetIndex = Number(document.getElementById(link.href.split('#')[1])?.getAttribute('data-index')) - 1;
         
         link.addEventListener("click", (e) => {
           e.preventDefault();
-          console.log(targetIndex);
           
           header.classList.remove("show-mobile-menu");
       
@@ -726,7 +763,7 @@ mm.add(
           unicornFoundersTimeline.from(dot, {
             scale: 0,
             ease: "bounce.inOut",
-          }, !index ? "<25%" : "<");
+          }, "<15%");
 
           unicornFoundersTimeline.from(dot.nextSibling.nextSibling, {
             autoAlpha: 0,

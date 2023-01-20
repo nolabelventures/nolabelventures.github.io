@@ -929,6 +929,7 @@ label {
 
 .immigrant-section {
     flex-direction: column;
+    padding-bottom: 0;
 }
 
 .immigrant-section .facts__section-body-content {
@@ -1196,10 +1197,7 @@ label {
 }
 
 .line-portfoli-about--mobile {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
+    width: 100vw;
 }
 
 @media (min-width: 976px) {
@@ -1278,11 +1276,7 @@ label {
 }
 
 .line-immigrant-unicorn-founders {
-    position: absolute;
-    left: -20px;
     width: 100vw;
-    bottom: -60px;
-    right: -20px;
 }
 
 .line-portfoli-about path {
@@ -1362,6 +1356,12 @@ label {
     background-color: var(--colors-white);
     color: var(--colors-black);
     padding-top: 70px;
+}
+
+@media (min-width:976px) {
+    .community-pinned-wrapper {
+        padding-top: 0;
+    }
 }
 
 main {
