@@ -63,6 +63,8 @@ mm.add(
         if (intentObserver) {
           intentObserver.enable();
         }
+
+        document.querySelector('.nav').classList.add('animation-complete')
       },
     });
 
@@ -88,7 +90,8 @@ mm.add(
         {
           y: 0,
           autoAlpha: .5,
-          scale: .9
+          scale: .9,
+          duration: 2
         }, "+=.5"
       )
 
@@ -97,8 +100,8 @@ mm.add(
         x: 20,
         stagger: 0.04,
         autoAlpha: 0,
-        duration: 1
-      }, "<");
+        duration: 2
+      }, "<10%");
 
       introAnimation.to(
         ".hero-intro__blob",
@@ -121,7 +124,7 @@ mm.add(
         ".hero-intro__blob",
         {
           clipPath: "circle(100% at 50% 75%)",
-          duration: 1,
+          duration: 2,
         },
         "<"
       );
@@ -130,7 +133,7 @@ mm.add(
         background: "#111111",
       });
 
-      introAnimation.to(
+      introAnimation.set(
         [".hero-intro__blob", heroEl(".hero-intro--page-one")],
         {
           autoAlpha: 0,
@@ -141,8 +144,7 @@ mm.add(
         heroEl(".hero-intro--page-two"),
         {
           autoAlpha: 1,
-        },
-        "<"
+        }
       );
 
       introAnimation.from(
@@ -152,6 +154,7 @@ mm.add(
           x: -5,
           y: -5,
           ease: "elastic.out(2, 0.75)",
+          duration: 1
         },
       );
 
@@ -162,6 +165,7 @@ mm.add(
           x: 5,
           y: 5,
           ease: "elastic.out(2, 0.75)",
+          duration: 1
         },
         "<"
       );
@@ -174,7 +178,7 @@ mm.add(
         {
           autoAlpha: 1,
           stagger: 0.05,
-          duration: 3
+          duration: 1
         }
       );
 
@@ -186,8 +190,19 @@ mm.add(
       );
 
       introAnimation.from(heroEl('.scroll-down'), {
-        autoAlpha: 0
-      }, "<");
+        autoAlpha: 0,
+        duration: 2
+      });
+
+      introAnimation.from('.nav li a', {
+        x: -100,
+        autoAlpha: 0,
+        attr: {
+          class: 'nav__button active'
+        },
+        stagger: 0.05
+    }, "<")
+
     } else {
       introAnimation.to("#intro", {
         background: "#111111",
@@ -241,6 +256,15 @@ mm.add(
       introAnimation.from(heroEl('.scroll-down'), {
         autoAlpha: 0
       });
+
+      introAnimation.from('.nav li a', {
+        x: -100,
+        autoAlpha: 0,
+        attr: {
+          class: 'nav__button active'
+        },
+        stagger: 0.05
+    }, "<")
     }
 
     if (isDesktop) {
@@ -371,84 +395,90 @@ mm.add(
         })
 
         // make sure all previous slides are visible when using quicknav
+        // quicknav pretty much takes over animating just the before and after slides
         if (isQuickNav) {
-          for (let quickNavTarget = Sections.length - 1; quickNavTarget >= 0; quickNavTarget--) {
-            if (quickNavTarget > index && quickNavTarget !== currentIndex) {
-              console.log('above target');
-              transition.set(Sections[quickNavTarget], {
-                autoAlpha: 0
-              }, "<")
-            } else if (quickNavTarget === currentIndex || quickNavTarget === index) {
-              if (isScrollingDown) {
-                console.log('scrolling down');
-                transition.set(Sections[quickNavTarget], {
-                  autoAlpha: 1
+          for (let i = 0; i < Sections.length - 1; i++) {
+            if (i === currentIndex || i === index) {
+              if (!isScrollingDown) {
+                transition.set(Sections[index], {
+                  autoAlpha: 1,
                 })
                 transition.to(Sections[currentIndex], {
                   autoAlpha: 0
                 })
               } else {
-                console.log('scrolling up');
-                transition.to(Sections[quickNavTarget], {
+                transition.to(target, {
                   autoAlpha: 1
-                })
+                }, "<")
                 transition.set(Sections[currentIndex], {
                   autoAlpha: 0
                 })
               }
             } else {
-              console.log('below target');
-              transition.set(Sections[quickNavTarget], {
-                autoAlpha: 1
+              transition.set(Sections[i], {
+                autoAlpha: 0
               })
             }
           }
-        }
+        } else {
+          // else navigating normally
 
-        if (shouldSlide && !isQuickNav) {
-          if (!isScrollingDown) {
-            transition.to(Sections[currentIndex], {
-              autoAlpha: 0,
-            }, "<");
-            if (isSlider) {
-              transition.to(Sections[index].querySelector('.facts__section-content'), {
+          // horizontal scroll section
+          if (shouldSlide) {
+            if (!isScrollingDown) {
+              transition.to(Sections[currentIndex], {
+                autoAlpha: 0,
+              }, "<");
+              if (isSlider) {
+                transition.to(Sections[index].querySelector('.facts__section-content'), {
+                  xPercent: 0
+                }, "<")
+                transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
+                  xPercent: 20
+                }, "<")
+              }
+              transition.to(Sections[index], {
+                autoAlpha: 1
+              }, "<")
+              transition.to(Sections[index], {
                 xPercent: 0
               }, "<")
-              transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
-                xPercent: 20
-              }, "<")
+            } else {
+              transition.to(Sections[currentIndex], {
+                autoAlpha: 0
+              }, "<");
+              
+              if (isSlider) {
+                transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
+                  xPercent: -20
+                }, "<")
+                transition.to(Sections[index].querySelector('.facts__section-content'), {
+                  xPercent: 0
+                }, "<")
+              }
+  
+              transition.to(target, {
+                autoAlpha: 1,
+              }, "<");
             }
-            transition.to(Sections[index], {
-              autoAlpha: 1
-            }, "<")
-            transition.to(Sections[index], {
-              xPercent: 0
-            }, "<")
           } else {
-            transition.to(Sections[currentIndex], {
-              autoAlpha: 0
-            }, "<");
-            
-            if (isSlider) {
-              transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
-                xPercent: -20
-              }, "<")
-              transition.to(Sections[index].querySelector('.facts__section-content'), {
-                xPercent: 0
-              }, "<")
+            if (!isScrollingDown) {
+              Sections.forEach((section, i) => {
+                if (i < currentIndex) {
+                  transition.set(section, {
+                    autoAlpha: 1
+                  })
+                }
+              })
             }
-
             transition.to(target, {
-              autoAlpha: 1,
+              autoAlpha: isScrollingDown ? 1 : 0,
             }, "<");
           }
-        } else {
-          transition.to(target, {
-            autoAlpha: isScrollingDown ? 1 : 0,
-          }, "<");
         }
 
         if (isSlider) {
+          // horizontal scroll line
           transition.to('.facts-section-line', {
             autoAlpha: 1
           }, "<")
@@ -474,6 +504,8 @@ mm.add(
         currentIndex = Number(index);
 
         if (currentIndex > 0) {
+          // horizontal scroll needs a backgorund as each slide is offset sideways and does not have
+          // the previous slide 'behind' it
           document.getElementById('intro').classList.add('add-background')
         } else {
           document.getElementById('intro').classList.remove('add-background')
@@ -488,6 +520,7 @@ mm.add(
       }
 
       if (jumpToSection) {
+        // if # in the url, jump to that index (if exists)
         gotoPanel(Number(jumpToSection.getAttribute('data-index')) - 1, true)
       } else {
         gotoPanel(0, true)
@@ -501,7 +534,7 @@ mm.add(
           header.classList.remove("show-mobile-menu");
       
           if (targetIndex) {
-            gotoPanel(targetIndex, true, true)
+            gotoPanel(targetIndex, targetIndex > currentIndex, true )
           } else {
             // handle navigation to correct page
           }
@@ -576,14 +609,23 @@ mm.add(
         
         immigrantSectionTimeline.from(immigrantsSection('.facts__section-subtitle'), {
           autoAlpha: 0,
-        }, "<")
+        })
 
         immigrantSectionTimeline.from(
           immigrantsSection(".immigrant-section__digit"),
           {
             textContent: 0,
             snap: { textContent: 0.1 },
+            duration: 2
           }, "<"
+        );
+
+        immigrantSectionTimeline.from(
+          immigrantsSection(".immigrant-section__lessthan"),
+          {
+            autoAlpha: 0,
+            scaleY: 0,
+          }, "<10%"
         );
 
         immigrantSectionTimeline.from(
@@ -594,15 +636,7 @@ mm.add(
             autoAlpha: 0,
             stagger: 0.05,
           },
-          "<"
-        );
-
-        immigrantSectionTimeline.from(
-          immigrantsSection(".immigrant-section__lessthan"),
-          {
-            autoAlpha: 0,
-            scaleY: 0,
-          }, "<"
+          "<15%"
         );
 
         immigrantSectionTimeline.from(
@@ -610,6 +644,7 @@ mm.add(
           {
             textContent: 0,
             snap: { textContent: 1 },
+            duration: 2
           },
           "<"
         );
@@ -705,9 +740,18 @@ mm.add(
           ],
           {
             clipPath: "inset(233px 0 0)",
-          },
-          "<"
+          }, "<50%"
         )
+
+        immigrantFoundersTimeline.from(['.dashed-vertical', '.dashed-horizontal'], {
+          autoAlpha: 0
+        }, "<50%")
+
+        immigrantFoundersTimeline.from('.number-thirty-six', {
+          autoAlpha: 0,
+          scale: 0,
+          ease: "bounce.inOut",
+        }, "<10%")
 
         immigrantFoundersTimeline.from(
           immigrantFoundersSection(".dot-thirty-six"),
@@ -812,9 +856,7 @@ mm.add(
 
         // /* ABOUT SECTION */
         const fonuderSection = gsap.utils.selector(".founder");
-        const founderTimeline = gsap.timeline({
-          paused: true,
-        })
+        const founderTimeline = gsap.timeline({})
         
         founderTimeline.from(
           ".founder > div",
@@ -867,6 +909,7 @@ mm.add(
         pageAnimations.push(communityTimeline)
 
         const faqTimeline = gsap.timeline({})
+
 
         faqTimeline.from('.faq-line path', {
           drawSVG: 0,

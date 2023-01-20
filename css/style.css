@@ -306,8 +306,9 @@ body {
 
 @media (min-width: 976px) {
   .nav {
+    margin-left: 50px;
     position: fixed;
-    left: 50px;
+    left: 0;
     top: 50%;
     -webkit-transform: translateY(-50%);
         -ms-transform: translateY(-50%);
@@ -322,15 +323,20 @@ body {
 }
 
 .nav__list > li:before {
+  opacity: 0;
   content: "";
   height: 2.2em;
   border-left: 1px solid currentColor;
   position: absolute;
   bottom: 1.5em;
   left: -1px;
-  -webkit-transition: border 0.3s ease-in-out;
-  -o-transition: border 0.3s ease-in-out;
-  transition: border 0.3s ease-in-out;
+  -webkit-transition: border 0.3s ease-in-out, opacity 1s ease-out;
+  -o-transition: border 0.3s ease-in-out, opacity 1s ease-out;
+  transition: border 0.3s ease-in-out, opacity 1s ease-out;
+}
+
+.nav.animation-complete .nav__list > li:before {
+  opacity: 1;
 }
 
 .nav__list > li:has(.previous):before,
@@ -349,13 +355,11 @@ body {
   color: #c4c4c4;
 }
 
-.nav__button.active:hover,
 .nav__button.active {
   color: #00E28A;
   background-color: #00E28A;
 }
-.nav__button.active:hover span,
-.nav__button.active span {
+.nav__button:hover span {
   text-decoration: underline;
 }
 
@@ -378,12 +382,12 @@ body {
   position: relative;
   padding: 1em 80px 1em 0;
   overflow: hidden;
-  color: currentColor;
+  color: var(--colors-black);
 }
 
 .faq__button-chevron {
   position: absolute;
-  top: 0;
+  top: 50%;
   bottom: 0;
   right: 20px;
   display: -webkit-box;
@@ -396,19 +400,13 @@ body {
   -webkit-box-pack: justify;
       -ms-flex-pack: justify;
           justify-content: space-between;
-  -webkit-transform: translateY(-50%);
-      -ms-transform: translateY(-50%);
-          transform: translateY(-50%);
+}
+.faq__button-chevron svg {
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
   transition: -webkit-transform 0.3s ease-in-out;
   -o-transition: transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out;
   transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
-}
-.faq__button-chevron svg:nth-child(1) {
-  -webkit-transform: rotate(180deg);
-      -ms-transform: rotate(180deg);
-          transform: rotate(180deg);
 }
 
 .footer {
@@ -418,13 +416,13 @@ body {
 
 .faq__list-content {
   overflow: hidden;
-  opacity: 0.6;
+  padding-right: 80px;
 }
 
-.faq__button.dropdown-active .faq__button-chevron {
-  -webkit-transform: translateY(50%);
-      -ms-transform: translateY(50%);
-          transform: translateY(50%);
+.faq__button.dropdown-active svg {
+  -webkit-transform: rotate(180deg);
+      -ms-transform: rotate(180deg);
+          transform: rotate(180deg);
 }
 
 .intro__logo {
@@ -481,7 +479,6 @@ body {
   }
   .footer__links {
     display: grid;
-    grid-template-columns: repeat(3, auto);
     -webkit-column-gap: 50px;
        -moz-column-gap: 50px;
             column-gap: 50px;
@@ -490,6 +487,9 @@ body {
         -ms-transform: translateY(0);
             transform: translateY(0);
     padding: 0;
+    margin-top: auto;
+    margin-bottom: auto;
+    grid-template-columns: repeat(2, auto);
   }
 }
 .footer__link {
@@ -499,8 +499,10 @@ body {
   display: -ms-flexbox;
   display: flex;
   gap: 5px;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  padding: 0.5em 0;
 }
 
 footer:before {
@@ -640,7 +642,7 @@ footer:before {
 
 @media (min-width: 976px) {
   .about__community-title {
-    margin-bottom: 3em;
+    margin-bottom: 2em;
     font-size: 2.1875rem;
   }
 }
@@ -749,10 +751,6 @@ footer {
           flex-grow: 1;
   -ms-flex-negative: 1;
       flex-shrink: 1;
-}
-
-.europe-founder-graph__labels--bottom {
-  text-align: center;
 }
 
 .immigrant-founders h2 > div:first-child {
@@ -911,7 +909,8 @@ label {
 }
 
 @media (min-width: 976px) {
-  .blog-posts__list {
+  .blog-posts__list,
+.related {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 60px;
@@ -1276,6 +1275,11 @@ label {
   margin-bottom: 0;
 }
 
+.europe-founder-graph__labels--bottom {
+  max-width: 420px;
+  margin-left: auto;
+}
+
 .portfolio-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1406,6 +1410,7 @@ label {
 }
 .about__line-about {
   margin-inline: -20px;
+  pointer-events: none;
 }
 
 @media (min-width: 976px) {
@@ -1441,10 +1446,10 @@ label {
   text-decoration: none;
 }
 
-@media (min-width: 1239px) {
+@media (min-width: 1024px) {
   .blog-post__back {
     position: absolute;
-    left: -7vw;
+    left: -100px;
     top: 15px;
   }
 }
@@ -1520,6 +1525,7 @@ label {
 
 .portfolio {
   background-color: var(--colors-black);
+  color: var(--colors-white);
 }
 
 .header.hide {
@@ -1550,13 +1556,6 @@ main {
   min-height: 100vh;
 }
 
-@media (min-width: 976px) {
-  .blog-posts,
-.blog-post {
-    margin-top: 250px;
-    position: relative;
-  }
-}
 .mouse-icon {
   position: absolute;
   top: 0;
@@ -1758,8 +1757,22 @@ main {
   margin-top: 100px;
   padding-left: 20px;
   padding-right: 20px;
+  padding-bottom: 50px;
 }
 
+@media (min-width: 976px) {
+  .blog-posts,
+.blog-post {
+    margin-top: 150px;
+    padding-left: 0;
+    padding-right: 0;
+    position: relative;
+    max-width: 1020px;
+  }
+  .blog-post {
+    max-width: 720px;
+  }
+}
 .facts__section-services {
   padding-top: 70px;
 }
@@ -1810,7 +1823,7 @@ main {
     top: 0;
     left: 0;
     right: 0;
-    padding-top: 20vw;
+    padding-top: 25vh;
   }
 }
 .about-content__content h4 {
@@ -1836,6 +1849,11 @@ main {
   color: var(--colors-white);
 }
 
+@media (min-width: 976px) {
+  .portfolio__content h2 {
+    font-size: 2.1875rem;
+  }
+}
 .about-heading__name {
   color: var(--colors-white);
   font-size: 2.1875rem;
@@ -1906,6 +1924,7 @@ article p {
     left: 0;
     max-width: 362px;
     display: block;
+    pointer-events: none;
   }
   .related {
     display: grid;
@@ -1929,6 +1948,10 @@ article p {
   vertical-align: middle;
 }
 
+.related__content {
+  margin-bottom: 1em;
+}
+
 .see-all-articles {
   display: block;
   text-align: center;
@@ -1943,7 +1966,7 @@ article p {
   color: var(--colors-black);
   font-family: "Tanker-Regular", sans-serif;
   width: 209px;
-  margin: 1em auto 4em;
+  margin: 1em auto;
   font-size: 1.25rem;
 }
 .see-all-articles:after {
@@ -2007,4 +2030,12 @@ form .error-message {
   display: none;
   border-radius: 5px;
   padding: 0.25em 0.5em;
+}
+
+.faq__list .faq__list-content p {
+  margin-top: 0.5em;
+}
+
+.faq__button:hover {
+  cursor: pointer;
 }
