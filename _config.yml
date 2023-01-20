@@ -31,6 +31,24 @@ plugins:
   - jekyll-feed
   - jekyll-sitemap
 
+defaults:
+  -
+    scope:
+      path: "styleguide.html"
+    values:
+      sitemap: false
+  -
+    scope:
+      path: "404.html"
+    values:
+      sitemap: false
+  -
+    scope:
+      path: "admin/index.html"
+    values:
+      sitemap: false
+  
+
 # Exclude from processing.
 # The following items will not be processed, by default.
 # Any item listed under the `exclude:` key here will be automatically added to
