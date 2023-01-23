@@ -28,7 +28,7 @@ collections:
     sortable_fields: ['title']
     editor:
       preview: false
-      widget: 'list'
+    widget: 'list'
     fields:
       - { label: 'Title', name: 'title', widget: 'text', required: true }
       - { label: 'URL', name: 'url', widget: 'text', required: true }
