@@ -24,7 +24,8 @@ collections:
     create: true
     extension: yml
     folder: '_data/portfolio'
-    identifier_field: image
+    identifier_field: title
+    sortable_fields: ['title']
     editor:
       preview: false
     fields:
@@ -39,6 +40,7 @@ collections:
     extension: 'yml'
     folder: '_data/faqs'
     identifier_field: question
+    sortable_fields: ['question']
     editor:
       preview: false
     fields:
