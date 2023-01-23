@@ -1103,7 +1103,7 @@ label {
   display: none;
 }
 
-.index-page .header {
+.index-page .header > div {
   -webkit-box-pack: end;
       -ms-flex-pack: end;
           justify-content: flex-end;
@@ -1203,7 +1203,7 @@ label {
 }
 
 @media (min-width: 976px) {
-  .header {
+  .header > div {
     -webkit-box-pack: justify;
         -ms-flex-pack: justify;
             justify-content: space-between;
@@ -1789,6 +1789,9 @@ main {
   padding-left: 20px;
   padding-right: 20px;
   padding-bottom: 50px;
+}
+.blog-post strong {
+  font-weight: 800;
 }
 
 @media (min-width: 976px) {
