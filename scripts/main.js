@@ -285,7 +285,6 @@ mm.add(
         type: "scroll,wheel,touch",
         onUp: () => !animating && gotoPanel(currentIndex - 1, false),
         onDown: () => !animating && gotoPanel(currentIndex + 1, true),
-        onChange: () => document.querySelector('body').style.overflow = 'visible',
         tolerance: 250,
         wheelSpeed: 0.5,
         scrollSpeed: 0.5,
@@ -305,9 +304,12 @@ mm.add(
       })
 
       function gotoPanel(index, isScrollingDown, isQuickNav) {
+        
         if (index <= -1) {
           return
         }
+
+        document.querySelector('body').style.overflow = 'hidden'
 
         // prevent immediate scroll from button
         if (hasExited) {
@@ -357,6 +359,7 @@ mm.add(
         // return to normal scroll if we're at the end or back up to the start
         if (index === Sections.length && isScrollingDown) {
           let target = index;
+          document.querySelector('body').style.overflow = ''
           gsap.to(target, {
             // xPercent: isScrollingDown ? -100 : 0,
             duration: 0.00,
