@@ -11,8 +11,8 @@ collections:
   - name: home
     label: Home Page
     files: 
-    - name: about
-      label: About Section
+    - name: founder
+      label: Founder Section
       identifier_field: content
       file: _data/about.yml
       editor:
