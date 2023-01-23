@@ -37,9 +37,7 @@ collections:
   - name: faqs
     label: FAQs
     extension: yml
-    files: ['_data/faqs']    
-    editor:
-      preview: false
+    file: _data/faqs.yml
     fields:
       - label: FAQ
         name: faq
