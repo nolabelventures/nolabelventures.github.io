@@ -43,10 +43,14 @@ collections:
     identifier_field: question
     editor:
       preview: false
-    widget: 'list'
     fields:
-      - { label: 'Question', name: 'question', widget: 'text', required: true }
-      - { label: 'Answer', name: 'answer', widget: 'text', required: true }
+      - label: 'FAQ'
+        name: 'faq'
+        widget: 'list'
+        required: true
+        fields:
+          - { label: 'Question', name: 'question', widget: 'text', required: true }
+          - { label: 'Answer', name: 'answer', widget: 'text', required: true }
 
   - name: 'blog'
     label: 'Blog'
