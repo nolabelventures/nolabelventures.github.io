@@ -47,15 +47,15 @@ collections:
       widget: 'list'
       editor:
         preview: false
-        fields:
-          - label: portfolio
-            name: portfolio
-            identifier_field: title
-            widget: list
-            fields:
-            - { label: 'Title', name: 'title', widget: 'text', required: true }
-            - { label: 'URL', name: 'url', widget: 'text', required: true }
-            - { label: 'Logo', name: 'image', widget: 'image', required: true }
+      fields:
+        - label: portfolio
+          name: portfolio
+          identifier_field: title
+          widget: list
+          fields:
+          - { label: 'Title', name: 'title', widget: 'text', required: true }
+          - { label: 'URL', name: 'url', widget: 'text', required: true }
+          - { label: 'Logo', name: 'image', widget: 'image', required: true }
 
   - name: 'blog'
     label: 'Blog'
