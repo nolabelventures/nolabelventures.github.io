@@ -569,16 +569,19 @@ footer {
     top: 0;
     left: 0;
     right: 0;
-    display: flex;
-    justify-content: flex-end;
     z-index: 50;
-    padding: 1em;
-    transition: transform .5s ease-in-out, color .3s ease;
     color: var(--colors-white);
 
     &.dark {
         color: var(--colors-black);
     }
+}
+
+.header > div {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1em;
+    transition: transform .5s ease-in-out, color .3s ease;
 }
 
 .header__link--pitch {
@@ -1146,6 +1149,7 @@ label {
 @media (min-width:976px) {
     .community .about-content__content > div {
         margin-bottom: 0 !important;
+        max-width: 33.33%;
     }
 }
 
@@ -1368,8 +1372,12 @@ label {
     color: var(--colors-white);
 }
 
-.header.hide {
+.header.hide > div {
     transform: translateY(-100%)
+}
+
+.header.hide:hover > div {
+    transform: translateY(0)
 }
 
 .founder__pinned-wrapper {

@@ -194,6 +194,10 @@ mm.add(
         duration: 2
       });
 
+      introAnimation.set('.nav', {
+        autoAlpha: 1
+      })
+
       introAnimation.from('.nav li a', {
         x: -100,
         autoAlpha: 0,
@@ -256,6 +260,10 @@ mm.add(
       introAnimation.from(heroEl('.scroll-down'), {
         autoAlpha: 0
       });
+
+      introAnimation.set('.nav', {
+        autoAlpha: 1
+      })
 
       introAnimation.from('.nav li a', {
         x: -100,
@@ -324,9 +332,12 @@ mm.add(
 
         let shouldSlide = ''
 
+        
         if (isScrollingDown && Sections[currentIndex]?.className?.match('facts__section')) {
           shouldSlide = 'exit'
         } else if (!isScrollingDown && Sections[index]?.className?.match('facts__section')) {
+          shouldSlide = 'enter'
+        } else if (Sections[index]?.className?.match('facts__section') && isQuickNav) {
           shouldSlide = 'enter'
         }
 
@@ -374,7 +385,7 @@ mm.add(
       
         let target = isScrollingDown ? Sections[index]: Sections[currentIndex];
 
-        header.classList.toggle('hide', isScrollingDown)
+        header.classList.toggle('hide', isScrollingDown && !isQuickNav)
 
         const transition = gsap.timeline({
           duration: 0.75,
@@ -400,6 +411,12 @@ mm.add(
         // make sure all previous slides are visible when using quicknav
         // quicknav pretty much takes over animating just the before and after slides
         if (isQuickNav) {
+          if (shouldSlide) {
+            transition.set(Sections[index].querySelector('.facts__section-content'), {
+              xPercent: 0
+            }, "<")
+          }
+
           for (let i = 0; i < Sections.length - 1; i++) {
             if (i === currentIndex || i === index) {
               if (!isScrollingDown) {
@@ -524,9 +541,9 @@ mm.add(
 
       if (jumpToSection) {
         // if # in the url, jump to that index (if exists)
-        gotoPanel(Number(jumpToSection.getAttribute('data-index')) - 1, true)
+        gotoPanel(Number(jumpToSection.getAttribute('data-index')) - 1, true, true)
       } else {
-        gotoPanel(0, true)
+        gotoPanel(0, true, true)
       }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
         const targetIndex = Number(document.getElementById(link.href.split('#')[1])?.getAttribute('data-index')) - 1;
@@ -551,6 +568,7 @@ mm.add(
             duration: 1
           }
         })
+
         const firstSectionHeading = new SplitText(servicesSection("h2"), {
           type: "words,lines",
         });
@@ -663,7 +681,7 @@ mm.add(
           "<"
         );
 
-        immigrantSectionTimeline.from(".immigrant-section__astricks", {
+        immigrantSectionTimeline.from(".facts-section__astricks", {
           x: 10,
           autoAlpha: 0,
         }, "<");
@@ -714,19 +732,7 @@ mm.add(
             snap: { textContent: .1 },
           }, "<"
         );
-        
-        const immigrantFoundersSectionText = new SplitText(
-          immigrantFoundersSection(".facts__title-text"),
-          { type: "words" }
-        );
-        immigrantFoundersTimeline.from(
-          immigrantFoundersSectionText.words,
-          {
-            autoAlpha: 0,
-            stagger: 0.05,
-          },
-          "<"
-        );
+      
 
         immigrantFoundersTimeline.from(immigrantFoundersSection(".dot-zero"), 
           {
@@ -786,19 +792,6 @@ mm.add(
         );
         unicornFoundersTimeline.from(
           unicornFoundersSectionHeading.words,
-          {
-            autoAlpha: 0,
-            stagger: 0.05,
-          },
-          "<"
-        );
-
-        const unicornFoundersSectionText = new SplitText(
-          unicornFoundersSection(".facts__title-text"),
-          { type: "words" }
-        );
-        unicornFoundersTimeline.from(
-          unicornFoundersSectionText.words,
           {
             autoAlpha: 0,
             stagger: 0.05,

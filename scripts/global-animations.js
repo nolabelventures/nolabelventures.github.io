@@ -56,6 +56,7 @@ if (window.location.pathname === "/") {
     const windowPos = window.pageYOffset || document.scrollTop || 0;
 
     if (windowPos >= window.innerHeight / 2 && windowPos > lastScrollTop) {
+      console.log('hide');
       header.classList.add('hide')
     } else {
       header.classList.remove('hide')
