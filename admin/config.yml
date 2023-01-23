@@ -6,17 +6,33 @@ backend:
   auth_endpoint: /oauth/auth
 
 media_folder: "assets/uploads"
+
 collections:
-  - name: about
-    label: About Section
-    identifier_field: content
-    extension: yml
-    folder: _data
-    fields:
-      - label: Content
-        name: content
-        widget: markdown
-        required: true
+  - name: home
+    label: Home Page
+    files: 
+    - name: about
+      label: About Section
+      identifier_field: content
+      file: _data/about.yml
+      fields:
+        - label: Content
+          name: content
+          widget: markdown
+          required: true
+
+    - name: faqs
+      label: FAQs
+      extension: yml
+      file: _data/faqs.yml
+      fields:
+        - label: FAQ
+          name: faq
+          widget: list
+          required: true
+          fields:
+            - { label: 'Question', name: 'question', widget: 'text', required: true }
+            - { label: 'Answer', name: 'answer', widget: 'text', required: true }
 
   - name: "portfolio_items"
     label: "Portfolio Items"
@@ -33,19 +49,6 @@ collections:
       - { label: 'Title', name: 'title', widget: 'text', required: true }
       - { label: 'URL', name: 'url', widget: 'text', required: true }
       - { label: 'Logo', name: 'image', widget: 'image', required: true }
-  
-  - name: faqs
-    label: FAQs
-    extension: yml
-    file: _data/faqs.yml
-    fields:
-      - label: FAQ
-        name: faq
-        widget: list
-        required: true
-        fields:
-          - { label: 'Question', name: 'question', widget: 'text', required: true }
-          - { label: 'Answer', name: 'answer', widget: 'text', required: true }
 
   - name: 'blog'
     label: 'Blog'
