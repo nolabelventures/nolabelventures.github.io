@@ -1,4 +1,10 @@
 content: >-
-  <p>Ramzi Rafih is the General Partner of No Label Ventures. Having started his career at J.P. Morgan, he has more than ten years of investing experience as an angel at the early stage and as a late-stage investor at KKR and Silver Lake.</p>
+  <p>Ramzi Rafih is the General Partner of No Label Ventures. Having started his
+  career at J.P. Morgan, he has more than ten years of investing experience as
+  an angel at the early stage and as a late-stage investor at KKR and Silver
+  Lake.</p>
 
   <p>Ramzi is originally from Lebanon born to immigrant parents during the Lebanese civil war. He immigrated to France for his studies and later to the UK for his career. He’s a mechanical engineer by training and is fluent in French, Arabic, and English.</p>
+faq:
+  - question: Here is the answer to that question. Hope it clears things up!
+    answer: Here is the answer to that question. Hope it clears things up!
