@@ -34,19 +34,16 @@ collections:
       - { label: 'URL', name: 'url', widget: 'text', required: true }
       - { label: 'Logo', name: 'image', widget: 'image', required: true }
   
-  - name: "faqs"
-    label: "FAQs"
-    label_singular: "FAQ"
-    create: true
-    extension: 'yml'
-    folder: '_data'
-    identifier_field: question
+  - name: faqs
+    label: FAQs
+    extension: yml
+    folder: _data
     editor:
       preview: false
     fields:
-      - label: 'FAQ'
-        name: 'faq'
-        widget: 'list'
+      - label: FAQ
+        name: faq
+        widget: list
         required: true
         fields:
           - { label: 'Question', name: 'question', widget: 'text', required: true }
