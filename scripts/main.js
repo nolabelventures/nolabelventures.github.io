@@ -668,7 +668,7 @@ mm.add(
         pageAnimations.push(immigrantSectionTimeline)
 
         // /* IMMIGRANT FOUNDERS */
-        // 157% increase in UK Unicorn immigrant Founders
+        // 2.6X increase in UK Unicorn immigrant Founders
         const immigrantFoundersSection = gsap.utils.selector(
           ".immigrant-founders"
         );
@@ -708,7 +708,7 @@ mm.add(
           immigrantFoundersSection("h2 .numbers")[0],
           {
             textContent: 0,
-            snap: { textContent: 1 },
+            snap: { textContent: .1 },
           }, "<"
         );
         

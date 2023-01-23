@@ -624,6 +624,7 @@ footer:before {
 }
 .immigrant-section__digit-two {
   display: inline-block;
+  font-size: 9.375rem;
 }
 
 @media (min-width: 976px) {
@@ -721,7 +722,7 @@ footer {
 }
 
 @media (min-width: 976px) {
-  .immigrant-section__astricks {
+  .facts-section__astricks {
     position: absolute;
     bottom: 100px;
     right: 0;
@@ -987,7 +988,7 @@ label {
           align-items: center;
 }
 
-@media (min-width: 679px) {
+@media (min-width: 976px) {
   .footer__links--mobile {
     display: none;
   }
@@ -1884,7 +1885,7 @@ main {
 @media (min-width: 976px) {
   .immigrant-founders h2,
 .immigrant-section h2 {
-    font-size: 3.125rem;
+    font-size: 2.8125rem;
   }
   .blog-page h1 {
     margin-bottom: 0;
@@ -1986,6 +1987,12 @@ article p {
   padding-right: 65px;
 }
 
+@media (min-width: 976px) {
+  .facts__services {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
 .community-pinned-wrapper .about-content {
   padding-left: 65px;
   padding-right: 65px;
