@@ -28,6 +28,7 @@ collections:
     sortable_fields: ['title']
     editor:
       preview: false
+      widget: 'list'
     fields:
       - { label: 'Title', name: 'title', widget: 'text', required: true }
       - { label: 'URL', name: 'url', widget: 'text', required: true }
@@ -40,9 +41,9 @@ collections:
     extension: 'yml'
     folder: '_data/faqs'
     identifier_field: question
-    sortable_fields: ['question']
     editor:
       preview: false
+    widget: 'list'
     fields:
       - { label: 'Question', name: 'question', widget: 'text', required: true }
       - { label: 'Answer', name: 'answer', widget: 'text', required: true }
