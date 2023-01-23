@@ -39,7 +39,7 @@ collections:
     label_singular: "FAQ"
     create: true
     extension: 'yml'
-    folder: '_data/faqs'
+    file: '_data/faqs'
     identifier_field: question
     editor:
       preview: false
