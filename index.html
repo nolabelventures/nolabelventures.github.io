@@ -739,12 +739,13 @@
         </svg>
       </div>
       {% endif %}
-      {% if site.data.faqs.faqs %}
+      {{ site.data.faqs }}
+      {% if site.data.faqs %}
       <section id="faq" class="faq" data-bg="#ffffff" data-pg-collapsed>
         <div class="content-wrapper faq__content">
           <h2>Some frequently asked questions</h2>
           <ul class="faq__list">
-            {% for item in site.data.faqs.faqs %}
+            {% for item in site.data.faqs %}
             {% assign faq = item %}
             <li class="faq__faq-item">
               <button class="faq__button" data-dropdown>
