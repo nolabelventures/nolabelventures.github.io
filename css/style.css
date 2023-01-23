@@ -952,10 +952,6 @@ label {
   text-decoration: underline;
 }
 
-.footer__logo {
-  text-align: center;
-}
-
 .fixed-page > * {
   position: relative;
 }
@@ -2006,4 +2002,14 @@ footer h3 {
   font-size: 0.875rem;
   text-align: center;
   color: #E5E5E5;
+}
+
+.footer__logo {
+  text-align: center;
+}
+
+@media (min-width: 976px) {
+  .footer__logo {
+    text-align: left;
+  }
 }
