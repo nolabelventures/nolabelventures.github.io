@@ -4,11 +4,14 @@ title: 5 Reasons for NLV
 date: 2023-01-01T14:56:55.253Z
 thumbnail: https://media.istockphoto.com/id/1381637603/photo/mountain-landscape.jpg?s=1024x1024&w=is&k=20&c=C9JwCd6nvW_0hmfolDgi5uq2yAqeNWwyqLgZdODGsEQ=
 ---
-Here at No Label Ventures, we are pursuing a new and unique opportunity in the European market. We are confident that immigrants, people of colour and women make the best entrepreneurs.<!-- more --> While the OECD observed immigrants accounting for a growing share of the self-employed in the EU, this\
+Here at No Label Ventures, we are pursuing a new and unique opportunity in the European market. We are confident that immigrants, people of colour and women make the best entrepreneurs.
+
+<!-- more -->
+
+While the OECD observed immigrants accounting for a growing share of the self-employed in the EU, this\
 entrepreneurial talent is often overlooked when it comes to investment decisions. No Label Ventures’ founder-focused approach will provide under-represented entrepreneurs with the support to overcome obstacles that are unique to them and achieve those high returns. Here are five reasons why this is the perfect time for No Label Ventures’ overperforming strategy.
 
-## \
-**1 Future Underrepresented Founders in European Market**
+## **1 Future Underrepresented Founders in European Market**
 
 It has become clear that having a diverse pool of talent will lead to increased innovation and problem-solving capabilities in an organisation. With this push towards more diversity, the European market is set to experience a surge in underrepresented founders. Top universities are eager to admit students from different backgrounds. The University of Oxford alone saw a +212% increase in black students between 2016 and 2020. It comes as no surprise when employers are pushing for more diverse workforces. For example, the number of black tech employees at Google increased by x1.7 between 2019 and 2022. As for Goldman Sachs, 63% of the talent that the firm attracted to its 2020 campus analyst class in the Americas was ethnically diverse.
 

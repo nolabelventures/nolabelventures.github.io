@@ -31,32 +31,12 @@ footertl.from(
   "<"
 );
 
-const footerLinks = document.querySelector(".footer__links");
-let isVisible = false;
-document.querySelector(".footer-menu-button").addEventListener("click", () => {
-  footerLinks.classList.add("show");
-});
-
-document
-  .querySelector(".footer__links-close-button")
-  .addEventListener("click", () => {
-    footerLinks.classList.remove("show");
-  });
-
-window.addEventListener("resize", () => {
-  if (window.innerWidth >= 976) {
-    footerLinks.classList.remove("active");
-    isVisible = false;
-  }
-});
-
 if (window.location.pathname === "/") {
   let lastScrollTop;
   window.addEventListener("scroll", () => {
     const windowPos = window.pageYOffset || document.scrollTop || 0;
 
     if (windowPos >= window.innerHeight / 2 && windowPos > lastScrollTop) {
-      console.log('hide');
       header.classList.add('hide')
     } else {
       header.classList.remove('hide')
@@ -75,3 +55,5 @@ document
   .addEventListener("click", () => {
     header.classList.remove("show-mobile-menu");
   });
+
+document.querySelector('.copy-year').innerText = new Date().getFullYear()
