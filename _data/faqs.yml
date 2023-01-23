@@ -1,3 +1,5 @@
 faq:
   - question: This is a commonly asked question
     answer: This is the answer to said question
+  - question: This is another commonly asked question
+    answer: and, you guessed it. Another answer
