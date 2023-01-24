@@ -905,25 +905,64 @@ mm.add(
         pageAnimations.push(communityTimeline)
 
         const faqTimeline = gsap.timeline({})
+        const faqSection = gsap.utils.selector('.faq')
 
-
-        faqTimeline.from('.faq-line path', {
+        faqTimeline.from(faqSection('.faq-line path'), {
           drawSVG: 0,
           duration: 1
+        })
+
+        faqTimeline.from(faqSection('h2'), {
+          autoAlpha: 0
+        }, "<")
+
+        faqTimeline.from(faqSection('.faq__faq-item'), {
+          autoAlpha: 0,
+          stagger: 0.05,
+          scaleY: 0,
         })
 
         pageAnimations.push(faqTimeline)
 
         const pitchLines = gsap.utils.toArray(".pitch-lines--top:not(.pitch-lines--mobile) path");
-        const pitchTimeline = gsap.timeline({})
+        const pitchSection = gsap.utils.selector('#pitch')
+        const pitchTimeline = gsap.timeline({paused: true})
 
         pitchTimeline.from([pitchLines[0], pitchLines[1]], {
           drawSVG: 0,
-        }, "<");
+        });
 
         pitchTimeline.from('.pitch-lines--bottom path', {
           drawSVG: "100% 100%",
         });
+
+        const pitchHeadingOne = new SplitText(pitchSection('h2 span')[0], {
+          type: 'words'
+        })
+
+        pitchTimeline.from(pitchHeadingOne.words, {
+          autoAlpha: 0,
+          duration: 2,
+          filter: 'blur(10px)',
+          stagger: 0.05
+        }, "<")
+        
+        const pitchHeadingTwo = new SplitText(pitchSection('h2 span')[1], {
+          type: 'words'
+        })
+
+        pitchTimeline.from(pitchHeadingTwo.words, {
+          autoAlpha: 0,
+          duration: 2,
+          filter: 'blur(10px)',
+          stagger: 0.05
+        }, ">")
+
+        pitchTimeline.from(pitchSection('.pitch__cta'), {
+          autoAlpha: 0,
+          duration: 2,
+          filter: 'blur(10px)'
+        }, "+=.5")
 
         pageAnimations.push(pitchTimeline)
       } else if (isMobile) {
@@ -984,6 +1023,107 @@ mm.add(
       if (jumpToSection) {
         window.scrollTo({top: jumpToSection.offsetTop, behavior: 'smooth'})
       }
+
+      /* SECTION ONE */
+      const servicesSection = gsap.utils.selector('.facts__section-services')
+      const servicesSectionTitle = new SplitText(servicesSection('h2'), { type: 'words'})
+      gsap.from(servicesSectionTitle.words, {
+        autoAlpha: 0,
+        y: 20,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: '.facts__section-services',
+          end: '+=500',
+          scrub: true,
+          once: true
+        }
+      })
+
+      servicesSection('.facts__services > div').forEach(section => {
+        gsap.from(section, {
+          autoAlpha: 0,
+          y: 100,
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: section,
+            scrub: 1,
+            once: true,
+          }
+        })
+      })
+
+      /* SECTION TWO */
+      const immigrantsSection = gsap.utils.selector('.immigrant-section')
+      const immigrantSectionTitle = new SplitText(immigrantsSection('h2'), { type: 'words'})
+
+      gsap.from(immigrantSectionTitle.words, {
+        autoAlpha: 0,
+        y: 20,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: '.immigrant-section',
+          start: 'top bottom',
+          end: '+=500',
+          scrub: true,
+          once: true
+        }
+      })
+
+      const immigrantSectionContent = immigrantsSection('p span')
+      const immigrantSectionTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.immigrant-section',
+          start: 'top center',
+          end: 'bottom bottom',
+          scrub: true,
+          once: true
+        }
+      })
+
+      immigrantSectionTimeline.from(immigrantsSection('.immigrant-section__digit'), {
+        textContent: 0,
+        snap: { textContent: 1 },
+      })
+
+      const generalPopulation = new SplitText(immigrantSectionContent[1], {type: 'words'})
+      immigrantSectionTimeline.from(generalPopulation.words, {
+        autoAlpha: 0
+      })
+
+      immigrantSectionTimeline.from(immigrantsSection('.immigrant-section__digit-two'), {
+        textContent: 0,
+        snap: { textContent: 1 },
+      })
+
+      const unicornFounders = new SplitText(immigrantSectionContent[3], {type: 'words'})
+      immigrantSectionTimeline.from(unicornFounders.words, {
+        autoAlpha: 0
+      })
+
+      immigrantSectionTimeline.from(immigrantsSection('.facts-section__astricks'), {
+        autoAlpha: 0
+      })
+
+      const immigrantFoundersSection = gsap.utils.selector('.immigrant-founders')
+
+      const immigrantFoundersTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.immigrant-founders',
+          scrub: true,
+          once: true
+        }
+      })
+
+      immigrantFoundersTimeline.from(immigrantFoundersSection('.numbers'), {
+        textContent: 0,
+        snap: { textContent: .1 }
+      })
+
+      const headingText = new SplitText(immigrantFoundersSection('.immigrant-section__heading-text'), {type: 'words'})
+      immigrantFoundersTimeline.from(headingText.words, {
+        autoAlpha: 0,
+        stagger: 0.05
+      })
 
       gsap.from('.line-immigrant-unicorn-founders path', {
         scrollTrigger: {
