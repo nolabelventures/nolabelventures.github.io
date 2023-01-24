@@ -24,6 +24,12 @@
   font-display: swap;
   font-style: normal;
 }
+@font-face {
+  font-family: "drukmedium";
+  src: url("druk-medium.woff2") format("woff2"), url("druk-medium.woff") format("woff");
+  font-weight: normal;
+  font-style: normal;
+}
 h1,
 h2,
 h3,
@@ -34,10 +40,25 @@ h5,
 .h3,
 .h4,
 .h5 {
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
   margin: 0;
   font-size: 1.75rem;
-  color: #3E3E3E;
+  color: #000;
+  text-transform: uppercase;
+}
+@media (min-width: 976px) {
+  h1,
+h2,
+h3,
+h4,
+h5,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5 {
+    font-family: "Tanker-Regular", sans-serif;
+  }
 }
 
 .page-transition {
@@ -56,10 +77,6 @@ h5,
   height: 100vh;
 }
 
-@media (min-width: 976px) {
-  .hero-intro {
-  }
-}
 .hero-intro__page {
   display: -webkit-box;
   display: -ms-flexbox;
@@ -700,7 +717,6 @@ footer {
     margin-bottom: 1em;
     font-size: 3.125rem;
     text-align: left;
-    color: var(--colors-black);
   }
 }
 .facts__services > div {
@@ -1181,7 +1197,7 @@ label {
 .graph-label-y {
   text-align: left;
   max-width: 121px;
-  margin-bottom: 0;
+  margin-bottom: 0.5em;
 }
 
 .europe-founder-graph__labels--bottom {
@@ -1757,10 +1773,6 @@ main {
     font-size: 2.1875rem;
   }
 }
-.facts__services h3 {
-  color: var(--colors-black);
-}
-
 .portfolio__content h2 {
   color: var(--colors-white);
 }

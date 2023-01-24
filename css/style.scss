@@ -17,12 +17,6 @@
     height: 100vh;
 }
 
-@media (min-width:976px) {
-    .hero-intro {
-        // height: 75vh;
-    }
-}
-
 .hero-intro__page {
     display: flex;
     align-items: center;
@@ -588,7 +582,6 @@ footer {
         margin-bottom: 1em;
         font-size: 3.125rem;
         text-align: left;
-        color: var(--colors-black);
     }
 }
 
@@ -1023,7 +1016,7 @@ label {
 .graph-label-y {
     text-align: left;
     max-width: 121px;
-    margin-bottom: 0;
+    margin-bottom: .5em;
 }
 
 .europe-founder-graph__labels--bottom {
@@ -1537,10 +1530,6 @@ main {
     .pitch h2 {
         font-size: 2.1875rem;
     }
-}
-
-.facts__services h3 {
-    color: var(--colors-black);
 }
 
 .portfolio__content h2 {
