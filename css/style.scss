@@ -1033,6 +1033,8 @@ label {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     margin-top: 40px;
+    margin-left: 20px;
+    margin-right: 20px;
 }
 
 @media (min-width:976px) {
