@@ -629,7 +629,12 @@ footer:before {
 }
 .immigrant-section__digit-two {
   display: inline-block;
-  font-size: 9.375rem;
+  font-size: 4.375rem;
+}
+@media (min-width: 976px) {
+  .immigrant-section__digit-two {
+    font-size: 9.375rem;
+  }
 }
 
 @media (min-width: 976px) {
@@ -1207,7 +1212,6 @@ label {
 .portfolio-items {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  margin-bottom: 40px;
   margin-top: 40px;
 }
 
@@ -1215,6 +1219,7 @@ label {
   .portfolio-items {
     grid-template-columns: repeat(5, 1fr);
     gap: 50px;
+    margin-bottom: 40px;
   }
 }
 @media (min-width: 976px) {
