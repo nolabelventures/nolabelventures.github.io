@@ -19,20 +19,14 @@
  * */
 @font-face {
   font-family: "Tanker-Regular";
-  src: url("/css/Tanker-Regular.woff2") format("woff2"), url("/css/Tanker-Regular.woff") format("woff"), url("/css/Tanker-Regular.ttf") format("truetype");
+  src: url("/css/fonts/Tanker-Regular.woff2") format("woff2"), url("/css/fonts/Tanker-Regular.woff") format("woff"), url("/css/fonts/Tanker-Regular.ttf") format("truetype");
   font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
 @font-face {
   font-family: "drukmedium";
-  src: url("/css/druk-medium.woff2") format("woff2"), url("/css/druk-medium.woff") format("woff");
-  font-weight: normal;
-  font-style: normal;
-}
-@font-face {
-  font-family: "druk_text_trialmedium";
-  src: url("druktext-medium-trial-webfont.woff2") format("woff2"), url("druktext-medium-trial-webfont.woff") format("woff");
+  src: url("/css/fonts/druk-medium.woff2") format("woff2"), url("/css/fonts/druk-medium.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -48,9 +42,9 @@ h5,
 .h5 {
   font-family: "drukmedium", sans-serif, sans-serif;
   margin: 0;
-  font-size: 2.1875rem;
+  font-size: 2.1875;
   color: #000;
-  text-transform: uppercase;
+  /* text-transform: uppercase */
   letter-spacing: 2px;
 }
 @media (min-width: 976px) {
@@ -898,6 +892,8 @@ button[type=submit] {
   border: none;
   border-radius: 5px;
   width: 100%;
+  color: #000;
+  font-size: 1.25rem;
 }
 
 input {

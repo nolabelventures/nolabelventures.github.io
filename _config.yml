@@ -59,6 +59,7 @@ defaults:
 #
 exclude:
   - functions
+  - _pgbackup
 #   - .sass-cache/
 #   - .jekyll-cache/
 #   - gemfiles/
