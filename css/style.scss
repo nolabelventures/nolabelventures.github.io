@@ -14,7 +14,12 @@
 .hero-intro {
     color: var(--colors-white);
     margin-inline: -20px;
-    height: 100vh;
+}
+
+@media (min-width:976px) {
+    .hero-intro {
+        height: 100vh;
+    }
 }
 
 .hero-intro__page {
@@ -27,7 +32,7 @@
     right: 0;
     bottom: 0;
     text-align: center;
-    height: 100vh;
+    height: 100%;
 }
 
 body {
@@ -1318,7 +1323,7 @@ main {
 
 .scroll-down {
     position: absolute;
-    bottom: 50px;
+    bottom: 5vh;
     left: 50%;
     transform: translateX(-50%);
     padding-top: 60px;
@@ -1564,11 +1569,16 @@ main {
 }
 
 .pitch .content-wrapper {
-    max-width: 709px;
     padding-left: 20px;
     padding-right: 20px;
     text-align: left;
-    width: 100%;
+}
+
+@media (min-width:976px) {
+    .pitch .content-wrapper {
+        max-width: 709px;
+        width: 100%;
+    }
 }
 
 article p {

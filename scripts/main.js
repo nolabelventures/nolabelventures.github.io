@@ -1024,6 +1024,11 @@ mm.add(
         window.scrollTo({top: jumpToSection.offsetTop, behavior: 'smooth'})
       }
 
+      window.addEventListener("DOMContentLoaded", () => {
+        const height = window.innerHeight;
+        document.querySelector('.hero-intro').style.height = `${height}px`;
+      })
+
       /* SECTION ONE */
       const servicesSection = gsap.utils.selector('.facts__section-services')
       const servicesSectionTitle = new SplitText(servicesSection('h2'), { type: 'words'})
@@ -1104,12 +1109,13 @@ mm.add(
         autoAlpha: 0
       })
 
+      /* SECTION FOUR */
       const immigrantFoundersSection = gsap.utils.selector('.immigrant-founders')
-
       const immigrantFoundersTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: '.immigrant-founders',
           scrub: true,
+          end: 'bottom bottom',
           once: true
         }
       })
@@ -1124,6 +1130,154 @@ mm.add(
         autoAlpha: 0,
         stagger: 0.05
       })
+
+      immigrantFoundersTimeline.from(immigrantFoundersSection('.facts__section-content > div')[1], {
+        autoAlpha: 0
+      })
+
+      immigrantFoundersTimeline.from(immigrantFoundersSection(".dot-zero"), 
+          {
+            scale: 0,
+            ease: "bounce.inOut",
+          }, 
+          "<"
+        );
+
+        immigrantFoundersTimeline.from(
+          [
+            immigrantFoundersSection(".graph-line"),
+            immigrantFoundersSection(".graph-shade"),
+          ],
+          {
+            clipPath: "inset(233px 0 0)",
+          }, "<50%"
+        )
+
+        immigrantFoundersTimeline.from(['.dashed-vertical', '.dashed-horizontal'], {
+          autoAlpha: 0
+        }, "<50%")
+
+        immigrantFoundersTimeline.from('.number-thirty-six', {
+          autoAlpha: 0,
+          scale: 0,
+          ease: "bounce.inOut",
+        }, "<10%")
+
+        immigrantFoundersTimeline.from(
+          immigrantFoundersSection(".dot-thirty-six"),
+          {
+            scale: 0,
+            ease: "bounce.inOut",
+          }, 
+          "<"
+        )
+
+        /* SECTION FIVE */
+        const unicornFoundersSection = gsap.utils.selector('.unicorn-founders')
+        const unicornFoundersTimeline = gsap.timeline({
+          scrollTrigger: {
+            trigger: '.unicorn-founders',
+            scrub: true,
+            end: 'bottom bottom',
+            once: true
+          }
+        })
+        const uncornFoundersHeadingText = new SplitText(unicornFoundersSection('h2'), {type: 'words'})
+        unicornFoundersTimeline.from(uncornFoundersHeadingText.words, {
+          autoAlpha: 0,
+          y: 10,
+          stagger: 0.05,
+        })
+
+        unicornFoundersTimeline.from(unicornFoundersSection('.facts__section-content > div')[1], {
+          autoAlpha: 0
+        })
+
+        unicornFoundersSection(".dot").forEach((dot, index) => {
+          unicornFoundersTimeline.from(dot, {
+            scale: 0,
+            ease: "bounce.inOut",
+          }, "<15%");
+
+          unicornFoundersTimeline.from(dot.nextSibling.nextSibling, {
+            autoAlpha: 0,
+            x: -5,
+          }, "<");
+        });
+
+        unicornFoundersTimeline.from(
+          unicornFoundersSection(".arrow"),
+          {
+            scale: 0,
+          }, "<"
+        );
+
+        /* PORTFOLIO SECTION (MOBILE) */
+        const portfolioSection = gsap.utils.selector('.portfolio')
+        gsap.from(portfolioSection('.portfolio-link__wrapper'), {
+          y: 200,
+          autoAlpha: 0,
+          stagger: 0.05,
+          scrollTrigger: {
+            trigger: '.portfolio-items',
+            start: 'top bottom',
+            end: 'bottom bottom',
+            scrub: true,
+            once: true
+          }
+        })
+
+
+      /* OUR APPROACH (COMMUNITY, MOBILE) */
+      const communitySection = gsap.utils.selector('.community')
+      const communityTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.community',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          scrub: true,
+          once: true
+        }
+      })
+
+      communityTimeline.from(communitySection('.about__community-title'), {
+        autoAlpha: 0
+      })
+
+      gsap.utils.toArray('.about-content__content > div').forEach(section => {
+        gsap.from(section, {
+          autoAlpha: 0,
+          y: 100,
+          scrollTrigger: {
+            trigger: section,
+            end: '+=500',
+            scrub: 1,
+            once: true,
+          }
+        })
+      })
+
+      const faqSection = gsap.utils.selector('.faq')
+      const faqTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.faq',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          scrub: true,
+          once: true
+        }
+      })
+
+      faqTimeline.from(faqSection('h2'), {
+        autoAlpha: 0
+      })
+
+      faqTimeline.from(faqSection('.faq__faq-item'), {
+        scaleY: 0,
+        autoAlpha: 0,
+        stagger: 0.05
+      })
+
 
       gsap.from('.line-immigrant-unicorn-founders path', {
         scrollTrigger: {
