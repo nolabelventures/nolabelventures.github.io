@@ -572,6 +572,7 @@ footer:before {
   margin-bottom: 0;
   margin-top: 0;
   display: block;
+  color: #000000;
 }
 
 @media (min-width: 976px) {
@@ -670,7 +671,7 @@ footer {
   top: 0;
   left: 0;
   right: 0;
-  z-index: 50;
+  z-index: 51;
   color: var(--colors-white);
 }
 .header.dark {
@@ -955,6 +956,7 @@ label {
 .blog-posts__title {
   font-size: 1.5625rem;
   font-family: "Poppins", sans-serif;
+  letter-spacing: 0;
 }
 
 .blog-posts__introduction {

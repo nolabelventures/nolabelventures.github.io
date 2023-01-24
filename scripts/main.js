@@ -1244,7 +1244,7 @@ mm.add(
         autoAlpha: 0
       })
 
-      gsap.utils.toArray('.about-content__content > div').forEach(section => {
+      gsap.utils.toArray('.community .about-content__content > div').forEach(section => {
         gsap.from(section, {
           autoAlpha: 0,
           y: 100,
