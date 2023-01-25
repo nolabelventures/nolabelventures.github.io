@@ -809,6 +809,7 @@ label {
     text-fill-color: transparent;
     display: flex;
     align-items: center;
+    font-weight: bolder;
 }
 
 .blog-posts__read-more svg {
@@ -1470,7 +1471,8 @@ main {
 }
 
 .blog-page,
-.post-page {
+.post-page,
+.error-page {
     background: url(/assets/page-background.jpg) no-repeat top center/contain, var(--colors-white);
 }
 
@@ -1498,12 +1500,20 @@ main {
     }
 }
 
+.blog-posts h1 {
+    font-size: 2.1875rem;
+}
+
 @media (min-width:976px) {
     .blog-posts {
         padding-left: 0;
         padding-right: 0;
         position: relative;
         max-width: 1020px;
+
+        h1 {
+            font-size: 4.375rem;
+        }
     }
 
     .blog-post__content {
@@ -1892,5 +1902,36 @@ footer h3 {
     }
 }
 
-.portfolio-shadow-wrapper {
+.error-page main {
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    min-height: 90vh;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+@media (min-width:976px) {
+    .error-page main {
+        padding-left: 0px;
+        padding-right: 0px;
+        font-size: 1.25rem;
+    }
+}
+
+.error-page h1 {
+    background: linear-gradient(120.31deg, #00F897 -3.5%, #3959FF 143.82%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-fill-color: transparent;
+    font-size: 3.125rem;
+}
+
+@media (min-width:976px) {
+    .error-page h1 {
+        font-size: 4.66666667rem;
+    }
 }

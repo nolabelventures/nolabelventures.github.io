@@ -949,6 +949,7 @@ label {
   -webkit-box-align: center;
       -ms-flex-align: center;
           align-items: center;
+  font-weight: bolder;
 }
 
 .blog-posts__read-more svg {
@@ -1683,7 +1684,8 @@ main {
   }
 }
 .blog-page,
-.post-page {
+.post-page,
+.error-page {
   background: url(/assets/page-background.jpg) no-repeat top center/contain, var(--colors-white);
 }
 
@@ -1707,12 +1709,19 @@ main {
   line-height: 1.2;
 }
 
+.blog-posts h1 {
+  font-size: 2.1875rem;
+}
+
 @media (min-width: 976px) {
   .blog-posts {
     padding-left: 0;
     padding-right: 0;
     position: relative;
     max-width: 1020px;
+  }
+  .blog-posts h1 {
+    font-size: 4.375rem;
   }
   .blog-post__content {
     margin-top: 150px;
@@ -2104,5 +2113,44 @@ footer h3 {
     background-image: -o-linear-gradient(bottom, #111111 0%, rgba(0, 0, 0, 0) 100%);
     background-image: -webkit-gradient(linear, left bottom, left top, from(#111111), to(rgba(0, 0, 0, 0)));
     background-image: linear-gradient(0deg, #111111 0%, rgba(0, 0, 0, 0) 100%);
+  }
+}
+.error-page main {
+  overflow: hidden;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  text-align: center;
+  min-height: 90vh;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+@media (min-width: 976px) {
+  .error-page main {
+    padding-left: 0px;
+    padding-right: 0px;
+    font-size: 1.25rem;
+  }
+}
+.error-page h1 {
+  background: -o-linear-gradient(329.69deg, #00F897 -3.5%, #3959FF 143.82%);
+  background: linear-gradient(120.31deg, #00F897 -3.5%, #3959FF 143.82%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-size: 3.125rem;
+}
+
+@media (min-width: 976px) {
+  .error-page h1 {
+    font-size: 4.66666667rem;
   }
 }
