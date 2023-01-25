@@ -9,23 +9,12 @@
  * Font Style:
  * Tanker Regular
  * */
-$font-title: 'Tanker-Regular', sans-serif;
-$font-title-mobile: 'drukmedium', sans-serif;
-
-@font-face {
-    font-family: 'Tanker-Regular';
-    src: url('/css/fonts/Tanker-Regular.woff2') format('woff2'),
-       url('/css/fonts/Tanker-Regular.woff') format('woff'),
-       url('/css/fonts/Tanker-Regular.ttf') format('truetype');
-    font-weight: 400;
-    font-display: swap;
-    font-style: normal;
-}
+$font-title: 'drukmedium', sans-serif;
 
 @font-face {
     font-family: 'drukmedium';
-    src: url('/css/fonts/druk-medium.woff2') format('woff2'),
-         url('/css/fonts/druk-medium.woff') format('woff');
+    src: url('/css/fonts/Druk-Medium-Web.woff2') format('woff2'),
+         url('/css/fonts/Druk-Medium-Web.woff') format('woff');
     font-weight: normal;
     font-style: normal;
 }
@@ -40,15 +29,10 @@ h5,
 .h3,
 .h4,
 .h5 {
-    font-family: $font-title-mobile, sans-serif;
+    font-family: $font-title, sans-serif;
     margin: 0;
     font-size: 2.1875rem;
     color: #000;
     text-transform: uppercase;
     letter-spacing: 2px;
-
-    @media (min-width: 976px) {
-        font-family: $font-title;
-        letter-spacing: 0;
-    }
 }

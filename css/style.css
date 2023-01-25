@@ -2,6 +2,7 @@
 :root {
   --colors-black: #111111;
   --colors-white: #FFFFFF;
+  --colors-body: #3E3E3E;
   --text-title: 7.5rem;
   --text-lead: 1.5625rem;
 }
@@ -18,15 +19,8 @@
  * Tanker Regular
  * */
 @font-face {
-  font-family: "Tanker-Regular";
-  src: url("/css/fonts/Tanker-Regular.woff2") format("woff2"), url("/css/fonts/Tanker-Regular.woff") format("woff"), url("/css/fonts/Tanker-Regular.ttf") format("truetype");
-  font-weight: 400;
-  font-display: swap;
-  font-style: normal;
-}
-@font-face {
   font-family: "drukmedium";
-  src: url("/css/fonts/druk-medium.woff2") format("woff2"), url("/css/fonts/druk-medium.woff") format("woff");
+  src: url("/css/fonts/Druk-Medium-Web.woff2") format("woff2"), url("/css/fonts/Druk-Medium-Web.woff") format("woff");
   font-weight: normal;
   font-style: normal;
 }
@@ -46,21 +40,6 @@ h5,
   color: #000;
   text-transform: uppercase;
   letter-spacing: 2px;
-}
-@media (min-width: 976px) {
-  h1,
-h2,
-h3,
-h4,
-h5,
-.h1,
-.h2,
-.h3,
-.h4,
-.h5 {
-    font-family: "Tanker-Regular", sans-serif;
-    letter-spacing: 0;
-  }
 }
 
 .page-transition {
@@ -102,15 +81,17 @@ h5,
   height: 100%;
 }
 
+html {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: none;
+}
+
 body {
   font-family: "Poppins", sans-serif;
   font-size: 16px;
   background: var(--colors-white);
-  color: var(--colors-black);
   line-height: 1.5;
   color: #3E3E3E;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: none;
 }
 
 .facts__section {
@@ -228,6 +209,7 @@ body {
     margin-right: auto;
     padding: 0;
     text-align: left;
+    width: 100%;
   }
 }
 .about-image {
@@ -238,9 +220,10 @@ body {
 }
 
 .portfolio__link {
-  display: block;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
   text-align: center;
-  padding: 1em;
   position: relative;
   border-radius: 5px;
   color: var(--colors-white);
@@ -248,6 +231,12 @@ body {
   -webkit-transition: background-color 0.3s ease-in-out;
   -o-transition: background-color 0.3s ease-in-out;
   transition: background-color 0.3s ease-in-out;
+  -ms-flex-line-pack: center;
+      align-content: center;
+  -ms-flex-wrap: wrap;
+      flex-wrap: wrap;
+  height: 100%;
+  padding: 1em;
 }
 .portfolio__link h3 {
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
@@ -284,45 +273,6 @@ body {
   opacity: 1;
 }
 
-@media (min-width: 976px) {
-  .portfolio__link {
-    padding: 2em;
-  }
-  .portfolio__link h3 {
-    -webkit-transition: -webkit-transform 0.3s ease-in-out;
-    transition: -webkit-transform 0.3s ease-in-out;
-    -o-transition: transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out;
-    transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
-  }
-  .portfolio__link:after {
-    content: "";
-    z-index: -1;
-    background-image: -o-linear-gradient(212deg, rgb(0, 226, 138) 0%, rgb(134, 134, 252) 100%);
-    background-image: linear-gradient(238deg, rgb(0, 226, 138) 0%, rgb(134, 134, 252) 100%);
-    position: absolute;
-    top: -2px;
-    left: -2px;
-    bottom: -2px;
-    right: -2px;
-    border-radius: 5px;
-    opacity: 0;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    -o-transition: opacity 0.3s ease-in-out;
-    transition: opacity 0.3s ease-in-out;
-  }
-  .portfolio__link:hover {
-    background-color: var(--colors-black);
-  }
-  .portfolio__link:hover h3 {
-    -webkit-transform: scale(1.2) rotate(10deg);
-        -ms-transform: scale(1.2) rotate(10deg);
-            transform: scale(1.2) rotate(10deg);
-  }
-  .portfolio__link:hover:after {
-    opacity: 1;
-  }
-}
 .nav__list {
   list-style-type: none;
   left: -30px;
@@ -374,7 +324,7 @@ body {
   display: none;
 }
 
-@media (min-width: 976px) {
+@media (min-width: 1160px) {
   .nav {
     margin-left: 50px;
     position: fixed;
@@ -602,7 +552,7 @@ footer:before {
 }
 
 .immigrant-section .facts__section-subtitle {
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
   font-size: 4.375rem;
   margin-bottom: 0;
   margin-top: 0;
@@ -653,7 +603,7 @@ footer:before {
   .immigrant-section__lessthan {
     color: #767373;
     font-size: 6.25rem;
-    font-family: "Tanker-Regular", sans-serif;
+    font-family: "drukmedium", sans-serif;
     -webkit-box-pack: center;
         -ms-flex-pack: center;
             justify-content: center;
@@ -703,7 +653,11 @@ footer {
   padding: 1em;
   display: inline-block;
   text-decoration: none;
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
+  font-size: 1.2rem;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 .header {
@@ -801,6 +755,7 @@ footer {
 }
 
 .immigrant-founders h2 > div:first-child {
+  line-height: 1;
   font-size: 4.375rem;
   background: -o-linear-gradient(353.85deg, #00E28A 0%, #219ED3 69%);
   background: linear-gradient(96.15deg, #00E28A 0%, #219ED3 69%);
@@ -837,13 +792,15 @@ footer {
   background: -o-linear-gradient(349.24deg, #00E28A -17.95%, #6B6BFF 126.91%);
   background: linear-gradient(100.76deg, #00E28A -17.95%, #6B6BFF 126.91%);
   padding: 0.5em 2em;
+  font-size: 1.2rem;
+  letter-spacing: 1px;
   color: var(--colors-black);
   border-radius: 5px;
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
   text-decoration: none;
-  font-size: 1.25rem;
   display: block;
   text-align: center;
+  text-transform: uppercase;
 }
 
 @media (min-width: 976px) {
@@ -928,13 +885,15 @@ footer {
 button[type=submit] {
   background: -o-linear-gradient(349.24deg, #00E28A -17.95%, #6B6BFF 126.91%);
   background: linear-gradient(100.76deg, #00E28A -17.95%, #6B6BFF 126.91%);
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
   padding: 0.5em 1.5em;
   border: none;
   border-radius: 5px;
   width: 100%;
   color: #000;
-  font-size: 1.25rem;
+  /* font-size: 1.2rem */
+  letter-spacing: 1px;
+  text-transform: uppercase;
 }
 
 input {
@@ -1030,6 +989,7 @@ label {
         -ms-flex-align: center;
             align-items: center;
     margin: 0;
+    max-height: 100vh;
   }
 }
 .blog-posts__list article {
@@ -1096,7 +1056,7 @@ label {
   -webkit-text-fill-color: transparent;
   background-clip: text;
   text-fill-color: transparent;
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
   margin-top: 50px;
   margin-bottom: 0;
 }
@@ -1202,7 +1162,7 @@ label {
 
 .header__mobile-menu a {
   color: var(--colors-white);
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
   font-size: 2.1875rem;
   text-decoration: none;
   padding-top: 0.5em;
@@ -1257,13 +1217,14 @@ label {
 @media (min-width: 976px) {
   .portfolio-items {
     grid-template-columns: repeat(5, 1fr);
-    gap: 50px;
+    gap: 25px;
     margin-bottom: 40px;
   }
 }
 @media (min-width: 976px) {
   .community {
     text-align: left;
+    max-width: 100%;
   }
 }
 .community .about-content__content > div:not(:last-child) {
@@ -1274,6 +1235,9 @@ label {
   .community .about-content__content > div {
     margin-bottom: 0 !important;
     max-width: 33.33%;
+    -webkit-box-flex: 33.33%;
+        -ms-flex: 33.33% 1 1;
+            flex: 33.33% 1 1;
   }
 }
 #intro {
@@ -1425,11 +1389,6 @@ label {
     top: 15px;
   }
 }
-.community-pinned-wrapper .content-wrapper {
-  padding-top: 0;
-  padding-bottom: 0;
-}
-
 @media (min-width: 976px) {
   .line-immigrant-unicorn-founders {
     display: none;
@@ -1508,6 +1467,16 @@ label {
   color: var(--colors-white);
 }
 
+.community-pinned-wrapper .content-wrapper {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+.community-pinned-wrapper .about-content {
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .community-pinned-wrapper {
   background-color: var(--colors-white);
   color: var(--colors-black);
@@ -1517,6 +1486,10 @@ label {
 @media (min-width: 976px) {
   .community-pinned-wrapper {
     padding-top: 0;
+  }
+  .community-pinned-wrapper .about-content {
+    padding-left: 0;
+    padding-right: 0;
   }
 }
 main {
@@ -1753,6 +1726,7 @@ main {
 }
 .facts__section-services {
   padding-top: 70px;
+  color: var(--colors-body);
 }
 
 @media (min-width: 976px) {
@@ -1935,7 +1909,7 @@ article p {
   transition: background-color 0.3s ease-in-out;
   background: var(--colors-white);
   color: var(--colors-black);
-  font-family: "Tanker-Regular", sans-serif;
+  font-family: "drukmedium", sans-serif;
   width: 209px;
   margin: 1em auto;
   font-size: 1.25rem;
@@ -1959,11 +1933,6 @@ article p {
     padding-right: 0;
   }
 }
-.community-pinned-wrapper .about-content {
-  padding-left: 20px;
-  padding-right: 20px;
-}
-
 .faq .faq__list {
   text-align: left;
 }
@@ -2092,4 +2061,51 @@ footer h3 {
 
 .footer__links h2 {
   margin-top: 1em;
+}
+
+.portfolio__link img {
+  max-height: 100px;
+  max-width: 100px;
+  vertical-align: middle;
+}
+
+@media (min-width: 976px) {
+  .portfolio__content {
+    max-height: 60vh;
+    overflow: scroll;
+    -ms-overflow-style: none;
+    position: relative;
+    width: 100%;
+    /* IE and Edge */
+    scrollbar-width: none;
+    padding-top: 50px;
+  }
+  .portfolio__content::-webkit-scrollbar {
+    display: none;
+  }
+  .portfolio-shadow-wrapper {
+    position: relative;
+    margin-top: -50px;
+    width: 100%;
+  }
+  .portfolio-shadow-wrapper:before, .portfolio-shadow-wrapper:after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 50px;
+    background-image: -o-linear-gradient(top, #111111 0%, rgba(0, 0, 0, 0) 100%);
+    background-image: -webkit-gradient(linear, left top, left bottom, from(#111111), to(rgba(0, 0, 0, 0)));
+    background-image: linear-gradient(180deg, #111111 0%, rgba(0, 0, 0, 0) 100%);
+    z-index: 1;
+    pointer-events: none;
+  }
+  .portfolio-shadow-wrapper:after {
+    top: auto;
+    bottom: 0;
+    background-image: -o-linear-gradient(bottom, #111111 0%, rgba(0, 0, 0, 0) 100%);
+    background-image: -webkit-gradient(linear, left bottom, left top, from(#111111), to(rgba(0, 0, 0, 0)));
+    background-image: linear-gradient(0deg, #111111 0%, rgba(0, 0, 0, 0) 100%);
+  }
 }

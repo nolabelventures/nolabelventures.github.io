@@ -196,7 +196,7 @@ mm.add(
 
       introAnimation.set('.nav', {
         autoAlpha: 1
-      })
+      }, "<")
 
       introAnimation.from('.nav li a', {
         x: -100,
@@ -263,7 +263,7 @@ mm.add(
 
       introAnimation.set('.nav', {
         autoAlpha: 1
-      })
+      }, "<")
 
       introAnimation.from('.nav li a', {
         x: -100,
@@ -311,10 +311,25 @@ mm.add(
         }
       })
 
+      let hasInteractedWithPortfolio = false
+      let portfolioDirection = 0
+
       function gotoPanel(index, isScrollingDown, isQuickNav) {
+        // portfolio functionality
+        if (currentIndex === 5 && (portfolioDirection === 1 && !isScrollingDown || portfolioDirection === -1 && isScrollingDown)) {
+          intentObserver.disable();
+          return
+        }
         
         if (index <= -1) {
           return
+        }
+        
+        // enable scrolling on Portfolio section
+        if (index === 5 && isScrollingDown) {
+          intentObserver.disable();
+        } else {
+          intentObserver.enable();
         }
 
         document.querySelector('body').style.overflow = 'hidden'
@@ -341,7 +356,7 @@ mm.add(
           shouldSlide = 'enter'
         }
 
-        if (pageAnimations[index] && shouldSlide !== 'enter') {
+        if (pageAnimations[index]) {
           pageAnimations[index].seek(0)
           pageAnimations[index].pause()
         }
@@ -391,10 +406,7 @@ mm.add(
           duration: 0.75,
           ease: 'power1.in',
           onComplete: () => {
-            if (pageAnimations[index] && shouldSlide !== 'enter') {
-              pageAnimations[index].eventCallback('onComplete', () => animating = false)
-              pageAnimations[index].play()
-            } else {
+            if (!pageAnimations[index]) {
               animating = false;
             }
           },
@@ -405,13 +417,22 @@ mm.add(
             gsap.to(['body', 'header'], {
               color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#3E3E3E' : '#ffffff'
             })
+
+            if (pageAnimations[index]) {
+              setTimeout(() => {
+                pageAnimations[index].eventCallback('onComplete', () => {
+                  animating = false
+                })
+                pageAnimations[index].play()
+              }, 250)
+            }
           }
         })
 
         // make sure all previous slides are visible when using quicknav
         // quicknav pretty much takes over animating just the before and after slides
         if (isQuickNav) {
-          if (shouldSlide) {
+          if (shouldSlide && !isScrollingDown) {
             transition.set(Sections[index].querySelector('.facts__section-content'), {
               xPercent: 0
             }, "<")
@@ -430,9 +451,12 @@ mm.add(
                 transition.to(target, {
                   autoAlpha: 1
                 }, "<")
-                transition.set(Sections[currentIndex], {
-                  autoAlpha: 0
-                })
+                if (Sections[currentIndex]) {
+                  // This may not exist if there is a # in url
+                  transition.set(Sections[currentIndex], {
+                    autoAlpha: 0
+                  })
+                }
               }
             } else {
               transition.set(Sections[i], {
@@ -449,19 +473,26 @@ mm.add(
               transition.to(Sections[currentIndex], {
                 autoAlpha: 0,
               }, "<");
+
               if (isSlider) {
-                transition.to(Sections[index].querySelector('.facts__section-content'), {
-                  xPercent: 0
-                }, "<")
-                transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
-                  xPercent: 20
-                }, "<")
+                if (Sections[currentIndex].querySelector('.facts__section-content')) {
+                  transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
+                    xPercent: 20,
+                    autoAlpha: 0
+                  }, "<")
+                }
+
+                transition.fromTo(Sections[index].querySelector('.facts__section-content'), {
+                  xPercent: -20,
+                  autoAlpha: 0
+                },  {
+                  xPercent: 0,
+                  autoAlpha: 1
+                }, "<50%")
               }
+
               transition.to(Sections[index], {
-                autoAlpha: 1
-              }, "<")
-              transition.to(Sections[index], {
-                xPercent: 0
+                autoAlpha: 1,
               }, "<")
             } else {
               transition.to(Sections[currentIndex], {
@@ -470,18 +501,26 @@ mm.add(
               
               if (isSlider) {
                 transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
-                  xPercent: -20
+                  xPercent: -20,
+                  autoAlpha: 0
                 }, "<")
-                transition.to(Sections[index].querySelector('.facts__section-content'), {
-                  xPercent: 0
-                }, "<")
+                if (Sections[index].querySelector('.facts__section-content')) {
+                  transition.fromTo(Sections[index].querySelector('.facts__section-content'), {
+                    xPercent: 20,
+                    autoAlpha: 0
+                  }, {
+                    xPercent: 0,
+                    autoAlpha: 1
+                  }, "<50%")
+                }
               }
   
-              transition.to(target, {
+              transition.to(Sections[index], {
                 autoAlpha: 1,
               }, "<");
             }
           } else {
+            // Normal scroll
             if (!isScrollingDown) {
               Sections.forEach((section, i) => {
                 if (i < currentIndex) {
@@ -493,12 +532,12 @@ mm.add(
             }
             transition.to(target, {
               autoAlpha: isScrollingDown ? 1 : 0,
-            }, "<");
+            }, isScrollingDown ? "<50%" : "");
           }
         }
 
+        // horizontal scroll line
         if (isSlider) {
-          // horizontal scroll line
           transition.to('.facts-section-line', {
             autoAlpha: 1
           }, "<")
@@ -539,11 +578,22 @@ mm.add(
         }
       }
 
+      window.addEventListener('keyup', (e) => {
+        const goDown = ['ArrowRight', 'ArrowDown']
+        const goUp = ['ArrowLeft', 'ArrowUp']
+
+        if (goDown.indexOf(e.key) > -1) {
+          gotoPanel(currentIndex + 1, true)
+        } else if (goUp.indexOf(e.key) > -1) {
+          gotoPanel(currentIndex - 1, false)
+        }
+      })
+
       if (jumpToSection) {
         // if # in the url, jump to that index (if exists)
         gotoPanel(Number(jumpToSection.getAttribute('data-index')) - 1, true, true)
       } else {
-        gotoPanel(0, true, true)
+        gotoPanel(0, true)
       }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
         const targetIndex = Number(document.getElementById(link.href.split('#')[1])?.getAttribute('data-index')) - 1;
@@ -554,9 +604,8 @@ mm.add(
           header.classList.remove("show-mobile-menu");
       
           if (targetIndex) {
+            window.location = '#' + link.href.split('#')[1]
             gotoPanel(targetIndex, targetIndex > currentIndex, true )
-          } else {
-            // handle navigation to correct page
           }
         });
       });
@@ -577,19 +626,11 @@ mm.add(
           overflow: 'hidden'
         })
 
-        firstSectionTimeline.set(servicesSection("h2"), {
-          y: '100%'
-        })
-
         firstSectionTimeline.from(firstSectionHeading.words, {
           y: '100%',
           autoAlpha: 0,
           stagger: 0.05,
-        });
-
-        firstSectionTimeline.to(servicesSection("h2"), {
-          y: 0
-        })
+        }, "<");
 
         firstSectionTimeline.from(servicesSection(".facts__services > div"), {
           y: 10,
@@ -609,24 +650,6 @@ mm.add(
             duration: 1
           }
         })
-
-        immigrantSectionTimeline.from(immigrantsSection('.facts__section-content'), {
-          x: 50
-        })
-
-        const immigrantsSectionHeading = new SplitText(
-          immigrantsSection("h2"),
-          { type: "words" }
-        );
-        immigrantSectionTimeline.from(
-          immigrantsSectionHeading.words,
-          {
-            autoAlpha: 0,
-            stagger: 0.05,
-          },
-          "<"
-        );
-
         
         immigrantSectionTimeline.from(immigrantsSection('.facts__section-subtitle'), {
           autoAlpha: 0,
@@ -697,11 +720,6 @@ mm.add(
           defaults: {
             duration: 1
           }
-        })
-
-        immigrantFoundersTimeline.from(immigrantFoundersSection('.facts__section-content'), {
-          autoAlpha: 0,
-          xPercent: 20
         })
 
         var immigrantFoundersHeading = new SplitText(
@@ -781,11 +799,6 @@ mm.add(
           }
         })
 
-        unicornFoundersTimeline.from(unicornFoundersSection('.facts__section-content'), {
-          autoAlpha: 0,
-          xPercent: 20
-        })
-
         const unicornFoundersSectionHeading = new SplitText(
           unicornFoundersSection("h2"),
           { type: "words" }
@@ -820,9 +833,40 @@ mm.add(
 
         pageAnimations.push(unicornFoundersTimeline)
 
+        
         // /* PORTFOLIO SECTION */
+        ScrollTrigger.create({
+          scroller: '.portfolio__content',
+          scrub: true,
+          onUpdate: (self) => {
+            portfolioDirection = self.direction
+
+            if (self.progress > 0.95 && hasInteractedWithPortfolio) {
+              hasInteractedWithPortfolio = false
+              setTimeout(() => {
+                intentObserver.enable()
+              }, 1000)
+            } else if (self.progress < 0.05 && hasInteractedWithPortfolio) {
+              hasInteractedWithPortfolio = false
+              setTimeout(() => {
+                intentObserver.enable()
+              }, 1000)
+            }
+          },
+          onToggle: (self) => {
+            if (self.progress > 0 && !hasInteractedWithPortfolio) {
+              hasInteractedWithPortfolio = true
+            }
+          }
+        })
+
         const portfolio = gsap.timeline({
+          paused: true,
           onStart: () => {
+            document.querySelector('.portfolio__content').scroll(0,0)
+
+            hasInteractedWithPortfolio = false
+
             gsap.to(".line-portfoli-about path", {
               drawSVG: '100%',
               duration: 2,
@@ -851,7 +895,6 @@ mm.add(
 
 
         // /* ABOUT SECTION */
-        const fonuderSection = gsap.utils.selector(".founder");
         const founderTimeline = gsap.timeline({})
         
         founderTimeline.from(
@@ -878,6 +921,7 @@ mm.add(
         // /* ABOUT - COMMUNITY */
         const communityEl = gsap.utils.selector(".community");
         const communityTimeline = gsap.timeline({
+          paused: true,
           defaults: {
             duration: 1
           }
@@ -904,7 +948,7 @@ mm.add(
 
         pageAnimations.push(communityTimeline)
 
-        const faqTimeline = gsap.timeline({})
+        const faqTimeline = gsap.timeline({paused: true})
         const faqSection = gsap.utils.selector('.faq')
 
         faqTimeline.from(faqSection('.faq-line path'), {
@@ -918,9 +962,9 @@ mm.add(
 
         faqTimeline.from(faqSection('.faq__faq-item'), {
           autoAlpha: 0,
-          stagger: 0.05,
+          stagger: 0.25,
           scaleY: 0,
-        })
+        }, "<")
 
         pageAnimations.push(faqTimeline)
 
@@ -956,13 +1000,13 @@ mm.add(
           duration: 2,
           filter: 'blur(10px)',
           stagger: 0.05
-        }, ">")
+        }, "<50%")
 
         pitchTimeline.from(pitchSection('.pitch__cta'), {
           autoAlpha: 0,
           duration: 2,
           filter: 'blur(10px)'
-        }, "+=.5")
+        }, "<75%")
 
         pageAnimations.push(pitchTimeline)
       } else if (isMobile) {
