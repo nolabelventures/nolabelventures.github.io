@@ -435,7 +435,7 @@ mm.add(
           if (shouldSlide && !isScrollingDown) {
             transition.set(Sections[index].querySelector('.facts__section-content'), {
               xPercent: 0
-            }, "<")
+            })
           }
 
           for (let i = 0; i < Sections.length - 1; i++) {
@@ -448,9 +448,9 @@ mm.add(
                   autoAlpha: 0
                 })
               } else {
-                transition.to(target, {
+                transition.to(Sections[index], {
                   autoAlpha: 1
-                }, "<")
+                })
                 if (Sections[currentIndex]) {
                   // This may not exist if there is a # in url
                   transition.set(Sections[currentIndex], {

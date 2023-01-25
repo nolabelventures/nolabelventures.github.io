@@ -1001,7 +1001,6 @@ label {
     list-style-type: none;
     margin: 0;
     z-index: 51;
-    transition: transform .3s ease-in-out;
 }
 
 .header__mobile-menu a {
@@ -1009,8 +1008,8 @@ label {
     font-family: $font-title;
     font-size: 2.1875rem;
     text-decoration: none;
-    padding-top: 0.5em;
-    padding-bottom: 0.5em;
+    display: block;
+    text-transform: uppercase;
 }
 
 .header__mobile-menu li {
@@ -1018,7 +1017,7 @@ label {
 }
 
 .show-mobile-menu .header__mobile-menu {
-    transform: translateX(-100%);
+    left: 0;
 }
 
 .header__menu-button-close {

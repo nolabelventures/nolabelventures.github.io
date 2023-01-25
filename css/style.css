@@ -1153,11 +1153,6 @@ label {
   list-style-type: none;
   margin: 0;
   z-index: 51;
-  -webkit-transition: -webkit-transform 0.3s ease-in-out;
-  transition: -webkit-transform 0.3s ease-in-out;
-  -o-transition: transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out;
-  transition: transform 0.3s ease-in-out, -webkit-transform 0.3s ease-in-out;
 }
 
 .header__mobile-menu a {
@@ -1165,8 +1160,8 @@ label {
   font-family: "drukmedium", sans-serif;
   font-size: 2.1875rem;
   text-decoration: none;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
+  display: block;
+  text-transform: uppercase;
 }
 
 .header__mobile-menu li {
@@ -1174,9 +1169,7 @@ label {
 }
 
 .show-mobile-menu .header__mobile-menu {
-  -webkit-transform: translateX(-100%);
-      -ms-transform: translateX(-100%);
-          transform: translateX(-100%);
+  left: 0;
 }
 
 .header__menu-button-close {
