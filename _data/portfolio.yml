@@ -1,73 +1,46 @@
 portfolio:
-  - title: Client Title
-    url: https://google.com
+  - title: Front
+    url: https://front.com/
     image: /assets/uploads/Front.png
-  - title: Client Title
-    url: https://google.com
+  - title: Goodvest
+    url: https://www.goodvest.fr/
     image: /assets/uploads/Goodvest.png
-  - title: Client Title
-    url: https://google.com
+  - title: Finematter
+    url: https://finematter.com/
     image: /assets/uploads/Finematter.png
-  - title: Client Title
-    url: https://google.com
+  - title: Mamopay
+    url: https://www.mamopay.com/
     image: /assets/uploads/Mamopay.png
-  - title: Client Title
-    url: https://google.com
+  - title: Novai
+    url: https://www.novai.co.uk/
     image: /assets/uploads/Novai.png
-  - title: Client Title
-    url: https://google.com
+  - title: Payflow
+    url: https://www.payflowapp.pt/
     image: /assets/uploads/Payflow.png
-  - title: Client Title
-    url: https://google.com
+  - title: Rize ag
+    url: https://www.rizeag.com/en/home
     image: /assets/uploads/RizeAg.png
-  - title: Client Title
-    url: https://google.com
+  - title: RLTY
+    url: https://www.rlty.live/
     image: /assets/uploads/RLTY.png
-  - title: Client Title
-    url: https://google.com
+  - title: Tracking Plan
+    url: https://www.trackingplan.com/
     image: /assets/uploads/Trackingplan.png
-  - title: Client Title
-    url: https://google.com
+  - title: Upchoose
+    url: https://www.upchoose.com/
     image: /assets/uploads/Upchoose.png
-  - title: Client Title
-    url: https://google.com
+  - title: YTVL
+    url: https://vtvl.io/
     image: /assets/uploads/vtvl 1.png
-  - title: Client Title
-    url: https://google.com
+  - title: Yhangry
+    url: https://yhangry.com/
     image: /assets/uploads/yhangry 1.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Front.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Goodvest.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Finematter.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Mamopay.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Novai.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Payflow.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/RizeAg.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/RLTY.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Trackingplan.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/Upchoose.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/vtvl 1.png
-  - title: Client Title
-    url: https://google.com
-    image: /assets/uploads/yhangry 1.png
+  - title: Oja
+    url: https://oja.app/
+    image: /assets/uploads/oja.png
+  - title: Farmlend
+    url: https://farmlend.co.uk/
+    image: /assets/uploads/Farmlend.png
+  - title: Banked
+    url: https://banked.com/
+    image: /assets/uploads/Banked.png

@@ -235,7 +235,6 @@ body {
       align-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  height: 100%;
   padding: 1em;
 }
 .portfolio__link h3 {

@@ -314,6 +314,9 @@ mm.add(
       let hasInteractedWithPortfolio = false
       let portfolioDirection = 0
 
+      const navLinks = gsap.utils.toArray(`.nav__list a[href^="#"]`)
+      const porfolioLinks = gsap.utils.toArray('.portfolio__link')
+
       function gotoPanel(index, isScrollingDown, isQuickNav) {
         // portfolio functionality
         if (currentIndex === 5 && (portfolioDirection === 1 && !isScrollingDown || portfolioDirection === -1 && isScrollingDown)) {
@@ -325,11 +328,13 @@ mm.add(
           return
         }
         
-        // enable scrolling on Portfolio section
-        if (index === 5 && isScrollingDown) {
-          intentObserver.disable();
-        } else {
-          intentObserver.enable();
+        if (porfolioLinks.length > 15) {
+          // enable scrolling on Portfolio section
+          if (index === 5 && isScrollingDown) {
+            intentObserver.disable();
+          } else {
+            intentObserver.enable();
+          }
         }
 
         document.querySelector('body').style.overflow = 'hidden'
@@ -362,7 +367,7 @@ mm.add(
         }
 
         // Highlight correct nav
-        gsap.utils.toArray(`.nav__list a[href^="#"]`).forEach((link) => {
+        navLinks.forEach((link) => {
           const indexes = link.getAttribute('data-indexes').split(',')
           link.classList.remove('active')
           link.classList.remove('previous')
@@ -619,12 +624,8 @@ mm.add(
         })
 
         const firstSectionHeading = new SplitText(servicesSection("h2"), {
-          type: "words,lines",
+          type: "words",
         });
-
-        firstSectionTimeline.set(firstSectionHeading.lines, {
-          overflow: 'hidden'
-        })
 
         firstSectionTimeline.from(firstSectionHeading.words, {
           y: '100%',
@@ -656,10 +657,25 @@ mm.add(
             duration: 1
           }
         })
+
+        var immigrantsSectionHeading = new SplitText(
+          immigrantsSection("h2"),
+          { type: "words" }
+        );
+
+        immigrantSectionTimeline.from(
+          immigrantsSectionHeading.words,
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.05,
+          },
+          "<"
+        );
         
         immigrantSectionTimeline.from(immigrantsSection('.facts__section-subtitle'), {
           autoAlpha: 0,
-        })
+        }, "<10%")
 
         immigrantSectionTimeline.from(
           immigrantsSection(".immigrant-section__digit"),
@@ -684,6 +700,7 @@ mm.add(
           }).words,
           {
             autoAlpha: 0,
+            y: 10,
             stagger: 0.05,
           },
           "<15%"
@@ -737,6 +754,7 @@ mm.add(
           immigrantFoundersHeading.words,
           {
             autoAlpha: 0,
+            y: 10,
             stagger: 0.05,
           },
           "<"
@@ -813,6 +831,7 @@ mm.add(
           unicornFoundersSectionHeading.words,
           {
             autoAlpha: 0,
+            y: 10,
             stagger: 0.05,
           },
           "<"
