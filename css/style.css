@@ -725,7 +725,7 @@ footer {
 @media (min-width: 976px) {
   .facts-section__astricks {
     position: absolute;
-    bottom: 150px;
+    bottom: 110px;
     right: 0;
     left: 0;
     text-align: center;
@@ -919,7 +919,9 @@ label {
 
 @media (min-width: 976px) {
   .blog-posts__list,
-.related {
+.related-posts {
+    max-width: 1020px;
+    margin-inline: auto;
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     row-gap: 60px;
@@ -1700,7 +1702,10 @@ main {
 .blog-post h2,
 .blog-post h3,
 .blog-post h4 {
+  font-family: "Poppins", sans-serif;
   margin: 1em 0 0.5em;
+  letter-spacing: 0;
+  line-height: 1.2;
 }
 
 @media (min-width: 976px) {

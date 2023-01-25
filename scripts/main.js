@@ -630,7 +630,13 @@ mm.add(
           y: '100%',
           autoAlpha: 0,
           stagger: 0.05,
-        }, "<");
+        });
+
+        firstSectionTimeline.fromTo(servicesSection("h2"), {
+          y: 100
+        }, {
+          y: 0
+        }, "+=.5")
 
         firstSectionTimeline.from(servicesSection(".facts__services > div"), {
           y: 10,
