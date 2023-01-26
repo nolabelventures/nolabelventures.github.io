@@ -235,7 +235,7 @@ body {
       align-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 0.5em;
+  padding: 1em 0.5em;
 }
 .portfolio__link h3 {
   -webkit-transition: -webkit-transform 0.3s ease-in-out;

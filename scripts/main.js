@@ -31,7 +31,6 @@ dropdowns.forEach((dropdown) => {
         height: contentHeight + 'px'
       })
     }
-
   });
 });
 
