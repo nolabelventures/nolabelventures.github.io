@@ -80,3 +80,28 @@ document
   });
 
 document.querySelector('.copy-year').innerText = new Date().getFullYear()
+
+const cookieNotice = document.querySelector('.cookie-notice')
+
+if (!localStorage['cookie_dismissed']) {
+  gsap.to(cookieNotice, {
+    autoAlpha: 1
+  })
+}
+
+cookieNotice.querySelector('.cookie-notice__accept').addEventListener('click', () => {
+  localStorage.setItem('cookie_dismissed', true)
+
+  const gtagScript = document.createElement('script')
+  gtagScript.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40')
+  gtagScript.setAttribute('async', 'async')
+  document.head.prepend(gtagScript);
+
+  window.dataLayer = window.dataLayer || [];
+  dataLayer.push('js', new Date());
+  dataLayer.push('config', 'G-ZK3Q35ZF40');
+
+  gsap.to(cookieNotice, {
+    autoAlpha: 0
+  })
+})

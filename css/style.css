@@ -591,7 +591,7 @@ footer:before {
     left: 0;
     right: 0;
     display: block;
-    z-index: 9999;
+    z-index: 100;
   }
 }
 .immigrant-section__lessthan {
@@ -2167,5 +2167,45 @@ footer h3 {
 @media (min-width: 976px) {
   .portfolio__link {
     padding: 1em;
+  }
+}
+.cookie-notice {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: #fff;
+  z-index: 101;
+  padding: 1em;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px;
+}
+
+.cookie-notice__accept {
+  width: 100%;
+  padding: 0.5em;
+  text-transform: uppercase;
+  font-family: "drukmedium", sans-serif;
+  font-size: 1.25rem;
+  background: -o-linear-gradient(right, #00E28A, #6B6BFF);
+  background: -webkit-gradient(linear, right top, left top, from(#00E28A), to(#6B6BFF));
+  background: linear-gradient(right, #00E28A, #6B6BFF);
+  border-radius: 5px;
+  border: none;
+  letter-spacing: 1px;
+}
+
+.cookie-notice p {
+  margin-top: 0;
+  color: var(--colors-body);
+}
+
+@media (min-width: 976px) {
+  .cookie-notice {
+    max-width: 439px;
+    right: 0;
+    bottom: 20px;
+    left: 20px;
+    border-radius: 5px;
   }
 }
