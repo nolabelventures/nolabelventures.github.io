@@ -235,7 +235,7 @@ body {
       align-content: center;
   -ms-flex-wrap: wrap;
       flex-wrap: wrap;
-  padding: 1em;
+  padding: 0.5em;
 }
 .portfolio__link h3 {
   -webkit-transition: -webkit-transform 0.3s ease-in-out;
@@ -1806,7 +1806,6 @@ main {
 }
 .pitch h2 {
   color: var(--colors-white);
-  font-size: 1.75rem;
   margin-bottom: 1em;
 }
 
@@ -2163,4 +2162,10 @@ footer h3 {
 .portfolio .content-wrapper {
   padding-top: 70px;
   padding-bottom: 70px;
+}
+
+@media (min-width: 976px) {
+  .portfolio__link {
+    padding: 1em;
+  }
 }

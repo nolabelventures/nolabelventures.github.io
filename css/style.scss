@@ -167,7 +167,7 @@ body {
     transition: background-color .3s ease-in-out;
     align-content: center;
     flex-wrap: wrap;
-    padding: 1em;
+    padding: .5em;
 
     h3 {
         transition: transform .3s ease-in-out;
@@ -1586,7 +1586,6 @@ main {
 
 .pitch h2 {
     color: var(--colors-white);
-    font-size: 1.75rem;
     margin-bottom: 1em;
 }
 
@@ -1946,4 +1945,10 @@ footer h3 {
 .portfolio .content-wrapper {
     padding-top: 70px;
     padding-bottom: 70px;
+}
+
+@media (min-width:976px) {
+    .portfolio__link {
+        padding: 1em;
+    }
 }

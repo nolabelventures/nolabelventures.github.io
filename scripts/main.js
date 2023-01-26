@@ -18,7 +18,6 @@ dropdowns.forEach((dropdown) => {
       dd.classList.remove("dropdown-active");
     })
 
-
     if (content.style.height !== '0px') {
       button.classList.remove("dropdown-active");
       
