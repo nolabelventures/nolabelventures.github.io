@@ -81,13 +81,17 @@ document
 
 document.querySelector('.copy-year').innerText = new Date().getFullYear()
 
+
 const cookieNotice = document.querySelector('.cookie-notice')
 
-if (!localStorage['cookie_dismissed']) {
-  gsap.to(cookieNotice, {
-    autoAlpha: 1
-  })
+if (window.location.pathname !== '/') {
+  if (!localStorage['cookie_dismissed']) {
+    gsap.to(cookieNotice, {
+      autoAlpha: 1
+    })
+  }
 }
+
 
 cookieNotice.querySelector('.cookie-notice__accept').addEventListener('click', () => {
   localStorage.setItem('cookie_dismissed', true)

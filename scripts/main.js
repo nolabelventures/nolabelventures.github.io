@@ -207,6 +207,12 @@ mm.add(
         stagger: 0.05
     }, "<")
 
+    if (!localStorage['cookie_dismissed']) {
+      introAnimation.to(cookieNotice, {
+        autoAlpha: 1
+      }, "<")
+    }
+
     } else {
       introAnimation.to("#intro", {
         background: "#111111",
@@ -273,6 +279,12 @@ mm.add(
         },
         stagger: 0.05
     }, "<")
+
+    if (!localStorage['cookie_dismissed']) {
+      introAnimation.to(cookieNotice, {
+        autoAlpha: 1
+      }, "<")
+    }
     }
 
     if (isDesktop) {
