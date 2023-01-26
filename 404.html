@@ -4,19 +4,13 @@ permalink: /404.html
 <!DOCTYPE html> 
 <html lang="en"> 
     <head> 
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40"></script>
         <script>
-            if (localStorage['cookie_dismissed']) {
-                const gtagScript = document.createElement('script')
-                gtagScript.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40')
-                gtagScript.setAttribute('async', 'async')
-                document.head.prepend(gtagScript);
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
 
-                window.dataLayer = window.dataLayer || [];
-                function gtag(){dataLayer.push(arguments);}
-                gtag('js', new Date());
-
-                gtag('config', 'G-ZK3Q35ZF40');
-            }
+            dataLayer.push('config', 'G-ZK3Q35ZF40', { 'anonymize_ip': true,  send_page_view: localStorage['cookie_dismissed'] || false });
         </script>
         <meta charset="utf-8"> 
         <meta http-equiv="X-UA-Compatible" content="IE=edge"> 
