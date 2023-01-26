@@ -545,13 +545,19 @@ footer {
 .header__link {
     color: currentColor;
     padding: 1em;
-    display: inline-block;
     text-decoration: none;
     font-family: $font-title;
     font-size: 1.2rem;
     line-height: 1;
     letter-spacing: 1px;
     text-transform: uppercase;
+    display: none;
+}
+
+@media (min-width: 976px) {
+    .header__link {
+        display: inline-block;
+    }
 }
 
 .header {
@@ -581,6 +587,7 @@ footer {
     border-image-slice: 1;
     border-radius: 2px;
     padding: .5em 1em;
+    display: inline-block;
 }
 
 @media (min-width:976px) {
@@ -957,10 +964,6 @@ label {
     }
 }
 
-.header__menu-items .header__link:not(.header__link--pitch) {
-    display: none;
-}
-
 .index-page .header > div {
     justify-content: space-between;
 }
@@ -973,6 +976,10 @@ label {
     padding: 0 1px;
     margin: 0 5px;
     vertical-align: middle;
+
+    @media (min-width: 976px) {
+        display: none;
+    }
 }
 
 .header__mobile-menu {
@@ -1209,14 +1216,16 @@ label {
     }
 }
 
-.blog-post__back {
+.blog-post__back,
+.privacy-policy__back {
     margin-bottom: 1em;
     color: currentColor;
     text-decoration: none;
 }
 
 @media (min-width:1024px) {
-    .blog-post__back {
+    .blog-post__back,
+    .privacy-policy__back {
         position: absolute;
         left: -100px;
         top: 15px;
@@ -1472,14 +1481,16 @@ main {
 }
 
 .blog-posts,
-.blog-post {
+.blog-post,
+.privacy-policy {
     margin-top: 100px;
     padding-left: 20px;
     padding-right: 20px;
     padding-bottom: 50px;
 }
 
-.blog-post {
+.blog-post,
+.privacy-policy {
     strong {
         font-weight: 800;
     }
@@ -1501,7 +1512,8 @@ main {
     font-size: 2.1875rem;
 }
 
-.blog-post h1 {
+.blog-post h1,
+.privacy-policy h1 {
     font-size: 1.375rem;
     text-transform: none;
 }
@@ -1518,14 +1530,16 @@ main {
         }
     }
 
-    .blog-post__content {
+    .blog-post__content,
+    .privacy-policy__content {
         margin-top: 150px;
         position: relative;
         max-width: 720px;
         margin-inline: auto;
     }
 
-    .blog-post h1 {
+    .blog-post h1,
+    .privacy-policy h1 {
         font-size: 1.5625rem;
     }
 }
