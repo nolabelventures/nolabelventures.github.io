@@ -1211,8 +1211,6 @@ label {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   margin-top: 40px;
-  margin-left: 20px;
-  margin-right: 20px;
 }
 
 @media (min-width: 976px) {
@@ -2089,6 +2087,7 @@ footer h3 {
   max-height: 100px;
   max-width: 100px;
   vertical-align: middle;
+  width: 100%;
 }
 
 @media (min-width: 976px) {
