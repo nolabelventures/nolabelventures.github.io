@@ -293,6 +293,8 @@ mm.add(
         type: "scroll,wheel,touch",
         onUp: () => !animating && gotoPanel(currentIndex - 1, false),
         onDown: () => !animating && gotoPanel(currentIndex + 1, true),
+        onLeft: () => !animating && currentIndex > 0 && currentIndex < 5 &&  gotoPanel(currentIndex - 1, false),
+        onRight: () => !animating && currentIndex > 0 && currentIndex < 5 &&  gotoPanel(currentIndex + 1, true),
         tolerance: 250,
         wheelSpeed: 0.5,
         scrollSpeed: 0.5,
@@ -417,7 +419,11 @@ mm.add(
           },
           onStart: () => {
             document.querySelector('.active-slide')?.classList.remove('active-slide')
-            target.classList.add('active-slide')
+
+            // on page load, sometimes target is unavailable
+            if (target) {
+              target.classList.add('active-slide')
+            }
 
             gsap.to(['body', 'header'], {
               color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#3E3E3E' : '#ffffff'
@@ -433,6 +439,13 @@ mm.add(
             }
           }
         })
+
+        if (!isSlider) {
+           // Makes sure the line fades out before transition
+          transition.to('.facts-section-line', {
+            autoAlpha: 0
+          }, "<")
+        }
 
         // make sure all previous slides are visible when using quicknav
         // quicknav pretty much takes over animating just the before and after slides
@@ -554,10 +567,6 @@ mm.add(
             duration: 2
           }, "<")
         } else {
-          transition.to('.facts-section-line', {
-            autoAlpha: 0
-          }, "<")
-          
           gsap.fromTo('.facts-section-line path', {
             drawSVG: ((100 / document.querySelectorAll('.facts__section').length) * currentIndex) + '%'
           }, {
@@ -598,7 +607,7 @@ mm.add(
         // if # in the url, jump to that index (if exists)
         gotoPanel(Number(jumpToSection.getAttribute('data-index')) - 1, true, true)
       } else {
-        gotoPanel(0, true)
+        gotoPanel(0, true, true)
       }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
         const targetIndex = Number(document.getElementById(link.href.split('#')[1])?.getAttribute('data-index')) - 1;
