@@ -1396,6 +1396,7 @@ mm.add(
           e.preventDefault()
           const index = document.getElementById(link.hash.substring(1))
           header.classList.remove('show-mobile-menu')
+          document.documentElement.style.overflow = ''
           window.scrollTo({top: index.offsetTop, behavior: 'smooth'})
         })
       })
