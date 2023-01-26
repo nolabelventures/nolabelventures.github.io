@@ -1,14 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40"></script>
         <script>
-            if (localStorage['cookie_dismissed']) {
-                const gtagScript = document.createElement('script')
-                gtagScript.setAttribute('src', 'https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40')
-                gtagScript.setAttribute('async', 'async')
-                document.head.prepend(gtagScript);
+            window.dataLayer = window.dataLayer || [];
 
-                window.dataLayer = window.dataLayer || [];
+            if (localStorage['cookie_dismissed']) {
                 function gtag(){dataLayer.push(arguments);}
                 gtag('js', new Date());
 
