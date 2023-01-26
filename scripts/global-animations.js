@@ -61,12 +61,14 @@ headerAnimation.from('.header__mobile-menu a', {
 }, "<")
 
 document.querySelector(".header__menu-button").addEventListener("click", () => {
+  document.documentElement.style.overflow = 'hidden'
   header.classList.add("show-mobile-menu");
   headerAnimation.play()
 });
 document
   .querySelector(".header__menu-button-close")
   .addEventListener("click", () => {
+    document.documentElement.style.overflow = ''
     gsap.to('.header__mobile-menu', {
       autoAlpha: 0,
       onComplete: () => {
