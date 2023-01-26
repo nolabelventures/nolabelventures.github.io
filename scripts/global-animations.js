@@ -95,7 +95,11 @@ if (window.location.pathname !== '/') {
 
 cookieNotice.querySelector('.cookie-notice__accept').addEventListener('click', () => {
   localStorage.setItem('cookie_dismissed', true)
-  dataLayer.push('config', 'G-ZK3Q35ZF40', { 'anonymize_ip': true });
+  dataLayer.push('config', 'G-ZK3Q35ZF40', { 
+    'anonymize_ip': true, 
+    page_title: document.title, 
+    page_location: window.location.href 
+  });
 
   gsap.to(cookieNotice, {
     autoAlpha: 0
