@@ -4,33 +4,35 @@
 const dropdowns = gsap.utils.toArray("[data-dropdown]");
 dropdowns.forEach((dropdown) => {
   const content = dropdown.nextSibling.nextSibling;
-  content.style.display = "none";
-  const text = content.querySelector("div");
+  const contentHeight = content.clientHeight
+  content.style.height = 0;
+
   dropdown.addEventListener("click", (e) => {
     const button = e.currentTarget;
-    const shouldClose = content.style.display === 'block'
 
     dropdowns.forEach(dd => {
-      dd.nextSibling.nextSibling.style.display = 'none'
-      dd.classList.remove("dropdown-active");
-      gsap.to(dd.nextSibling.nextSibling.querySelector('div'), {
-        x: 10,
-        autoAlpha: 0
+      gsap.to(dd.nextSibling.nextSibling, {
+        height: 0
       })
+
+      dd.classList.remove("dropdown-active");
     })
 
-    // toggle action
-    if (!shouldClose) {
+
+    if (content.style.height !== '0px') {
+      button.classList.remove("dropdown-active");
+      
+      gsap.to(content, {
+        height: 0
+      })
+    } else {
       button.classList.add("dropdown-active");
-      content.style.display = "block";
-  
-      gsap.to(
-        text, {
-          x: 0,
-          autoAlpha: 1,
-        }
-      );
+      
+      gsap.to(content, {
+        height: contentHeight + 'px'
+      })
     }
+
   });
 });
 
