@@ -694,9 +694,6 @@ footer {
     padding: 150px 0;
 }
 
-@media (min-width:976px) {
-}
-
 .pitch__text {
     max-width: 639px;
     margin-bottom: 2.5em;
@@ -1217,7 +1214,7 @@ label {
 }
 
 .blog-post__back,
-.privacy-policy__back {
+.default-layout__back {
     margin-bottom: 1em;
     color: currentColor;
     text-decoration: none;
@@ -1225,7 +1222,7 @@ label {
 
 @media (min-width:1024px) {
     .blog-post__back,
-    .privacy-policy__back {
+    .default-layout__back {
         position: absolute;
         left: -100px;
         top: 15px;
@@ -1476,13 +1473,14 @@ main {
 
 .blog-page,
 .post-page,
-.error-page {
+.error-page,
+.default-layout-page {
     background: url(/assets/page-background.jpg) no-repeat top center/contain, var(--colors-white);
 }
 
 .blog-posts,
 .blog-post,
-.privacy-policy {
+.default-layout {
     margin-top: 100px;
     padding-left: 20px;
     padding-right: 20px;
@@ -1490,7 +1488,7 @@ main {
 }
 
 .blog-post,
-.privacy-policy {
+.default-layout {
     strong {
         font-weight: 800;
     }
@@ -1513,7 +1511,7 @@ main {
 }
 
 .blog-post h1,
-.privacy-policy h1 {
+.default-layout h1 {
     font-size: 1.375rem;
     text-transform: none;
 }
@@ -1531,7 +1529,7 @@ main {
     }
 
     .blog-post__content,
-    .privacy-policy__content {
+    .default-layout {
         margin-top: 150px;
         position: relative;
         max-width: 720px;
@@ -1539,7 +1537,7 @@ main {
     }
 
     .blog-post h1,
-    .privacy-policy h1 {
+    .default-layout h1 {
         font-size: 1.5625rem;
     }
 }
