@@ -82,11 +82,13 @@ collections:
           - { label: 'Image', name: 'thumbnail', widget: 'image', choose_url: false, allow_multiple: false }
           - { label: 'Related Article Link', name: 'link', widget: 'relation', collection: "blog", search_fields: ["title"], display_fields: ["title"], value_field: "{{slug}}", multpile: true }
 
-  - name: privacy_policy
-    label: Privacy Policy
-    files:
-      - privacy-policy.md
-    fields:
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'default' }
-      - { label: 'Title', name: 'title', widget: 'string', required: true }
-      - { label: 'Body', name: 'body', widget: 'markdown', required: true }
+  - name: other
+    label: Other Pages
+    files: 
+      - label: "Privacy Policy"
+        name: "privacy_policy"
+        file: 'privacy-policy.md'
+        fields:
+          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'default' }
+          - { label: 'Title', name: 'title', widget: 'string', required: true }
+          - { label: 'Body', name: 'body', widget: 'markdown', required: true }
