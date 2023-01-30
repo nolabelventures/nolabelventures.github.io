@@ -528,7 +528,7 @@ footer:before {
 .hero-intro__page h1 {
   overflow: hidden;
   font-size: 2.1875rem;
-  max-width: 880px;
+  max-width: 1200px;
   position: relative;
   color: var(--colors-white);
 }
@@ -1096,6 +1096,14 @@ label {
 
 .unicorn-founders h2 {
   margin-bottom: 0;
+}
+
+.text-lightgrey {
+  color: #999999;
+}
+
+.text-green {
+  color: rgb(0, 226, 138);
 }
 
 .header__link-logo {
@@ -2174,7 +2182,13 @@ footer h3 {
 
 @media (min-width: 976px) {
   .index-page .header__link-logo {
-    display: none;
+    opacity: 0;
+    -webkit-transition: opacity 0.3s ease-in-out;
+    -o-transition: opacity 0.3s ease-in-out;
+    transition: opacity 0.3s ease-in-out;
+  }
+  .index-page .show-logo .header__link-logo {
+    opacity: 1;
   }
   .index-page .header > div {
     -webkit-box-pack: end;
@@ -2216,6 +2230,7 @@ footer h3 {
   border-radius: 5px;
   border: none;
   letter-spacing: 1px;
+  color: var(--colors-black);
 }
 
 .cookie-notice p {

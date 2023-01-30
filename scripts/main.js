@@ -592,8 +592,10 @@ mm.add(
           // horizontal scroll needs a backgorund as each slide is offset sideways and does not have
           // the previous slide 'behind' it
           document.getElementById('intro').classList.add('add-background')
+          header.classList.add('show-logo')
         } else {
           document.getElementById('intro').classList.remove('add-background')
+          header.classList.remove('show-logo')
         }
       }   
       
@@ -1008,7 +1010,7 @@ mm.add(
 
         faqTimeline.from(faqSection('.faq__faq-item'), {
           autoAlpha: 0,
-          stagger: 0.25,
+          stagger: 0.05,
           scaleY: 0,
         }, "<")
 
