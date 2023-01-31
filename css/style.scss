@@ -52,6 +52,10 @@ body {
     background: var(--colors-white);
     line-height: 1.5;
     color: #3E3E3E;
+
+    &.light-text {
+        color: #ffffff;
+    }
 }
 
 .facts__section {
@@ -455,7 +459,7 @@ footer:before {
     background-color: var(--colors-black);
 }
 
-.immigrant-section .facts__section-subtitle {
+.immigrant-section .title-text {
     font-family: $font-title;
     font-size: 4.375rem;
     margin-bottom: 0;
@@ -493,6 +497,7 @@ footer:before {
         right: 0;
         display: block;
         z-index: 100;
+        pointer-events: none;
     }
 }
 
@@ -581,6 +586,7 @@ footer {
     display: flex;
     justify-content: space-between;
     padding: 1em;
+    height: 100%;
     transition: transform .5s ease-in-out, color .3s ease;
 }
 
@@ -617,14 +623,6 @@ footer {
 }
 
 @media (min-width:976px) {
-    .facts-section__astricks {
-        position: absolute;
-        bottom: 110px;
-        right: 0;
-        left: 0;
-        text-align: center;
-    }
-
     .unicorn-founders .facts__section-content {
         display: flex;
         gap: 50px;
@@ -642,14 +640,17 @@ footer {
     flex-shrink: 1;
 }
 
-.immigrant-founders h2 > div:first-child {
-    line-height: 1;
-    font-size: 4.375rem;
-    background: linear-gradient(96.15deg, #00E28A 0%, #219ED3 69%);
+.text-highlight {
+    background: linear-gradient(120.31deg, #00F897 -3.5%, #3959FF 143.82%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
     text-fill-color: transparent;
+}
+
+.immigrant-founders h2 > div:first-child {
+    line-height: 1;
+    font-size: 4.375rem;
 }
 
 @media (min-width:976px) {
@@ -913,19 +914,14 @@ label {
     }
 }
 
-.immigrant-section .facts__title-two {
-    background: linear-gradient(120.31deg, #00F897 -3.5%, #3959FF 143.82%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-    text-fill-color: transparent;
+.immigrant-section .facts__title-two .text-highlight {
     font-family: $font-title;
     margin-top: 50px;
     margin-bottom: 0;
 }
 
 @media (min-width:976px) {
-    .immigrant-section .facts__title-two {
+    .immigrant-section .facts__title-two .text-highlight {
         font-size: 8.75rem;
         margin-top: 0;
     }
@@ -1869,6 +1865,7 @@ footer h3 {
 
 .facts-section__astricks {
     margin-top: 2em;
+    text-align: center;
 }
 
 .footer__links h2 {
@@ -1959,11 +1956,8 @@ footer h3 {
         transition: opacity .3s ease-in-out;
     }
 
-    // .index-page .show-logo .header__link-logo {
-    // opacity: 1;
-    // }
-    .index-page .header > div {
-        justify-content: flex-end;
+    .index-page .show-logo .header__link-logo {
+        opacity: 1;
     }
 }
 

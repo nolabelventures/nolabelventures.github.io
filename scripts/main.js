@@ -2,6 +2,8 @@
  * FAQ Dropdowns
  */
 const dropdowns = gsap.utils.toArray("[data-dropdown]");
+
+
 dropdowns.forEach((dropdown) => {
   const content = dropdown.nextSibling.nextSibling;
   const contentHeight = content.clientHeight
@@ -464,7 +466,8 @@ mm.add(
         if (isQuickNav) {
           if (shouldSlide && !isScrollingDown) {
             transition.set(Sections[index].querySelector('.facts__section-content'), {
-              xPercent: 0
+              xPercent: 0,
+              autoAlpha: 1
             })
           }
 
@@ -846,19 +849,59 @@ mm.add(
           }
         })
 
-        const unicornFoundersSectionHeading = new SplitText(
-          unicornFoundersSection("h2"),
+        const unicornFoundersHeading = unicornFoundersSection("h2 .split")
+
+        const unicornFoundersSectionHeadingSplitOne = new SplitText(
+          unicornFoundersHeading[0],
           { type: "words" }
         );
         unicornFoundersTimeline.from(
-          unicornFoundersSectionHeading.words,
+          unicornFoundersSectionHeadingSplitOne.words,
           {
             autoAlpha: 0,
             y: 10,
             stagger: 0.05,
           },
-          "<"
         );
+        
+        const unicornFoundersSectionHeadingSplitTwo = new SplitText(
+          unicornFoundersHeading[1],
+          { type: "words" }
+        );
+
+        unicornFoundersTimeline.from(
+          unicornFoundersSectionHeadingSplitTwo.words,
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.05,
+          },
+          "<10%"
+        );
+
+        unicornFoundersTimeline.from(unicornFoundersSection('h2 .text-highlight'), {
+          autoAlpha: 0,
+          y: 10
+        }, "<10%")
+
+        const unicornFoundersSectionHeadingSplitThree = new SplitText(
+          unicornFoundersHeading[2],
+          { type: "words" }
+        );
+
+        unicornFoundersTimeline.from(
+          unicornFoundersSectionHeadingSplitThree.words,
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.05,
+          },
+          "<10%"
+        );
+
+        unicornFoundersTimeline.from(unicornFoundersSection('.facts__section-content > div')[1], {
+          autoAlpha: 0
+        }, "<10%")
 
         unicornFoundersSection(".dot").forEach((dot, index) => {
           unicornFoundersTimeline.from(dot, {
@@ -1028,7 +1071,7 @@ mm.add(
           drawSVG: "100% 100%",
         });
 
-        const pitchHeadingOne = new SplitText(pitchSection('h2 span')[0], {
+        const pitchHeadingOne = new SplitText(pitchSection('h2')[0], {
           type: 'words'
         })
 
@@ -1038,17 +1081,6 @@ mm.add(
           filter: 'blur(10px)',
           stagger: 0.05
         }, "<")
-        
-        const pitchHeadingTwo = new SplitText(pitchSection('h2 span')[1], {
-          type: 'words'
-        })
-
-        pitchTimeline.from(pitchHeadingTwo.words, {
-          autoAlpha: 0,
-          duration: 2,
-          filter: 'blur(10px)',
-          stagger: 0.05
-        }, "<50%")
 
         pitchTimeline.from(pitchSection('.pitch__cta'), {
           autoAlpha: 0,
@@ -1274,16 +1306,59 @@ mm.add(
             once: true
           }
         })
-        const uncornFoundersHeadingText = new SplitText(unicornFoundersSection('h2'), {type: 'words'})
-        unicornFoundersTimeline.from(uncornFoundersHeadingText.words, {
-          autoAlpha: 0,
-          y: 10,
-          stagger: 0.05,
+
+        const unicornFoundersHeading = unicornFoundersSection("h2 .split")
+
+        const unicornFoundersSectionHeadingSplitOne = new SplitText(
+          unicornFoundersHeading[0],
+          { type: "words" }
+        );
+        unicornFoundersTimeline.from(
+          unicornFoundersSectionHeadingSplitOne.words,
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.05,
+          },
+        );
+        
+        const unicornFoundersSectionHeadingSplitTwo = new SplitText(
+          unicornFoundersHeading[1],
+          { type: "words" }
+        );
+
+        unicornFoundersTimeline.from(
+          unicornFoundersSectionHeadingSplitTwo.words,
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.05,
+          },
+          "<10%"
+        );
+
+        unicornFoundersTimeline.from(unicornFoundersSection('h2 .text-highlight'), {
+          autoAlpha: 0
         })
+
+        const unicornFoundersSectionHeadingSplitThree = new SplitText(
+          unicornFoundersHeading[1],
+          { type: "words" }
+        );
+
+        unicornFoundersTimeline.from(
+          unicornFoundersSectionHeadingSplitThree.words,
+          {
+            autoAlpha: 0,
+            y: 10,
+            stagger: 0.05,
+          },
+          "<10%"
+        );
 
         unicornFoundersTimeline.from(unicornFoundersSection('.facts__section-content > div')[1], {
           autoAlpha: 0
-        })
+        }, "<10%")
 
         unicornFoundersSection(".dot").forEach((dot, index) => {
           unicornFoundersTimeline.from(dot, {

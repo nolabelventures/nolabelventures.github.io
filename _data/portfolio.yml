@@ -14,6 +14,7 @@ portfolio:
   - title: Front
     url: https://www.getfront.com/
     image: /assets/uploads/Front.png
+    width: 150
   - title: Yhangry
     url: https://yhangry.com/
     image: /assets/uploads/yhangry 1.png
