@@ -11,6 +11,7 @@ portfolio:
   - title: RLTY
     url: https://www.rlty.live/
     image: /assets/uploads/RLTY.png
+    width: "145"
   - title: Front
     url: https://www.getfront.com/
     image: /assets/uploads/Front.png
