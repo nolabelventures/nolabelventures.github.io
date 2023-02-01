@@ -696,15 +696,6 @@ mm.add(
             stagger: 0.05,
           }
         );
-
-        // immigrantSectionTimeline.from(
-        //   immigrantsSection(".immigrant-section__digit"),
-        //   {
-        //     textContent: 0,
-        //     snap: { textContent: 0.1 },
-        //     duration: 2
-        //   }, "<"
-        // );
         
         const immigrantSectionText = immigrantsSection(".facts__section-body-content .split");
         immigrantSectionTimeline.from(
@@ -718,16 +709,27 @@ mm.add(
           }
         );
 
+        immigrantSectionTimeline.from(immigrantsSection('.immigrant-section__digit'), {
+          textContent: 0,
+          autoAlpha: 0,
+          snap: { textContent: 1 },
+        }, "<10%")
+
         const immigrantSectionHilightedText = immigrantsSection('.facts__section-body-content .text-highlight')
         immigrantSectionTimeline.from(immigrantSectionHilightedText, {
           autoAlpha: 0,
           y: 10
         }, "<50%")
 
+        immigrantSectionTimeline.from(immigrantsSection('.immigrant-section__digit-two'), {
+          textContent: 0,
+          snap: { textContent: 1 },
+        }, "<")
+
         immigrantSectionTimeline.from(".facts-section__astricks", {
           x: 10,
           autoAlpha: 0,
-        }, "<50%");
+        }, "<");
 
         pageAnimations.push(immigrantSectionTimeline)
 
