@@ -4,7 +4,11 @@ title: Raising Funds as an Immigrant Founder in Europe
 date: 2023-03-01T10:14:50.627Z
 thumbnail: /assets/uploads/dickens-lin-qm66hvknhn4-unsplash.jpg
 ---
-Raising funds for your start-up is a full-time job but it’s something that has to be done if you wish to scale your business. Start-ups in Europe reached a record breaking $37.6 billion in venture capital investment by the end of 2021’s second quarter, according to **[Crunchbase News](https://news.crunchbase.com/business/europe-vc-funding-q1-2022-monthly-recap/)**. However, it would seem that first and second generation immigrants experience difficulties in raising capital despite being a driving force behind the European economy. Here is a guide to raising funds as an immigrant founder in Europe. 
+Raising funds for your start-up is a full-time job but it’s something that has to be done if you wish to scale your business. 
+
+<!-- more -->
+
+Start-ups in Europe reached a record breaking $37.6 billion in venture capital investment by the end of 2021’s second quarter, according to **[Crunchbase News](https://news.crunchbase.com/business/europe-vc-funding-q1-2022-monthly-recap/)**. However, it would seem that first and second generation immigrants experience difficulties in raising capital despite being a driving force behind the European economy. Here is a guide to raising funds as an immigrant founder in Europe. 
 
 ## 1 Hurdles for Immigrant Founders
 

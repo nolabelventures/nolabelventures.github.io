@@ -4,7 +4,11 @@ title: Why do Immigrant Founders Overperform?
 date: 2023-03-16T10:17:41.026Z
 thumbnail: /assets/uploads/dickens-lin-qm66hvknhn4-unsplash.jpg
 ---
-Whether it comes to job prospects or studies, immigrants are renowned for being hard workers. It’s no wonder when these are people that have travelled across the world to make a new and better life for themselves. It would seem that the same goes for immigrant entrepreneurs who set out to build a business in a foreign country. In 2016, [The National Foundation for American Policy](https://www.immigrationresearch.org/system/files/Immigrants-and-Billion-Dollar-Startups.NFAP-Policy-Brief.March-2016.pdf) found that more than half (44 of 87) of America’s unicorns were started by immigrants. Below are the main factors that contribute to the overperformance of immigrant founders. 
+Whether it comes to job prospects or studies, immigrants are renowned for being hard workers. 
+
+<!-- more -->
+
+It’s no wonder when these are people that have travelled across the world to make a new and better life for themselves. It would seem that the same goes for immigrant entrepreneurs who set out to build a business in a foreign country. In 2016, [The National Foundation for American Policy](https://www.immigrationresearch.org/system/files/Immigrants-and-Billion-Dollar-Startups.NFAP-Policy-Brief.March-2016.pdf) found that more than half (44 of 87) of America’s unicorns were started by immigrants. Below are the main factors that contribute to the overperformance of immigrant founders. 
 
 ## 1 Immigrant Founders have a Competitive Advantage
 

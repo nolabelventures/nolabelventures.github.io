@@ -1,10 +1,14 @@
 ---
 layout: post
 title: How Will Europe’s Ecosystems Become More Accessible To Immigrant Founders?
-date: 2023-04-19T11:19:00.862Z
+date: 2023-03-19T11:19:00.862Z
 thumbnail: /assets/uploads/dickens-lin-qm66hvknhn4-unsplash.jpg
 ---
-With the growth of Europe’s venture capital ecosystem, starting a business is going to be much easier for immigrant founders. **As ecosystems mature, they naturally become more accessible to immigrants, who outperform.** By the end of 2022, the US had a total of 704 unicorns, the highest number worldwide. With a developed venture capital ecosystem, immigrant founders are able to gain investment early on, giving space for them to innovate in a wide range of industry sectors. It’s no wonder that 55% of the US’ unicorns are founded by immigrants, **they make some of the best entrepreneurs**. Here we will take you through key data on European countries, demonstrating that while ecosystems grow, the number of immigrant-founded unicorns will grow also. 
+With the growth of Europe’s venture capital ecosystem, starting a business is going to be much easier for immigrant founders. 
+
+<!-- more -->
+
+**As ecosystems mature, they naturally become more accessible to immigrants, who outperform.** By the end of 2022, the US had a total of 704 unicorns, the highest number worldwide. With a developed venture capital ecosystem, immigrant founders are able to gain investment early on, giving space for them to innovate in a wide range of industry sectors. It’s no wonder that 55% of the US’ unicorns are founded by immigrants, **they make some of the best entrepreneurs**. Here we will take you through key data on European countries, demonstrating that while ecosystems grow, the number of immigrant-founded unicorns will grow also. 
 
 ## \[THE UNITED KINGDOM]
 
