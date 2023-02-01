@@ -694,8 +694,7 @@ mm.add(
             autoAlpha: 0,
             y: 10,
             stagger: 0.05,
-          },
-          "<"
+          }
         );
 
         // immigrantSectionTimeline.from(
@@ -716,8 +715,7 @@ mm.add(
             autoAlpha: 0,
             y: 10,
             stagger: 0.05,
-          },
-          "<15%"
+          }
         );
 
         const immigrantSectionHilightedText = immigrantsSection('.facts__section-body-content .text-highlight')
@@ -1171,7 +1169,6 @@ mm.add(
         }
       })
 
-      const immigrantSectionContent = immigrantsSection('p span')
       const immigrantSectionTimeline = gsap.timeline({
         scrollTrigger: {
           trigger: '.immigrant-section',
@@ -1187,19 +1184,10 @@ mm.add(
         snap: { textContent: 1 },
       })
 
-      const generalPopulation = new SplitText(immigrantSectionContent[1], {type: 'words'})
-      immigrantSectionTimeline.from(generalPopulation.words, {
-        autoAlpha: 0
-      })
 
       immigrantSectionTimeline.from(immigrantsSection('.immigrant-section__digit-two'), {
         textContent: 0,
         snap: { textContent: 1 },
-      })
-
-      const unicornFounders = new SplitText(immigrantSectionContent[3], {type: 'words'})
-      immigrantSectionTimeline.from(unicornFounders.words, {
-        autoAlpha: 0
       })
 
       immigrantSectionTimeline.from(immigrantsSection('.facts-section__astricks'), {

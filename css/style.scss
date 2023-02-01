@@ -87,9 +87,11 @@ body {
     margin-bottom: 1em;
 }
 
-.immigrant-section .facts__content-title {
-    color: #909090;
-    font-size: 3.75rem;
+@media (min-width:976px) {
+    .immigrant-section .facts__content-title {
+        color: #909090;
+        font-size: 3.75rem;
+    }
 }
 
 .about {
@@ -467,6 +469,7 @@ footer:before {
     line-height: 1.2;
     color: var(--colors-black);
     text-transform: uppercase;
+    font-size: 2.1875rem;
 }
 
 @media (min-width:976px) {
@@ -1947,12 +1950,25 @@ footer h3 {
     color: inherit;
 }
 
-.immigrant-section .text-highlight {
-    font-size: 4.0625rem;
-}
-
 @media (min-width:976px) {
+    .immigrant-section .text-highlight {
+        font-size: 4.0625rem;
+    }
+
     .immigrant-section__emphasis-text {
         font-size: 5rem;
     }
+}
+
+.community .about-content__content svg {
+    vertical-align: middle;
+}
+
+.community h4 {
+    margin-top: 0.25em;
+    margin-bottom: 0.25em;
+}
+
+.community .about-content__content p {
+    margin-top: 0;
 }
