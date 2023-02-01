@@ -677,14 +677,13 @@ mm.add(
 
         // /* IMMIGRANT */
         const immigrantsSection = gsap.utils.selector(".immigrant-section");
-        const immigrantSectionText = immigrantsSection(".facts__content-text");
         const immigrantSectionTimeline = gsap.timeline({
           defaults: {
             duration: 1
           }
         })
 
-        var immigrantsSectionHeading = new SplitText(
+        const immigrantsSectionHeading = new SplitText(
           immigrantsSection("h2"),
           { type: "words" }
         );
@@ -698,30 +697,19 @@ mm.add(
           },
           "<"
         );
+
+        // immigrantSectionTimeline.from(
+        //   immigrantsSection(".immigrant-section__digit"),
+        //   {
+        //     textContent: 0,
+        //     snap: { textContent: 0.1 },
+        //     duration: 2
+        //   }, "<"
+        // );
         
-        immigrantSectionTimeline.from(immigrantsSection('.facts__section-subtitle'), {
-          autoAlpha: 0,
-        }, "<10%")
-
+        const immigrantSectionText = immigrantsSection(".facts__section-body-content .split");
         immigrantSectionTimeline.from(
-          immigrantsSection(".immigrant-section__digit"),
-          {
-            textContent: 0,
-            snap: { textContent: 0.1 },
-            duration: 2
-          }, "<"
-        );
-
-        immigrantSectionTimeline.from(
-          immigrantsSection(".immigrant-section__lessthan"),
-          {
-            autoAlpha: 0,
-            scaleY: 0,
-          }, "<10%"
-        );
-
-        immigrantSectionTimeline.from(
-          new SplitText(immigrantSectionText[0], {
+          new SplitText(immigrantSectionText, {
             type: "words",
           }).words,
           {
@@ -732,31 +720,16 @@ mm.add(
           "<15%"
         );
 
-        immigrantSectionTimeline.from(
-          immigrantsSection(".immigrant-section__digit-two"),
-          {
-            textContent: 0,
-            snap: { textContent: 1 },
-            duration: 2
-          },
-          "<"
-        );
-
-        immigrantSectionTimeline.from(
-          new SplitText(immigrantSectionText[1], {
-            type: "words",
-          }).words,
-          {
-            autoAlpha: 0,
-            stagger: 0.05,
-          },
-          "<"
-        );
+        const immigrantSectionHilightedText = immigrantsSection('.facts__section-body-content .text-highlight')
+        immigrantSectionTimeline.from(immigrantSectionHilightedText, {
+          autoAlpha: 0,
+          y: 10
+        }, "<50%")
 
         immigrantSectionTimeline.from(".facts-section__astricks", {
           x: 10,
           autoAlpha: 0,
-        }, "<");
+        }, "<50%");
 
         pageAnimations.push(immigrantSectionTimeline)
 
