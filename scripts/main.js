@@ -330,12 +330,22 @@ mm.add(
       let hasInteractedWithPortfolio = false
       let portfolioDirection = 0
 
+      let hasInteractedWihFaq = false
+      let faqDirection = 0
+
       const navLinks = gsap.utils.toArray(`.nav__list a[href^="#"]`)
       const porfolioLinks = gsap.utils.toArray('.portfolio__link')
+      const faqItems = Number(document.querySelector('#faq').getAttribute('data-size'))
 
       function gotoPanel(index, isScrollingDown, isQuickNav) {
         // portfolio functionality
         if (currentIndex === 5 && (portfolioDirection === 1 && !isScrollingDown || portfolioDirection === -1 && isScrollingDown)) {
+          intentObserver.disable();
+          return
+        }
+        
+        // faq functionality
+        if (currentIndex === 8 && (faqDirection === 1 && !isScrollingDown || faqDirection === -1 && isScrollingDown)) {
           intentObserver.disable();
           return
         }
@@ -347,6 +357,15 @@ mm.add(
         if (porfolioLinks.length > 15) {
           // enable scrolling on Portfolio section
           if (index === 5 && isScrollingDown) {
+            intentObserver.disable();
+          } else {
+            intentObserver.enable();
+          }
+        }
+        
+        if (faqItems.length > 9) {
+          // enable scrolling on Portfolio section
+          if (index === 8 && isScrollingDown) {
             intentObserver.disable();
           } else {
             intentObserver.enable();
@@ -1011,6 +1030,32 @@ mm.add(
         }, "<");
 
         pageAnimations.push(communityTimeline)
+
+        // /* FAQ SECTION */
+        ScrollTrigger.create({
+          scroller: '.faq__content',
+          scrub: true,
+          onUpdate: (self) => {
+            faqDirection = self.direction
+
+            if (self.progress > 0.95 && hasInteractedWihFaq) {
+              hasInteractedWihFaq = false
+              setTimeout(() => {
+                intentObserver.enable()
+              }, 1000)
+            } else if (self.progress < 0.05 && hasInteractedWihFaq) {
+              hasInteractedWihFaq = false
+              setTimeout(() => {
+                intentObserver.enable()
+              }, 1000)
+            }
+          },
+          onToggle: (self) => {
+            if (self.progress > 0 && !hasInteractedWihFaq) {
+              hasInteractedWihFaq = true
+            }
+          }
+        })
 
         const faqTimeline = gsap.timeline({paused: true})
         const faqSection = gsap.utils.selector('.faq')
