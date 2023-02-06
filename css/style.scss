@@ -1253,12 +1253,14 @@ label {
     color: var(--colors-white);
 }
 
-.header.hide > div {
-    transform: translateY(-100%)
-}
+@media (max-width: 976px) {
+    .header.hide > div {
+        transform: translateY(-100%)
+    }
 
-.header.hide:hover > div {
-    transform: translateY(0)
+    .header.hide:hover > div {
+        transform: translateY(0)
+    }
 }
 
 .founder__pinned-wrapper {

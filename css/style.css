@@ -1401,18 +1401,18 @@ label {
   color: var(--colors-white);
 }
 
-.header.hide > div {
-  -webkit-transform: translateY(-100%);
-      -ms-transform: translateY(-100%);
-          transform: translateY(-100%);
+@media (max-width: 976px) {
+  .header.hide > div {
+    -webkit-transform: translateY(-100%);
+        -ms-transform: translateY(-100%);
+            transform: translateY(-100%);
+  }
+  .header.hide:hover > div {
+    -webkit-transform: translateY(0);
+        -ms-transform: translateY(0);
+            transform: translateY(0);
+  }
 }
-
-.header.hide:hover > div {
-  -webkit-transform: translateY(0);
-      -ms-transform: translateY(0);
-          transform: translateY(0);
-}
-
 .founder__pinned-wrapper {
   background-color: var(--colors-black);
   padding: 0 20px;
