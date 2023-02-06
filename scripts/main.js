@@ -356,16 +356,16 @@ mm.add(
         
         if (porfolioLinks.length > 15) {
           // enable scrolling on Portfolio section
-          if (index === 5 && isScrollingDown) {
+          if (index === 5) {
             intentObserver.disable();
           } else {
             intentObserver.enable();
           }
         }
-        
-        if (faqItems.length > 9) {
+
+        if (faqItems > 7) {
           // enable scrolling on Portfolio section
-          if (index === 8 && isScrollingDown) {
+          if (index === 8) {
             intentObserver.disable();
           } else {
             intentObserver.enable();

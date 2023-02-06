@@ -1120,7 +1120,10 @@ label {
 }
 
 .show-mobile-menu .header__mobile-menu {
+  top: 0;
   left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .header__menu-button-close {
@@ -1819,7 +1822,7 @@ main {
 
 @media (min-width: 976px) {
   .pitch .content-wrapper {
-    max-width: 709px;
+    max-width: 740px;
     width: 100%;
   }
 }
@@ -2229,8 +2232,14 @@ footer h3 {
 
 @media (min-width: 976px) {
   .faq__content {
-    max-height: 650px;
+    max-height: 550px;
     overflow: scroll;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+  .faq__content::-webkit-scrollbar {
+    width: 0px;
+    background: transparent;
   }
   .faq .shadow-wrapper {
     padding-top: 25vh;
