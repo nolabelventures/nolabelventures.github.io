@@ -942,6 +942,7 @@ label {
     top: 0;
     left: 100%;
     width: 100vw;
+    height: 100vh;
     bottom: 0;
     background: var(--colors-black);
     color: var(--colors-white);
@@ -950,9 +951,6 @@ label {
     justify-content: center;
     align-items: center;
     flex-direction: column;
-    padding: 0;
-    list-style-type: none;
-    margin: 0;
     z-index: 51;
 }
 
@@ -2023,4 +2021,10 @@ footer h3 {
 
 .footer__company-details p {
     margin: 0;
+}
+
+.header__mobile-menu ul {
+    padding: 0;
+    margin: 0;
+    list-style: none;
 }
