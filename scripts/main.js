@@ -1330,10 +1330,6 @@ mm.add(
           },
         );
 
-        unicornFoundersTimeline.from(unicornFoundersSection('h2 .text-highlight'), {
-          autoAlpha: 0
-        })
-
         const unicornFoundersSectionHeadingSplitTwo = new SplitText(
           unicornFoundersHeading[1],
           { type: "words" }
@@ -1349,8 +1345,12 @@ mm.add(
           "<10%"
         );
 
+        unicornFoundersTimeline.from(unicornFoundersSection('h2 .text-highlight'), {
+          autoAlpha: 0
+        })
+
         const unicornFoundersSectionHeadingSplitThree = new SplitText(
-          unicornFoundersHeading[1],
+          unicornFoundersHeading[2],
           { type: "words" }
         );
 
