@@ -269,18 +269,25 @@ mm.add(
         autoAlpha: 0
       });
 
-      introAnimation.set('.nav', {
-        autoAlpha: 1
-      }, "<")
+      if (!jumpToSection) {
+        introAnimation.set('.nav', {
+          autoAlpha: 1
+        }, "<")
+  
+        introAnimation.from('.nav li a', {
+          x: -100,
+          autoAlpha: 0,
+          attr: {
+            class: 'nav__button active'
+          },
+          stagger: 0.05
+        }, "<")
+      } else {
+        introAnimation.to('.nav', {
+          autoAlpha: 1
+        })
+      }
 
-      introAnimation.from('.nav li a', {
-        x: -100,
-        autoAlpha: 0,
-        attr: {
-          class: 'nav__button active'
-        },
-        stagger: 0.05
-    }, "<")
 
     if (!localStorage['cookie_dismissed']) {
       introAnimation.to(cookieNotice, {
@@ -338,6 +345,11 @@ mm.add(
       const faqItems = Number(document.querySelector('#faq').getAttribute('data-size'))
 
       function gotoPanel(index, isScrollingDown, isQuickNav) {
+
+        if (index <= -1 || index === currentIndex) {
+          return
+        }
+
         // portfolio functionality
         if (currentIndex === 5 && (portfolioDirection === 1 && !isScrollingDown || portfolioDirection === -1 && isScrollingDown)) {
           intentObserver.disable();
@@ -347,10 +359,6 @@ mm.add(
         // faq functionality
         if (currentIndex === 8 && (faqDirection === 1 && !isScrollingDown || faqDirection === -1 && isScrollingDown)) {
           intentObserver.disable();
-          return
-        }
-        
-        if (index <= -1) {
           return
         }
         
@@ -1167,6 +1175,7 @@ mm.add(
       }
 
       window.addEventListener("DOMContentLoaded", () => {
+        console.log('load')
         const height = window.innerHeight;
         document.querySelector('.hero-intro').style.height = `${height}px`;
       })

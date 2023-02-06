@@ -24,12 +24,7 @@ svg {
 .hero-intro {
     color: var(--colors-white);
     margin-inline: -20px;
-}
-
-@media (min-width:976px) {
-    .hero-intro {
-        height: 100vh;
-    }
+    height: 100vh;
 }
 
 .hero-intro__page {
