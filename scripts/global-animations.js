@@ -75,6 +75,7 @@ document
         headerAnimation.seek(0)
         headerAnimation.pause()
         header.classList.remove("show-mobile-menu");
+        header.classList.remove('hide')
       }
     })
   });
