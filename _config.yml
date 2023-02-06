@@ -47,6 +47,11 @@ defaults:
       path: "admin/index.html"
     values:
       sitemap: false
+  -
+    scope:
+      path: "blog.html"
+    values:
+      sitemap: false
   
 
 # Exclude from processing.
