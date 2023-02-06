@@ -1310,7 +1310,7 @@ mm.add(
           scrollTrigger: {
             trigger: '.unicorn-founders',
             scrub: true,
-            end: 'top center',
+            end: 'bottom bottom',
             once: true
           }
         })
