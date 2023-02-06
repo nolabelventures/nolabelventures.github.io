@@ -1310,7 +1310,7 @@ mm.add(
           scrollTrigger: {
             trigger: '.unicorn-founders',
             scrub: true,
-            end: 'bottom bottom',
+            end: 'top center',
             once: true
           }
         })
@@ -1341,8 +1341,7 @@ mm.add(
             autoAlpha: 0,
             y: 10,
             stagger: 0.05,
-          },
-          "<10%"
+          }
         );
 
         unicornFoundersTimeline.from(unicornFoundersSection('h2 .text-highlight'), {
@@ -1360,8 +1359,7 @@ mm.add(
             autoAlpha: 0,
             y: 10,
             stagger: 0.05,
-          },
-          "<10%"
+          }
         );
 
         unicornFoundersTimeline.from(unicornFoundersSection('.facts__section-content > div')[1], {
