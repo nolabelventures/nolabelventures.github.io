@@ -337,12 +337,8 @@ mm.add(
       let hasInteractedWithPortfolio = false
       let portfolioDirection = 0
 
-      let hasInteractedWihFaq = false
-      let faqDirection = 0
-
       const navLinks = gsap.utils.toArray(`.nav__list a[href^="#"]`)
       const porfolioLinks = gsap.utils.toArray('.portfolio__link')
-      const faqItems = Number(document.querySelector('#faq').getAttribute('data-size'))
 
       function gotoPanel(index, isScrollingDown, isQuickNav) {
 
@@ -356,24 +352,9 @@ mm.add(
           return
         }
         
-        // faq functionality
-        if (currentIndex === 8 && (faqDirection === 1 && !isScrollingDown || faqDirection === -1 && isScrollingDown)) {
-          intentObserver.disable();
-          return
-        }
-        
         if (porfolioLinks.length > 15) {
           // enable scrolling on Portfolio section
           if (index === 5) {
-            intentObserver.disable();
-          } else {
-            intentObserver.enable();
-          }
-        }
-
-        if (faqItems > 7) {
-          // enable scrolling on Portfolio section
-          if (index === 8) {
             intentObserver.disable();
           } else {
             intentObserver.enable();
@@ -466,8 +447,12 @@ mm.add(
               target.classList.add('active-slide')
             }
 
-            gsap.to(['body', 'header'], {
+            gsap.to('body', {
               color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#3E3E3E' : '#ffffff'
+            })
+            
+            gsap.to('header', {
+              color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#000000' : '#ffffff'
             })
 
             if (pageAnimations[index]) {
@@ -1039,34 +1024,9 @@ mm.add(
 
         pageAnimations.push(communityTimeline)
 
-        // /* FAQ SECTION */
-        ScrollTrigger.create({
-          scroller: '.faq__content',
-          scrub: true,
-          onUpdate: (self) => {
-            faqDirection = self.direction
-
-            if (self.progress > 0.95 && hasInteractedWihFaq) {
-              hasInteractedWihFaq = false
-              setTimeout(() => {
-                intentObserver.enable()
-              }, 1000)
-            } else if (self.progress < 0.05 && hasInteractedWihFaq) {
-              hasInteractedWihFaq = false
-              setTimeout(() => {
-                intentObserver.enable()
-              }, 1000)
-            }
-          },
-          onToggle: (self) => {
-            if (self.progress > 0 && !hasInteractedWihFaq) {
-              hasInteractedWihFaq = true
-            }
-          }
-        })
-
+        // FAQ 1
         const faqTimeline = gsap.timeline({paused: true})
-        const faqSection = gsap.utils.selector('.faq')
+        const faqSection = gsap.utils.selector('#faq-1')
 
         faqTimeline.from(faqSection('.faq-line path'), {
           drawSVG: 0,
@@ -1084,6 +1044,9 @@ mm.add(
         }, "<")
 
         pageAnimations.push(faqTimeline)
+      
+        // FAQ 2
+        pageAnimations.push(false)
 
         const pitchLines = gsap.utils.toArray(".pitch-lines--top:not(.pitch-lines--mobile) path");
         const pitchSection = gsap.utils.selector('#pitch')
@@ -1439,10 +1402,10 @@ mm.add(
         })
       })
 
-      const faqSection = gsap.utils.selector('.faq')
+      const faqSection = gsap.utils.selector('#faq-1')
       const faqTimeline = gsap.timeline({
         scrollTrigger: {
-          trigger: '.faq',
+          trigger: '#faq-1',
           start: 'top bottom',
           end: 'bottom bottom',
           scrub: true,
@@ -1455,6 +1418,27 @@ mm.add(
       })
 
       faqTimeline.from(faqSection('.faq__faq-item'), {
+        scaleY: 0,
+        autoAlpha: 0,
+        stagger: 0.05
+      })
+      
+      const faqSection2 = gsap.utils.selector('#faq-2')
+      const faqTimeline2 = gsap.timeline({
+        scrollTrigger: {
+          trigger: '#faq-2',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          scrub: true,
+          once: true
+        }
+      })
+
+      faqTimeline2.from(faqSection2('h2'), {
+        autoAlpha: 0
+      })
+
+      faqTimeline2.from(faqSection2('.faq__faq-item'), {
         scaleY: 0,
         autoAlpha: 0,
         stagger: 0.05

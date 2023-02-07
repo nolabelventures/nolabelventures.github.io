@@ -1760,6 +1760,7 @@ main {
 
 .faq {
   background-color: var(--colors-white);
+  display: block;
 }
 
 @media (min-width: 976px) {
@@ -2226,17 +2227,7 @@ footer h3 {
 
 @media (min-width: 976px) {
   .faq__content {
-    max-height: 550px;
-    overflow: scroll;
-    scrollbar-width: none;
-    -ms-overflow-style: none;
-  }
-  .faq__content::-webkit-scrollbar {
-    width: 0px;
-    background: transparent;
-  }
-  .faq .shadow-wrapper {
-    padding-top: 25vh;
+    padding-top: 30vh;
   }
 }
 .footer__company-details p {
@@ -2247,4 +2238,33 @@ footer h3 {
   padding: 0;
   margin: 0;
   list-style-type: none;
+}
+
+.faq__list--desktop {
+  display: none;
+}
+
+#faq-2 {
+  display: none;
+}
+
+@media (min-width: 976px) {
+  #faq-2 {
+    display: block;
+  }
+  .faq__list--mobile {
+    display: none;
+  }
+  .faq__list--desktop {
+    display: block;
+  }
+}
+#faq-1 .text-lightgrey {
+  display: none;
+}
+
+@media (min-width: 976px) {
+  #faq-1 .text-lightgrey {
+    display: inline;
+  }
 }
