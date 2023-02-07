@@ -2133,17 +2133,17 @@ footer h3 {
   font-size: 4.66666667rem;
 }
 
-@media (min-width: 976px) {
-  .index-page .header__link-logo {
-    opacity: 0;
-    -webkit-transition: opacity 0.3s ease-in-out;
-    -o-transition: opacity 0.3s ease-in-out;
-    transition: opacity 0.3s ease-in-out;
-  }
-  .index-page .show-logo .header__link-logo {
-    opacity: 1;
-  }
+.index-page .header__link-logo {
+  opacity: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
 }
+
+.index-page .show-logo .header__link-logo {
+  opacity: 1;
+}
+
 .portfolio .content-wrapper {
   padding-top: 70px;
   padding-bottom: 70px;

@@ -1905,15 +1905,13 @@ footer h3 {
     font-size: 4.66666667rem;
 }
 
-@media (min-width:976px) {
-    .index-page .header__link-logo {
-        opacity: 0;
-        transition: opacity .3s ease-in-out;
-    }
+.index-page .header__link-logo {
+    opacity: 0;
+    transition: opacity .3s ease-in-out;
+}
 
-    .index-page .show-logo .header__link-logo {
-        opacity: 1;
-    }
+.index-page .show-logo .header__link-logo {
+    opacity: 1;
 }
 
 .portfolio .content-wrapper {

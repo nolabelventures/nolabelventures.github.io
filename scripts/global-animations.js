@@ -41,6 +41,12 @@ if (window.location.pathname === "/") {
     } else {
       header.classList.remove('hide')
     }
+    
+    if (windowPos >= window.innerHeight) {
+      header.classList.add('show-logo')
+    } else {
+      header.classList.remove('show-logo')
+    }
 
     // used to detect scroll position
     lastScrollTop = windowPos <= 0 ? 0 : windowPos;
@@ -82,9 +88,7 @@ document
 
 document.querySelector('.copy-year').innerText = new Date().getFullYear()
 
-
 const cookieNotice = document.querySelector('.cookie-notice')
-
 if (window.location.pathname !== '/') {
   if (!localStorage['cookie_dismissed']) {
     gsap.to(cookieNotice, {
@@ -92,7 +96,6 @@ if (window.location.pathname !== '/') {
     })
   }
 }
-
 
 cookieNotice.querySelector('.cookie-notice__accept').addEventListener('click', () => {
   localStorage.setItem('cookie_dismissed', true)
