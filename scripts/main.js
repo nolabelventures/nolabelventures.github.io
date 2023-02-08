@@ -1,41 +1,42 @@
+
+window.addEventListener('load', () => {
+  const dropdowns = gsap.utils.toArray("[data-dropdown]");
+  dropdowns.forEach((dropdown) => {
+    const content = dropdown.nextSibling.nextSibling;
+    const contentHeight = content.clientHeight
+    content.style.height = 0;
+
+    dropdown.addEventListener("click", (e) => {
+      const button = e.currentTarget;
+
+      dropdowns.forEach(dd => {
+        gsap.to(dd.nextSibling.nextSibling, {
+          height: 0
+        })
+
+        dd.classList.remove("dropdown-active");
+      })
+
+      if (content.style.height !== '0px') {
+        button.classList.remove("dropdown-active");
+        
+        gsap.to(content, {
+          height: 0
+        })
+      } else {
+        button.classList.add("dropdown-active");
+        
+        gsap.to(content, {
+          height: contentHeight + 'px'
+        })
+      }
+    });
+  });
+})
+
 /*
  * FAQ Dropdowns
  */
-const dropdowns = gsap.utils.toArray("[data-dropdown]");
-
-
-dropdowns.forEach((dropdown) => {
-  const content = dropdown.nextSibling.nextSibling;
-  const contentHeight = content.clientHeight
-  content.style.height = 0;
-
-  dropdown.addEventListener("click", (e) => {
-    const button = e.currentTarget;
-
-    dropdowns.forEach(dd => {
-      gsap.to(dd.nextSibling.nextSibling, {
-        height: 0
-      })
-
-      dd.classList.remove("dropdown-active");
-    })
-
-    if (content.style.height !== '0px') {
-      button.classList.remove("dropdown-active");
-      
-      gsap.to(content, {
-        height: 0
-      })
-    } else {
-      button.classList.add("dropdown-active");
-      
-      gsap.to(content, {
-        height: contentHeight + 'px'
-      })
-    }
-  });
-});
-
 const jumpToSection = document.getElementById(window.location.hash.substring(1))
 
 let mm = gsap.matchMedia(),
@@ -1138,7 +1139,6 @@ mm.add(
       }
 
       window.addEventListener("DOMContentLoaded", () => {
-        console.log('load')
         const height = window.innerHeight;
         document.querySelector('.hero-intro').style.height = `${height}px`;
       })

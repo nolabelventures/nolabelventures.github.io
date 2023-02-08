@@ -7,8 +7,8 @@ var cacheAssets = [
     '/scripts/page-transitions.js',
     '/scripts/DrawSVGPlugin.min.js',
     '/scripts/SplitText.min.js',
-    '/css/Druk-Medium-Web.woff',
-    '/css/Druk-Medium-Web.woff2',
+    '/css/fonts/Druk-Medium-Web.woff',
+    '/css/fonts/Druk-Medium-Web.woff2',
 ];
   
 // Call install Event
