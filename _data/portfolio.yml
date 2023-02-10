@@ -5,8 +5,9 @@ portfolio:
   - title: Farmlend
     url: https://farmlend.co.uk/
     image: /assets/uploads/Farmlend.png
+    width: "120"
   - title: Payflow
-    url: https://www.payflowapp.pt/
+    url: https://www.payflow.es/
     image: /assets/uploads/Payflow.png
     width: "75"
   - title: RLTY
@@ -31,9 +32,14 @@ portfolio:
   - title: YTVL
     url: https://vtvl.io/
     image: /assets/uploads/vtvl 1.png
+  - title: Tracking Plan
+    url: https://www.trackingplan.com/
+    image: /assets/uploads/Trackingplan.png
+    width: "120"
   - title: Finematter
     url: https://finematter.com/
     image: /assets/uploads/Finematter.png
+    width: "70"
   - title: Mamopay
     url: https://www.mamopay.com/
     image: /assets/uploads/Mamopay.png
@@ -41,12 +47,9 @@ portfolio:
     url: https://www.novai.co.uk/
     image: /assets/uploads/Novai.png
   - title: Rize ag
-    url: https://www.rizeag.com/en/home
+    url: https://www.rizeag.com
     image: /assets/uploads/RizeAg.png
-    width: "70"
-  - title: Tracking Plan
-    url: https://www.trackingplan.com/
-    image: /assets/uploads/Trackingplan.png
+    width: "60"
   - title: Upchoose
     url: https://www.upchoose.com/
     image: /assets/uploads/Upchoose.png
