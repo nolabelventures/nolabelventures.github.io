@@ -8,6 +8,7 @@ portfolio:
   - title: Payflow
     url: https://www.payflowapp.pt/
     image: /assets/uploads/Payflow.png
+    width: "75"
   - title: RLTY
     url: https://www.rlty.live/
     image: /assets/uploads/RLTY.png
@@ -15,13 +16,21 @@ portfolio:
   - title: Front
     url: https://www.getfront.com/
     image: /assets/uploads/Front.png
-    width: 150
+    width: "130"
   - title: Yhangry
     url: https://yhangry.com/
     image: /assets/uploads/yhangry 1.png
+    width: "70"
   - title: Goodvest
     url: https://www.goodvest.fr/
     image: /assets/uploads/Goodvest.png
+  - title: Oja
+    url: https://oja.app/
+    image: /assets/uploads/Oja.png
+    width: "80"
+  - title: YTVL
+    url: https://vtvl.io/
+    image: /assets/uploads/vtvl 1.png
   - title: Finematter
     url: https://finematter.com/
     image: /assets/uploads/Finematter.png
@@ -34,15 +43,10 @@ portfolio:
   - title: Rize ag
     url: https://www.rizeag.com/en/home
     image: /assets/uploads/RizeAg.png
+    width: "70"
   - title: Tracking Plan
     url: https://www.trackingplan.com/
     image: /assets/uploads/Trackingplan.png
   - title: Upchoose
     url: https://www.upchoose.com/
     image: /assets/uploads/Upchoose.png
-  - title: YTVL
-    url: https://vtvl.io/
-    image: /assets/uploads/vtvl 1.png
-  - title: Oja
-    url: https://oja.app/
-    image: /assets/uploads/Oja.png
