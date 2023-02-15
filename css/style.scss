@@ -839,10 +839,13 @@ label {
 }
 
 @media (min-width:976px) {
-    .fixed-page > * {
+    body:not([data-pg-id]) .fixed-page > * {
         padding: 0;
         position: absolute;
         top: 0;
+    }
+
+    .fixed-page > * {
         width: 100vw;
         height: 100vh;
         display: flex;
@@ -1502,7 +1505,7 @@ main {
 
 @media (min-width:976px) {
     .facts__section {
-        max-width: 100vw;
+        max-width: 100%;
         text-align: left;
         padding-top: 0;
         display: flex;
