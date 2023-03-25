@@ -2,7 +2,7 @@
 layout: post
 title: My journey transitioning from late-stage investing to early-stage VC
 date: 2023-01-11T08:42:15.227Z
-thumbnail: /assets/uploads/dickens-lin-qm66hvknhn4-unsplash.jpg
+thumbnail: /assets/uploads/blogbanner5.jpg
 ---
 <!--StartFragment-->
 
