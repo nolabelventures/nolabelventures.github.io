@@ -2,7 +2,7 @@
 layout: post
 title: Why there has never been a better time to be an immigrant founder in Europe
 date: 2023-02-05T11:19:00.862Z
-thumbnail: /assets/uploads/dickens-lin-qm66hvknhn4-unsplash.jpg
+thumbnail: /assets/uploads/blogbanner2.jpg
 ---
 With the growth of Europe’s venture capital ecosystem, starting a business is going to be much easier for immigrant founders. 
 
