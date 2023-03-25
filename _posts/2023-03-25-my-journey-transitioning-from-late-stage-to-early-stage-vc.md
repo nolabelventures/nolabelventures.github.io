@@ -1,12 +1,12 @@
 ---
 layout: post
-title: My journey transitioning from late-stage to early-stage VC
+title: My journey transitioning from late-stage investing to early-stage VC
 date: 2023-01-11T08:42:15.227Z
 thumbnail: /assets/uploads/dickens-lin-qm66hvknhn4-unsplash.jpg
 ---
 <!--StartFragment-->
 
-As an investor who spent c.10 years investing in late-stage companies, I thought I had seen and learned a great deal about investing. However, a few years ago I was intrigued by the early-stage investing world and decided to venture into it by using my own capital to invest in start-ups. **The transition from late-stage to early-stage investing proved to be a significant learning experience for me, and I'd like to share my journey.**
+As an investor who spent c.10 years investing in late-stage companies at KKR and Silver Lake, I thought I had seen and learned a great deal about investing. However, a few years ago I was intrigued by the early-stage investing world and decided to venture into it by using my own capital to invest in start-ups. **The transition from late-stage to early-stage investing proved to be a significant learning experience for me, and I'd like to share my journey.**
 
 After doing my first angel investments at the early stage, it became clear to me that the early stage investment world was very different from the late stage. I had to learn by putting my own capital at risk. During this time, I realized a three important things:
 
@@ -20,7 +20,7 @@ Despite the differences, I found that **some skills are transferable from late t
 
 1. **Intros to clients and downstream capital**: as an angel, thanks to the network I had developed at the late stage, I was able to help founders in ways that other investors couldn't. For instance, I was very often able to offer the startups i backed access to large potential clients owned by growth or PE funds, as well as access to later stage investors;
 2. **Knowing what great should look like**: having backed a lot of scaled companies who found product-market fit, I knew how to help founders on what they should be targeting and doing to grow and raise further capital;
-3. **Spotting opportunities in VC where others don’t**: being an outsider allowed me to spot opportunities that others in the VC world didn't, likely because they got used to the status-quo. One of those overlooked opportunities formed the thesis of my fund, No Label Ventures: backing immigrant founders in Europe and sponsoring their visas.
+3. **Spotting opportunities in VC where others don’t**: being an outsider allowed me to spot opportunities that others in the VC world didn't, likely because they got used to the status-quo. One of those overlooked opportunities formed the thesis of my VC fund, **No Label Ventures**: backing immigrant founders in Europe and sponsoring their visas.
 
 I also discovered **some other interesting differences between early-stage and late-stage** investing. A couple I would highlight: 
 
