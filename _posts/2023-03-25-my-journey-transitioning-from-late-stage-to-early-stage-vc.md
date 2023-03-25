@@ -4,7 +4,9 @@ title: My journey transitioning from late-stage investing to early-stage VC
 date: 2023-01-11T08:42:15.227Z
 thumbnail: /assets/uploads/blogbanner5.jpg
 ---
-<!--StartFragment-->
+
+
+
 
 As an investor who spent c.10 years investing in late-stage companies at KKR and Silver Lake, I thought I had seen and learned a great deal about investing. However, a few years ago I was intrigued by the early-stage investing world and decided to venture into it by using my own capital to invest in start-ups. **The transition from late-stage to early-stage investing proved to be a significant learning experience for me, and I'd like to share my journey.**
 
