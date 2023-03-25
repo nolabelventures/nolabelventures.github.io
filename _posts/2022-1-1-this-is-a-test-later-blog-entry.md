@@ -4,9 +4,11 @@ title: "No Label Ventures: Europe’s VC fund focused on backing immigrant found
 date: 2023-01-01T14:56:55.253Z
 thumbnail: /assets/uploads/blogbanner1.jpg
 ---
-*No Label Ventures (“NLV”) is Europe’s VC fund dedicated to supporting immigrant founders in building exceptional companies. Our distinctive approach of tackling visa issues for founders enables us to tap into an overlooked market segment that traditional VCs tend to ignore. With our late-stage advantage and unwavering commitment to leading by conviction, NLV is on a mission to back immigrant entrepreneurs in Europe and help them create outstanding companies.*
-
+No Label Ventures is Europe’s VC fund dedicated to supporting immigrant founders in building exceptional companies. \
+\
 <!-- more -->
+
+Our distinctive approach of tackling visa issues for founders enables us to tap into an overlooked market segment that traditional VCs tend to ignore. With our late-stage advantage and unwavering commitment to leading by conviction, NLV is on a mission to back immigrant entrepreneurs in Europe and help them create outstanding companies.
 
 ### **1. Backing immigrants founders in Europe: it’s an overperforming thesis**
 
