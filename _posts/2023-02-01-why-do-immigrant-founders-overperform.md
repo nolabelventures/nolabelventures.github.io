@@ -2,7 +2,7 @@
 layout: post
 title: Why do Immigrant Founders Overperform?
 date: 2023-03-01T10:17:41.026Z
-thumbnail: /assets/uploads/dickens-lin-qm66hvknhn4-unsplash.jpg
+thumbnail: /assets/uploads/blogbanner4.jpg
 ---
 <!-- more -->
 
