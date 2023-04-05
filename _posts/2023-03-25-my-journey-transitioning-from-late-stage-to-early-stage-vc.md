@@ -4,7 +4,9 @@ title: My journey transitioning from late-stage investing to early-stage VC
 date: 2023-01-11T08:42:15.227Z
 thumbnail: /assets/uploads/blogbanner5.jpg
 ---
-The transition from late-stage to early-stage investing proved to be a significant learning experience for me, and I'd like to share my journey.
+The transition from late-stage to early-stage investing proved to be a significant learning experience for me, and I'd like to share my journey.\
+\
+*b﻿y Ramzi Rafih*
 
 <!-- more -->
 
@@ -29,6 +31,8 @@ I also discovered **some other interesting differences between early-stage and l
 1. **The speed of doing deals vs the length of partnerships with founders**: deals between VCs and founders in the early stage get done very quickly (sometimes a few weeks), but those partnerships carry on for 5-10 years. Late-stage deals, on the other hand, take much longer to get done (a few months), yet the partnerships typically only last for 3-5 years;
 2. **Making an impact is easier at the early-stage**: I realized that as an angel investor at the early stage, it's easier to make an impact than as an institutional investor at the late stage. One good intro to a client or investor at the early stage can potentially influence the trajectory of the company. It's arguably much harder to make an impact as an investor at the late stage, where the management team is established, and the business has found product-market fit.
 
-**In conclusion, I learned that early-stage investing requires a radically different approach. Yet having a late-stage experience certainly gave me advantages that helped me differentiate as an early stage investor. Being an "outsider" gave me a unique perspective that I could use to spot and help founders in ways that other investors couldn't.**
+**In conclusion, I learned that early-stage investing requires a radically different approach. Yet having a late-stage experience certainly gave me advantages that helped me differentiate as an early stage investor. Being an "outsider" gave me a unique perspective that I could use to spot and help founders in ways that other investors couldn't.**\
+\
+**R﻿amzi**
 
 <!--EndFragment-->
