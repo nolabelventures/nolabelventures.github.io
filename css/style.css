@@ -2274,13 +2274,14 @@ footer h3 {
 }
 
 
-.footer__footnote {
+.footer__company-details .footer__footnote {
     font-style: italic;
     opacity: .9;
 }
 
 @media (min-width:976px) {    
-    .footer__footnote {
+    .footer__company-details .footer__footnote {
         width: 33.33%;
+        text-align: left;
     }
 }
