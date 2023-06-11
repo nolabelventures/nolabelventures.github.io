@@ -2277,6 +2277,7 @@ footer h3 {
 .footer__company-details .footer__footnote {
     font-style: italic;
     opacity: .9;
+    margin: 1em 0;
 }
 
 @media (min-width:976px) {    
