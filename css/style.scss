@@ -2049,3 +2049,17 @@ footer h3 {
         display: inline;
     }
 }
+
+
+.footer__company-details .footer__footnote {
+    font-style: italic;
+    opacity: .8;
+    margin: 0 0 2em;
+}
+
+@media (min-width:976px) {    
+    .footer__company-details .footer__footnote {
+        width: 33.33%;
+        text-align: left;
+    }
+}
