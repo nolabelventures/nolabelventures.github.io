@@ -1,7 +1,23 @@
 portfolio:
-  - title: Banked
-    url: https://banked.com/
-    image: /assets/uploads/Banked.png
+  - title: Spore Biotechnologies
+    url: https://spore.bio/
+    image: /assets/uploads/spore-logo2.png
+  - title: Guided Energy
+    url: https://guided.energy/
+    image: /assets/uploads/guided-logo.jpg
+  - title: Pangea Botanica
+    url: https://www.pangeabotanica.com/
+    image: /assets/uploads/pangea-logo.png
+  - title: Mizou
+    url: https://mizou.com
+    image: /assets/uploads/mizou.jpeg
+  - title: Front
+    url: https://www.getfront.com/
+    image: /assets/uploads/Front.png
+    width: "130"
+  - title: Callyope
+    url: https://callyope.com/
+    image: /assets/uploads/cropped-cropped-callyope8.1.png
   - title: Farmlend
     url: https://farmlend.co.uk/
     image: /assets/uploads/Farmlend.png
@@ -10,14 +26,13 @@ portfolio:
     url: https://www.payflow.es/
     image: /assets/uploads/Payflow.png
     width: "75"
+  - title: Banked
+    url: https://banked.com/
+    image: /assets/uploads/Banked.png
   - title: RLTY
     url: https://www.rlty.live/
     image: /assets/uploads/RLTY.png
     width: "145"
-  - title: Front
-    url: https://www.getfront.com/
-    image: /assets/uploads/Front.png
-    width: "130"
   - title: Yhangry
     url: https://yhangry.com/
     image: /assets/uploads/yhangry 1.png
@@ -29,27 +44,10 @@ portfolio:
     url: https://oja.app/
     image: /assets/uploads/Oja.png
     width: "80"
-  - title: YTVL
+  - title: VTVL
     url: https://vtvl.io/
     image: /assets/uploads/vtvl 1.png
   - title: Tracking Plan
     url: https://www.trackingplan.com/
     image: /assets/uploads/Trackingplan.png
     width: "120"
-  - title: Finematter
-    url: https://finematter.com/
-    image: /assets/uploads/Finematter.png
-    width: "70"
-  - title: Mamopay
-    url: https://www.mamopay.com/
-    image: /assets/uploads/Mamopay.png
-  - title: Novai
-    url: https://www.novai.co.uk/
-    image: /assets/uploads/Novai.png
-  - title: Rize ag
-    url: https://www.rizeag.com
-    image: /assets/uploads/RizeAg.png
-    width: "60"
-  - title: Upchoose
-    url: https://www.upchoose.com/
-    image: /assets/uploads/Upchoose.png
