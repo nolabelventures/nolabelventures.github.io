@@ -40,10 +40,6 @@ portfolio:
   - title: Goodvest
     url: https://www.goodvest.fr/
     image: /assets/uploads/Goodvest.png
-  - title: Oja
-    url: https://oja.app/
-    image: /assets/uploads/Oja.png
-    width: "80"
   - title: VTVL
     url: https://vtvl.io/
     image: /assets/uploads/vtvl 1.png
