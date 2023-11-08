@@ -1,4 +1,8 @@
 portfolio:
+  - image: /assets/uploads/11x.jpg
+    title: 11x
+    width: ""
+    url: https://www.11x.ai/
   - title: Spore Biotechnologies
     url: https://spore.bio/
     image: /assets/uploads/spore2.png
