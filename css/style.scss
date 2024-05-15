@@ -881,6 +881,7 @@ label {
 .immigrant-section {
     flex-direction: column;
     padding-bottom: 0;
+    padding-top: 70px;
 }
 
 .graph-label {
@@ -981,7 +982,7 @@ label {
     padding: 0;
     color: var(--colors-white);
     position: absolute;
-    top: 35px;
+    top: 20px;
     right: 20px;
 }
 
@@ -1113,16 +1114,16 @@ label {
     }
 }
 
-.line-portfoli-about {
+.line-portfolio-about {
     display: none;
 }
 
-.line-portfoli-about--mobile {
+.line-portfolio-about--mobile {
     width: 100vw;
 }
 
 @media (min-width: 976px) {
-    .line-portfoli-about {
+    .line-portfolio-about {
         position: absolute;
         right: 0;
         z-index: 1;
@@ -1131,7 +1132,7 @@ label {
         display: block;
     }
 
-    .line-portfoli-about--mobile {
+    .line-portfolio-about--mobile {
         display: none;
     }
 }
@@ -1199,12 +1200,12 @@ label {
     margin: -20px;
 }
 
-.line-portfoli-about path {
+.line-portfolio-about path {
     stroke-width: 10;
 }
 
 @media (min-width:976px) {
-    .line-portfoli-about path {
+    .line-portfolio-about path {
         stroke-width: 5;
     }
 }
@@ -1248,9 +1249,27 @@ label {
     position: relative;
 }
 
+.portfolio__link {
+    position: relative;
+}
+
 .portfolio {
     background-color: var(--colors-black);
     color: var(--colors-white);
+}
+
+.portfolio-items__founder-image {
+    opacity: 0;
+    position: absolute;
+    inset: 0;
+    transition: opacity .3s ease-in-out;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.portfolio__link:hover .portfolio-items__founder-image {
+    opacity: 1;
 }
 
 @media (max-width: 976px) {
@@ -1498,11 +1517,6 @@ main {
     .default-layout h1 {
         font-size: 1.5625rem;
     }
-}
-
-.facts__section-services {
-    padding-top: 70px;
-    color: var(--colors-body);
 }
 
 @media (min-width:976px) {
@@ -1817,7 +1831,7 @@ footer h3 {
     text-align: center;
 }
 
-.portfolio__link img {
+.portfolio__link .portfolio-items__logo {
     max-height: 100px;
     max-width: 100px;
     vertical-align: middle;
@@ -1977,6 +1991,7 @@ footer h3 {
 @media (min-width:976px) {
     .immigrant-section .text-highlight {
         font-size: 4.0625rem;
+        padding-top: 0;
     }
 
     .immigrant-section__emphasis-text {
@@ -2050,14 +2065,13 @@ footer h3 {
     }
 }
 
-
 .footer__company-details .footer__footnote {
     font-style: italic;
     opacity: .8;
     margin: 0 0 2em;
 }
 
-@media (min-width:976px) {    
+@media (min-width:976px) {
     .footer__company-details .footer__footnote {
         width: 33.33%;
         text-align: left;

@@ -373,7 +373,7 @@ mm.add(
         }
         
         animating = true;
-        const isSlider = index > 0 && index < 5
+        const isSlider = index > 0 && index < 4
 
         let shouldSlide = ''
 
@@ -655,39 +655,6 @@ mm.add(
       });
 
       if (Sections) {
-        const servicesSection = gsap.utils.selector(".facts__section-services");
-        const firstSectionTimeline = gsap.timeline({
-          defaults: {
-            duration: 1
-          }
-        })
-
-        const firstSectionHeading = new SplitText(servicesSection("h2"), {
-          type: "words",
-        });
-
-        firstSectionTimeline.from(firstSectionHeading.words, {
-          y: '100%',
-          autoAlpha: 0,
-          stagger: 0.05,
-        });
-
-        firstSectionTimeline.fromTo(servicesSection("h2"), {
-          y: 100
-        }, {
-          y: 0
-        }, "+=.5")
-
-        firstSectionTimeline.from(servicesSection(".facts__services > div"), {
-          y: 10,
-          autoAlpha: 0,
-          stagger: 0.25,
-        }, "<");
-
-
-        pageAnimations.push(firstSectionTimeline)
-
-
         // /* IMMIGRANT */
         const immigrantsSection = gsap.utils.selector(".immigrant-section");
         const immigrantSectionTimeline = gsap.timeline({
@@ -944,7 +911,7 @@ mm.add(
 
             hasInteractedWithPortfolio = false
 
-            gsap.to(".line-portfoli-about path", {
+            gsap.to(".line-portfolio-about path", {
               drawSVG: '100%',
               duration: 2,
               autoAlpha: 1
@@ -957,7 +924,7 @@ mm.add(
           autoAlpha: 0
         })
 
-        portfolio.set(".line-portfoli-about path", {
+        portfolio.set(".line-portfolio-about path", {
           autoAlpha: 0,
           drawSVG: 0,
         }, "<");
@@ -1048,37 +1015,6 @@ mm.add(
       
         // FAQ 2
         pageAnimations.push(false)
-
-        const pitchLines = gsap.utils.toArray(".pitch-lines--top:not(.pitch-lines--mobile) path");
-        const pitchSection = gsap.utils.selector('#pitch')
-        const pitchTimeline = gsap.timeline({paused: true})
-
-        pitchTimeline.from([pitchLines[0], pitchLines[1]], {
-          drawSVG: 0,
-        });
-
-        pitchTimeline.from('.pitch-lines--bottom path', {
-          drawSVG: "100% 100%",
-        });
-
-        const pitchHeadingOne = new SplitText(pitchSection('h2')[0], {
-          type: 'words'
-        })
-
-        pitchTimeline.from(pitchHeadingOne.words, {
-          autoAlpha: 0,
-          duration: 2,
-          filter: 'blur(10px)',
-          stagger: 0.05
-        }, "<")
-
-        pitchTimeline.from(pitchSection('.pitch__cta'), {
-          autoAlpha: 0,
-          duration: 2,
-          filter: 'blur(10px)'
-        }, "<75%")
-
-        pageAnimations.push(pitchTimeline)
       } else if (isMobile) {
         gsap.from(".line-immigrant-unicorn-founders path", {
           drawSVG: 0,
@@ -1091,10 +1027,10 @@ mm.add(
           },
         });
 
-        gsap.from(".line-portfoli-about path", {
+        gsap.from(".line-portfolio-about path", {
           drawSVG: 0,
           scrollTrigger: {
-            trigger: ".line-portfoli-about",
+            trigger: ".line-portfolio-about",
             start: "top bottom",
             bottom: "bottom center",
             scrub: true,
@@ -1112,26 +1048,6 @@ mm.add(
             ease: "none",
           },
         });
-
-        const pitchLines = gsap.utils.toArray(".pitch-lines--mobile path");
-        gsap.from([pitchLines[1], pitchLines[2]], {
-          drawSVG: 0,
-          scrollTrigger: {
-            trigger: "#pitch",
-            start: "top bottom",
-            end: "center bottom",
-            scrub: true,
-          },
-        });
-        gsap.from(pitchLines[0], {
-          drawSVG: "100% 100%",
-          scrollTrigger: {
-            trigger: "#pitch",
-            start: "center bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        });
       }
     } else if (isMobile) {
       if (jumpToSection) {
@@ -1144,34 +1060,6 @@ mm.add(
       })
 
       /* SECTION ONE */
-      const servicesSection = gsap.utils.selector('.facts__section-services')
-      const servicesSectionTitle = new SplitText(servicesSection('h2'), { type: 'words'})
-      gsap.from(servicesSectionTitle.words, {
-        autoAlpha: 0,
-        y: 20,
-        stagger: 0.05,
-        scrollTrigger: {
-          trigger: '.facts__section-services',
-          end: '+=500',
-          scrub: true,
-          once: true
-        }
-      })
-
-      servicesSection('.facts__services > div').forEach(section => {
-        gsap.from(section, {
-          autoAlpha: 0,
-          y: 100,
-          stagger: 0.05,
-          scrollTrigger: {
-            trigger: section,
-            scrub: 1,
-            once: true,
-          }
-        })
-      })
-
-      /* SECTION TWO */
       const immigrantsSection = gsap.utils.selector('.immigrant-section')
       const immigrantSectionTitle = new SplitText(immigrantsSection('h2'), { type: 'words'})
 
@@ -1453,10 +1341,10 @@ mm.add(
         drawSVG: 0
       })
       
-      gsap.from('.line-portfoli-about--mobile path', {
+      gsap.from('.line-portfolio-about--mobile path', {
         scrollTrigger: {
           start: 'top bottom-=400',
-          trigger: '.line-portfoli-about--mobile',
+          trigger: '.line-portfolio-about--mobile',
         },
         drawSVG: 0
       })
@@ -1467,24 +1355,6 @@ mm.add(
           trigger: '.about__line-about',
         },
         drawSVG: 0
-      })
-
-      const pitchLines = gsap.utils.toArray('#pitch .pitch-lines--mobile path')
-      
-      gsap.from([pitchLines[0], pitchLines[1]], {
-        drawSVG: 0,
-        scrollTrigger: {
-          trigger: '#pitch',
-          start: 'top center'
-        }
-      })
-
-      gsap.from(pitchLines[2], {
-        drawSVG: '100% 100%',
-        scrollTrigger: {
-          trigger: '#pitch',
-          start: 'bottom bottom'
-        }
       })
 
       const menuLinks = gsap.utils.toArray('.header__mobile-menu [href*="#"]')
