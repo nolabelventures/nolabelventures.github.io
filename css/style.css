@@ -926,8 +926,9 @@ label {
   max-width: 100%;
   height: auto;
   border-radius: 5px;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
+  aspect-ratio: 16/9;
+  -o-object-fit: cover;
+     object-fit: cover;
 }
 
 .blog-posts__read-more {
@@ -2272,17 +2273,15 @@ footer h3 {
     display: inline;
   }
 }
-
-
 .footer__company-details .footer__footnote {
-    font-style: italic;
-    opacity: .8;
-    margin: 0 0 2em;
+  font-style: italic;
+  opacity: 0.8;
+  margin: 0 0 2em;
 }
 
-@media (min-width:976px) {    
-    .footer__company-details .footer__footnote {
-        width: 33.33%;
-        text-align: left;
-    }
+@media (min-width: 976px) {
+  .footer__company-details .footer__footnote {
+    width: 33.33%;
+    text-align: left;
+  }
 }

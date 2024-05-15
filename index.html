@@ -62,8 +62,6 @@
                         <path d="M299.358 113.386C298.881 112.447 298.123 111.677 297.08 110.921L297.078 110.92L293.321 108.208C292.905 107.901 292.65 107.657 292.498 107.402C292.347 107.144 292.249 106.829 292.246 106.243V102.831C292.246 102.543 292.281 102.32 292.333 102.162C292.416 101.924 292.5 101.83 292.652 101.733C292.807 101.639 293.083 101.559 293.517 101.56H294.06C294.348 101.559 294.57 101.595 294.729 101.647C294.967 101.73 295.062 101.814 295.158 101.966C295.251 102.12 295.331 102.396 295.331 102.831V107.833C295.331 108.042 295.412 108.239 295.561 108.387C295.709 108.535 295.905 108.616 296.115 108.616H299.14C299.349 108.616 299.546 108.535 299.694 108.387C299.842 108.238 299.923 108.042 299.923 107.833V102.947C299.926 101.18 299.483 99.702 298.464 98.677C297.96 98.1685 297.328 97.7924 296.607 97.5523C295.885 97.311 295.075 97.1998 294.176 97.1998H293.401C292.493 97.1998 291.674 97.311 290.943 97.5529C289.849 97.9097 288.956 98.5936 288.393 99.5442C287.825 100.495 287.576 101.665 287.576 103.025V106.282C287.575 107.452 287.73 108.491 288.2 109.441C288.668 110.391 289.428 111.199 290.503 111.962L290.497 111.958L294.297 114.71C294.708 115.013 294.947 115.25 295.09 115.503C295.234 115.757 295.328 116.079 295.331 116.673V120.745C295.331 121.032 295.296 121.255 295.244 121.413C295.161 121.652 295.077 121.746 294.925 121.843C294.771 121.936 294.494 122.016 294.06 122.016H293.439C293.151 122.016 292.929 121.981 292.771 121.929C292.532 121.845 292.438 121.762 292.341 121.609C292.248 121.455 292.167 121.179 292.168 120.745V114.929C292.168 114.72 292.087 114.523 291.938 114.375C291.79 114.227 291.594 114.145 291.384 114.145H288.36C288.153 114.145 287.951 114.228 287.805 114.374C287.659 114.52 287.576 114.723 287.576 114.929V120.629C287.573 122.395 288.017 123.874 289.035 124.899C289.54 125.407 290.172 125.783 290.892 126.023C291.614 126.264 292.424 126.376 293.323 126.376H294.176C295.084 126.376 295.903 126.264 296.633 126.022C297.728 125.666 298.621 124.982 299.184 124.031C299.751 123.081 300 121.91 300 120.551V116.596C300.001 115.368 299.836 114.323 299.358 113.386Z" fill="currentColor"/>
                     </svg></a>
                 <div class="header__menu-items">
-                    <a href="/blog" class="header__link">Blog</a>
-                    <a href="https://tally.so/r/wbRMgw" target="_blank" class="header__link header__link--pitch">Pitch us</a>
                     <button class="header__menu-button">
                         <svg width="100%" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
                             <path d="M21 10H3" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
@@ -89,7 +87,8 @@
                             <li>
                                 <a href="/#community">Our Approach</a>
                             </li>
-                            <li><a href="/blog">Blog</a></li>
+                            <li><a href="/blog">Blog</a>
+                            </li>
                             <li><a href="/#faq-1">FAQs</a>
                             </li>
                             <li><a href="https://tally.so/r/wbRMgw" class="header__link header__link--pitch" target="_blank">Pitch us</a>
@@ -100,10 +99,10 @@
             </div>
         </header>
         <div class="nav" data-pg-ia-hide>
-            <nav>
+            <nav data-pg-collapsed>
                 <ul class="nav__list">
                     <li>
-                        <a href="#why" class="nav__button" data-indexes="1,2,3,4"><span>Why NLV</span> </a>
+                        <a href="#thesis" class="nav__button" data-indexes="1,2,3,4"><span>Thesis</span> </a>
                     </li>
                     <li>
                         <a href="#portfolio" class="nav__button" data-indexes="5"> <span>Portfolio</span> </a>
@@ -116,9 +115,6 @@
                     </li>
                     <li>
                         <a href="#faq-1" class="nav__button" data-indexes="8"> <span>FAQs</span> </a>
-                    </li>
-                    <li>
-                        <a href="#pitch" class="nav__button" data-indexes="9"> <span>Pitch to us</span> </a>
                     </li>
                 </ul>
             </nav>
@@ -133,13 +129,13 @@
             </defs>
         </svg>
         <main class="fixed-page">
-            <section id="intro" data-bg="#111111" style="z-index: 50;">
+            <section id="intro" data-bg="#111111" style="z-index: 50;" data-pg-collapsed>
                 <div class="hero-intro">
                     <div class="hero-intro--page-one hero-intro__page">
                         <div data-empty-placeholder class="hero-intro__blob"></div>
                         <h1 data-pg-ia-hide> <div class="page-one" style="transform: translateY(50%);">
-                                We are an early stage, and very biased, VC fund.
-</div> <div class="page-two">Designed for Europe's exceptional immigrant founders.</div></h1>
+                                Backing immigrants who build epic companies in Europe.
+</div> <div class="page-two">From Day 1.</div></h1>
                     </div>
                     <div class="hero-intro__page hero-intro--page-two" id="intro" data-pg-ia-hide>
                         <a href="#why" class="scroll-down"> <div class="chevron">
@@ -240,60 +236,7 @@
                     </div>
                 </div>
             </section>
-            <section class="facts__section facts__section-services" data-bg="#ffffff" id="why">
-                <div class="facts__section-content">
-                    <h2 class="facts__services-title">
-  High Conviction Investing in Immigrant Founders from Day 1</h2>
-                    <div class="facts__services">
-                        <div>
-                            <div class="facts__services-icon">
-                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-funding">
-                                    <path d="M34.4098 20.2013C35.4722 21.2636 37.1945 21.2636 38.2569 20.2013C39.3192 19.1389 39.3192 17.4166 38.2568 16.3543L34.4098 20.2013ZM28 14.9687L27.9268 17.6879L27.9268 17.6879L28 14.9687ZM21.8429 34.7012C20.9414 33.4993 19.2364 33.2557 18.0345 34.1571C16.8326 35.0586 16.5891 36.7636 17.4905 37.9655L21.8429 34.7012ZM30.7203 9.94444C30.7203 8.44209 29.5024 7.22419 28 7.22419C26.4976 7.22419 25.2797 8.44209 25.2797 9.94444H30.7203ZM25.2797 46.0556C25.2797 47.5579 26.4976 48.7758 28 48.7758C29.5024 48.7758 30.7203 47.5579 30.7203 46.0556H25.2797ZM5.72025 51.3333V4.66667H0.279747V51.3333H5.72025ZM5.72025 4.66667C5.72025 5.24855 5.24855 5.72025 4.66667 5.72025V0.279747C2.24384 0.279747 0.279747 2.24384 0.279747 4.66667H5.72025ZM4.66667 5.72025H51.3333V0.279747H4.66667V5.72025ZM51.3333 5.72025C50.7514 5.72025 50.2797 5.24846 50.2797 4.66667H55.7203C55.7203 2.24392 53.7563 0.279747 51.3333 0.279747V5.72025ZM50.2797 4.66667V51.3333H55.7203V4.66667H50.2797ZM50.2797 51.3333C50.2797 50.7515 50.7515 50.2797 51.3333 50.2797V55.7203C53.7562 55.7203 55.7203 53.7562 55.7203 51.3333H50.2797ZM51.3333 50.2797H4.66667V55.7203H51.3333V50.2797ZM4.66667 50.2797C5.24846 50.2797 5.72025 50.7514 5.72025 51.3333H0.279747C0.279747 53.7563 2.24392 55.7203 4.66667 55.7203V50.2797ZM38.2568 16.3543C35.7855 13.883 31.7328 12.3479 28.0732 12.2494L27.9268 17.6879C30.4266 17.7552 33.0756 18.8671 34.4098 20.2013L38.2568 16.3543ZM17.4905 37.9655C19.9101 41.1917 24.1242 42.7799 27.9023 42.9157L28.0977 37.4787C25.4469 37.3834 23.0036 36.2488 21.8429 34.7012L17.4905 37.9655ZM28.0732 12.2494C25.8652 12.19 23.4454 12.6438 21.5113 14.1088C19.4634 15.6599 18.3353 18.0608 18.3353 21.0556H23.7758C23.7758 19.5225 24.2878 18.8307 24.7962 18.4456C25.4182 17.9745 26.4707 17.6487 27.9268 17.6879L28.0732 12.2494ZM18.3353 21.0556C18.3353 22.5338 18.6804 23.872 19.3762 25.0377C20.0627 26.1877 21.003 27.0242 21.9823 27.6474C23.8323 28.8247 26.1843 29.4406 27.9787 29.93C30.0037 30.4822 31.4711 30.908 32.4857 31.5537C32.9388 31.8419 33.192 32.1121 33.3411 32.3619C33.4808 32.5959 33.6131 32.9505 33.6131 33.5556H39.0536C39.0536 32.0773 38.7085 30.7392 38.0126 29.5734C37.3262 28.4235 36.3859 27.5869 35.4066 26.9637C33.5566 25.7864 31.2046 25.1705 29.4102 24.6812C27.3852 24.1289 25.9177 23.7031 24.9031 23.0575C24.4501 22.7692 24.1969 22.499 24.0478 22.2492C23.9081 22.0152 23.7758 21.6606 23.7758 21.0556H18.3353ZM33.6131 33.5556C33.6131 35.0386 33.0343 35.9082 32.2064 36.488C31.269 37.1445 29.8177 37.5405 28.0977 37.4787L27.9023 42.9157C30.4496 43.0073 33.1649 42.4588 35.3274 40.9443C37.5993 39.3532 39.0536 36.8253 39.0536 33.5556H33.6131ZM30.7203 14.9687V9.94444H25.2797V14.9687H30.7203ZM25.2797 40.1972V46.0556H30.7203V40.1972H25.2797Z" fill="url(#paint0_linear_250_3536)"></path>
-                                    <defs>
-                                        <linearGradient id="paint0_linear_250_3536" x1="1.80952" y1="0.286825" x2="88.8026" y2="51.1474" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#00F897"></stop>
-                                            <stop offset="1" stop-color="#3959FF"></stop>
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <h3>Capital</h3>
-                            <p>We engage with founders at idea stage, often being the first investor to commit capital, ranging from $150k to $250k, and supporting them to close their funding round.</p>
-                        </div>
-                        <div>
-                            <div class="facts__services-icon">
-                                <svg width="56" height="56" viewBox="0 0 56 56" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-visa">
-                                    <path d="M4.25 29.25L18 34.25L15.5 43L18 50.5M40.5 49.25L39.25 43L33 40.5V31.75L40.5 29.25L51.75 30.5M45.5 11.75L44.25 15.5L35.5 16.75V24.25L41.75 21.75H46.75L51.75 24.25M4.25 24.25L10.5 19.25L16.75 18L21.75 10.5L19.25 5.5M28 53C41.807 53 53 41.807 53 28C53 14.1929 41.807 3 28 3C14.1929 3 3 14.1929 3 28C3 41.807 14.1929 53 28 53Z" stroke="url(#paint0_linear_250_3538)" stroke-width="5.69056" stroke-linecap="round" stroke-linejoin="round"></path>
-                                    <defs>
-                                        <linearGradient id="paint0_linear_250_3538" x1="1.80952" y1="0.286825" x2="88.8026" y2="51.1474" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#00F897"></stop>
-                                            <stop offset="1" stop-color="#3959FF"></stop>
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <h3>Immigration Support</h3>
-                            <p>We'll back founders regardless of their visa and settlement situation. We provide immigration support and can sponsor visas, to help founders transition into entrepreneurship.</p>
-                        </div>
-                        <div>
-                            <div class="facts__services-icon">
-                                <svg width="63" height="58" viewBox="0 0 63 58" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-network">
-                                    <path d="M45.6667 44.2778H35.9444C32.8761 44.2778 30.3889 41.7906 30.3889 38.7222V19.2778C30.3889 16.2095 32.8761 13.7222 35.9444 13.7222H45.6667M30.3889 29H17.8889M59.5556 52.3333V36.2222C59.5556 35.3017 58.8094 34.5556 57.8889 34.5556H47.3333C46.4129 34.5556 45.6667 35.3017 45.6667 36.2222V52.3333C45.6667 53.2538 46.4129 54 47.3333 54H57.8889C58.8094 54 59.5556 53.2538 59.5556 52.3333ZM17.8889 37.0556V20.9444C17.8889 20.024 17.1427 19.2778 16.2222 19.2778H5.66667C4.74619 19.2778 4 20.024 4 20.9444V37.0556C4 37.976 4.74619 38.7222 5.66667 38.7222H16.2222C17.1427 38.7222 17.8889 37.976 17.8889 37.0556ZM59.5556 21.7778V5.66667C59.5556 4.74619 58.8094 4 57.8889 4H47.3333C46.4129 4 45.6667 4.74619 45.6667 5.66667V21.7778C45.6667 22.6983 46.4129 23.4444 47.3333 23.4444H57.8889C58.8094 23.4444 59.5556 22.6983 59.5556 21.7778Z" stroke="url(#paint0_linear_250_3537)" stroke-width="6.40359"></path>
-                                    <defs>
-                                        <linearGradient id="paint0_linear_250_3537" x1="2.67725" y1="1.28682" x2="93.8861" y2="60.5372" gradientUnits="userSpaceOnUse">
-                                            <stop stop-color="#00F897"></stop>
-                                            <stop offset="1" stop-color="#3959FF"></stop>
-                                        </linearGradient>
-                                    </defs>
-                                </svg>
-                            </div>
-                            <h3>Network Access</h3>
-                            <p>We give the founders we back access to downstream VC funding and we'll introduce them to our existing network of clients and partners.</p>
-                        </div>
-                    </div>
-                </div>
-            </section>
-            <section class="facts__section immigrant-section" data-bg="#ffffff">
+            <section class="facts__section immigrant-section" data-bg="#ffffff" data-pg-collapsed id="thesis">
                 <div class="facts__section-content facts__section-content--narrow immigrant-section">
                     <h2 class="facts__content-title">Why back immigrant Founders?</h2>
                     <p class="facts__section-body-content"> <span class="split"> <span style="display: block;">Whilst immigrants make up</span> <span class="immigrant-section__digit">13</span>
@@ -312,7 +255,7 @@
                     </defs>
                 </svg>
             </section>
-            <section class="facts__section immigrant-founders" data-bg="#ffffff">
+            <section class="facts__section immigrant-founders" data-bg="#ffffff" data-pg-collapsed>
                 <div>
                     <div class="facts__section-content">
                         <div>
@@ -353,7 +296,7 @@
                     <p class="facts-section__astricks">Source: NLV research</p>
                 </div>
             </section>
-            <section class="facts__section unicorn-founders" data-bg="#ffffff">
+            <section class="facts__section unicorn-founders" data-bg="#ffffff" data-pg-collapsed>
                 <div class="facts__section-content--wide">
                     <div class="facts__section-content">
                         <div>
@@ -413,7 +356,7 @@
                 </div>
             </section>
             {% if site.data.portfolio.portfolio %}
-            <section class="portfolio" data-bg="#111111" id="portfolio">
+            <section class="portfolio" data-bg="#111111" id="portfolio" data-pg-collapsed>
                 <div class="portfolio-shadow-wrapper">
                     <div class="content-wrapper portfolio__content">
                         <h2>Our Portfolio</h2>
@@ -448,7 +391,7 @@
                     </defs>
                 </svg>
             </section>
-            <div class="founder__pinned-wrapper" data-bg="#111111" id="founder">
+            <div class="founder__pinned-wrapper" data-bg="#111111" id="founder" data-pg-collapsed>
                 <div class="about-content founder" id="founder">
                     <div>
                         <picture>
@@ -499,7 +442,22 @@
                         <div class="community">
                             <h2 class="about__community-title">Our Approach</h2>
                             <div class="about-content__content">
-                                <div>
+                                <div data-pg-collapsed>
+                                    <div>
+                                        <svg width="61" height="57" viewBox="0 0 61 57" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-sunrise">
+                                            <path fill-rule="evenodd" clip-rule="evenodd" d="M28.8107 1.24005C28.781 1.26729 28.752 1.29525 28.7236 1.32389L18.5656 11.4819C17.5893 12.4582 17.5893 14.0411 18.5656 15.0174C19.5419 15.9938 21.1248 15.9938 22.1011 15.0174L28 9.11858V20.8747C28 22.2554 29.1193 23.3747 30.5 23.3747C31.8807 23.3747 33 22.2554 33 20.8747V9.1185L38.8989 15.0174C39.8753 15.9938 41.4582 15.9938 42.4345 15.0174C43.4108 14.0411 43.4108 12.4582 42.4345 11.4819L32.2678 1.31524C32.0231 1.07055 31.7403 0.887187 31.4385 0.765149C31.1498 0.648142 30.8343 0.583501 30.5038 0.583011L28.7236 1.32389L30.5 0.583008C30.1529 0.583008 29.8224 0.653727 29.522 0.781544C29.2666 0.889968 29.0256 1.0428 28.8107 1.24005ZM8.95806 22.2078C9.93437 21.2315 11.5173 21.2315 12.4936 22.2078L16.1028 25.817C17.0791 26.7933 17.0791 28.3762 16.1028 29.3525C15.1265 30.3288 13.5435 30.3288 12.5672 29.3525L8.95806 25.7434C7.98175 24.767 7.98175 23.1841 8.95806 22.2078ZM19.746 32.9964C22.5982 30.1443 26.4665 28.542 30.5 28.542C34.5335 28.542 38.4018 30.1443 41.2539 32.9964C44.106 35.8485 45.7083 39.7168 45.7083 43.7503C45.7083 45.131 44.589 46.2503 43.2083 46.2503C41.8276 46.2503 40.7083 45.131 40.7083 43.7503C40.7083 41.0429 39.6328 38.4464 37.7183 36.5319C35.8039 34.6175 33.2074 33.542 30.5 33.542C27.7925 33.542 25.196 34.6175 23.2816 36.5319C21.3671 38.4464 20.2916 41.0429 20.2916 43.7503C20.2916 45.131 19.1723 46.2503 17.7916 46.2503C16.4109 46.2503 15.2916 45.131 15.2916 43.7503C15.2916 39.7168 16.8939 35.8485 19.746 32.9964ZM2.54175 41.25C1.16104 41.25 0.041748 42.3693 0.041748 43.75C0.041748 45.1307 1.16104 46.25 2.54175 46.25H7.62508C9.00579 46.25 10.1251 45.1307 10.1251 43.75C10.1251 42.3693 9.00579 41.25 7.62508 41.25H2.54175ZM50.875 43.75C50.875 42.3693 51.9943 41.25 53.375 41.25H58.4583C59.839 41.25 60.9583 42.3693 60.9583 43.75C60.9583 45.1307 59.839 46.25 58.4583 46.25H53.375C51.9943 46.25 50.875 45.1307 50.875 43.75ZM52.042 25.7434C53.0183 24.767 53.0183 23.1841 52.042 22.2078C51.0657 21.2315 49.4827 21.2315 48.5064 22.2078L44.8973 25.817C43.921 26.7933 43.921 28.3762 44.8973 29.3525C45.8736 30.3288 47.4565 30.3288 48.4328 29.3525L52.042 25.7434ZM0.041748 53.917C0.041748 52.5363 1.16104 51.417 2.54175 51.417H58.4584C59.8391 51.417 60.9584 52.5363 60.9584 53.917C60.9584 55.2977 59.8391 56.417 58.4584 56.417H2.54175C1.16104 56.417 0.041748 55.2977 0.041748 53.917Z" fill="url(#paint0_linear_1682_189)"/>
+                                            <defs>
+                                                <linearGradient id="paint0_linear_1682_189" x1="1" y1="0.999998" x2="60" y2="56" gradientUnits="userSpaceOnUse">
+                                                    <stop stop-color="#00F897"/>
+                                                    <stop offset="1" stop-color="#3959FF"/>
+                                                </linearGradient>
+                                            </defs>
+                                        </svg>
+                                    </div>
+                                    <h4>We back you first</h4>
+                                    <p>We engage with founders early, often being the first to invest, and we help founders close their funding rounds.</p>
+                                </div>
+                                <div data-pg-collapsed>
                                     <div>
                                         <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-investors">
                                             <path d="M44.2085 14.1383C49.7362 17.98 53.5503 24.088 54.3241 31.1356M6.9799 31.2738C7.69849 24.2536 11.4573 18.1456 16.9296 14.2763M19.9699 54.9595C23.1759 56.5901 26.8241 57.5022 30.6658 57.5022C34.3694 57.5022 37.8518 56.673 40.9749 55.1529M30.6658 18.3668C34.9094 18.3668 38.3493 14.9269 38.3493 10.6834C38.3493 6.43999 34.9094 3 30.6658 3C26.4226 3 22.9825 6.43999 22.9825 10.6834C22.9825 14.9269 26.4226 18.3668 30.6658 18.3668ZM10.6834 52.1407C14.9268 52.1407 18.3668 48.7005 18.3668 44.4572C18.3668 40.2137 14.9268 36.7738 10.6834 36.7738C6.43999 36.7738 3 40.2137 3 44.4572C3 48.7005 6.43999 52.1407 10.6834 52.1407ZM50.3166 52.1407C54.5601 52.1407 58 48.7005 58 44.4572C58 40.2137 54.5601 36.7738 50.3166 36.7738C46.0733 36.7738 42.6332 40.2137 42.6332 44.4572C42.6332 48.7005 46.0733 52.1407 50.3166 52.1407Z" stroke="url(#paint0_linear_665_741)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
@@ -514,22 +472,7 @@
                                     <h4>We share</h4>
                                     <p>Each founder we back becomes an owner in our fund and receives a share of the carried interest generated by No Label Ventures</p>
                                 </div>
-                                <div>
-                                    <div>
-                                        <svg width="62" height="58" viewBox="0 0 62 58" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-founders">
-                                            <path d="M39.8571 20.357C39.8571 23.2933 41.0236 26.1094 43.0999 28.1857C45.1762 30.262 47.9923 31.4284 50.9286 31.4284C53.8649 31.4284 56.681 30.262 58.7573 28.1857C60.8336 26.1094 62 23.2933 62 20.357C62.0001 20.0132 61.9201 19.6741 61.7664 19.3666L52.9093 1.65227C52.6708 1.17544 52.2684 0.800627 51.7758 0.596673C51.2833 0.392719 50.7337 0.373317 50.228 0.54203L36.2098 5.21417C35.4333 4.22692 34.3955 3.47726 33.2143 3.05037C31.5404 2.59936 30.5143 2.53992 28.7857 3.05037C27.5156 3.4996 26.4124 4.32504 25.623 5.4168C24.8336 6.50856 24.3955 7.81486 24.3669 9.1618L10.3708 13.8273C9.81381 14.013 9.35336 14.4124 9.09075 14.9375L0.233607 32.6518C0.0798345 32.9595 -0.000148337 33.2988 2.06528e-07 33.6427C2.06528e-07 36.5791 1.16645 39.3951 3.24275 41.4714C5.31904 43.5477 8.1351 44.7142 11.0714 44.7142C14.0078 44.7142 16.8238 43.5477 18.9001 41.4714C20.9764 39.3951 22.1429 36.5791 22.1429 33.6427C22.1429 33.2989 22.063 32.9598 21.9093 32.6523L14.1936 17.2216L25.7898 13.3563C26.5661 14.3438 27.6042 15.0934 28.7857 15.5197V53.5713C28.7857 53.5713 12.7143 53.5713 8.85714 53.5713C6.04574 53.4981 5.68695 57.9022 8.85714 57.9999H53.1429C55.5 57.9999 55.5 53.5713 53.1429 53.5713H33.2143V15.5208C34.4844 15.0715 35.5876 14.2461 36.3769 13.1543C37.1663 12.0626 37.6045 10.7563 37.6331 9.40936L46.5567 6.4338L40.091 19.367C39.9373 19.6744 39.8572 20.0133 39.8571 20.357ZM11.0714 40.2856C9.70239 40.281 8.36831 39.8528 7.25224 39.0599C6.13617 38.267 5.29277 37.1482 4.83777 35.857H17.3042C16.8493 37.1481 16.006 38.2668 14.8901 39.0597C13.7742 39.8526 12.4403 40.2808 11.0714 40.2856ZM16.3461 31.4284H5.79678L11.0714 20.8802L16.3461 31.4284ZM31 11.4999C30.5621 11.4999 30.1339 11.37 29.7698 11.1267C29.4057 10.8834 29.1219 10.5376 28.9543 10.133C28.7867 9.72834 28.7428 9.28312 28.8283 8.85359C28.9137 8.42407 29.1246 8.02952 29.4343 7.71984C29.7439 7.41017 30.1385 7.19928 30.568 7.11384C30.9975 7.0284 31.4428 7.07225 31.8474 7.23985C32.252 7.40744 32.5978 7.69125 32.8411 8.05539C33.0844 8.41953 33.2143 8.84764 33.2143 9.28558C33.2138 9.87268 32.9803 10.4356 32.5652 10.8507C32.15 11.2659 31.5871 11.4993 31 11.4999ZM50.9286 26.9999C49.5596 26.9952 48.2255 26.567 47.1094 25.7741C45.9934 24.9813 45.15 23.8625 44.6949 22.5713H57.1614C56.7064 23.8624 55.8631 24.9811 54.7472 25.774C53.6313 26.5668 52.2975 26.9951 50.9286 26.9999ZM50.9286 7.59453L56.2032 18.1427H45.6539L50.9286 7.59453Z" fill="url(#paint0_linear_772_228)"/>
-                                            <defs>
-                                                <linearGradient id="paint0_linear_772_228" x1="-1.47619" y1="-2.69582" x2="102.177" y2="62.5665" gradientUnits="userSpaceOnUse">
-                                                    <stop stop-color="#00F897"/>
-                                                    <stop offset="1" stop-color="#3959FF"/>
-                                                </linearGradient>
-                                            </defs>
-                                        </svg>
-                                    </div>
-                                    <h4>We’re very biased</h4>
-                                    <p>75% of the startups we backed were founded by a diverse team, where at least one founder is a woman, an ethnic minority or under-represented.</p>
-                                </div>
-                                <div>
+                                <div data-pg-collapsed>
                                     <div>
                                         <svg width="61" height="61" viewBox="0 0 61 61" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-advisors">
                                             <path d="M21.3071 32.4381C20.7147 31.8281 20.0065 31.3425 19.2239 31.0097C18.4414 30.6769 17.6003 30.5036 16.75 30.5H3C3.00692 33.8112 4.32535 36.9848 6.66672 39.3261C9.00808 41.6675 12.1817 42.9859 15.4929 42.9929H16.75C17.1809 42.9894 17.6106 42.9456 18.0333 42.8619M21.3071 32.4381C22.5189 30.894 24.1058 29.6858 25.9167 28.9286M21.3071 32.4381C20.032 34.0122 19.184 35.8884 18.8452 37.8857L18.0333 42.8619M18.0333 42.8619L15.4143 58H45.5071L42.8881 42.8619L42.0762 37.8857C41.7374 35.8884 40.8895 34.0122 39.6143 32.4381C38.4025 30.894 36.8157 29.6858 35.0048 28.9286M42.9667 42.8619C43.3894 42.9456 43.8191 42.9894 44.25 42.9929H45.5071C48.8183 42.9859 51.9919 41.6675 54.3333 39.3261C56.6747 36.9848 57.9931 33.8112 58 30.5H44.25C43.3997 30.5036 42.5586 30.6769 41.7761 31.0097C40.9935 31.3425 40.2853 31.8281 39.6929 32.4381M37.9905 23.0095C37.9905 27.1464 34.6369 30.5 30.5 30.5C26.3631 30.5 23.0095 27.1464 23.0095 23.0095C23.0095 18.8726 26.3631 15.519 30.5 15.519C34.6369 15.519 37.9905 18.8726 37.9905 23.0095ZM37.9905 6.74524C37.9905 8.81368 34.6369 10.4905 30.5 10.4905C26.3631 10.4905 23.0095 8.81368 23.0095 6.74524C23.0095 4.6768 26.3631 3 30.5 3C34.6369 3 37.9905 4.6768 37.9905 6.74524Z" stroke="url(#paint0_linear_665_726)" stroke-width="5" stroke-miterlimit="10"/>
@@ -652,58 +595,6 @@
                 </svg>
             </section>
             {% endif %}
-            <section id="pitch" class="pitch" data-bg="#111111">
-                <svg width="100%" viewBox="0 0 390 206" fill="none" xmlns="http://www.w3.org/2000/svg" class="pitch-lines pitch-lines--mobile pitch-lines--top">
-                    <path d="M-5.99958 7.49953C163.5 169 288 -48.0005 395.5 205" stroke="url(#paint0_linear_370_24)" stroke-width="5"/>
-                    <path d="M-5.00058 2.49657C156 143.497 306 -67.0034 390.503 131.997" stroke="url(#paint1_linear_370_24)" stroke-width="5"/>
-                    <defs>
-                        <linearGradient id="paint0_linear_370_24" x1="-194.761" y1="292.127" x2="326.587" y2="210.192" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#00E28A"/>
-                            <stop offset="1" stop-color="#0A42B0"/>
-                        </linearGradient>
-                        <linearGradient id="paint1_linear_370_24" x1="-163.518" y1="293.239" x2="328.295" y2="211.648" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#00E28A"/>
-                            <stop offset="1" stop-color="#0A42B0"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <svg width="100%" viewBox="0 0 1213 317" fill="none" xmlns="http://www.w3.org/2000/svg" class="pitch-lines pitch-lines--top">
-                    <path d="M2.5 -5.5C454 404.5 936.5 -10.5 1221 323" stroke="url(#paint0_linear_0_1)" stroke-width="5"/>
-                    <path d="M9 -6.49995C500.5 361.5 906.5 -17 1216 195.5" stroke="url(#paint1_linear_0_1)" stroke-width="5"/>
-                    <defs>
-                        <linearGradient id="paint0_linear_0_1" x1="-442.661" y1="791.814" x2="979.132" y2="863.095" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#00E28A"/>
-                            <stop offset="1" stop-color="#0A42B0"/>
-                        </linearGradient>
-                        <linearGradient id="paint1_linear_0_1" x1="-393.184" y1="796.77" x2="1029.29" y2="860.954" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#00E28A"/>
-                            <stop offset="1" stop-color="#0A42B0"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <div class="content-wrapper">
-                    <h2>Ready to join us? <span>If you are a founder you can pitch to us here</span></h2>
-                    <a href="https://tally.so/r/wbRMgw" target="_blank" class="pitch__cta">Pitch here</a>
-                </div>
-                <svg width="100%" viewBox="0 0 390 97" fill="none" xmlns="http://www.w3.org/2000/svg" class="pitch-lines pitch-lines--bottom pitch-lines--mobile pitch-lines--top">
-                    <path d="M-9.5 94.5C207 48 312 94.5 394.5 2.00001" stroke="url(#paint0_linear_372_27)" stroke-width="5"/>
-                    <defs>
-                        <linearGradient id="paint0_linear_372_27" x1="-313.41" y1="398.425" x2="-323.453" y2="-26.5761" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#00E28A"/>
-                            <stop offset="1" stop-color="#0A42B0"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-                <svg width="100%" viewBox="0 0 1280 320" fill="none" xmlns="http://www.w3.org/2000/svg" class="pitch-lines pitch-lines--bottom">
-                    <path d="M-10 318C395.5 -4 1144.5 284.5 1285 2" stroke="url(#paint0_linear_495_1207)" stroke-width="5"/>
-                    <defs>
-                        <linearGradient id="paint0_linear_495_1207" x1="-419.878" y1="727.536" x2="-435.103" y2="-93.0389" gradientUnits="userSpaceOnUse">
-                            <stop stop-color="#00E28A"/>
-                            <stop offset="1" stop-color="#0A42B0"/>
-                        </linearGradient>
-                    </defs>
-                </svg>
-            </section>
         </main>
         <footer id="footer" data-pgc="nlv.footer">
             <div class="footer-container">
@@ -741,14 +632,11 @@
                     <div class="footer__links">
                         <div>
                             <h2>Useful links</h2><a href="/" class="footer__link">Home</a>
-                            <a href="/blog" class="footer__link">Blog</a>
                             <a href="/privacy-policy" class="footer__link">Privacy policy</a>
                         </div>
                         <div>
                             <h2>General enquiries</h2>
                             <a href="mailto:contact@nolabel.ventures" class="footer__link footer__link--external">contact@nolabel.ventures</a>
-                            <h2>Media enquiries</h2>
-                            <a href="mailto:media@nolabel.ventures" class="footer__link footer__link--external">media@nolabel.ventures</a>
                         </div>
                     </div>
                     <div>
@@ -770,9 +658,6 @@
                                 </svg>
                             </div></a>
                     </div>
-                </div>
-                <div class="footer__company-details footer__row">
-                    <p class="footer__footnote">No Label Ventures Advisor Limited (FRN 978374) is an appointed representative of Aldgate Advisors Limited (FRN 763187) which is authorised and regulated by the Financial Conduct Authority.</p>
                 </div>
                 <div class="footer__company-details footer__row">
                     <address>Registered address: 33 Broadwick Street, London, W1F 0DQ </address>
@@ -836,7 +721,7 @@
   })
 </script>
         </footer>
-        <div class="cookie-notice" data-pg-ia-hide data-pgc="nlv.cookie-notice">
+        <div class="cookie-notice" data-pg-ia-hide data-pg-hidden data-pgc="nlv.cookie-notice">
             <p>We use cookies to improve your experience on our site and to understand where our audience is coming from. To find out more, please read our <a href="/privacy-policy">Privacy Policy</a>. By choosing I Accept, you consent to our use of cookies and Google Analytics.</p>
             <button class="cookie-notice__accept">Accept</button>
         </div>

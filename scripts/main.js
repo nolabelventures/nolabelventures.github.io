@@ -1048,37 +1048,6 @@ mm.add(
       
         // FAQ 2
         pageAnimations.push(false)
-
-        const pitchLines = gsap.utils.toArray(".pitch-lines--top:not(.pitch-lines--mobile) path");
-        const pitchSection = gsap.utils.selector('#pitch')
-        const pitchTimeline = gsap.timeline({paused: true})
-
-        pitchTimeline.from([pitchLines[0], pitchLines[1]], {
-          drawSVG: 0,
-        });
-
-        pitchTimeline.from('.pitch-lines--bottom path', {
-          drawSVG: "100% 100%",
-        });
-
-        const pitchHeadingOne = new SplitText(pitchSection('h2')[0], {
-          type: 'words'
-        })
-
-        pitchTimeline.from(pitchHeadingOne.words, {
-          autoAlpha: 0,
-          duration: 2,
-          filter: 'blur(10px)',
-          stagger: 0.05
-        }, "<")
-
-        pitchTimeline.from(pitchSection('.pitch__cta'), {
-          autoAlpha: 0,
-          duration: 2,
-          filter: 'blur(10px)'
-        }, "<75%")
-
-        pageAnimations.push(pitchTimeline)
       } else if (isMobile) {
         gsap.from(".line-immigrant-unicorn-founders path", {
           drawSVG: 0,
@@ -1112,27 +1081,6 @@ mm.add(
             ease: "none",
           },
         });
-
-        const pitchLines = gsap.utils.toArray(".pitch-lines--mobile path");
-        gsap.from([pitchLines[1], pitchLines[2]], {
-          drawSVG: 0,
-          scrollTrigger: {
-            trigger: "#pitch",
-            start: "top bottom",
-            end: "center bottom",
-            scrub: true,
-          },
-        });
-        gsap.from(pitchLines[0], {
-          drawSVG: "100% 100%",
-          scrollTrigger: {
-            trigger: "#pitch",
-            start: "center bottom",
-            end: "bottom bottom",
-            scrub: true,
-          },
-        });
-      }
     } else if (isMobile) {
       if (jumpToSection) {
         window.scrollTo({top: jumpToSection.offsetTop, behavior: 'smooth'})
@@ -1467,24 +1415,6 @@ mm.add(
           trigger: '.about__line-about',
         },
         drawSVG: 0
-      })
-
-      const pitchLines = gsap.utils.toArray('#pitch .pitch-lines--mobile path')
-      
-      gsap.from([pitchLines[0], pitchLines[1]], {
-        drawSVG: 0,
-        scrollTrigger: {
-          trigger: '#pitch',
-          start: 'top center'
-        }
-      })
-
-      gsap.from(pitchLines[2], {
-        drawSVG: '100% 100%',
-        scrollTrigger: {
-          trigger: '#pitch',
-          start: 'bottom bottom'
-        }
       })
 
       const menuLinks = gsap.utils.toArray('.header__mobile-menu [href*="#"]')
