@@ -1274,16 +1274,16 @@ label {
     display: block;
   }
 }
-.line-portfoli-about {
+.line-portfolio-about {
   display: none;
 }
 
-.line-portfoli-about--mobile {
+.line-portfolio-about--mobile {
   width: 100vw;
 }
 
 @media (min-width: 976px) {
-  .line-portfoli-about {
+  .line-portfolio-about {
     position: absolute;
     right: 0;
     z-index: 1;
@@ -1291,7 +1291,7 @@ label {
     width: 805px;
     display: block;
   }
-  .line-portfoli-about--mobile {
+  .line-portfolio-about--mobile {
     display: none;
   }
 }
@@ -1352,12 +1352,12 @@ label {
   margin: -20px;
 }
 
-.line-portfoli-about path {
+.line-portfolio-about path {
   stroke-width: 10;
 }
 
 @media (min-width: 976px) {
-  .line-portfoli-about path {
+  .line-portfolio-about path {
     stroke-width: 5;
   }
 }
@@ -1397,9 +1397,30 @@ label {
   position: relative;
 }
 
+.portfolio__link {
+  position: relative;
+}
+
 .portfolio {
   background-color: var(--colors-black);
   color: var(--colors-white);
+}
+
+.portfolio-items__founder-image {
+  opacity: 0;
+  position: absolute;
+  inset: 0;
+  -webkit-transition: opacity 0.3s ease-in-out;
+  -o-transition: opacity 0.3s ease-in-out;
+  transition: opacity 0.3s ease-in-out;
+  width: 100%;
+  height: 100%;
+  -o-object-fit: cover;
+     object-fit: cover;
+}
+
+.portfolio__link:has(.portfolio-items__founder-image):hover .portfolio-items__founder-image {
+  opacity: 1;
 }
 
 @media (max-width: 976px) {
@@ -2034,7 +2055,7 @@ footer h3 {
   text-align: center;
 }
 
-.portfolio__link img {
+.portfolio__link .portfolio-items__logo {
   max-height: 100px;
   max-width: 100px;
   vertical-align: middle;
