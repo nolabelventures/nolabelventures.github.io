@@ -881,6 +881,7 @@ label {
 .immigrant-section {
     flex-direction: column;
     padding-bottom: 0;
+    padding-top: 70px;
 }
 
 .graph-label {
@@ -981,7 +982,7 @@ label {
     padding: 0;
     color: var(--colors-white);
     position: absolute;
-    top: 35px;
+    top: 20px;
     right: 20px;
 }
 
@@ -1267,7 +1268,7 @@ label {
     object-fit: cover;
 }
 
-.portfolio__link:has(.portfolio-items__founder-image):hover .portfolio-items__founder-image {
+.portfolio__link:hover .portfolio-items__founder-image {
     opacity: 1;
 }
 
@@ -1516,11 +1517,6 @@ main {
     .default-layout h1 {
         font-size: 1.5625rem;
     }
-}
-
-.facts__section-services {
-    padding-top: 70px;
-    color: var(--colors-body);
 }
 
 @media (min-width:976px) {
@@ -1995,6 +1991,7 @@ footer h3 {
 @media (min-width:976px) {
     .immigrant-section .text-highlight {
         font-size: 4.0625rem;
+        padding-top: 0;
     }
 
     .immigrant-section__emphasis-text {

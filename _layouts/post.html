@@ -86,11 +86,7 @@
                             <li>
                                 <a href="/#community">Our Approach</a>
                             </li>
-                            <li><a href="/blog">Blog</a>
-                            </li>
                             <li><a href="/#faq-1">FAQs</a>
-                            </li>
-                            <li><a href="https://tally.so/r/wbRMgw" class="header__link header__link--pitch" target="_blank">Pitch us</a>
                             </li>
                         </ul>
                     </div>
@@ -99,7 +95,8 @@
         </header>
         <main style="overflow: hidden; min-height: 100vh">
             <div class="blog-post">
-                <div class="blog-post__content"><a href="/blog" class="blog-post__back"><svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px">
+                <div class="blog-post__content">
+                    <a href="/blog" class="blog-post__back"><svg width="8" height="14" viewBox="0 0 8 14" fill="none" xmlns="http://www.w3.org/2000/svg" style="margin-right: 5px">
                             <path d="M7 13L1 7L7 1" stroke="#3E3E3E" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
                         </svg>
              Back</a>
@@ -120,7 +117,8 @@
                             <h3 class="blog-posts__title">{{ post.title }}</h3>
                             <div class="related__content">
                                 {{ post.content }}
-</div><a href="/{{ post.link }}" class="blog-posts__read-more">
+</div>
+                            <a href="/{{ post.link }}" class="blog-posts__read-more">
                   Read more <svg width="16" height="16" viewBox="0 0 16 16" fill="none" xmlns="http://www.w3.org/2000/svg" data-pgc="nlv.icon-read-more">
                                     <path d="M1 7.72H15H1ZM15 7.72L8.28 1L15 7.72ZM15 7.72L8.28 14.44L15 7.72Z" fill="url(#paint0_linear_262_4332)"/>
                                     <path d="M1 7.72H15M15 7.72L8.28 1M15 7.72L8.28 14.44" stroke="url(#paint1_linear_262_4332)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
