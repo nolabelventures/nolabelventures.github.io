@@ -539,7 +539,6 @@ footer:before {
   }
 }
 .hero-intro__page h1 {
-  overflow: hidden;
   font-size: 2.1875rem;
   max-width: 1200px;
   position: relative;
