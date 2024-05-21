@@ -26,28 +26,3 @@ portfolio:
     url: https://farmlend.co.uk/
     image: /assets/uploads/Farmlend.png
     width: "120"
-  - title: Payflow
-    url: https://www.payflow.es/
-    image: /assets/uploads/Payflow.png
-    width: "75"
-  - title: Banked
-    url: https://banked.com/
-    image: /assets/uploads/Banked.png
-  - title: RLTY
-    url: https://www.rlty.live/
-    image: /assets/uploads/RLTY.png
-    width: "145"
-  - title: Yhangry
-    url: https://yhangry.com/
-    image: /assets/uploads/yhangry 1.png
-    width: "70"
-  - title: Goodvest
-    url: https://www.goodvest.fr/
-    image: /assets/uploads/Goodvest.png
-  - title: VTVL
-    url: https://vtvl.io/
-    image: /assets/uploads/vtvl 1.png
-  - title: Tracking Plan
-    url: https://www.trackingplan.com/
-    image: /assets/uploads/Trackingplan.png
-    width: "120"
