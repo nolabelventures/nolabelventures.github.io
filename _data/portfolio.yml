@@ -9,7 +9,7 @@ portfolio:
   - title: Mesh
     url: https://www.meshconnect.com/
     image: /assets/uploads/meshweb.png
-    width: "130"
+    width: "100"
   - title: Guided Energy
     url: https://guided.energy/
     image: /assets/uploads/picture11.png
