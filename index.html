@@ -688,7 +688,7 @@
     if (!data.checkbox) {
       try {
         const subscribe = await fetchJsonp(`https://ventures.us17.list-manage.com/subscribe/post-json?u=${mc_user}&id=${mc_id}&mc_signupsource=website${data}`, {
-          jsonpCallbackFuntion: "?",
+          jsonpCallbackFunction: "?",
           jsonpCallback: "c",
         })
 
