@@ -19,12 +19,18 @@ portfolio:
   - title: Mizou
     url: https://mizou.com
     image: /assets/uploads/picture10.png
-  - title: Pangea Botanica
+  - title: Pangea Bio
     url: https://www.pangeabotanica.com/
     image: /assets/uploads/pangea2.png
-  - title: Spore Biotechnologies
+  - title: PostX
+    url: https://postx.ai/
+    image: /assets/uploads/postx2.png
+  - title: Spore Bio
     url: https://spore.bio/
     image: /assets/uploads/spore2.png
+  - title: TabTabTab
+    url: https://tabtabtab.ai/
+    image: /assets/uploads/ttt.png
   - title: TFC
     url: https://www.theforecastingcompany.com/en/
     image: /assets/uploads/tfc5.png
@@ -32,6 +38,3 @@ portfolio:
   - title: Vega
     url: https://www.vega-wealth.com/
     image: /assets/uploads/vegagre.png
-  - title: PostX
-    url: https://postx.ai/
-    image: /assets/uploads/postx2.png
