@@ -791,7 +791,7 @@ mm.add(
 
         // /* UNICORN FOUNDERS */
         const unicornFoundersSection = gsap.utils.selector(".unicorn-founders");
-        const unicornFoundersTimeline = gsap.timefaline({
+        const unicornFoundersTimeline = gsap.timeline({
           defaults: {
             duration: 1
           }
