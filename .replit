@@ -3,7 +3,7 @@ run = "bundle exec jekyll serve"
 
 [nix]
 channel = "stable-24_05"
-packages = ["ruby_3_2"]
+packages = ["ruby_3_2", "rubyPackages.sass"]
 
 [deployment]
 run = ["sh", "-c", "bundle exec jekyll serve"]

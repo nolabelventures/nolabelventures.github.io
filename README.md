@@ -27,6 +27,15 @@ The project uses Jekyll to load data (`/_data`) and blog posts (`/_posts`). To s
 bundle exec jekyll serve
 ```
 
+
+### SASS
+
+You may need to run SASS watch independently. If so, this is the script to run
+
+```
+sass --watch css/style.scss:_site/css/style.css
+```
+
 ## Deployments
 
 The project is deployed to Github pages and any changes to the Firebase Functions will get deployed all when pushed to the `main` branch.
