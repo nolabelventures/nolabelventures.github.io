@@ -1337,7 +1337,7 @@
         <div class="content-wrapper faq__content">
           <h2>
             Some frequently asked questions
-            <span class="text-lightgrey">(1/2)</span>
+            
           </h2>
           <ul class="faq__list--desktop faq__list">
             {% for item in site.data.faqs.faq limit: half %} {% assign faq =
@@ -1433,82 +1433,7 @@
           </defs>
         </svg>
       </section>
-      <section id="faq-2" class="faq" data-bg="#ffffff" data-size="{{size}}">
-        <div class="content-wrapper faq__content">
-          <h2>
-            Some frequently asked questions
-            <span class="text-lightgrey">(2/2)</span>
-          </h2>
-          <ul class="faq__list">
-            {% for item in site.data.faqs.faq offset:half %} {% assign faq =
-            item %}
-            <li class="faq__faq-item">
-              <button class="faq__button" data-dropdown>
-                {{ faq.question }}<span class="faq__button-chevron">
-                  <svg width="15" height="9" viewBox="0 0 15 9" fill="none">
-                    <path
-                      d="M1 1L7.5 8M7.5 8L14 1M7.5 8L7.01254 7.47504"
-                      stroke="currentColor"
-                      stroke-width="2"
-                      stroke-linecap="round"
-                      stroke-linejoin="round"
-                    />
-                  </svg>
-                </span>
-              </button>
-              <div class="faq__list-content">
-                <div>
-                  <p>{{ faq.answer }}</p>
-                </div>
-              </div>
-            </li>
-            {% endfor %}
-          </ul>
-        </div>
-        <svg
-          width="317"
-          height="202"
-          viewBox="0 0 317 202"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          class="faq-line"
-        >
-          <path
-            d="M-9 2.5C137.5 145.002 194 161.5 267 203"
-            stroke="url(#paint0_linear_0_1)"
-            stroke-width="5"
-          />
-          <path
-            d="M-7.5 5C107.5 100 197.5 155 315.5 205"
-            stroke="url(#paint1_linear_0_1)"
-            stroke-width="5"
-          />
-          <defs>
-            <linearGradient
-              id="paint0_linear_0_1"
-              x1="-375.16"
-              y1="871.803"
-              x2="1046.63"
-              y2="943.084"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#00E28A" />
-              <stop offset="1" stop-color="#0A42B0" />
-            </linearGradient>
-            <linearGradient
-              id="paint1_linear_0_1"
-              x1="-325.684"
-              y1="876.766"
-              x2="1096.79"
-              y2="940.951"
-              gradientUnits="userSpaceOnUse"
-            >
-              <stop stop-color="#00E28A" />
-              <stop offset="1" stop-color="#0A42B0" />
-            </linearGradient>
-          </defs>
-        </svg>
-      </section>
+      
       {% endif %}
     </main>
     <footer id="footer" data-pgc="nlv.footer">
