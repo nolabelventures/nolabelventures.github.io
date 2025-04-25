@@ -339,7 +339,7 @@ mm.add(
       let portfolioDirection = 0
 
       const navLinks = gsap.utils.toArray(`.nav__list a[href^="#"]`)
-      const porfolioLinks = gsap.utils.toArray('.portfolio__link')
+      const porfolioLinks = gsap.utils.toArray('[portfolio-link]')
 
       function gotoPanel(index, isScrollingDown, isQuickNav) {
         if (index <= -1 || index === currentIndex) {
@@ -875,7 +875,7 @@ mm.add(
 
         // /* PORTFOLIO SECTION */
         ScrollTrigger.create({
-          scroller: '.portfolio__content',
+          scroller: '[portfolio-content]',
           scrub: true,
           onUpdate: (self) => {
             portfolioDirection = self.direction
@@ -902,7 +902,7 @@ mm.add(
         const portfolio = gsap.timeline({
           paused: true,
           onStart: () => {
-            document.querySelector('.portfolio__content').scroll(0, 0)
+            document.querySelector('[portfolio-content]').scroll(0, 0)
 
             hasInteractedWithPortfolio = false
 
@@ -914,7 +914,7 @@ mm.add(
           }
         });
 
-        portfolio.from('.portfolio__content', {
+        portfolio.from('[portfolio-content]', {
           y: 20,
           autoAlpha: 0
         })
@@ -924,7 +924,7 @@ mm.add(
           drawSVG: 0,
         }, "<");
 
-        portfolio.from(".portfolio-link__wrapper", {
+        portfolio.from("[portfolio-link-wrapper]", {
           y: 30,
           autoAlpha: 0,
           stagger: 0.05,
@@ -1238,13 +1238,13 @@ mm.add(
       );
 
       /* PORTFOLIO SECTION (MOBILE) */
-      const portfolioSection = gsap.utils.selector('.portfolio')
-      gsap.from(portfolioSection('.portfolio-link__wrapper'), {
+      const portfolioSection = gsap.utils.selector('#portfolio')
+      gsap.from(portfolioSection('[portfolio-link-wrapper]'), {
         y: 200,
         autoAlpha: 0,
         stagger: 0.05,
         scrollTrigger: {
-          trigger: '.portfolio-items',
+          trigger: '[portfolio-list]',
           start: 'top bottom',
           end: 'bottom bottom',
           scrub: true,

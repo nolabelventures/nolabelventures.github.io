@@ -653,28 +653,21 @@
       </div>
     </section>
     {% if site.data.portfolio.portfolio %}
-    <section class="portfolio" data-bg="#111111" id="portfolio" data-pg-collapsed>
+    <section class="portfolio" data-bg="#111111" id="portfolio" data-pg-collapsed [portfolio-section]>
       <div class="portfolio-shadow-wrapper">
-        <div class="content-wrapper portfolio__content">
+        <div class="content-wrapper portfolio__content" portfolio-content>
           <h2>Our Portfolio</h2>
-          <div class="portfolio-items">
+          <ul class="portfolio-items" [portfolio-list]>
             {% for item in site.data.portfolio.portfolio %} {% assign
             portfolioData = item %}
-            <div class="portfolio-link__wrapper" style="
-                  display: flex;
-                  align-items: stretch;
-                  justify-content: center;
-                ">
-              <a class="portfolio__link" href="{{ portfolioData.url }}" target="_blank">
-                {% if portfolioData.founder %}
-                <img src="{{ portfolioData.founder }}" alt="" loading="lazy" class="portfolio-items__founder-image" />
-                {% endif %}
-                <img src="{{ portfolioData.image }}" alt="{{ portfolioData.title }}" loading="lazy"
-                  class="portfolio-items__logo" />
-              </a>
-            </div>
+            <li portfolio-link-wrapper>
+              <a class="portfolio__link" portfolio-link href="{{ portfolioData.url }}" target="_blank">
+                {{ portfolioData.title }}
+              </a> -
+              {{ portfolioData.description }}
+            </li>
             {% endfor %}
-          </div>
+          </ul>
         </div>
       </div>
       <svg width="100%" viewBox="0 0 805 204" fill="none" xmlns="http://www.w3.org/2000/svg"

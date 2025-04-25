@@ -1,40 +1,37 @@
 portfolio:
-  - image: /assets/uploads/picture3.png
-    title: 11x
-    width: ""
+  - title: 11x
     url: https://www.11x.ai/
+    description: "this is a description"
   - title: Callyope
     url: https://callyope.com/
-    image: /assets/uploads/cally2.png
+    description: "this is a description"
   - title: Mesh
     url: https://www.meshconnect.com/
-    image: /assets/uploads/meshweb.png
-    width: "90"
+    description: "this is a description"
   - title: Guided Energy
     url: https://guided.energy/
-    image: /assets/uploads/picture11.png
+    description: "this is a description"
   - title: Intropy
     url: https://www.intropy.ai/
-    image: /assets/uploads/intropy.png
+    description: "this is a description"
   - title: Mizou
     url: https://mizou.com
-    image: /assets/uploads/picture10.png
+    description: "this is a description"
   - title: Pangea Bio
     url: https://www.pangeabotanica.com/
-    image: /assets/uploads/pangea2.png
+    description: "this is a description"
   - title: PostX
     url: https://postx.ai/
-    image: /assets/uploads/postx2.png
+    description: "this is a description"
   - title: Spore Bio
     url: https://spore.bio/
-    image: /assets/uploads/spore2.png
+    description: "this is a description"
   - title: TabTabTab
     url: https://tabtabtab.ai/
-    image: /assets/uploads/ttt.png
+    description: "this is a description"
   - title: TFC
     url: https://www.theforecastingcompany.com/en/
-    image: /assets/uploads/tfc5.png
-    width: "55"
+    description: "this is a description"
   - title: Vega
     url: https://www.vega-wealth.com/
-    image: /assets/uploads/vegagre.png
+    description: "this is a description"

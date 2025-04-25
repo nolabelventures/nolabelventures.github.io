@@ -55,9 +55,7 @@ collections:
           fields:
           - { label: 'Title', name: 'title', widget: 'text', required: true }
           - { label: 'URL', name: 'url', widget: 'text', required: true }
-          - { label: 'Logo', name: 'image', widget: 'image', required: true }
-          - { label: 'Founder', name: 'founder', widget: 'image', required: false }
-          - { label: 'Width', name: 'width', widget: text, required: false }
+          - { label: 'Description', name: 'description', widget: 'text', required: true }
 
   - name: 'blog'
     label: 'Blog'
