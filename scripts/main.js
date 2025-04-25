@@ -19,13 +19,13 @@ window.addEventListener('load', () => {
 
       if (content.style.height !== '0px') {
         button.classList.remove("dropdown-active");
-        
+
         gsap.to(content, {
           height: 0
         })
       } else {
         button.classList.add("dropdown-active");
-        
+
         gsap.to(content, {
           height: contentHeight + 'px'
         })
@@ -59,6 +59,7 @@ mm.add(
     const Sections = Array.from(document.querySelectorAll(".fixed-page > *"));
     const heroTextOne = new SplitText(heroText[0], { type: "words" });
     const heroTextTwo = new SplitText(heroText[1], { type: "words" });
+
     const introAnimation = gsap.timeline({
       onComplete: () => {
         sessionStorage.setItem("intro-seen", true);
@@ -208,14 +209,13 @@ mm.add(
           class: 'nav__button active'
         },
         stagger: 0.05
-    }, "<")
-
-    if (!localStorage['cookie_dismissed']) {
-      introAnimation.to(cookieNotice, {
-        autoAlpha: 1
       }, "<")
-    }
 
+      if (!localStorage['cookie_dismissed']) {
+        introAnimation.to(cookieNotice, {
+          autoAlpha: 1
+        }, "<")
+      }
     } else {
       introAnimation.to("#intro", {
         background: "#111111",
@@ -242,7 +242,7 @@ mm.add(
         heroEl(".top-letter"),
         {
           x: isMobile ? 3 : 5,
-          y:isMobile ? 3 :  5,
+          y: isMobile ? 3 : 5,
           ease: "elastic.out(2, 0.75)",
         },
         "<"
@@ -274,7 +274,7 @@ mm.add(
         introAnimation.set('.nav', {
           autoAlpha: 1
         }, "<")
-  
+
         introAnimation.from('.nav li a', {
           x: -100,
           autoAlpha: 0,
@@ -289,12 +289,11 @@ mm.add(
         })
       }
 
-
-    if (!localStorage['cookie_dismissed']) {
-      introAnimation.to(cookieNotice, {
-        autoAlpha: 1
-      }, "<")
-    }
+      if (!localStorage['cookie_dismissed']) {
+        introAnimation.to(cookieNotice, {
+          autoAlpha: 1
+        }, "<")
+      }
     }
 
     if (isDesktop) {
@@ -307,7 +306,7 @@ mm.add(
         zIndex: i => i,
         autoAlpha: (i) => !i ? 1 : 0,
         attr: {
-          'data-index':  (i) => i+1,
+          'data-index': (i) => i + 1,
         }
       });
 
@@ -315,13 +314,14 @@ mm.add(
         type: "scroll,wheel,touch",
         onUp: () => !animating && gotoPanel(currentIndex - 1, false),
         onDown: () => !animating && gotoPanel(currentIndex + 1, true),
-        onLeft: () => !animating && currentIndex > 0 && currentIndex < 5 &&  gotoPanel(currentIndex - 1, false),
-        onRight: () => !animating && currentIndex > 0 && currentIndex < 5 &&  gotoPanel(currentIndex + 1, true),
+        onLeft: () => !animating && currentIndex > 0 && currentIndex < 5 && gotoPanel(currentIndex - 1, false),
+        onRight: () => !animating && currentIndex > 0 && currentIndex < 5 && gotoPanel(currentIndex + 1, true),
         tolerance: 250,
         wheelSpeed: 0.5,
         scrollSpeed: 0.5,
         preventDefault: true
       })
+
       intentObserver.disable();
 
       ScrollTrigger.create({
@@ -342,7 +342,6 @@ mm.add(
       const porfolioLinks = gsap.utils.toArray('.portfolio__link')
 
       function gotoPanel(index, isScrollingDown, isQuickNav) {
-
         if (index <= -1 || index === currentIndex) {
           return
         }
@@ -352,7 +351,7 @@ mm.add(
           intentObserver.disable();
           return
         }
-        
+
         if (porfolioLinks.length > 15) {
           // enable scrolling on Portfolio section
           if (index === 5) {
@@ -371,13 +370,14 @@ mm.add(
           }, 500)
           return
         }
-        
+
         animating = true;
+
         const isSlider = index > 0 && index < 4
 
         let shouldSlide = ''
 
-        
+
         if (isScrollingDown && Sections[currentIndex]?.className?.match('facts__section')) {
           shouldSlide = 'exit'
         } else if (!isScrollingDown && Sections[index]?.className?.match('facts__section')) {
@@ -427,8 +427,8 @@ mm.add(
           });
           return
         }
-      
-        let target = isScrollingDown ? Sections[index]: Sections[currentIndex];
+
+        let target = isScrollingDown ? Sections[index] : Sections[currentIndex];
 
         header.classList.toggle('hide', isScrollingDown && !isQuickNav)
 
@@ -451,7 +451,7 @@ mm.add(
             gsap.to('body', {
               color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#3E3E3E' : '#ffffff'
             })
-            
+
             gsap.to('header', {
               color: Sections[index].getAttribute('data-bg') === '#ffffff' ? '#000000' : '#ffffff'
             })
@@ -468,7 +468,7 @@ mm.add(
         })
 
         if (!isSlider) {
-           // Makes sure the line fades out before transition
+          // Makes sure the line fades out before transition
           transition.to('.facts-section-line', {
             autoAlpha: 0
           }, "<")
@@ -531,7 +531,7 @@ mm.add(
                 transition.fromTo(Sections[index].querySelector('.facts__section-content'), {
                   xPercent: -20,
                   autoAlpha: 0
-                },  {
+                }, {
                   xPercent: 0,
                   autoAlpha: 1
                 }, "<50%")
@@ -544,7 +544,7 @@ mm.add(
               transition.to(Sections[currentIndex], {
                 autoAlpha: 0
               }, "<");
-              
+
               if (isSlider) {
                 transition.to(Sections[currentIndex].querySelector('.facts__section-content'), {
                   xPercent: -20,
@@ -560,7 +560,7 @@ mm.add(
                   }, "<50%")
                 }
               }
-  
+
               transition.to(Sections[index], {
                 autoAlpha: 1,
               }, "<");
@@ -613,14 +613,9 @@ mm.add(
           document.getElementById('intro').classList.remove('add-background')
           header.classList.remove('show-logo')
         }
-      }   
-      
-      let hasScrolled = false;
-      function checkIfScrolled() {
-        if(!hasScrolled) {
-          queuedAnims.push(this.parent.pause(0));
-        }
       }
+
+      let hasScrolled = false;
 
       window.addEventListener('keyup', (e) => {
         const goDown = ['ArrowRight', 'ArrowDown']
@@ -641,15 +636,15 @@ mm.add(
       }
       gsap.utils.toArray('[href^="#"]').forEach((link) => {
         const targetIndex = Number(document.getElementById(link.href.split('#')[1])?.getAttribute('data-index')) - 1;
-        
+
         link.addEventListener("click", (e) => {
           e.preventDefault();
-          
+
           header.classList.remove("show-mobile-menu");
-      
+
           if (targetIndex) {
             window.location = '#' + link.href.split('#')[1]
-            gotoPanel(targetIndex, targetIndex > currentIndex, true )
+            gotoPanel(targetIndex, targetIndex > currentIndex, true)
           }
         });
       });
@@ -676,7 +671,7 @@ mm.add(
             stagger: 0.05,
           }
         );
-        
+
         const immigrantSectionText = immigrantsSection(".facts__section-body-content .split");
         immigrantSectionTimeline.from(
           new SplitText(immigrantSectionText, {
@@ -753,13 +748,13 @@ mm.add(
             snap: { textContent: .1 },
           }, "<"
         );
-      
 
-        immigrantFoundersTimeline.from(immigrantFoundersSection(".dot-zero"), 
+
+        immigrantFoundersTimeline.from(immigrantFoundersSection(".dot-zero"),
           {
             scale: 0,
             ease: "bounce.inOut",
-          }, 
+          },
           "<"
         );
 
@@ -788,7 +783,7 @@ mm.add(
           {
             scale: 0,
             ease: "bounce.inOut",
-          }, 
+          },
           "<"
         )
 
@@ -796,7 +791,7 @@ mm.add(
 
         // /* UNICORN FOUNDERS */
         const unicornFoundersSection = gsap.utils.selector(".unicorn-founders");
-        const unicornFoundersTimeline = gsap.timeline({
+        const unicornFoundersTimeline = gsap.timefaline({
           defaults: {
             duration: 1
           }
@@ -816,7 +811,7 @@ mm.add(
             stagger: 0.05,
           },
         );
-        
+
         const unicornFoundersSectionHeadingSplitTwo = new SplitText(
           unicornFoundersHeading[1],
           { type: "words" }
@@ -877,7 +872,7 @@ mm.add(
 
         pageAnimations.push(unicornFoundersTimeline)
 
-        
+
         // /* PORTFOLIO SECTION */
         ScrollTrigger.create({
           scroller: '.portfolio__content',
@@ -907,7 +902,7 @@ mm.add(
         const portfolio = gsap.timeline({
           paused: true,
           onStart: () => {
-            document.querySelector('.portfolio__content').scroll(0,0)
+            document.querySelector('.portfolio__content').scroll(0, 0)
 
             hasInteractedWithPortfolio = false
 
@@ -940,7 +935,7 @@ mm.add(
 
         // /* ABOUT SECTION */
         const founderTimeline = gsap.timeline({})
-        
+
         founderTimeline.from(
           ".founder > div",
           {
@@ -956,7 +951,7 @@ mm.add(
 
         founderTimeline.from(".about__line-about path", {
           drawSVG: 0,
-        });        
+        });
 
 
         pageAnimations.push(founderTimeline)
@@ -993,7 +988,7 @@ mm.add(
         pageAnimations.push(communityTimeline)
 
         // FAQ 1
-        const faqTimeline = gsap.timeline({paused: true})
+        const faqTimeline = gsap.timeline({ paused: true })
         const faqSection = gsap.utils.selector('#faq-1')
 
         faqTimeline.from(faqSection('.faq-line path'), {
@@ -1012,9 +1007,6 @@ mm.add(
         }, "<")
 
         pageAnimations.push(faqTimeline)
-      
-        // FAQ 2
-        pageAnimations.push(false)
       } else if (isMobile) {
         gsap.from(".line-immigrant-unicorn-founders path", {
           drawSVG: 0,
@@ -1051,7 +1043,7 @@ mm.add(
       }
     } else if (isMobile) {
       if (jumpToSection) {
-        window.scrollTo({top: jumpToSection.offsetTop, behavior: 'smooth'})
+        window.scrollTo({ top: jumpToSection.offsetTop, behavior: 'smooth' })
       }
 
       window.addEventListener("DOMContentLoaded", () => {
@@ -1061,7 +1053,7 @@ mm.add(
 
       /* SECTION ONE */
       const immigrantsSection = gsap.utils.selector('.immigrant-section')
-      const immigrantSectionTitle = new SplitText(immigrantsSection('h2'), { type: 'words'})
+      const immigrantSectionTitle = new SplitText(immigrantsSection('h2'), { type: 'words' })
 
       gsap.from(immigrantSectionTitle.words, {
         autoAlpha: 0,
@@ -1117,7 +1109,7 @@ mm.add(
         snap: { textContent: .1 }
       })
 
-      const headingText = new SplitText(immigrantFoundersSection('.immigrant-section__heading-text'), {type: 'words'})
+      const headingText = new SplitText(immigrantFoundersSection('.immigrant-section__heading-text'), { type: 'words' })
       immigrantFoundersTimeline.from(headingText.words, {
         autoAlpha: 0,
         stagger: 0.05
@@ -1127,138 +1119,138 @@ mm.add(
         autoAlpha: 0
       })
 
-      immigrantFoundersTimeline.from(immigrantFoundersSection(".dot-zero"), 
-          {
-            scale: 0,
-            ease: "bounce.inOut",
-          }, 
-          "<"
-        );
-
-        immigrantFoundersTimeline.from(
-          [
-            immigrantFoundersSection(".graph-line"),
-            immigrantFoundersSection(".graph-shade"),
-          ],
-          {
-            clipPath: "inset(233px 0 0)",
-          }, "<50%"
-        )
-
-        immigrantFoundersTimeline.from(['.dashed-vertical', '.dashed-horizontal'], {
-          autoAlpha: 0
-        }, "<50%")
-
-        immigrantFoundersTimeline.from('.number-thirty-six', {
-          autoAlpha: 0,
+      immigrantFoundersTimeline.from(immigrantFoundersSection(".dot-zero"),
+        {
           scale: 0,
           ease: "bounce.inOut",
-        }, "<10%")
+        },
+        "<"
+      );
 
-        immigrantFoundersTimeline.from(
-          immigrantFoundersSection(".dot-thirty-six"),
-          {
-            scale: 0,
-            ease: "bounce.inOut",
-          }, 
-          "<"
-        )
+      immigrantFoundersTimeline.from(
+        [
+          immigrantFoundersSection(".graph-line"),
+          immigrantFoundersSection(".graph-shade"),
+        ],
+        {
+          clipPath: "inset(233px 0 0)",
+        }, "<50%"
+      )
 
-        /* SECTION FIVE */
-        const unicornFoundersSection = gsap.utils.selector('.unicorn-founders')
-        const unicornFoundersTimeline = gsap.timeline({
-          scrollTrigger: {
-            trigger: '.unicorn-founders',
-            scrub: true,
-            end: 'bottom bottom',
-            once: true
-          }
-        })
+      immigrantFoundersTimeline.from(['.dashed-vertical', '.dashed-horizontal'], {
+        autoAlpha: 0
+      }, "<50%")
 
-        const unicornFoundersHeading = unicornFoundersSection("h2 .split")
+      immigrantFoundersTimeline.from('.number-thirty-six', {
+        autoAlpha: 0,
+        scale: 0,
+        ease: "bounce.inOut",
+      }, "<10%")
 
-        const unicornFoundersSectionHeadingSplitOne = new SplitText(
-          unicornFoundersHeading[0],
-          { type: "words" }
-        );
-        unicornFoundersTimeline.from(
-          unicornFoundersSectionHeadingSplitOne.words,
-          {
-            autoAlpha: 0,
-            y: 10,
-            stagger: 0.05,
-          },
-        );
+      immigrantFoundersTimeline.from(
+        immigrantFoundersSection(".dot-thirty-six"),
+        {
+          scale: 0,
+          ease: "bounce.inOut",
+        },
+        "<"
+      )
 
-        const unicornFoundersSectionHeadingSplitTwo = new SplitText(
-          unicornFoundersHeading[1],
-          { type: "words" }
-        );
+      /* SECTION FIVE */
+      const unicornFoundersSection = gsap.utils.selector('.unicorn-founders')
+      const unicornFoundersTimeline = gsap.timeline({
+        scrollTrigger: {
+          trigger: '.unicorn-founders',
+          scrub: true,
+          end: 'bottom bottom',
+          once: true
+        }
+      })
 
-        unicornFoundersTimeline.from(
-          unicornFoundersSectionHeadingSplitTwo.words,
-          {
-            autoAlpha: 0,
-            y: 10,
-            stagger: 0.05,
-          }
-        );
+      const unicornFoundersHeading = unicornFoundersSection("h2 .split")
 
-        unicornFoundersTimeline.from(unicornFoundersSection('h2 .text-highlight'), {
-          autoAlpha: 0
-        })
-
-        const unicornFoundersSectionHeadingSplitThree = new SplitText(
-          unicornFoundersHeading[2],
-          { type: "words" }
-        );
-
-        unicornFoundersTimeline.from(
-          unicornFoundersSectionHeadingSplitThree.words,
-          {
-            autoAlpha: 0,
-            y: 10,
-            stagger: 0.05,
-          }
-        );
-
-        unicornFoundersTimeline.from(unicornFoundersSection('.facts__section-content > div')[1], {
-          autoAlpha: 0
-        }, "<10%")
-
-        unicornFoundersSection(".dot").forEach((dot, index) => {
-          unicornFoundersTimeline.from(dot, {
-            scale: 0,
-            ease: "bounce.inOut",
-          }, "<15%");
-
-          unicornFoundersTimeline.from(dot.nextSibling.nextSibling, {
-            autoAlpha: 0,
-            x: -5,
-          }, "<");
-        });
-
-        unicornFoundersTimeline.from(
-          unicornFoundersSection(".arrow"),
-          {
-            scale: 0,
-          }, "<"
-        );
-
-        /* PORTFOLIO SECTION (MOBILE) */
-        const portfolioSection = gsap.utils.selector('.portfolio')
-        gsap.from(portfolioSection('.portfolio-link__wrapper'), {
-          y: 200,
+      const unicornFoundersSectionHeadingSplitOne = new SplitText(
+        unicornFoundersHeading[0],
+        { type: "words" }
+      );
+      unicornFoundersTimeline.from(
+        unicornFoundersSectionHeadingSplitOne.words,
+        {
           autoAlpha: 0,
+          y: 10,
           stagger: 0.05,
-          scrollTrigger: {
-            trigger: '.portfolio-items',
-            start: 'top bottom',
-            end: 'bottom bottom',
-            scrub: true,
-            once: true
-          }
-        })
+        },
+      );
+
+      const unicornFoundersSectionHeadingSplitTwo = new SplitText(
+        unicornFoundersHeading[1],
+        { type: "words" }
+      );
+
+      unicornFoundersTimeline.from(
+        unicornFoundersSectionHeadingSplitTwo.words,
+        {
+          autoAlpha: 0,
+          y: 10,
+          stagger: 0.05,
+        }
+      );
+
+      unicornFoundersTimeline.from(unicornFoundersSection('h2 .text-highlight'), {
+        autoAlpha: 0
+      })
+
+      const unicornFoundersSectionHeadingSplitThree = new SplitText(
+        unicornFoundersHeading[2],
+        { type: "words" }
+      );
+
+      unicornFoundersTimeline.from(
+        unicornFoundersSectionHeadingSplitThree.words,
+        {
+          autoAlpha: 0,
+          y: 10,
+          stagger: 0.05,
+        }
+      );
+
+      unicornFoundersTimeline.from(unicornFoundersSection('.facts__section-content > div')[1], {
+        autoAlpha: 0
+      }, "<10%")
+
+      unicornFoundersSection(".dot").forEach((dot, index) => {
+        unicornFoundersTimeline.from(dot, {
+          scale: 0,
+          ease: "bounce.inOut",
+        }, "<15%");
+
+        unicornFoundersTimeline.from(dot.nextSibling.nextSibling, {
+          autoAlpha: 0,
+          x: -5,
+        }, "<");
+      });
+
+      unicornFoundersTimeline.from(
+        unicornFoundersSection(".arrow"),
+        {
+          scale: 0,
+        }, "<"
+      );
+
+      /* PORTFOLIO SECTION (MOBILE) */
+      const portfolioSection = gsap.utils.selector('.portfolio')
+      gsap.from(portfolioSection('.portfolio-link__wrapper'), {
+        y: 200,
+        autoAlpha: 0,
+        stagger: 0.05,
+        scrollTrigger: {
+          trigger: '.portfolio-items',
+          start: 'top bottom',
+          end: 'bottom bottom',
+          scrub: true,
+          once: true
+        }
+      })
 
 
       /* OUR APPROACH (COMMUNITY, MOBILE) */
@@ -1310,7 +1302,7 @@ mm.add(
         autoAlpha: 0,
         stagger: 0.05
       })
-      
+
       const faqSection2 = gsap.utils.selector('#faq-2')
       const faqTimeline2 = gsap.timeline({
         scrollTrigger: {
@@ -1340,7 +1332,7 @@ mm.add(
         },
         drawSVG: 0
       })
-      
+
       gsap.from('.line-portfolio-about--mobile path', {
         scrollTrigger: {
           start: 'top bottom-=400',
@@ -1348,7 +1340,7 @@ mm.add(
         },
         drawSVG: 0
       })
-      
+
       gsap.from('.about__line-about path', {
         scrollTrigger: {
           start: 'top bottom-=400',
@@ -1364,7 +1356,7 @@ mm.add(
           const index = document.getElementById(link.hash.substring(1))
           header.classList.remove('show-mobile-menu')
           document.documentElement.style.overflow = ''
-          window.scrollTo({top: index.offsetTop, behavior: 'smooth'})
+          window.scrollTo({ top: index.offsetTop, behavior: 'smooth' })
         })
       })
 
@@ -1373,10 +1365,10 @@ mm.add(
         end: 'bottom bottom',
         onUpdate: (e) => {
           const windowPos = window.pageYOffset || document.scrollTop || 0;
-          
+
           Sections.forEach(section => {
             const sectionHeight = section.offsetHeight
-            if(section.offsetTop + sectionHeight >= windowPos && section.offsetTop <= windowPos) {
+            if (section.offsetTop + sectionHeight >= windowPos && section.offsetTop <= windowPos) {
               const currentBg = section.getAttribute('data-bg')
               header.style.color = currentBg === '#111111' ? '#ffffff' : '#111111'
             }
