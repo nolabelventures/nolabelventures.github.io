@@ -36,3 +36,5 @@ gem 'http_parser.rb', "~> 0.8.0", git: "https://github.com/tmm1/http_parser.rb.g
 
 gem "webrick", "~> 1.7"
 
+ruby '3.1.1'
+
