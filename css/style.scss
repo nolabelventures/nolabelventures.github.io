@@ -1003,13 +1003,14 @@ label {
 
 .portfolio-items {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(1, 1fr);
     margin-top: 40px;
+    gap: 20px;
 }
 
 @media (min-width:976px) {
     .portfolio-items {
-        grid-template-columns: repeat(5, 1fr);
+        grid-template-columns: repeat(2, 1fr);
         gap: 25px;
         margin-bottom: 40px;
     }
