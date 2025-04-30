@@ -10,85 +10,152 @@ media_folder: "assets/uploads"
 collections:
   - name: home
     label: Home Page
-    files: 
-    - name: founder
-      label: Founder Section
-      identifier_field: content
-      file: _data/about.yml
-      editor:
-        preview: false
-      fields:
-        - label: Content
-          name: content
-          widget: markdown
-          required: true
+    files:
+      - name: intro
+        label: Intro Section
+        identifier_field: content
+        file: _data/intro.yml
+        editor:
+          preview: false
+        fields:
+          - label: Title
+            name: title
+            widget: text
+            required: true
+          - label: Content
+            name: content
+            widget: markdown
+            required: true
 
-    - name: faqs
-      label: FAQs
-      extension: yml
-      file: _data/faqs.yml
-      editor:
-        preview: false
-      fields:
-        - label: FAQ
-          name: faq
-          widget: list
-          required: true
-          identifier_field: question
-          fields:
-            - { label: 'Question', name: 'question', widget: 'text', required: true }
-            - { label: 'Answer', name: 'answer', widget: 'text', required: true }
+      - name: founder
+        label: Founder Section
+        identifier_field: content
+        file: _data/about.yml
+        editor:
+          preview: false
+        fields:
+          - label: Content
+            name: content
+            widget: markdown
+            required: true
 
-    - name: "portfolio_items"
-      label: "Portfolio Items"
-      label_singular: "Portfolio Item"
-      create: true
-      file: '_data/portfolio.yml'
-      widget: 'list'
-      editor:
-        preview: false
-      fields:
-        - label: portfolio
-          name: portfolio
-          identifier_field: title
-          widget: list
-          fields:
-          - { label: 'Title', name: 'title', widget: 'text', required: true }
-          - { label: 'URL', name: 'url', widget: 'text', required: true }
-          - { label: 'Description', name: 'description', widget: 'text', required: true }
+      - name: faqs
+        label: FAQs
+        extension: yml
+        file: _data/faqs.yml
+        editor:
+          preview: false
+        fields:
+          - label: FAQ
+            name: faq
+            widget: list
+            required: true
+            identifier_field: question
+            fields:
+              - {
+                  label: "Question",
+                  name: "question",
+                  widget: "text",
+                  required: true,
+                }
+              - {
+                  label: "Answer",
+                  name: "answer",
+                  widget: "text",
+                  required: true,
+                }
 
-  - name: 'blog'
-    label: 'Blog'
-    folder: '_posts/'
+      - name: "portfolio_items"
+        label: "Portfolio Items"
+        label_singular: "Portfolio Item"
+        create: true
+        file: "_data/portfolio.yml"
+        widget: "list"
+        editor:
+          preview: false
+        fields:
+          - label: portfolio
+            name: portfolio
+            identifier_field: title
+            widget: list
+            fields:
+              - {
+                  label: "Title",
+                  name: "title",
+                  widget: "text",
+                  required: true,
+                }
+              - { label: "URL", name: "url", widget: "text", required: true }
+              - {
+                  label: "Description",
+                  name: "description",
+                  widget: "text",
+                  required: true,
+                }
+
+  - name: "blog"
+    label: "Blog"
+    folder: "_posts/"
     create: true
-    slug: '{{year}}-{{month}}-{{day}}-{{slug}}'
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     identifier_field: title
     editor:
       preview: false
     fields:
-      - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'post' }
-      - { label: 'Title', name: 'title', widget: 'string', required: true }
-      - { label: 'Publish Date', name: 'date', widget: 'datetime', required: true }
-      - { label: 'Featured Image', name: 'thumbnail', widget: 'image', choose_url: false, required: true }
-      - { label: 'Body', name: 'body', widget: 'markdown', required: true }
-      - label: 'Related Articles'
-        name: 'related'
-        widget: 'list'
+      - { label: "Layout", name: "layout", widget: "hidden", default: "post" }
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - {
+          label: "Publish Date",
+          name: "date",
+          widget: "datetime",
+          required: true,
+        }
+      - {
+          label: "Featured Image",
+          name: "thumbnail",
+          widget: "image",
+          choose_url: false,
+          required: true,
+        }
+      - { label: "Body", name: "body", widget: "markdown", required: true }
+      - label: "Related Articles"
+        name: "related"
+        widget: "list"
         max: 3
-        label_singular: 'Article'
+        label_singular: "Article"
         fields:
-          - { label: 'Title', name: 'title', widget: 'string' }
-          - { label: 'Content', name: 'content', widget: 'text' }
-          - { label: 'Image', name: 'thumbnail', widget: 'image', choose_url: false, allow_multiple: false }
-          - { label: 'Related Article Link', name: 'link', widget: 'relation', collection: "blog", search_fields: ["title"], display_fields: ["title"], value_field: "{{slug}}", multpile: true }
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Content", name: "content", widget: "text" }
+          - {
+              label: "Image",
+              name: "thumbnail",
+              widget: "image",
+              choose_url: false,
+              allow_multiple: false,
+            }
+          - {
+              label: "Related Article Link",
+              name: "link",
+              widget: "relation",
+              collection: "blog",
+              search_fields: ["title"],
+              display_fields: ["title"],
+              value_field: "{{slug}}",
+              multpile: true,
+            }
 
   - name: other
     label: Other Pages
-    files: 
+    files:
       - label: "Privacy Policy"
         name: "privacy_policy"
-        file: 'privacy-policy.md'
+        file: "privacy-policy.md"
         fields:
-          - { label: 'Layout', name: 'layout', widget: 'hidden', default: 'default' }
-          - { label: 'Title', name: 'title', widget: 'string', required: true }
-          - { label: 'Body', name: 'body', widget: 'markdown', required: true }
+          - {
+              label: "Layout",
+              name: "layout",
+              widget: "hidden",
+              default: "default",
+            }
+          - { label: "Title", name: "title", widget: "string", required: true }
+          - { label: "Body", name: "body", widget: "markdown", required: true }
