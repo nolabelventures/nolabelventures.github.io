@@ -789,38 +789,22 @@ mm.add(
 
       if (Sections) {
         // # THESIS
-        const immigrantsSection = gsap.utils.selector(".immigrant-section");
+        const immigrantsSection = gsap.utils.selector("[thesis-content]");
         const immigrantSectionTimeline = gsap.timeline({
           defaults: {
             duration: 1,
           },
         });
 
-        const immigrantsSectionHeading = new SplitText(
-          immigrantsSection("[thesis-title]"),
-          { type: "words" }
-        );
-
-        const immigrantsSectionBodyText = new SplitText(
-          immigrantsSection("[thesis-body-text]"),
-          { type: "words" }
-        );
+        const immigrantsSectionHeading = new SplitText(immigrantsSection("*"), {
+          type: "words",
+        });
 
         immigrantSectionTimeline.from(immigrantsSectionHeading.words, {
           autoAlpha: 0,
           y: 10,
           stagger: 0.05,
         });
-
-        immigrantSectionTimeline.from(
-          immigrantsSectionBodyText.words,
-          {
-            autoAlpha: 0,
-            y: 10,
-            stagger: 0.05,
-          },
-          "<10%"
-        );
 
         pageAnimations.push(immigrantSectionTimeline);
 
@@ -1012,8 +996,8 @@ mm.add(
       });
 
       /* SECTION ONE */
-      const immigrantsSection = gsap.utils.selector(".immigrant-section");
-      const immigrantSectionTitle = new SplitText(immigrantsSection("h2"), {
+      const immigrantsSection = gsap.utils.selector("[thesis-content]");
+      const immigrantSectionTitle = new SplitText(immigrantsSection("*"), {
         type: "words",
       });
 
@@ -1022,11 +1006,9 @@ mm.add(
         y: 20,
         stagger: 0.05,
         scrollTrigger: {
-          trigger: ".immigrant-section",
+          trigger: "[thesis-content]",
           start: "top bottom",
           end: "+=500",
-          scrub: true,
-          once: true,
         },
       });
 

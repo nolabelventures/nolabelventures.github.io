@@ -84,15 +84,26 @@ body {
   }
 }
 
-.facts__content-title {
-  font-size: 3.125rem;
-  margin-bottom: 1em;
+.immigrant-section {
+  text-align: left;
+}
+
+.immigrant-section a:link {
+  color: inherit;
+  text-decoration: underline;
+  font-weight: 800;
+}
+
+.immigrant-section h2 {
+  color: #909090;
+  font-size: 2.125rem;
+  margin-bottom: 0.5em;
+  line-height: 1;
 }
 
 @media (min-width: 976px) {
-  .immigrant-section .facts__content-title {
-    color: #909090;
-    font-size: 3.75rem;
+  .immigrant-section h2 {
+    font-size: 2.75rem;
     margin-bottom: 0.5em;
   }
 }
@@ -436,31 +447,6 @@ footer:before {
   background-color: var(--colors-black);
 }
 
-.immigrant-section .facts__section-body-content {
-  text-align: center;
-  margin-bottom: 50px;
-  font-family: $font-title;
-  line-height: 1.2;
-  color: var(--colors-black);
-  text-transform: uppercase;
-  font-size: 2.1875rem;
-  margin-top: 0;
-}
-
-@media (min-width: 976px) {
-  .immigrant-section .facts__section-subtitle {
-    display: flex;
-    align-items: center;
-    color: var(--colors-black);
-    line-height: 1;
-  }
-
-  .immigrant-section .facts__section-body-content {
-    text-align: left;
-    font-size: 3.4375rem;
-  }
-}
-
 .facts-section-line {
   display: none;
 }
@@ -597,7 +583,6 @@ footer {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
-  text-fill-color: transparent;
 }
 
 .immigrant-founders h2 > div:first-child {
@@ -845,7 +830,7 @@ label {
 
 .immigrant-section {
   flex-direction: column;
-  padding-bottom: 0;
+  padding-bottom: 70px;
   padding-top: 70px;
 }
 
@@ -969,6 +954,7 @@ label {
 
 .portfolio-items {
   margin-top: 40px;
+  text-align: left;
 }
 
 @media (min-width: 976px) {
@@ -1948,6 +1934,11 @@ footer h3 {
 }
 
 @media (min-width: 976px) {
+  .immigrant-section {
+    padding-bottom: 0px;
+    padding-top: 0px;
+  }
+
   .immigrant-section .text-highlight {
     font-size: 4.0625rem;
     padding-top: 0;

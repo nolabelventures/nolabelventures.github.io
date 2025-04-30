@@ -682,12 +682,8 @@
         <div
           class="facts__section-content--narrow facts__section-content immigrant-section"
         >
-          {% if site.data.intro.title %}
-          <h2 class="facts__content-title" thesis-title>
-            {{ site.data.intro.title }}
-          </h2>
-          {% endif %} {% if site.data.intro.content %}
-          <div class="facts__section-body-content" thesis-body-text>
+          {% if site.data.intro.content %}
+          <div class="thesis-content" thesis-content>
             {{ site.data.intro.content }}
           </div>
           {% endif %}
@@ -709,6 +705,7 @@
               {% for item in site.data.portfolio.portfolio %} {% assign
               portfolioData = item %}
               <li portfolio-link-wrapper>
+                {% if portfolioData.url != "" %}
                 <a
                   class="portfolio__link"
                   portfolio-link
@@ -717,7 +714,12 @@
                 >
                   {{ portfolioData.title }}
                 </a>
-                - {{ portfolioData.description }}
+                {% else %}
+                <span class="portfolio__link" portfolio-link>
+                  {{ portfolioData.title }}
+                </span>
+                {% endif %} {% if portfolioData.description %} - {{
+                portfolioData.description }} {% endif %}
               </li>
               {% endfor %}
             </ul>

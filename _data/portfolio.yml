@@ -1,37 +1,49 @@
 portfolio:
-  - title: 11x
-    url: https://www.11x.ai/
-    description: "this is a description"
+  - title: 11x.ai
+    url: http://11x.ai/
+    description: GTM digital workers
   - title: Callyope
     url: https://callyope.com/
-    description: "this is a description"
-  - title: Mesh
-    url: https://www.meshconnect.com/
-    description: "this is a description"
+    description: Brain health monitoring
   - title: Guided Energy
     url: https://guided.energy/
-    description: "this is a description"
+    description: Transportation software automation
   - title: Intropy
     url: https://www.intropy.ai/
-    description: "this is a description"
+    description: Industrial software automation
+  - title: Mesh
+    url: https://www.meshconnect.com/
+    description: Crypto payments network
   - title: Mizou
-    url: https://mizou.com
-    description: "this is a description"
+    url: https://www.mizou.ai/business
+    description: Training with roleplay
   - title: Pangea Bio
-    url: https://www.pangeabotanica.com/
-    description: "this is a description"
+    url: https://www.pangeabio.com/
+    description: Nature-inspired drugs
   - title: PostX
     url: https://postx.ai/
-    description: "this is a description"
+    description: EV-powered logistics
   - title: Spore Bio
-    url: https://spore.bio/
-    description: "this is a description"
-  - title: TabTabTab
+    url: https://www.spore.bio/
+    description: Instant microbe testing
+  - title: Tabtabtab
     url: https://tabtabtab.ai/
-    description: "this is a description"
+    description: Productivity tools
   - title: TFC
     url: https://www.theforecastingcompany.com/en/
-    description: "this is a description"
+    description: Time series forecasting
   - title: Vega
-    url: https://www.vega-wealth.com/
-    description: "this is a description"
+    url: https://www.vega-alts.com/
+    description: Alternatives operating system
+  - title: Stealth
+    url: ""
+    description: Software dev agents (Stealth project)
+  - title: Stealth
+    url: ""
+    description: Automating financial compliance (Stealth project)
+  - title: Stealth
+    url: ""
+    description: Consumer mobile apps (Stealth project)
+  - title: Stealth
+    url: ""
+    description: Musical content (Stealth project)
