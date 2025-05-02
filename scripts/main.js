@@ -804,6 +804,7 @@ mm.add(
           autoAlpha: 0,
           y: 10,
           stagger: 0.05,
+          duration: 1,
         });
 
         pageAnimations.push(immigrantSectionTimeline);
@@ -1005,6 +1006,7 @@ mm.add(
         autoAlpha: 0,
         y: 20,
         stagger: 0.05,
+        duration: 1,
         scrollTrigger: {
           trigger: "[thesis-content]",
           start: "top bottom",
