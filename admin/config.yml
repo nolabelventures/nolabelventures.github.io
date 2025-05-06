@@ -18,10 +18,6 @@ collections:
         editor:
           preview: false
         fields:
-          - label: Title
-            name: title
-            widget: text
-            required: true
           - label: Content
             name: content
             widget: markdown
