@@ -705,7 +705,7 @@
               {% for item in site.data.portfolio.portfolio %} {% assign
               portfolioData = item %}
               <li portfolio-link-wrapper>
-                {% if portfolioData.url != "" %}
+                {% if portfolioData.url %}
                 <a
                   class="portfolio__link"
                   portfolio-link
