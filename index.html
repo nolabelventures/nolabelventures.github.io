@@ -902,14 +902,13 @@
       </div>
 
       {% endif %} {% if site.data.faqs.faq %} {% assign size =
-      site.data.faqs.faq | size %} {% assign half = size | divided_by: 2 | plus:
-      1 %}
+      site.data.faqs.faq | size %}
       <section id="faq-1" class="faq" data-bg="#ffffff" data-size="{{size}}">
         <div class="content-wrapper faq__content">
           <h2>Some frequently asked questions</h2>
           <ul class="faq__list--desktop faq__list">
-            {% for item in site.data.faqs.faq limit: half %} {% assign faq =
-            item %}
+            {% for item in site.data.faqs.faq %} 
+            {% assign faq = item %}
             <li class="faq__faq-item">
               <button class="faq__button" data-dropdown>
                 {{ faq.question }}<span class="faq__button-chevron">
