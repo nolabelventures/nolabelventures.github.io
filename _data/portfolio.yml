@@ -36,10 +36,5 @@ portfolio:
     url: https://www.vega-alts.com/
     description: Alternatives operating system
   - title: Stealth
-    description: Software dev agents (Stealth project)
-  - title: Stealth
-    description: Automating financial compliance (Stealth project)
-  - title: Stealth
-    description: Consumer mobile apps (Stealth project)
-  - title: Stealth
-    description: Musical content (Stealth project)
+    description: Software dev agents
+    url: " "
