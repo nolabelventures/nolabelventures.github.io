@@ -684,7 +684,7 @@
         >
           {% if site.data.intro.content %}
           <div class="thesis-content" thesis-content>
-            {{ site.data.intro.content }}
+            {{ site.data.intro.content | markdownify }}
           </div>
           {% endif %}
         </div>

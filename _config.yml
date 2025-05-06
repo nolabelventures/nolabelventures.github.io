@@ -69,3 +69,8 @@ exclude:
 
 sass:
   style: compressed
+
+markdown: kramdown
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
