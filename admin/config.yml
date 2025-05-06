@@ -81,7 +81,7 @@ collections:
                   widget: "text",
                   required: true,
                 }
-              - { label: "URL", name: "url", widget: "text", required: true }
+              - { label: "URL", name: "url", widget: "text" }
               - {
                   label: "Description",
                   name: "description",
