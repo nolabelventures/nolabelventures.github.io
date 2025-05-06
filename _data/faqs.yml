@@ -1,53 +1,20 @@
 faq:
-  - question: Why do you invest in immigrant founders in Europe?
-    answer: We believe that investing in European immigrant-founded startups is an
-      over-performing, yet often overlooked, strategy. In the US, 55% of
-      unicorns are founded by immigrants, compared to 25% in Europe. As the
-      European tech ecosystem matures over the next decade, we predict that two
-      out of three new unicorns will be founded by immigrants. The UK, Europe's
-      most mature tech ecosystem, already has 36% of its unicorns founded by
-      immigrants, up from 14% a decade ago.
-  - question: Do all members of the founding team need to be immigrants for you to
-      invest?
-    answer: >-
-      No, we only require one founder in the team to be an immigrant. 
-
-      We even have an allocation in our fund for exceptional founders with no immigration background.
-  - question: What is your definition of "immigrant" in Europe?
-    answer: We support immigrants in Western Europe, who have migrated from any
-      country outside of Western Europe. We back first and second-generation
-      immigrants.
   - question: When is the right time for a founder to reach out to No Label Ventures?
     answer: It's never too early for founders to reach out to us. We frequently
-      collaborate with founders who are still employed, working on an idea,
-      looking for a co-founder, or building a minimum viable product (MVP). We
-      often invest before a product or revenue is generated.
-  - question: How do you help founders?
-    answer: We invest capital and make beneficial introductions to the founders we
-      back, namely to angels, VCs and corporate clients (typically Private
-      Equity owned enterprises).
-  - question: What immigration support do you provide? How much will it cost founders?
-    answer: We're the only VC fund in the UK and Europe to help the founders we back
-      in every step of the visa process. We partner with a top law firm to
-      ensure our founders get the best visa under UK & EU regs. We cover all
-      visa costs & provide this service free of charge – it's part of our
-      value-add to founders.
-  - question: In which sectors do you invest?
-    answer: We are sector agnostic.
-  - question: What are you looking for in a startup?
-    answer: We are seeking exceptional founders. Those who have the vision and
-      ability to build startups that can become very large companies in 5, 7 or
-      10 years. And those founders with a unique and unconventional view on the
-      future of the industry or the problem they are tackling.
-  - question: Do you invest in startups based outside of Western Europe?
-    answer: We are currently focusing on immigrant founders who are already in
-      Western Europe and creating startups there.
+      start talking to founders when they are still employed, working on an
+      idea, looking for a co-founder, or building a minimum viable product
+      (MVP). And we often invest before a product or revenue is generated.
+  - question: Do you lead investment rounds, or do you co-invest with other VCs?
+    answer: We are often the first to back a startup. We do that unconditionally,
+      and typically before a lead VC. We then introduce the founders we back to
+      other investors, VCs and angels.
   - question: How much do you usually invest in one round?
     answer: We invest between $150k and $250k in each round, and can often invest
       more in collaboration with our investors/limited partners. We are also
       able to provide follow-on investments.
-  - question: Do you lead investment rounds, or do you co-invest with other VCs?
-    answer: We co-invest with other VCs. In fact, we often help the founders we back
-      raise capital from VCs who lead rounds. We lead by "conviction"; that is,
-      we are often the first to invest in a round, helping other investors build
-      conviction in the founders we support.
+  - question: How do you help founders?
+    answer: We invest capital and make beneficial introductions to the founders we
+      back, namely to angels, VCs and corporate clients (typically Private
+      Equity owned enterprises).
+  - question: In which sectors do you invest?
+    answer: We are sector agnostic.
