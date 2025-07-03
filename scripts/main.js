@@ -1,3 +1,12 @@
+import { gsap } from "gsap";
+import { DrawSVGPlugin } from "gsap/DrawSVGPlugin";
+import { SplitText } from "gsap/SplitText";
+import "./global-animations.js";
+import "./page-transitions.js";
+import "./sw.js";
+
+gsap.registerPlugin(DrawSVGPlugin, SplitText);
+
 window.addEventListener("load", () => {
   const dropdowns = gsap.utils.toArray("[data-dropdown]");
   dropdowns.forEach((dropdown) => {
