@@ -6,6 +6,7 @@
 @import "variables";
 @import "fonts";
 
+
 .fixed-page > * h2 {
   font-size: 2.8125rem;
   margin-bottom: 1em;
@@ -359,6 +360,9 @@ body {
     margin-left: auto;
     margin-right: auto;
     padding: 2em 0;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
   }
 }
 
@@ -380,6 +384,10 @@ body {
     display: flex;
     gap: 50px;
     flex: 1;
+  }
+
+  .footer__legal-text {
+    text-align: left;
   }
 }
 
@@ -1745,6 +1753,11 @@ footer h3 {
   font-size: 0.875rem;
   text-align: center;
   color: #e5e5e5;
+  width: 100%;
+}
+
+.footer__legal-text {
+  font-style: italic;
 }
 
 .footer__logo {
@@ -1758,6 +1771,27 @@ footer h3 {
 
   .facts__services-icon {
     margin-bottom: 1.5em;
+  }
+
+  .footer__company-details {
+    justify-content: space-between;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-rows: 1fr 1fr;
+    gap: 1em;
+  }
+
+  .footer__company-details address {
+    text-align: left;
+  }
+
+  .footer__company-details p:not(.footer__legal-text) {
+    text-align: right;
+  }
+
+  .footer__legal-text {
+    text-align: center;
+    grid-column: 1 / 3;
   }
 }
 
