@@ -234,6 +234,20 @@ body {
     transform: translateY(-50%);
     z-index: 100;
     display: block;
+    width: 150px;
+    backdrop-filter: blur(0px);
+    transition: background 0.3s ease-in-out, backdrop-filter 0.3s ease-in-out;
+    background: linear-gradient(90deg, transparent, transparent);
+    border-radius: 5px;
+  }
+
+  .dark .nav:hover {
+    background: linear-gradient(90deg, #111111, transparent);
+  }
+
+  .nav:hover {
+    background: linear-gradient(90deg, white, transparent);
+    backdrop-filter: blur(8px);
   }
 }
 
@@ -1395,7 +1409,8 @@ main {
 
 .blog-posts,
 .blog-post,
-.default-layout {
+.default-layout,
+.default-content {
   margin-top: 100px;
   padding-left: 20px;
   padding-right: 20px;
@@ -1403,7 +1418,8 @@ main {
 }
 
 .blog-post,
-.default-layout {
+.default-layout,
+.default-content {
   strong {
     font-weight: 800;
   }
@@ -1418,6 +1434,41 @@ main {
     line-height: 1.2;
     font-size: 1.375rem;
     text-transform: none;
+  }
+}
+
+.default-content__wrapper {
+  max-width: 720px;
+  margin: 0 auto;
+
+  h1 {
+    font-size: 1.375rem;
+    text-transform: none;
+    color: var(--colors-black);
+  }
+
+  h2 {
+    font-size: 1.25rem;
+    margin-top: 1.5em;
+  }
+
+  p {
+    line-height: 1.6;
+    margin-bottom: 1em;
+  }
+}
+
+@media (min-width: 976px) {
+  .default-content__wrapper {
+    margin-top: 150px;
+
+    h1 {
+      font-size: 1.5625rem;
+    }
+
+    h2 {
+      font-size: 1.375rem;
+    }
   }
 }
 
@@ -1489,6 +1540,8 @@ main {
   transform: translateX(0);
   opacity: 1;
 }
+
+
 
 .faq {
   background-color: var(--colors-white);

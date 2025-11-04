@@ -20,14 +20,13 @@
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="{{ post.exceprt }}" />
-    <title>{{ page.title }}</title>
+    <meta name="description" content="{{ page.description | default: site.description }}" />
+    <title>{{ page.title }} | No Label Ventures</title>
     <meta property="og:title" content="{{ page.title }}" />
-    <meta property="og:type" content="article" />
-    <meta property="og:image" content="{{ page.thumbnail }}" />
-    <meta property="og:url" content="{{ post_url }}" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="{{ page.url | absolute_url }}" />
     <meta name="twitter:card" content="summary_large_image" />
-    <meta property="og:description" content="{{ post.exceprt }}" />
+    <meta property="og:description" content="{{ page.description | default: site.description }}" />
     <meta property="og:site_name" content="No Label Ventures" />
     <link
       rel="stylesheet"
@@ -78,7 +77,7 @@
     <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
     <link rel="manifest" href="/site.webmanifest" />
   </head>
-  <body class="post-page">
+  <body class="default-page">
     <header
       class="dark header"
       id="header-nav"
@@ -265,97 +264,11 @@
       </div>
     </header>
     <main style="overflow: hidden; min-height: 100vh">
-      <div class="blog-post">
-        <div class="blog-post__content">
-          <a href="/blog" class="blog-post__back"
-            ><svg
-              width="8"
-              height="14"
-              viewBox="0 0 8 14"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-              style="margin-right: 5px"
-            >
-              <path
-                d="M7 13L1 7L7 1"
-                stroke="#3E3E3E"
-                stroke-width="2"
-                stroke-linecap="round"
-                stroke-linejoin="round"
-              />
-            </svg>
-            Back</a
-          >
+      <div class="default-content">
+        <div class="default-content__wrapper">
           <h1>{{ page.title }}</h1>
-          {% if page.thumbnail %}
-          <img src="{{ page.thumbnail }}" alt="" class="post-thumbnail" />
-          {% endif %} {{ content }}
+          {{ content }}
         </div>
-        {% if page.related %}
-        <div class="related">
-          <h2 class="related__title">Related Content</h2>
-          <div class="related-posts">
-            {% for item in page.related %} {% assign post = item %}
-            <div class="related__item">
-              <img
-                src="{{ post.thumbnail }}"
-                alt=""
-                class="blog-posts__list-image"
-              />
-              <h3 class="blog-posts__title">{{ post.title }}</h3>
-              <div class="related__content">{{ post.content }}</div>
-              <a href="/{{ post.link }}" class="blog-posts__read-more">
-                Read more
-                <svg
-                  width="16"
-                  height="16"
-                  viewBox="0 0 16 16"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                  data-pgc="nlv.icon-read-more"
-                >
-                  <path
-                    d="M1 7.72H15H1ZM15 7.72L8.28 1L15 7.72ZM15 7.72L8.28 14.44L15 7.72Z"
-                    fill="url(#paint0_linear_262_4332)"
-                  />
-                  <path
-                    d="M1 7.72H15M15 7.72L8.28 1M15 7.72L8.28 14.44"
-                    stroke="url(#paint1_linear_262_4332)"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                  />
-                  <defs>
-                    <linearGradient
-                      id="paint0_linear_262_4332"
-                      x1="0.666666"
-                      y1="0.270698"
-                      x2="24.5081"
-                      y2="14.7904"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stop-color="#00F897" />
-                      <stop offset="1" stop-color="#3959FF" />
-                    </linearGradient>
-                    <linearGradient
-                      id="paint1_linear_262_4332"
-                      x1="0.666666"
-                      y1="0.270698"
-                      x2="24.5081"
-                      y2="14.7904"
-                      gradientUnits="userSpaceOnUse"
-                    >
-                      <stop stop-color="#00F897" />
-                      <stop offset="1" stop-color="#3959FF" />
-                    </linearGradient>
-                  </defs>
-                </svg>
-              </a>
-            </div>
-          </div>
-          {% endfor %}
-        </div>
-        {% endif %}<a href="/blog" class="see-all-articles">See all articles</a>
       </div>
     </main>
     {% include footer.html %}

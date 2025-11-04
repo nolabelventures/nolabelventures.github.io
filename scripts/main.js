@@ -75,6 +75,10 @@ mm.add(
       },
     });
 
+    // Speed settings based on whether we're jumping to a section
+    const navAnimDuration = jumpToSection ? 0 : 0.15;
+    const navStagger = jumpToSection ? 0 : 0.05;
+
     if (!sessionStorage.getItem("intro-seen")) {
       introAnimation.set(heroEl("h1"), {
         autoAlpha: 1,
@@ -216,7 +220,8 @@ mm.add(
           attr: {
             class: "nav__button active",
           },
-          stagger: 0.05,
+          stagger: navStagger,
+          duration: navAnimDuration,
         },
         "<"
       );
@@ -298,13 +303,15 @@ mm.add(
             attr: {
               class: "nav__button active",
             },
-            stagger: 0.05,
+            stagger: navStagger,
+            duration: navAnimDuration,
           },
           "<"
         );
       } else {
         introAnimation.to(".nav", {
           autoAlpha: 1,
+          duration: jumpToSection ? 0 : 0.3,
         });
       }
 
@@ -324,6 +331,12 @@ mm.add(
       let animating;
 
       const pageAnimations = [false];
+
+      // If jumping to a section, instantly show nav without animation
+      if (jumpToSection) {
+        gsap.set(".nav", { autoAlpha: 1 });
+        gsap.set(".nav li a", { x: 0, autoAlpha: 1 });
+      }
 
       gsap.set(Sections, {
         zIndex: (i) => i,
@@ -373,6 +386,7 @@ mm.add(
       const porfolioLinks = gsap.utils.toArray("[portfolio-link]");
 
       function gotoPanel(index, isScrollingDown, isQuickNav) {
+
         if (index <= -1 || index === currentIndex) {
           return;
         }
@@ -502,6 +516,8 @@ mm.add(
                   : "#ffffff",
             });
 
+            document.querySelector("body").classList.toggle("dark", Sections[index].getAttribute("data-bg") === "#111111");
+
             gsap.to("header", {
               color:
                 Sections[index].getAttribute("data-bg") === "#ffffff"
@@ -516,6 +532,7 @@ mm.add(
                 });
                 pageAnimations[index].play();
               }, 250);
+            } else {
             }
           },
         });
@@ -544,7 +561,7 @@ mm.add(
             );
           }
 
-          for (let i = 0; i < Sections.length - 1; i++) {
+          for (let i = 0; i < Sections.length; i++) {
             if (i === currentIndex || i === index) {
               if (!isScrollingDown) {
                 transition.set(Sections[index], {
@@ -759,11 +776,8 @@ mm.add(
 
       if (jumpToSection) {
         // if # in the url, jump to that index (if exists)
-        gotoPanel(
-          Number(jumpToSection.getAttribute("data-index")) - 1,
-          true,
-          true
-        );
+        const jumpIndex = Number(jumpToSection.getAttribute("data-index")) - 1;
+        gotoPanel(jumpIndex, true, true);
       } else {
         gotoPanel(0, true, true);
       }
