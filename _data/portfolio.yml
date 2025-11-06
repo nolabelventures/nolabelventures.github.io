@@ -35,6 +35,9 @@ portfolio:
   - title: TFC
     url: https://www.theforecastingcompany.com/en/
     description: Time series forecasting
+  - title: Uncovr
+    url: https://www.uncovr.ai/
+    description: Surgical documentation and billing
   - title: Vega
     url: https://www.vega-alts.com/
     description: Alternatives operating system
