@@ -11,6 +11,9 @@ portfolio:
   - title: Intropy
     url: https://www.intropy.ai/
     description: Industrial software automation
+  - title: Melotech
+    description: Consumer mobile apps
+    url: https://www.melotech.ai/
   - title: Mesh
     url: https://www.meshconnect.com/
     description: Crypto payments network
@@ -44,7 +47,5 @@ portfolio:
   - title: Zango
     description: Automating financial compliance
     url: https://www.zango.ai/
-  - title: Stealth
-    description: Consumer mobile apps
   - title: Stealth
     description: Musical content
