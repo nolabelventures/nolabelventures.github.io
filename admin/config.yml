@@ -5,12 +5,27 @@ backend:
   base_url: https://us-central1-nolabelventures.cloudfunctions.net
   auth_endpoint: /oauth/auth
 
+local_backend: false # set to false when pushing
+
 media_folder: "assets/uploads"
 
 collections:
   - name: home
     label: Home Page
     files:
+      - name: hero
+        label: Hero Section
+        identifiel_field: content
+        file: _data/hero.yml
+        editor:
+           preview: false
+        fields:
+          - label: Hero (part one)
+            name: hero1
+            widget: text
+          - label: Hero (part two)
+            name: hero2
+            widget: text
       - name: intro
         label: Intro Section
         identifier_field: content
