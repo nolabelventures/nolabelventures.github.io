@@ -35,6 +35,9 @@ portfolio:
   - title: Tabtabtab
     url: https://tabtabtab.ai/
     description: Productivity tools
+  - title: Realmforge
+    description: Interactive AI storytelling
+    url: https://www.realmforge.ai/
   - title: TFC
     url: https://www.theforecastingcompany.com/en/
     description: Time series forecasting
@@ -47,5 +50,3 @@ portfolio:
   - title: Zango
     description: Automating financial compliance
     url: https://www.zango.ai/
-  - title: Stealth
-    description: Consumer mobile apps
