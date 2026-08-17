@@ -54,6 +54,9 @@ defaults:
 # their entries' file path in the `include:` list.
 #
 exclude:
+  - AGENTS.md
+  - CLAUDE.md
+  - README.md
   - functions
   - _pgbackup
   - .sass-cache/
