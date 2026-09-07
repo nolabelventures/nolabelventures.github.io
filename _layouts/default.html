@@ -22,6 +22,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="description" content="{{ page.description | default: site.description }}" />
     <title>{{ page.title }} | No Label Ventures</title>
+    <link rel="canonical" href="{{ page.url | replace: '/index.html', '/' | absolute_url }}" />
     <meta property="og:title" content="{{ page.title }}" />
     <meta property="og:type" content="website" />
     <meta property="og:url" content="{{ page.url | absolute_url }}" />
@@ -281,7 +282,7 @@
       <p>
         We use cookies to improve your experience on our site and to understand
         where our audience is coming from. To find out more, please read our
-        <a href="/privacy-policy">Privacy Policy</a>. By choosing I Accept, you
+        <a href="/privacy-policy.html">Privacy Policy</a>. By choosing I Accept, you
         consent to our use of cookies and Google Analytics.
       </p>
       <button class="cookie-notice__accept">Accept</button>

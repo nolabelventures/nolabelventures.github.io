@@ -1,86 +1,30 @@
-const functions = require('firebase-functions')
-const express = require('express')
-const simpleOauth = require('simple-oauth2')
-const randomstring = require('randomstring')
+const functions = require('firebase-functions/v1')
+const { defineString, defineSecret } = require('firebase-functions/params')
+const { createApp } = require('./app')
 
-const oauth = functions.config().oauth
-const oauth_provider = oauth.provider || 'github'
+// Configuration moved from the retired functions.config() API to params.
+// Set OAUTH_CLIENT_ID (and any overrides) in functions/.env; the client
+// secret lives in Secret Manager: `firebase functions:secrets:set OAUTH_CLIENT_SECRET`.
+const clientId = defineString('OAUTH_CLIENT_ID')
+const clientSecret = defineSecret('OAUTH_CLIENT_SECRET')
+const provider = defineString('OAUTH_PROVIDER', { default: 'github' })
+const gitHostname = defineString('OAUTH_GIT_HOSTNAME', { default: 'https://github.com' })
+const tokenPath = defineString('OAUTH_TOKEN_PATH', { default: '/login/oauth/access_token' })
+const authorizePath = defineString('OAUTH_AUTHORIZE_PATH', { default: '/login/oauth/authorize' })
+const redirectUrl = defineString('OAUTH_REDIRECT_URL', { default: '' })
+const scopes = defineString('OAUTH_SCOPES', { default: 'repo,user' })
 
-function getScript(mess, content) {
-  return `<!doctype html><html><body><script>
-  (function() {
-    function receiveMessage(e) {
-      console.log("receiveMessage %o", e)
-      window.opener.postMessage(
-        'authorization:github:${mess}:${JSON.stringify(content)}',
-        e.origin
-      )
-      window.removeEventListener("message",receiveMessage,false);
-    }
-    window.addEventListener("message", receiveMessage, false)
-    console.log("Sending message: %o", "github")
-    window.opener.postMessage("authorizing:github", "*")
-    })()
-  </script></body></html>`
-}
+const app = createApp(() => ({
+  client_id: clientId.value(),
+  client_secret: clientSecret.value(),
+  provider: provider.value(),
+  git_hostname: gitHostname.value(),
+  token_path: tokenPath.value(),
+  authorize_path: authorizePath.value(),
+  redirect_url: redirectUrl.value() || undefined,
+  scopes: scopes.value(),
+}))
 
-const oauth2 = simpleOauth.create({
-  client: {
-    id: oauth.client_id,
-    secret: oauth.client_secret
-  },
-  auth: {
-    tokenHost: oauth.git_hostname || 'https://github.com',
-    tokenPath: oauth.token_path || '/login/oauth/access_token',
-    authorizePath: oauth.authorize_path || '/login/oauth/authorize',
-  }
-})
-
-const oauthApp = express()
-
-oauthApp.get('/auth', (req, res) => {
-  const authorizationUri = oauth2.authorizationCode.authorizeURL({
-    redirect_uri: oauth.redirect_url,
-    scope: oauth.scopes || 'repo,user',
-    state: randomstring.generate(32)
-  })
-
-  res.redirect(authorizationUri)
-})
-
-oauthApp.get('/callback', async (req, res) => {
-  var options = {
-    code: req.query.code
-  }
-
-  if (oauth_provider === 'gitlab') {
-    options.client_id = oauth.client_id
-    options.client_secret = oauth.client_secret
-    options.grant_type = 'authorization_code'
-    options.redirect_uri = oauth.redirect_url
-  }
-
-  try {
-    const result = await oauth2.authorizationCode.getToken(options)
-    const token = oauth2.accessToken.create(result)
-
-    return res.send(getScript('success', {
-      token: token.token.access_token,
-      provider: oauth_provider
-    }))
-  }
-  catch (error) {
-    console.error('Access Token Error', error.message)
-    res.send(getScript('error', error))
-  }
-})
-
-oauthApp.get('/success', (req, res) => {
-  res.send('')
-})
-
-oauthApp.get('/', (req, res) => {
-  res.redirect(301, `/oauth/auth`)
-})
-
-exports.oauth = functions.https.onRequest(oauthApp)
+exports.oauth = functions
+  .runWith({ secrets: [clientSecret] })
+  .https.onRequest(app)
