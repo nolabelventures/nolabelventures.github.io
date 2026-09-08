@@ -68,8 +68,14 @@ function createApp(getConfig) {
 
     try {
       const accessToken = await client.getToken(tokenParams)
+      const token = accessToken.token || {}
+      // GitHub answers 200 with an error body (e.g. bad_verification_code or
+      // incorrect_client_credentials) instead of a 4xx, so check for the token.
+      if (!token.access_token) {
+        throw new Error(token.error_description || token.error || 'No access token in response')
+      }
       return res.send(getScript('success', {
-        token: accessToken.token.access_token,
+        token: token.access_token,
         provider,
       }))
     } catch (error) {
