@@ -2,12 +2,21 @@ portfolio:
   - title: 11x
     url: http://11x.ai/
     description: GTM digital workers
+  - title: Aira
+    url: https://airahealth.io/
+    description: Prior authorization automation
   - title: Callyope
     url: https://callyope.com/
     description: Brain health monitoring
+  - title: Forge
+    url: https://www.forge.life/
+    description: Strength training for healthy ageing
   - title: Guided Energy
     url: https://guided.energy/
     description: Transportation software automation
+  - title: Hydra
+    url: https://hydra.inc/
+    description: Building in stealth
   - title: Intropy
     url: https://www.intropy.ai/
     description: Industrial software automation
@@ -17,8 +26,8 @@ portfolio:
   - title: Mesh
     url: https://www.meshconnect.com/
     description: Crypto payments network
-  - title: Mizou
-    url: https://www.mizou.ai/business
+  - title: Mizou (acquired by MeltingSpot)
+    url: https://meltingspot.io/
     description: Training with roleplay
   - title: Nozomio
     description: Software dev agents
@@ -29,6 +38,9 @@ portfolio:
   - title: PostX
     url: https://postx.ai/
     description: EV-powered logistics
+  - title: Shiplog
+    url: https://useshiplog.com/
+    description: Agentic customer intelligence
   - title: Spore Bio
     url: https://www.spore.bio/
     description: Instant microbe testing
