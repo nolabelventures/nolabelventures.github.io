@@ -8,6 +8,9 @@ At No Label Ventures, accessible from https://nolabel.ventures/, one of our main
 
 If you have additional questions or require more information about our Privacy Policy, do not hesitate to contact us.
 
+## Who we are
+This website is operated by No Label Ventures Adviser Limited, a company registered in England and Wales (company number 14177213). No Label Ventures Adviser Limited is the data controller for personal information collected through this website and is registered with the UK Information Commissioner's Office (registration number ZC266272).
+
 ## Log Files
 
 No Label Ventures follows a standard procedure of using log files. These files log visitors when they visit websites. All hosting companies do this and a part of hosting services' analytics. The information collected by log files include internet protocol (IP) addresses, browser type, Internet Service Provider (ISP), date and time stamp, referring/exit pages, and possibly the number of clicks. These are not linked to any information that is personally identifiable. The purpose of the information is for analyzing trends, administering the site, tracking users' movement on the website, and gathering demographic information. Our Privacy Policy was created with the help of the Privacy Policy Generator.
