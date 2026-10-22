@@ -1,0 +1,86 @@
+# Deploys the Netlify CMS login function (`oauth`, Firebase project nolabelventures) after
+# Ramzi approves it (automation plan item 48, prepared 22 Oct 2026).
+#
+# The job uses the GitHub environment "production", which has Ramzi as required reviewer:
+# GitHub notifies him (GitHub mobile app) and the deploy waits until he taps Approve.
+# Google Cloud access is by Workload Identity Federation: GitHub's short-lived OIDC token is
+# exchanged for the deploy service account, only for this repository on main. No keys stored.
+#
+# The two settings below are environment variables on "production" (not secrets: neither is
+# sensitive), created by the item-48 setup script:
+#   GCP_WIF_PROVIDER  projects/318830598705/locations/global/workloadIdentityPools/github/providers/nlv-site
+#   GCP_DEPLOY_SA     github-deploy@nolabelventures.iam.gserviceaccount.com
+#
+# The website itself is unaffected: GitHub Pages keeps building main on its own.
+name: Deploy login function
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "functions/**"
+      - "firebase.json"
+      - ".firebaserc"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-functions
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    environment:
+      name: production
+      url: https://us-central1-nolabelventures.cloudfunctions.net/oauth/auth
+    permissions:
+      contents: read
+      id-token: write
+    env:
+      FIREBASE_TOOLS_VERSION: "15.32.1"
+      FUNCTION_BASE: https://us-central1-nolabelventures.cloudfunctions.net/oauth
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node 22
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: functions/package-lock.json
+
+      - name: Install function dependencies
+        working-directory: functions
+        run: npm ci --no-audit --no-fund
+
+      - name: Authenticate to Google Cloud (Workload Identity Federation)
+        uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
+        with:
+          workload_identity_provider: ${{ vars.GCP_WIF_PROVIDER }}
+          service_account: ${{ vars.GCP_DEPLOY_SA }}
+
+      - name: Deploy functions
+        run: |
+          npx --yes "firebase-tools@${FIREBASE_TOOLS_VERSION}" deploy \
+            --only functions --project nolabelventures --non-interactive --force
+
+      - name: Verify the login function
+        run: |
+          set -euo pipefail
+          code=$(curl -s -o /dev/null -w '%{http_code}' "$FUNCTION_BASE/auth")
+          echo "GET /oauth/auth -> $code"
+          [ "$code" = "302" ] || { echo "::error::expected 302 from /oauth/auth, got $code"; exit 1; }
+          body=$(curl -s "$FUNCTION_BASE/callback?code=bad" || true)
+          if echo "$body" | grep -qi "client_secret"; then
+            echo "::error::callback reports a wrong client secret"; exit 1
+          fi
+          echo "$body" | grep -qi "incorrect" || { echo "::warning::callback did not return the expected 'code passed is incorrect' error"; }
+          echo "Login function deployed and answering." >> "$GITHUB_STEP_SUMMARY"

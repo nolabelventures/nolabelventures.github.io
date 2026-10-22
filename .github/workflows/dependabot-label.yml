@@ -1,0 +1,61 @@
+# Sorts each Dependabot PR into "merges itself after 3 days" or "waits for Ramzi"
+# (automation plan item 48, prepared 22 Oct 2026). It never merges anything itself:
+# dependabot-automerge.yml does that, once a day, for PRs labelled here that are 3+ days old.
+#
+# Eligible for automatic merge:
+#   - any patch-level update (x.y.Z), or
+#   - a security update (Dependabot alert found) that is not a major version jump.
+# Everything else (minor, major, grouped, unknown) gets "needs-ramzi" and is left alone.
+#
+# Security detection needs read access to Dependabot alerts, which the built-in token does not
+# have. If the optional Dependabot secret DEPENDABOT_ALERTS_TOKEN is set (fine-grained token,
+# this repo only, "Dependabot alerts: read"), minor-level security fixes also qualify; without
+# it, only patch-level updates do (most security fixes are patch-level anyway).
+name: Dependabot triage
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  triage:
+    if: github.event.pull_request.user.login == 'dependabot[bot]'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pull-requests: write
+    steps:
+      - name: Read Dependabot metadata
+        id: meta
+        uses: dependabot/fetch-metadata@25dd0e34f4fe68f24cc83900b1fe3fe149efef98 # v3.1.0
+        with:
+          github-token: ${{ secrets.DEPENDABOT_ALERTS_TOKEN || secrets.GITHUB_TOKEN }}
+          alert-lookup: ${{ secrets.DEPENDABOT_ALERTS_TOKEN != '' }}
+
+      - name: Label the PR
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_REPO: ${{ github.repository }}
+          PR: ${{ github.event.pull_request.number }}
+          UPDATE_TYPE: ${{ steps.meta.outputs.update-type }}
+          ALERT_STATE: ${{ steps.meta.outputs.alert-state }}
+          GHSA: ${{ steps.meta.outputs.ghsa-id }}
+        run: |
+          set -euo pipefail
+          eligible=no
+          reason="update type '${UPDATE_TYPE:-unknown}'"
+          if [ "$UPDATE_TYPE" = "version-update:semver-patch" ]; then
+            eligible=yes; reason="patch-level update"
+          elif [ -n "$ALERT_STATE" ] && [ "$UPDATE_TYPE" != "version-update:semver-major" ] && [ -n "$UPDATE_TYPE" ]; then
+            eligible=yes; reason="security update ${GHSA:-} (${UPDATE_TYPE})"
+          fi
+          if [ "$eligible" = yes ]; then
+            gh pr edit "$PR" --add-label automerge-after-3d --remove-label needs-ramzi || gh pr edit "$PR" --add-label automerge-after-3d
+          else
+            gh pr edit "$PR" --add-label needs-ramzi --remove-label automerge-after-3d || gh pr edit "$PR" --add-label needs-ramzi
+          fi
+          echo "PR #$PR: eligible=$eligible ($reason)" >> "$GITHUB_STEP_SUMMARY"

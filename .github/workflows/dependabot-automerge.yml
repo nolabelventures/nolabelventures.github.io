@@ -1,0 +1,88 @@
+# Merges Dependabot PRs labelled "automerge-after-3d" once they are at least 3 days old and
+# every check on them has passed (automation plan item 48, prepared 22 Oct 2026).
+#
+# Guards, all re-checked at merge time:
+#   - author is dependabot[bot] and every commit on the PR was made by Dependabot
+#     (a human push onto the branch takes it out of automatic merging)
+#   - targets main, not a draft, label still present, checks green, mergeable
+#   - at most 5 merges per run
+# After merging anything under functions/, it starts deploy-functions.yml, which then waits for
+# Ramzi's one-tap approval on the "production" environment. Nothing deploys without that tap.
+#
+# Scheduled workflows run from the repository's default branch, so this only starts running on
+# its own once the default branch is switched to main (runbook step).
+name: Dependabot auto-merge
+
+on:
+  schedule:
+    - cron: "30 6 * * *" # 06:30 UTC daily
+  workflow_dispatch:
+    inputs:
+      dry_run:
+        description: "List what would merge, merge nothing"
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: dependabot-automerge
+  cancel-in-progress: false
+
+jobs:
+  merge:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+      actions: write
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      GH_REPO: ${{ github.repository }}
+      MIN_AGE_HOURS: "72"
+      MAX_MERGES: "5"
+      DRY_RUN: ${{ github.event_name == 'workflow_dispatch' && inputs.dry_run || false }}
+    steps:
+      - name: Merge eligible Dependabot PRs
+        run: |
+          set -euo pipefail
+          now=$(date -u +%s)
+          merged=0
+          deploy=no
+          gh pr list --state open --base main --label automerge-after-3d \
+            --json number,author,createdAt,isDraft --limit 50 > prs.json
+          for n in $(jq -r '.[] | select(.author.login == "app/dependabot" or .author.login == "dependabot[bot]") | select(.isDraft == false) | .number' prs.json); do
+            created=$(jq -r --argjson n "$n" '.[] | select(.number == $n) | .createdAt' prs.json)
+            age_h=$(( (now - $(date -u -d "$created" +%s)) / 3600 ))
+            if [ "$age_h" -lt "$MIN_AGE_HOURS" ]; then
+              echo "#$n: ${age_h}h old, waiting until ${MIN_AGE_HOURS}h"; continue
+            fi
+            others=$(gh pr view "$n" --json commits --jq '[.commits[].authors[].login | select(. != "dependabot[bot]")] | length')
+            if [ "$others" != "0" ]; then
+              echo "#$n: has non-Dependabot commits, leaving for Ramzi"; continue
+            fi
+            if ! gh pr checks "$n" > /dev/null 2>&1; then
+              echo "#$n: checks not all green, skipping"; continue
+            fi
+            state=$(gh pr view "$n" --json mergeable --jq .mergeable)
+            if [ "$state" != "MERGEABLE" ]; then
+              echo "#$n: mergeable=$state, skipping"; continue
+            fi
+            touches_functions=$(gh pr view "$n" --json files --jq '[.files[].path | select(startswith("functions/"))] | length')
+            if [ "$DRY_RUN" = "true" ]; then
+              echo "#$n: WOULD merge (age ${age_h}h, functions files: $touches_functions)"; continue
+            fi
+            gh pr merge "$n" --squash --delete-branch
+            echo "#$n: merged (age ${age_h}h)" | tee -a "$GITHUB_STEP_SUMMARY"
+            merged=$((merged + 1))
+            if [ "$touches_functions" != "0" ]; then deploy=yes; fi
+            if [ "$merged" -ge "$MAX_MERGES" ]; then echo "merge cap reached"; break; fi
+          done
+          if [ "$deploy" = yes ]; then
+            # Merges made with the built-in token do not fire push workflows, so start the
+            # deploy explicitly. It stops at the production environment until Ramzi approves.
+            gh workflow run deploy-functions.yml --ref main
+            echo "Deploy started; waiting for Ramzi's approval." >> "$GITHUB_STEP_SUMMARY"
+          fi
+          echo "merged=$merged deploy=$deploy"
