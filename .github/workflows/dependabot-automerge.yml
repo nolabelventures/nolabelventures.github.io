@@ -1,5 +1,6 @@
 # Merges Dependabot PRs labelled "automerge-after-3d" once they are at least 3 days old and
-# every check on them has passed (automation plan item 48, prepared 22 Oct 2026).
+# every check on them has passed, including validate (automation plan item 48, prepared 22 Oct 2026;
+# validate required since 30 Oct 2026).
 #
 # Guards, all re-checked at merge time:
 #   - author is dependabot[bot] and every commit on the PR was made by Dependabot
@@ -73,6 +74,12 @@ jobs:
             combined=$(gh api "repos/$GH_REPO/commits/$sha/status" --jq .state)
             if [ "$bad" != "0" ] || { [ "$combined" != "success" ] && [ "$(gh api "repos/$GH_REPO/commits/$sha/status" --jq '.statuses | length')" != "0" ]; }; then
               echo "#$n: checks on ${sha:0:7} not all green, skipping"; continue
+            fi
+            # The "validate" test (validate.yml) must have actually run and passed: no test, no merge.
+            validated=$(gh api "repos/$GH_REPO/commits/$sha/check-runs?check_name=validate" \
+              --jq '[.check_runs[] | select(.conclusion == "success")] | length')
+            if [ "$validated" = "0" ]; then
+              echo "#$n: no passing validate check on ${sha:0:7}, skipping"; continue
             fi
             state=$(jq -r .mergeable <<<"$pr")
             if [ "$state" != "MERGEABLE" ]; then

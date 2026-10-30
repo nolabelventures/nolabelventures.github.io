@@ -1,0 +1,60 @@
+# The test Dependabot auto-merge requires (30 Oct 2026, after the ChatGPT code review): installs the
+# login function's dependencies without running their install scripts, refuses known serious
+# vulnerabilities, and checks the function still loads and still refuses forged logins.
+# No secrets and no cloud access: it runs with a read-only token.
+name: validate
+
+on:
+  pull_request:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+
+      - name: Set up Node 22
+        uses: actions/setup-node@949feb2413d6458794dcd2491c4babbbce0c15c1 # v7.1.0
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: functions/package-lock.json
+
+      - name: Install function dependencies (no install scripts)
+        working-directory: functions
+        run: npm ci --no-audit --no-fund --ignore-scripts
+
+      - name: Refuse known serious vulnerabilities
+        working-directory: functions
+        run: npm audit --omit=dev --audit-level=high
+
+      - name: Function loads and refuses forged logins
+        working-directory: functions
+        run: |
+          node -e '
+            const http = require("http")
+            const { createApp } = require("./app")
+            const app = createApp(() => ({ client_id: "test", client_secret: "test" }))
+            const server = app.listen(0, () => {
+              const port = server.address().port
+              http.get(`http://127.0.0.1:${port}/auth`, (r) => {
+                const loc = r.headers.location || ""
+                if (r.statusCode !== 302 || !/scope=public_repo/.test(loc)) { console.error("auth broken:", r.statusCode, loc); process.exit(1) }
+                http.get(`http://127.0.0.1:${port}/callback?code=x&state=forged`, (c) => {
+                  let body = ""
+                  c.on("data", (d) => (body += d))
+                  c.on("end", () => {
+                    if (!body.includes("did not start here")) { console.error("forged login not refused"); process.exit(1) }
+                    console.log("login function OK"); server.close()
+                  })
+                })
+              })
+            })'

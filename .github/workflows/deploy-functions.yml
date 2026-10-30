@@ -59,7 +59,9 @@ jobs:
 
       - name: Install function dependencies
         working-directory: functions
-        run: npm ci --no-audit --no-fund
+        # --ignore-scripts: a poisoned dependency cannot run code here, where the job can get
+        # Google deploy rights. Firebase rebuilds the function on Google's side anyway.
+        run: npm ci --no-audit --no-fund --ignore-scripts
 
       - name: Refuse to deploy with known serious vulnerabilities
         working-directory: functions
@@ -82,9 +84,7 @@ jobs:
           code=$(curl -s -o /dev/null -w '%{http_code}' "$FUNCTION_BASE/auth")
           echo "GET /oauth/auth -> $code"
           [ "$code" = "302" ] || { echo "::error::expected 302 from /oauth/auth, got $code"; exit 1; }
-          body=$(curl -s "$FUNCTION_BASE/callback?code=bad" || true)
-          if echo "$body" | grep -qi "client_secret"; then
-            echo "::error::callback reports a wrong client secret"; exit 1
-          fi
-          echo "$body" | grep -qi "incorrect" || { echo "::warning::callback did not return the expected 'code passed is incorrect' error"; }
+          # Since the 30 Oct 2026 fix a callback without the login cookie must be refused.
+          body=$(curl -s "$FUNCTION_BASE/callback?code=bad&state=forged" || true)
+          echo "$body" | grep -q "did not start here" || { echo "::error::callback accepted a login that did not start here"; exit 1; }
           echo "Login function deployed and answering." >> "$GITHUB_STEP_SUMMARY"
