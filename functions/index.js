@@ -12,7 +12,6 @@ const gitHostname = defineString('OAUTH_GIT_HOSTNAME', { default: 'https://githu
 const tokenPath = defineString('OAUTH_TOKEN_PATH', { default: '/login/oauth/access_token' })
 const authorizePath = defineString('OAUTH_AUTHORIZE_PATH', { default: '/login/oauth/authorize' })
 const redirectUrl = defineString('OAUTH_REDIRECT_URL', { default: '' })
-const scopes = defineString('OAUTH_SCOPES', { default: 'repo,user' })
 
 const app = createApp(() => ({
   client_id: clientId.value(),
@@ -22,7 +21,6 @@ const app = createApp(() => ({
   token_path: tokenPath.value(),
   authorize_path: authorizePath.value(),
   redirect_url: redirectUrl.value() || undefined,
-  scopes: scopes.value(),
 }))
 
 exports.oauth = functions

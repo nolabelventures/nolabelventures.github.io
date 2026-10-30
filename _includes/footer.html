@@ -199,16 +199,18 @@
   
         statusMessages.forEach((status) => (status.style.display = ""));
   
-        let formData = new FormData(form);
-        let data = "";
-        for (let entry of formData.entries()) {
-          data += `&${entry[0]}=${entry[1]}`;
-        }
-  
-        if (!data.checkbox) {
+        const formData = new FormData(form);
+        // Bots tick the hidden checkbox; people never see it.
+        if (!formData.get("checkbox")) {
+          const params = new URLSearchParams({
+            u: mc_user,
+            id: mc_id,
+            mc_signupsource: "website",
+            EMAIL: formData.get("EMAIL") || "",
+          });
           try {
             const subscribe = await fetchJsonp(
-              `https://ventures.us17.list-manage.com/subscribe/post-json?u=${mc_user}&id=${mc_id}&mc_signupsource=website${data}`,
+              `https://ventures.us17.list-manage.com/subscribe/post-json?${params}`,
               {
                 jsonpCallbackFuntion: "?",
                 jsonpCallback: "c",

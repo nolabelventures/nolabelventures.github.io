@@ -1,0 +1,21 @@
+<script>
+  // Google Analytics loads only once the visitor has accepted the cookie notice: on this
+  // page load if they accepted before, or when they click Accept (global-animations.js).
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  window.nlvLoadAnalytics = function () {
+    if (window.nlvAnalyticsLoaded) return;
+    window.nlvAnalyticsLoaded = true;
+    var s = document.createElement("script");
+    s.async = true;
+    s.src = "https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40";
+    document.head.appendChild(s);
+    gtag("js", new Date());
+    gtag("config", "G-ZK3Q35ZF40", { anonymize_ip: true });
+  };
+  try {
+    if (localStorage["cookie_dismissed"]) window.nlvLoadAnalytics();
+  } catch (e) {}
+</script>

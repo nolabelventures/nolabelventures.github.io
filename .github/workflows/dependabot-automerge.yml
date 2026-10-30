@@ -5,6 +5,9 @@
 #   - author is dependabot[bot] and every commit on the PR was made by Dependabot
 #     (a human push onto the branch takes it out of automatic merging)
 #   - targets main, not a draft, label still present, checks green, mergeable
+#   - the 3 days count from the PR's latest commit, so a rebase or new version restarts them
+#   - every check runs against one recorded commit, and the merge is refused if the branch
+#     has moved since (--match-head-commit)
 #   - at most 5 merges per run
 # After merging anything under functions/, it starts deploy-functions.yml, which then waits for
 # Ramzi's one-tap approval on the "production" environment. Nothing deploys without that tap.
@@ -51,29 +54,37 @@ jobs:
           merged=0
           deploy=no
           gh pr list --state open --base main --label automerge-after-3d \
-            --json number,author,createdAt,isDraft --limit 50 > prs.json
+            --json number,author,isDraft --limit 50 > prs.json
           for n in $(jq -r '.[] | select(.author.login == "app/dependabot" or .author.login == "dependabot[bot]") | select(.isDraft == false) | .number' prs.json); do
-            created=$(jq -r --argjson n "$n" '.[] | select(.number == $n) | .createdAt' prs.json)
-            age_h=$(( (now - $(date -u -d "$created" +%s)) / 3600 ))
+            pr=$(gh pr view "$n" --json headRefOid,commits,mergeable,files)
+            sha=$(jq -r .headRefOid <<<"$pr")
+            last=$(jq -r '[.commits[].committedDate] | max' <<<"$pr")
+            age_h=$(( (now - $(date -u -d "$last" +%s)) / 3600 ))
             if [ "$age_h" -lt "$MIN_AGE_HOURS" ]; then
-              echo "#$n: ${age_h}h old, waiting until ${MIN_AGE_HOURS}h"; continue
+              echo "#$n: latest commit ${age_h}h old, waiting until ${MIN_AGE_HOURS}h"; continue
             fi
-            others=$(gh pr view "$n" --json commits --jq '[.commits[].authors[].login | select(. != "dependabot[bot]")] | length')
+            others=$(jq '[.commits[].authors[].login | select(. != "dependabot[bot]")] | length' <<<"$pr")
             if [ "$others" != "0" ]; then
               echo "#$n: has non-Dependabot commits, leaving for Ramzi"; continue
             fi
-            if ! gh pr checks "$n" > /dev/null 2>&1; then
-              echo "#$n: checks not all green, skipping"; continue
+            # Checks on the exact commit recorded above, all finished and none failing.
+            bad=$(gh api "repos/$GH_REPO/commits/$sha/check-runs?per_page=100" \
+              --jq '[.check_runs[] | select(.status != "completed" or (.conclusion | IN("success","skipped","neutral") | not))] | length')
+            combined=$(gh api "repos/$GH_REPO/commits/$sha/status" --jq .state)
+            if [ "$bad" != "0" ] || { [ "$combined" != "success" ] && [ "$(gh api "repos/$GH_REPO/commits/$sha/status" --jq '.statuses | length')" != "0" ]; }; then
+              echo "#$n: checks on ${sha:0:7} not all green, skipping"; continue
             fi
-            state=$(gh pr view "$n" --json mergeable --jq .mergeable)
+            state=$(jq -r .mergeable <<<"$pr")
             if [ "$state" != "MERGEABLE" ]; then
               echo "#$n: mergeable=$state, skipping"; continue
             fi
-            touches_functions=$(gh pr view "$n" --json files --jq '[.files[].path | select(startswith("functions/"))] | length')
+            touches_functions=$(jq '[.files[].path | select(startswith("functions/"))] | length' <<<"$pr")
             if [ "$DRY_RUN" = "true" ]; then
               echo "#$n: WOULD merge (age ${age_h}h, functions files: $touches_functions)"; continue
             fi
-            gh pr merge "$n" --squash --delete-branch
+            if ! gh pr merge "$n" --squash --delete-branch --match-head-commit "$sha"; then
+              echo "#$n: branch moved past ${sha:0:7} or merge refused, skipping"; continue
+            fi
             echo "#$n: merged (age ${age_h}h)" | tee -a "$GITHUB_STEP_SUMMARY"
             merged=$((merged + 1))
             if [ "$touches_functions" != "0" ]; then deploy=yes; fi

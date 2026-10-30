@@ -1,22 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-
-      dataLayer.push("config", "G-ZK3Q35ZF40", {
-        anonymize_ip: true,
-        send_page_view: localStorage["cookie_dismissed"] || false,
-      });
-    </script>
+    {% include analytics.html %}
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -289,9 +274,7 @@
     </div>
     <script src="/pgia/lib/pgia.js"></script>
     <script src="/scripts/DrawSVGPlugin.min.js"></script>
-    <script src="/scripts/DrawSVGPlugin.min.js.map"></script>
     <script src="/scripts/SplitText.min.js"></script>
-    <script src="/scripts/SplitText.min.js.map"></script>
     <script>
       gsap.registerPlugin(DrawSVGPlugin, SplitText);
 

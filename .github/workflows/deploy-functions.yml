@@ -61,6 +61,10 @@ jobs:
         working-directory: functions
         run: npm ci --no-audit --no-fund
 
+      - name: Refuse to deploy with known serious vulnerabilities
+        working-directory: functions
+        run: npm audit --omit=dev --audit-level=high
+
       - name: Authenticate to Google Cloud (Workload Identity Federation)
         uses: google-github-actions/auth@7c6bc770dae815cd3e89ee6cdf493a5fab2cc093 # v3.0.0
         with:

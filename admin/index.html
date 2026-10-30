@@ -3,10 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="referrer" content="no-referrer" />
   <title>Content Manager</title>
 </head>
 <body>
-  <!-- Include the script that builds the page and powers Netlify CMS -->
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
+  <!-- Decap CMS (maintained successor of Netlify CMS), pinned to one version. The integrity
+       hash makes the browser refuse the file if the CDN ever serves anything else; to upgrade,
+       change the version and recompute: curl -s URL | openssl dgst -sha384 -binary | openssl base64 -A -->
+  <script
+    src="https://cdn.jsdelivr.net/npm/decap-cms@3.17.0/dist/decap-cms.js"
+    integrity="sha384-uh1IAMxJHPiQw7HR3dq6Nf1B/f7b5/Tj3XkNWpRWZhDsxZSqWZPbzWx+STgCBKQJ"
+    crossorigin="anonymous"
+  ></script>
 </body>
 </html>

@@ -4,21 +4,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-ZK3Q35ZF40"
-    ></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag() {
-        dataLayer.push(arguments);
-      }
-      gtag("js", new Date());
-      gtag("config", "G-ZK3Q35ZF40", {
-        anonymize_ip: true,
-        send_page_view: Boolean(localStorage["cookie_dismissed"]),
-      });
-    </script>
+    {% include analytics.html %}
     <meta charset="utf-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -1019,10 +1005,10 @@
       </p>
       <button class="cookie-notice__accept">Accept</button>
     </div>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js" integrity="sha384-HOvlOYPIs/zjoIkWUGXkVmXsjr8GuZLV+Q+rcPwmJOVZVpvTSXQChiN4t9Euv9Vc" crossorigin="anonymous"></script>
     <script src="/pgia/lib/pgia.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/DrawSVGPlugin.min.js" integrity="sha384-hk4mr+NXgJSfCJFF+LKzt26e6ZekZmmXAesF9r58nbaoAqB/VAlvY4T8k2plkXf+" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/SplitText.min.js" integrity="sha384-xb96EMJeax+NLXMC88ZBa1xAeAW+kn+horHh/zFlbMLG2UPWhMJJSlv7fi57hS+Q" crossorigin="anonymous"></script>
     <script>
       gsap.registerPlugin(DrawSVGPlugin, SplitText);
 
