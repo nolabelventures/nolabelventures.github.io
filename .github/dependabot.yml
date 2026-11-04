@@ -5,7 +5,7 @@
 # `development` branch is no longer the default). target-branch is set explicitly anyway.
 #
 # Cooldown: version updates are only proposed once a release is 3 days old (security updates
-# skip the cooldown by design; the auto-merge workflow adds its own 3-day wait for those).
+# skip the cooldown by design). Nothing merges itself: every update waits for a person.
 version: 2
 updates:
   - package-ecosystem: "npm"

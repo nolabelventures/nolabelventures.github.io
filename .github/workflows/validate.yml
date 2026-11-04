@@ -1,6 +1,7 @@
-# The test Dependabot auto-merge requires (30 Oct 2026, after the ChatGPT code review): installs the
-# login function's dependencies without running their install scripts, refuses known serious
+# The test every pull request gets (30 Oct 2026, after the ChatGPT code review): installs the login
+# function's dependencies without running their install scripts, refuses known serious
 # vulnerabilities, and checks the function still loads and still refuses forged logins.
+# A pass says the update works, not that it can be trusted: dependency updates still wait for a person.
 # No secrets and no cloud access: it runs with a read-only token.
 name: validate
 
