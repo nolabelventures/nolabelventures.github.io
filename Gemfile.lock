@@ -1,8 +1,8 @@
 GIT
   remote: https://github.com/tmm1/http_parser.rb.git
-  revision: 7aeb7a24fe1bb112f979f17bc6f8c8a5277cc86e
+  revision: 944979d33c63a4dccafd4b2dca1dcca9f7608fb9
   specs:
-    http_parser.rb (0.8.0)
+    http_parser.rb (0.8.1)
 
 GEM
   remote: https://rubygems.org/
@@ -311,7 +311,7 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages (~> 232)
-  http_parser.rb (~> 0.8.0)!
+  http_parser.rb (~> 0.8.1)!
   jekyll-feed (~> 0.12)
   jekyll-sitemap
   liquid (~> 4.0.4)
